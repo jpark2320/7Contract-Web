@@ -1,3 +1,88 @@
-/*<style media="screen">*/
+<style media="screen">
+    body {
+        width: 100%;
+        height: 100%;
+        font-family: arial, sans-serif;
+        background-image: url("./img/bg.jpg");
+    }
+    #start {
+        background-color: black;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 150px;
+        position: fixed;
+        opacity: .85;
+        border-bottom: solid 1px white;
+    }
+    #title {
+        text-align: center;
+        font-style: italic;
+        color: #ffffff;
+    }
+    h1 a {
+        text-decoration: none;
+        color: white;
+    }
+    #navigation {
+        float: right;
+        position: relative;
+        left: -50%;
+        text-align: left;
+    }
+    #navigation ul {
+        list-style: none;
+        color: yellow;
+        position: relative;
+        left: 45%;
+    }
+    #navigation ul li {
+        /*background-color: #3c3e94;*/
+        width: 150px;
+        height: 30px;
+        border-right: solid 1px white;
+        border-left: solid 1px white;
+        line-height: 27px;
+        text-align: center;
+        float: left;
+        color: white;
+    }
+    #navigation ul li a {
+        text-decoration: none;
+        color: white;
+    }
 
-/*</style>*/
+    #body {
+        text-align: center;
+        margin-top: 180px;
+    }
+    #temp {
+        font-size: 100px;
+        margin-top: 350px;
+    }
+    footer {
+        background-color: black;
+        text-align: center;
+        color: white;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        position: fixed;
+        height: 30px;
+        opacity: .90;
+        border-top: solid 1px white;
+    }
+    footer p {
+        font-size: 10px;
+    }
+    section {
+        width: 29%;
+        float: left;
+        margin: 1% 2%;
+        text-align: center;
+    }
+    section img {
+        width: 400px;
+        height: 300px;
+    }
+</style>
