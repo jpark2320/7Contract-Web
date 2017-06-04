@@ -20,9 +20,16 @@
         font-style: italic;
         color: #ffffff;
     }
-    h1 a {
+    #title a {
         text-decoration: none;
         color: white;
+    }
+    #account {
+        float: right;
+    }
+    #account a {
+        color: white;
+        text-decoration: none;
     }
     #navigation {
         float: right;
@@ -51,10 +58,18 @@
         text-decoration: none;
         color: white;
     }
-
     #body {
         text-align: center;
         margin-top: 180px;
+    }
+    #login {
+        text-align: center;
+        margin-top: 300px;
+    }
+    #login a {
+        text-decoration: none;
+        color: black;
+        text-decoration: underline;
     }
     #temp {
         font-size: 100px;
