@@ -1,4 +1,4 @@
-<?<php>
+<?php
 	$username = $_POST['user'];
 	$password = $_POST['pass'];
 
@@ -18,4 +18,4 @@
 	} else {
 		echo "Failed to login";
 	}
-</php>
+?>
