@@ -23,17 +23,19 @@
             </div>
         </header>
         <div id="login">
-            <p>
-                <label for="">Username:</label>
-                <input type="text" name="user" value="">
-            </p>
-            <p>
-                <label for="">Password:</label>
-                <input type="text" name="pass" value="">
-            </p>
-            <p>
-                <input type="submit" name="" value="login">
-            </p>
+            <form class="" action="process.php" method="POST">
+                <p>
+                    <label for="">Username:</label>
+                    <input type="text" name="username">
+                </p>
+                <p>
+                    <label for="">Password:</label>
+                    <input type="text" name="password">
+                </p>
+                <p>
+                    <input type="submit" name="" value="login">
+                </p>
+            </form>
             <br>
             <p>Forgot ID or PASSWORD?</p>
             Find my <a href="register.php">Id</a> or <a href="#">Password</a><br><br><br>

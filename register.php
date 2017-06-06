@@ -23,29 +23,30 @@
             </div>
         </header>
         <div id="login">
-            <p>
-                <label>Username:</label>
-                <input type="text" name="" value="">
-            </p>
-            <p>
-                <label>Password:</label>
-                <input type="text" name="" value="">
-            </p>
-            <p>
-                <label>First Name:</label>
-                <input type="text" name="" value="">
-            </p>
-            <p>
-                <label>Last Name:</label>
-                <input type="text" name="" value="">
-            </p>
-            <p>
-                <label>Email:</label>
-                <input type="text" name="" value="">
-            </p>
-            <br>
-            <input type="submit" name="" value="Register">
-            <input type="submit" name="" value="Back">
+            <form action="signup.php" method="POST">
+                <p>
+                    <label>Username:</label>
+                    <input type="text" name="uid">
+                </p>
+                <p>
+                    <label>Password:</label>
+                    <input type="password" name="upw">
+                </p>
+                <p>
+                    <label>Re-password:</label>
+                    <input type="password" name="upw2">
+                </p>
+                <p>
+                    <label>First Name:</label>
+                    <input type="text" name="fname">
+                </p>
+                <p>
+                    <label>Last Name:</label>
+                    <input type="text" name="lname">
+                </p>
+                <input type="submit" value="Register">
+                <input type="submit" value="Back">
+            </form>
         </div>
         <footer>
             <p>Copyright ©2017 SEVEN CONTRACT LLC. All rights reserved.</p>
