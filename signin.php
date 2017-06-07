@@ -1,4 +1,4 @@
-<?php 
+<?php
     session_start();
     if (isset($_SESSION['username'])) {
         echo "<script>
@@ -7,51 +7,70 @@
     }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+        <!-- Theme Made By www.w3schools.com - No Copyright -->
+        <title>Bootstrap Theme The Band</title>
         <meta charset="utf-8">
-        <!-- <link rel="stylesheet" href="./css/styles.css"> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="./css/styles.css">
-        <title>
-            Welcome to SEVEN CONTRACT LLC.
-        </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
-    <body>
-        <header id="start">
-            <div id="account">
-                <a href="signin.php">Sign in</a>
+    <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.php">SEVEN CONTRACT LLC.</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="index.php">HOME</a></li>
+                        <li><a href="about.php">ABOUT</a></li>
+                        <li><a href="contact.php">CONTACT</a></li>
+                        
+                    </ul>
+                </div>
             </div>
-            <h1 id="title"><a href="index.php">SEVEN CONTRACT LLC.</a></h1>
-            <div id="navigation">
-                <ul>
-                    <li><a href="about.php">About</a></li>
-                    <li><a href="request.php">Request</a></li>
-                    <li><a href="contact.php">Contact</a></li>
-                </ul>
+        </nav>
+
+        <!-- (Body Section) -->
+        <div id="contact" class="container">
+            <h3 class="text-center">Join us!</h3><br>
+
+            <div class="row" align="center">
+                <form class="" action="signin_process.php" method="POST">
+                    <p>
+                        <label for="">Username:</label>
+                        <input type="text" name="uid">
+                    </p>
+                    <p>
+                        <label for="">Password:</label>
+                        <input type="password" name="upw">
+                    </p>
+                    <p>
+                        <input type="submit" name="" value="login">
+                    </p>
+                </form>
+                <br>
+                <p>Forgot ID or PASSWORD?</p>
+                Find <a href="register.php">Id</a> or <a href="#">Password</a><br><br><br>
+                <p>No account?</p>
+                <a href="register.php">Sign Up</a>
             </div>
-        </header>
-        <div id="login">
-            <form class="" action="signin_process.php" method="POST">
-                <p>
-                    <label for="">Username:</label>
-                    <input type="text" name="uid">
-                </p>
-                <p>
-                    <label for="">Password:</label>
-                    <input type="password" name="upw">
-                </p>
-                <p>
-                    <input type="submit" name="" value="login">
-                </p>
-            </form>
-            <br>
-            <p>Forgot ID or PASSWORD?</p>
-            Find my <a href="register.php">Id</a> or <a href="#">Password</a><br><br><br>
-            <p>No account?</p>
-            <a href="register.php">Register</a>
         </div>
-        <footer>
-            <p>Copyright ©2017 SEVEN CONTRACT LLC. All rights reserved.</p>
+
+        <!-- Footer -->
+        <footer class="text-center">
+            <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+                <span class="glyphicon glyphicon-chevron-up"></span>
+            </a><br><br>
+            <p>Copyright ©2017 SEVEN CONTRACT LLC. All rights reserved. <a href="https://www.w3schools.com" data-toggle="tooltip" title="Visit w3schools">www.w3schools.com</a></p>
         </footer>
+
+        </script>
     </body>
 </html>
