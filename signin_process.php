@@ -18,14 +18,24 @@
 	$sql = "SELECT * FROM Users WHERE username='$username' AND password='$password'";
     $result = $conn->query($sql);
     $count = mysqli_num_rows($result);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $_SESSION['isadmin'] = $row["isadmin"];
+        }
+    } else {
+        echo "<script>
+        alert(\"Username & Password Incorrect.\");
+        </script>";
+        echo '<script>window.location.href = "signin.php";</script>';
+    }
     if ($count == 1){
 		$_SESSION['username'] = $username;
-		echo $result["isamin"]. "";
-	}else{
-		$fmsg = "Invalid Login Credentials.";
+        echo "<script>
+        alert(\"You have successfully logged in.\");
+        </script>";
+        echo '<script>window.location.href = "index.php";</script>';
 	}
 	if (isset($_SESSION['username'])) {
 		$username = $_SESSION['username'];
 	}
-
 ?>

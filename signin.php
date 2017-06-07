@@ -1,5 +1,10 @@
 <?php 
     session_start();
+    if (isset($_SESSION['username'])) {
+        echo "<script>
+        alert(\"".$_SESSION['username']."\");
+        </script>";
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,7 +19,7 @@
     <body>
         <header id="start">
             <div id="account">
-                <a href="#">Sign in</a>
+                <a href="signin.php">Sign in</a>
             </div>
             <h1 id="title"><a href="index.php">SEVEN CONTRACT LLC.</a></h1>
             <div id="navigation">

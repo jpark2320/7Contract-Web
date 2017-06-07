@@ -14,7 +14,7 @@
     <body>
         <header id="start">
             <div id="account">
-                <a href="#">Sign in</a>
+                <a href="signin.php">Sign in</a>
             </div>
             <h1 id="title"><a href="index.php">SEVEN CONTRACT LLC.</a></h1>
             <div id="navigation">
@@ -48,7 +48,7 @@
                     <input type="text" name="lname">
                 </p>
                 <p>
-                    <label>Email Address:</label> s
+                    <label>Email Address:</label>
                     <input type="email" name="email">
                 </p>
                 <input type="submit" value="Register">
