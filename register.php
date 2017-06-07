@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,7 +26,7 @@
             </div>
         </header>
         <div id="login">
-            <form action="signup.php" method="POST">
+            <form action="register_process.php" method="POST">
                 <p>
                     <label>Username:</label>
                     <input type="text" name="uid">
@@ -43,6 +46,10 @@
                 <p>
                     <label>Last Name:</label>
                     <input type="text" name="lname">
+                </p>
+                <p>
+                    <label>Email Address:</label> s
+                    <input type="email" name="email">
                 </p>
                 <input type="submit" value="Register">
                 <input type="submit" value="Back">

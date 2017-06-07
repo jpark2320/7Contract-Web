@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,14 +26,14 @@
             </div>
         </header>
         <div id="login">
-            <form class="" action="process.php" method="POST">
+            <form class="" action="signin_process.php" method="POST">
                 <p>
                     <label for="">Username:</label>
-                    <input type="text" name="username">
+                    <input type="text" name="uid">
                 </p>
                 <p>
                     <label for="">Password:</label>
-                    <input type="text" name="password">
+                    <input type="password" name="upw">
                 </p>
                 <p>
                     <input type="submit" name="" value="login">
