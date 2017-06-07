@@ -31,7 +31,7 @@
     if ($count == 1){
 		$_SESSION['username'] = $username;
         echo "<script>
-        alert(\"You have successfully logged in.\");
+        alert(\"You are successfully logged in.\");
         </script>";
         echo '<script>window.location.href = "index.php";</script>';
 	}

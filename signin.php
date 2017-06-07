@@ -2,7 +2,7 @@
     session_start();
     if (isset($_SESSION['username'])) {
         echo "<script>
-        alert(\"".$_SESSION['username']."\");
+        alert(\"".$_SESSION['username'].$_SESSION['isadmin']."\");
         </script>";
     }
 ?>
