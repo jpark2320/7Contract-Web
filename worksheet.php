@@ -25,22 +25,26 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="index.php">HOME</a></li>
                         <li><a href="about.php">ABOUT</a></li>
-                        <li><a href="worksheet.php">WORKSHEET</a></li>
                         <li><a href="contact.php">CONTACT</a></li>
-                        <li><a href="signin.php">SIGNIN</a></li>
+                        <li><a href="worksheet.php">WORKSHEET</a></li>
+                        <?php if (isset($_SESSION['username'])): ?>
+                            <li id="abc"><a href="signout.php">SIGNOUT</a></li>
+                        <?php  else: ?>
+                            <li id="abc"><a href="signin.php">SIGNIN</a></li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
         </nav>
         <div id="contact" class="container">
-            <h3 class="text-center">Sign up right now!</h3><br>
+            <h3 class="text-center">Write a worksheet!</h3><br>
 
             <div class="row" align="center">
                 <?php
-                    $servername = "localhost";
+                    $servername = "localhost:3307";
                     $username = "root";
-                    $password = "";
-                    $db = "7Contract";
+                    $password = "123456";
+                    $db = "7contract";
 
                     // Create connection
                     $conn = new mysqli($servername, $username, $password, $db);
