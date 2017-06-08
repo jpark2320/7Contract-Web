@@ -49,65 +49,54 @@
                     if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                     }
-                    $sql = "SELECT * FROM Users";
+                    $sql = "SELECT * FROM Worksheet";
                     $result = mysqli_query($conn, $sql);
 
                     echo "<table border='1'>
                     <tr>
-                    <th>Username</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Is Admin?</th>
+                    <th>ID</th>
+                    <th>Apt</th>
+                    <th>Invoice Number</th>
+                    <th>P.O. Number</th>
+                    <th>Cost</th>
                     </tr>";
 
                     while($row = mysqli_fetch_array($result))
                     {
                         echo "<tr>";
-                        echo "<td>" . $row['username'] . "</td>";
-                        echo "<td>" . $row['first'] . "</td>";
-                        echo "<td>" . $row['last'] . "</td>";
-                        echo "<td>" . $row['isadmin'] . "</td>";
+                        echo "<td>" . $row['id'] . "</td>";
+                        echo "<td>" . $row['Apt'] . "</td>";
+                        echo "<td>" . $row['Invoice_Num'] . "</td>";
+                        echo "<td>" . $row['PO_Num'] . "</td>";
+                        echo "<td>" . $row['cost'] . "</td>";
                         echo "</tr>";
                     }
                     echo "</table>";
 
                     mysqli_close($conn);
                 ?>
-                <p>
-                    <label>Name
-                    <input type="text" name="customer_name" required>
-                    </label> 
-                    </p>
-
+                <form class="" action="worksheet_process.php" method="POST">
                     <p>
-                    <label>Phone 
-                    <input type="tel" name="phone_number">
-                    </label>
-                    </p>
-
-                    <p>
-                    <label>Email 
-                    <input type="email" name="email_address">
-                    </label>
-                </p>
-                <form class="" action="signin_process.php" method="POST">
-                    <p>
-                        <label for="">Username:</label>
-                        <input type="text" name="uid" value="<?php echo isset($_SESSION['uid']) ? $_SESSION['uid'] : '' ?>" />
+                        <label for="">Apt Code:</label>
+                        <input type="text" name="aptcode" value="<?php echo isset($_SESSION['uid']) ? $_SESSION['uid'] : '' ?>" />
                     </p>
                     <p>
-                        <label for="">Password:</label>
-                        <input type="password" name="upw">
+                        <label for="">Invoice No.:</label>
+                        <input type="text" name="invoice">
                     </p>
                     <p>
-                        <input type="submit" name="" value="login">
+                        <label for="">P.O. No.:</label>
+                        <input type="text" name="po">
+                    </p>
+                    <p>
+                        <label for="">Cost:</label>
+                        <input type="text" name="cost">
+                    </p>
+                    <p>
+                        <input type="submit" name="" value="Add">
                     </p>
                 </form>
-                <br>
-                <p>Forgot ID or PASSWORD?</p>
-                Find <a href="register.php">Id</a> or <a href="#">Password</a><br><br><br>
-                <p>No account?</p>
-                <a href="register.php">Sign Up</a>
+
             </div>
         </div>
 
