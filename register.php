@@ -171,6 +171,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="index.php">HOME</a></li>
                         <li><a href="about.php">ABOUT</a></li>
+                        <li><a href="worksheet.php">WORKSHEET</a></li>
                         <li><a href="contact.php">CONTACT</a></li>
                         <li><a href="signin.php">SIGNIN</a></li>
                     </ul>
@@ -186,7 +187,7 @@
                 <form action="register_process.php" method="POST">
                     <p>
                         <label>Username:</label>
-                        <input type="text" name="uid">
+                        <input type="text" name="uid" value="<?php echo isset($_SESSION['uid']) ? $_SESSION['uid'] : '' ?>" />
                     </p>
                     <p>
                         <label>Password:</label>
@@ -198,15 +199,15 @@
                     </p>
                     <p>
                         <label>First Name:</label>
-                        <input type="text" name="fname">
+                        <input type="text" name="fname" value="<?php echo isset($_SESSION['fname']) ? $_SESSION['fname'] : '' ?>" />
                     </p>
                     <p>
                         <label>Last Name:</label>
-                        <input type="text" name="lname">
+                        <input type="text" name="lname" value="<?php echo isset($_SESSION['lname']) ? $_SESSION['lname'] : '' ?>" />
                     </p>
                     <p>
                         <label>Email Address:</label>
-                        <input type="email" name="email">
+                        <input type="email" name="email" value="<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : '' ?>" />
                     </p>
                     <input type="submit" value="Register">
                     <input type="submit" value="Back">

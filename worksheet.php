@@ -32,21 +32,82 @@
                 </div>
             </div>
         </nav>
-
-        <!-- (Body Section) -->
         <div id="contact" class="container">
-            <h3 class="text-center">Welcome!</h3>
-            <p class="text-center"><em>We are looking forward to mee you!</em></p>
+            <h3 class="text-center">Sign up right now!</h3><br>
 
-            <div class="row">
-                Some of its tools and features come from existing services and platforms, such as the Picasa photo storing and sharing platform. Some of the features are similar to other popular social networks and micro-blogging platforms.
-                Google+ was opened to a small number of users to test in June 2011. Google then gave some of those initial users invitations to invite a small number of their contacts. The service has since been opened up to everyone. It was given an overhaul in April, 2012.
+            <div class="row" align="center">
+                <?php
+                    $servername = "localhost";
+                    $username = "root";
+                    $password = "";
+                    $db = "7Contract";
+
+                    // Create connection
+                    $conn = new mysqli($servername, $username, $password, $db);
+
+                    // Check connection
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+                    $sql = "SELECT * FROM Users";
+                    $result = mysqli_query($conn, $sql);
+
+                    echo "<table border='1'>
+                    <tr>
+                    <th>Username</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Is Admin?</th>
+                    </tr>";
+
+                    while($row = mysqli_fetch_array($result))
+                    {
+                        echo "<tr>";
+                        echo "<td>" . $row['username'] . "</td>";
+                        echo "<td>" . $row['first'] . "</td>";
+                        echo "<td>" . $row['last'] . "</td>";
+                        echo "<td>" . $row['isadmin'] . "</td>";
+                        echo "</tr>";
+                    }
+                    echo "</table>";
+
+                    mysqli_close($conn);
+                ?>
+                <p>
+                    <label>Name
+                    <input type="text" name="customer_name" required>
+                    </label> 
+                    </p>
+
+                    <p>
+                    <label>Phone 
+                    <input type="tel" name="phone_number">
+                    </label>
+                    </p>
+
+                    <p>
+                    <label>Email 
+                    <input type="email" name="email_address">
+                    </label>
+                </p>
+                <form class="" action="signin_process.php" method="POST">
+                    <p>
+                        <label for="">Username:</label>
+                        <input type="text" name="uid" value="<?php echo isset($_SESSION['uid']) ? $_SESSION['uid'] : '' ?>" />
+                    </p>
+                    <p>
+                        <label for="">Password:</label>
+                        <input type="password" name="upw">
+                    </p>
+                    <p>
+                        <input type="submit" name="" value="login">
+                    </p>
+                </form>
                 <br>
-                Some of its tools and features come from existing services and platforms, such as the Picasa photo storing and sharing platform. Some of the features are similar to other popular social networks and micro-blogging platforms.
-                Google+ was opened to a small number of users to test in June 2011. Google then gave some of those initial users invitations to invite a small number of their contacts. The service has since been opened up to everyone. It was given an overhaul in April, 2012.
-                <br>
-                Some of its tools and features come from existing services and platforms, such as the Picasa photo storing and sharing platform. Some of the features are similar to other popular social networks and micro-blogging platforms.
-                Google+ was opened to a small number of users to test in June 2011. Google then gave some of those initial users invitations to invite a small number of their contacts. The service has since been opened up to everyone. It was given an overhaul in April, 2012.
+                <p>Forgot ID or PASSWORD?</p>
+                Find <a href="register.php">Id</a> or <a href="#">Password</a><br><br><br>
+                <p>No account?</p>
+                <a href="register.php">Sign Up</a>
             </div>
         </div>
 

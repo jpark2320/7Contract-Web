@@ -22,6 +22,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="index.php">HOME</a></li>
                         <li><a href="about.php">ABOUT</a></li>
+                        <li><a href="worksheet.php">WORKSHEET</a></li>
                         <li><a href="contact.php">CONTACT</a></li>
                         <li><a href="signin.php">SIGNIN</a></li>
                     </ul>
@@ -52,6 +53,7 @@
                 <p>Coconut</p>
                 <p>Diamond</p>
             </div>
+            
         </div>
 
         <!-- Footer -->

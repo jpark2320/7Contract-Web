@@ -14,6 +14,7 @@
     }
 
     $username = $_POST['uid'];
+    $_SESSION['uid'] = $username;
     $password = $_POST['upw'];
 	$sql = "SELECT * FROM Users WHERE username='$username' AND password='$password'";
     $result = $conn->query($sql);
@@ -27,15 +28,17 @@
         alert(\"Username & Password Incorrect.\");
         </script>";
         echo '<script>window.location.href = "signin.php";</script>';
+        exit();
     }
     if ($count == 1){
+        unset($_SESSION['uid']);
+        unset($_SESSION['fname']);
+        unset($_SESSION['lname']);
+        unset($_SESSION['email']);
 		$_SESSION['username'] = $username;
         echo "<script>
         alert(\"You are successfully logged in.\");
         </script>";
         echo '<script>window.location.href = "index.php";</script>';
-	}
-	if (isset($_SESSION['username'])) {
-		$username = $_SESSION['username'];
 	}
 ?>
