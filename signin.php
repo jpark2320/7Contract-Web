@@ -25,9 +25,12 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="index.php">HOME</a></li>
                         <li><a href="about.php">ABOUT</a></li>
-                        <li><a href="worksheet.php">WORKSHEET</a></li>
                         <li><a href="contact.php">CONTACT</a></li>
-                        <li><a href="signin.php">SIGNIN</a></li>  
+                        <?php if (isset($_SESSION['username'])): ?>
+                            <li id="abc"><a href="signout.php">SIGNOUT</a></li>
+                        <?php  else: ?>
+                            <li id="abc"><a href="signin.php">SIGNIN</a></li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
@@ -41,7 +44,7 @@
                 <form class="" action="signin_process.php" method="POST">
                     <p>
                         <label for="">Username:</label>
-                        <input type="text" name="uid" value="<?php echo isset($_SESSION['uid']) ? $_SESSION['uid'] : '' ?>" />
+                        <input type="text" name="uid">
                     </p>
                     <p>
                         <label for="">Password:</label>
