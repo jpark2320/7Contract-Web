@@ -27,7 +27,7 @@
                         <li><a href="about.php">ABOUT</a></li>
                         <li><a href="contact.php">CONTACT</a></li>
                         <li><a href="worksheet.php">WORKSHEET</a></li>
-                        <?php if (isset($_SESSION['username'])): ?>
+                        <?php if (isset($_SESSION['email'])): ?>
                             <li id="abc"><a href="signout.php">SIGNOUT</a></li>
                         <?php  else: ?>
                             <li id="abc"><a href="signin.php">SIGNIN</a></li>

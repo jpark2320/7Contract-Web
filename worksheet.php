@@ -48,7 +48,7 @@
                         echo '<script>window.location.href = "signin.php";</script>';
                         exit();
                     }
-                    $servername = "localhost:3307";
+                    $servername = "localhost";
                     $username = "root";
                     $password = "";
                     $db = "7Contract";

@@ -1,6 +1,6 @@
 <?php
 	session_start();
-    $servername = "localhost:3307";
+    $servername = "localhost";
     $username = "root";
     $password = "";
     $db = "7Contract";
@@ -14,6 +14,7 @@
     }
 
     $email = $_POST['email'];
+    $_SESSION['echeck'] = $email;
     $password = $_POST['upw'];
 	$sql = "SELECT * FROM Users WHERE email='$email' AND password='$password'";
     $result = $conn->query($sql);
@@ -22,6 +23,7 @@
         while($row = $result->fetch_assoc()) {
             $_SESSION['isadmin'] = $row["isadmin"];
             $_SESSION['email'] = $email;
+            unset($_SESSION['echeck']);
             echo '<script>window.location.href = "index.php";</script>';
         }
     } else {
@@ -29,4 +31,5 @@
         alert(\"Email Address or Password Incorrect.\");
         </script>";
         echo '<script>window.location.href = "signin.php";</script>';
+    }
 ?>

@@ -45,7 +45,7 @@
                 <form class="" action="signin_process.php" method="POST">
                     <p>
                         <label for="">Email Address:</label>
-                        <input type="email" name="email">
+                        <input type="email" name="email" value="<?php echo isset($_SESSION['echeck']) ? $_SESSION['echeck'] : '' ?>">
                     </p>
                     <p>
                         <label for="">Password:</label>
@@ -56,7 +56,7 @@
                     </p>
                 </form>
                 <br>
-                <p>Forgot Email Address or PASSWORD?</p>
+                <p>Forgot PASSWORD?</p>
                 Find <a href="register.php">Id</a> or <a href="#">Password</a><br><br><br>
                 <p>No account?</p>
                 <a href="register.php">Sign Up</a>

@@ -14,10 +14,13 @@
     }
 
     $email = $_POST['email'];
+    $_SESSION['echeck'] = $email;
     $password = $_POST['upw'];
     $repassword = $_POST['upw2'];
     $fname = $_POST['fname'];
+    $_SESSION['fcheck'] = $fname;
     $lname = $_POST['lname'];
+    $_SESSION['lcheck'] = $lname;
     if (strlen($password) == 0 || strlen($fname) == 0
         || strlen($lname) == 0 || strlen($email) == 0) {
         echo "<script>
@@ -35,6 +38,9 @@
             VALUES ('$email', '$password', '$fname', '$lname', 0)";
             $result = $conn->query($sql);
             $_SESSION['email'] = $email;
+            unset($_SESSION['echeck']);
+            unset($_SESSION['fcheck']);
+            unset($_SESSION['lcheck']);
             header("location: index.php");
         } else {
             echo "<script>

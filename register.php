@@ -27,7 +27,7 @@
                         <li><a href="about.php">ABOUT</a></li>
                         <li><a href="contact.php">CONTACT</a></li>
                         <li><a href="worksheet.php">WORKSHEET</a></li>
-                        <?php if (isset($_SESSION['username'])): ?>
+                        <?php if (isset($_SESSION['email'])): ?>
                             <li id="abc"><a href="signout.php">SIGNOUT</a></li>
                         <?php  else: ?>
                             <li id="abc"><a href="signin.php">SIGNIN</a></li>
@@ -45,7 +45,7 @@
                 <form action="register_process.php" method="POST">
                     <p>
                         <label>Email Address:</label>
-                        <input type="email" name="email">
+                        <input type="email" name="email" value="<?php echo isset($_SESSION['echeck']) ? $_SESSION['echeck'] : '' ?>">
                     </p>
                     <p>
                         <label>Password:</label>
@@ -57,11 +57,11 @@
                     </p>
                     <p>
                         <label>First Name:</label>
-                        <input type="text" name="fname">
+                        <input type="text" name="fname" value="<?php echo isset($_SESSION['fcheck']) ? $_SESSION['fcheck'] : '' ?>">
                     </p>
                     <p>
                         <label>Last Name:</label>
-                        <input type="text" name="lname">
+                        <input type="text" name="lname" value="<?php echo isset($_SESSION['lcheck']) ? $_SESSION['lcheck'] : '' ?>">
                     </p>
                     <input type="submit" value="Register">
                     <input type="submit" value="Back">
