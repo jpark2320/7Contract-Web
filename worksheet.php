@@ -89,7 +89,7 @@
                                 <tbody>
                                     <tr>
                                         <td align="center">'.$row['invoice'].'</td>
-                                        <td align="center">'.$row['po'].'</td>
+                                        <td align="center">'.$row['PO'].'</td>
                                         <td align="center">'.$row['apt'].'</td>
                                         <td align="center">'.$row['unit'].'</td>
                                         <td align="center">'.$row['size'].'</td>
@@ -100,10 +100,8 @@
                                     </tr>
                                 </tbody>';
                         }
-                    echo '</table>';
+                        echo '</table>';
                     } else {
-                        $sql = 'SELECT * FROM SubWorksheet WHERE email =\"'.$_SESSION['email'].'\" ORDER BY '.$order;
-                        $result = mysqli_query($conn, $sql);
                         echo '
                             <table border="2" width="1000">
                                 <thead>
@@ -120,7 +118,10 @@
                         if (isset($_GET['orderBy']) && in_array($_GET['orderBy'], $orderBy)) {
                             $order = $_GET['orderBy'];
                         }
-                        $sql = 'SELECT * FROM Worksheet ORDER BY '.$order;
+                        $sql = 'SELECT * FROM SubWorksheet WHERE email =\''.$_SESSION['email'].'\' ORDER BY '.$order;
+                        echo "<script>
+            alert(\"".$sql."\");
+            </script>";
                         $result = mysqli_query($conn, $sql);
                         while($row = mysqli_fetch_array($result))
                         {
@@ -136,13 +137,14 @@
                                     </tr>
                                 </tbody>';
                         }
+                        echo '</table>';
                     }
                     mysqli_close($conn);
                 ?>
 
                 </tbody>
                 <br><br>
-                <?php if ($_SESSION['isadmin']): ?>
+                <!-- <?php if ($_SESSION['isadmin']): ?> -->
                     <table border="2" width="1000">
                         <thead>
                             <tr>
@@ -171,8 +173,8 @@
                             </form>
                         </tbody>
                     </table>
-                <?php  else: ?>
-                <?php endif; ?>
+<!--                 <?php  else: ?>
+                <?php endif; ?> -->
             </div>
         </div>
 
