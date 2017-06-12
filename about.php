@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -38,25 +41,60 @@
         <div id="contact" class="container">
             <h3 class="text-center">We do the following...</h3>
             <p class="text-center"><em>Ask us if you need anything more than them!</em></p>
+            <br><br>
 
             <div class="row" align="center">
-                <p>Apple</p>
-                <p>Banana</p>
-                <p>Coconut</p>
-                <p>Diamond</p>
-                <p>Apple</p>
-                <p>Banana</p>
-                <p>Coconut</p>
-                <p>Diamond</p>
-                <p>Apple</p>
-                <p>Banana</p>
-                <p>Coconut</p>
-                <p>Diamond</p>
-                <p>Apple</p>
-                <p>Banana</p>
-                <p>Coconut</p>
-                <p>Diamond</p>
+                <p>
+                    <section>
+                        <img src="./img/apple.jpeg">
+                    </section>
+                    Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!
+                    Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!
+                    Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!
+                    Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!
+                </p>
             </div>
+            <br><br><br>
+
+            <div class="row" align="center">
+                <p>
+                    <section>
+                        <img src="./img/banana.jpeg">
+                    </section>
+                    Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!
+                    Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!
+                    Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!
+                    Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!
+                </p>
+            </div>
+            <br><br><br>
+
+            <div class="row" align="center">
+                <p>
+                    <section>
+                        <img src="./img/grape.jpeg">
+                    </section>
+                    Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!
+                    Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!
+                    Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!
+                    Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!
+                </p>
+            </div>
+            <br><br><br>
+
+            <div class="row" align="center">
+                <p>
+                    <section>
+                        <img src="./img/kiwi.jpeg">
+                    </section>
+                    Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!
+                    Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!
+                    Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!
+                    Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!Ask us if you need anything more than them!
+                </p>
+            </div>
+            <br><br><br>
+
         </div>
 
         <!-- Footer -->
@@ -64,38 +102,7 @@
             <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
                 <span class="glyphicon glyphicon-chevron-up"></span>
             </a><br><br>
-            <p>Copyright ©2017 SEVEN CONTRACT LLC. All rights reserved. <a href="https://www.w3schools.com" data-toggle="tooltip" title="Visit w3schools">www.w3schools.com</a></p>
+            <p>Copyright ©2017 SEVEN CONTRACT LLC. All rights reserved.</p>
         </footer>
-
-        <script>
-            $(document).ready(function(){
-                // Initialize Tooltip
-                $('[data-toggle="tooltip"]').tooltip();
-
-                // Add smooth scrolling to all links in navbar + footer link
-                $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
-
-                    // Make sure this.hash has a value before overriding default behavior
-                    if (this.hash !== "") {
-
-                        // Prevent default anchor click behavior
-                        event.preventDefault();
-
-                        // Store hash
-                        var hash = this.hash;
-
-                        // Using jQuery's animate() method to add smooth page scroll
-                        // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-                        $('html, body').animate({
-                            scrollTop: $(hash).offset().top
-                        }, 900, function(){
-
-                            // Add hash (#) to URL when done scrolling (default click behavior)
-                            window.location.hash = hash;
-                        });
-                    } // End if
-                });
-            })
-        </script>
     </body>
 </html>

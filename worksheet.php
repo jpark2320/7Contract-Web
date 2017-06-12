@@ -43,8 +43,8 @@
                 <?php
                     $servername = "localhost:3307";
                     $username = "root";
-                    $password = "123456";
-                    $db = "7contract";
+                    $password = "";
+                    $db = "7Contract";
 
                     // Create connection
                     $conn = new mysqli($servername, $username, $password, $db);
@@ -56,51 +56,70 @@
                     $sql = "SELECT * FROM Worksheet";
                     $result = mysqli_query($conn, $sql);
 
-                    echo "<table border='1'>
-                    <tr>
-                    <th>ID</th>
-                    <th>Apt</th>
-                    <th>Invoice Number</th>
-                    <th>P.O. Number</th>
-                    <th>Cost</th>
-                    </tr>";
+                    echo '
+                        <table border="2" width="1000">
+                            <thead>
+                                <tr>
+                                    <td align="center"><b>ID</b></td>
+                                    <td align="center"><b>Apt #</b></td>
+                                    <td align="center"><b>Unit #</b></td>
+                                    <td align="center"><b>Invoice #</b></td>
+                                    <td align="center"><b>P.O. #</b></td>
+                                    <td align="center"><b>Cost</b></td>
+                                    <td align="center"><b># of Workers</b></td>
+                                    <td align="center"><b>Assign</b></td>
+                                </tr>
+                            </thead>';
 
-                    while($row = mysqli_fetch_array($result))
-                    {
-                        echo "<tr>";
-                        echo "<td>" . $row['id'] . "</td>";
-                        echo "<td>" . $row['Apt'] . "</td>";
-                        echo "<td>" . $row['Invoice_Num'] . "</td>";
-                        echo "<td>" . $row['PO_Num'] . "</td>";
-                        echo "<td>" . $row['cost'] . "</td>";
-                        echo "</tr>";
-                    }
-                    echo "</table>";
-
+                            while($row = mysqli_fetch_array($result))
+                            {
+                                echo '
+                                    <tbody>
+                                        <tr>
+                                            <td align="center">'.$row['id'].'</td>
+                                            <td align="center">'.$row['Apt'].'</td>
+                                            <td align="center">'.$row['Unit_Num'].'</td>
+                                            <td align="center">'.$row['Invoice_Num'].'</td>
+                                            <td align="center">'.$row['PO_Num'].'</td>
+                                            <td align="center">'.$row['cost'].'</td>
+                                            <td align="center">'.$row['Num_Worker'].'</td>
+                                            <td align="center"><input type="submit" value="Send" onclick="location.href=\'assign.php\'"></input></td>
+                                        </tr>
+                                    </tbody>';
+                            }
+                    echo '</table>';
                     mysqli_close($conn);
                 ?>
-                <form class="" action="worksheet_process.php" method="POST">
-                    <p>
-                        <label for="">Apt Code:</label>
-                        <input type="text" name="aptcode" value="<?php echo isset($_SESSION['uid']) ? $_SESSION['uid'] : '' ?>" />
-                    </p>
-                    <p>
-                        <label for="">Invoice No.:</label>
-                        <input type="text" name="invoice">
-                    </p>
-                    <p>
-                        <label for="">P.O. No.:</label>
-                        <input type="text" name="po">
-                    </p>
-                    <p>
-                        <label for="">Cost:</label>
-                        <input type="text" name="cost">
-                    </p>
-                    <p>
-                        <input type="submit" name="" value="Add">
-                    </p>
-                </form>
 
+
+                </tbody>
+                <br><br>
+                <table border="2" width="1000">
+                    <thead>
+                        <tr>
+                            <td align="center"><b>Apt</b></th>
+                            <td align="center"><b>Unit #</b></th>
+                            <td align="center"><b>Invoice #</b></th>
+                            <td align="center"><b>P.O. #</b></th>
+                            <td align="center"><b>Cost</b></th>
+                            <td align="center"><b># of Workers</b></th>
+                            <td align="center"><b>Add</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <form action="worksheet_process.php" method="POST">
+                            <tr>
+                                <td align="center"><input type="text" name="aptcode" value="<?php echo isset($_SESSION['uid']) ? $_SESSION['uid'] : '' ?>" /></td>
+                                <td align="center"><input type="text" name="unit_num"></td>
+                                <td align="center"><input type="text" name="invoice"></td>
+                                <td align="center"><input type="text" name="po"></td>
+                                <td align="center"><input type="text" name="cost"></td>
+                                <td align="center"><input type="text" name="num_workers"></td>
+                                <td align="center"><input type="submit" value="OK"></td>
+                            </tr>
+                        </form>
+                    </tbody>
+                </table>
             </div>
         </div>
 
@@ -109,38 +128,7 @@
             <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
                 <span class="glyphicon glyphicon-chevron-up"></span>
             </a><br><br>
-            <p>Copyright ©2017 SEVEN CONTRACT LLC. All rights reserved. <a href="https://www.w3schools.com" data-toggle="tooltip" title="Visit w3schools">www.w3schools.com</a></p>
+            <p>Copyright ©2017 SEVEN CONTRACT LLC. All rights reserved.</p>
         </footer>
-
-        <script>
-            $(document).ready(function(){
-                // Initialize Tooltip
-                $('[data-toggle="tooltip"]').tooltip();
-
-                // Add smooth scrolling to all links in navbar + footer link
-                $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
-
-                    // Make sure this.hash has a value before overriding default behavior
-                    if (this.hash !== "") {
-
-                        // Prevent default anchor click behavior
-                        event.preventDefault();
-
-                        // Store hash
-                        var hash = this.hash;
-
-                        // Using jQuery's animate() method to add smooth page scroll
-                        // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-                        $('html, body').animate({
-                            scrollTop: $(hash).offset().top
-                        }, 900, function(){
-
-                            // Add hash (#) to URL when done scrolling (default click behavior)
-                            window.location.hash = hash;
-                        });
-                    } // End if
-                });
-            })
-        </script>
     </body>
 </html>

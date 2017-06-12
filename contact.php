@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -68,27 +71,42 @@
 
         <!-- Add Google Maps -->
         <div id="googleMap"></div>
-            <script>
-                function myMap() {
-                    var myCenter = new google.maps.LatLng(41.878114, -87.629798);
-                    var mapProp = {center:myCenter, zoom:12, scrollwheel:false, draggable:false, mapTypeId:google.maps.MapTypeId.ROADMAP};
-                    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-                    var marker = new google.maps.Marker({position:myCenter});
-                    marker.setMap(map);
-                }
-            </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
-        <!--
-        To use this code on your website, get a free API key from Google.
-        Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
-        -->
+        <script>
+            function myMap() {
+            var myCenter = new google.maps.LatLng(41.878114, -87.629798);
+            var mapProp = {center:myCenter, zoom:12, scrollwheel:false, draggable:false, mapTypeId:google.maps.MapTypeId.ROADMAP};
+            var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+            var marker = new google.maps.Marker({position:myCenter});
+            marker.setMap(map);
+        }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFz6C9jGyzWCScXtg5479ENXB5pP7OF7E=myMap"></script>
+
+
+
+        <!-- <div id="map"></div>
+        <script>
+            function initMap() {
+                var location = {lat:34.002879, lng:-84.144638};
+                var map = new google.maps.Map(document.getElementById("map"), {
+                    zoom: 4,
+                    center: location
+                });
+                var marker = new google.maps.Marker({
+                    position: location,
+                    map: map
+                });
+            }
+        </script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFz6C9jGyzWCScXtg5479ENXB5pP7OF7E=initMap"></script> -->
+
 
         <!-- Footer -->
         <footer class="text-center">
             <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
                 <span class="glyphicon glyphicon-chevron-up"></span>
             </a><br><br>
-            <p>Bootstrap Theme Made By <a href="https://www.w3schools.com" data-toggle="tooltip" title="Visit w3schools">www.w3schools.com</a></p>
+            <p>Copyright ©2017 SEVEN CONTRACT LLC. All rights reserved.</p>
         </footer>
 
         <script>

@@ -2,7 +2,7 @@
     session_start();
     $servername = "localhost:3307";
     $username = "root";
-    $password = "123456";
+    $password = "";
     $db = "7contract";
 
     // Create connection

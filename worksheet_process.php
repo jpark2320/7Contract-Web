@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $servername = "localhost";
+    $servername = "localhost:3307";
     $username = "root";
     $password = "";
     $db = "7Contract";
@@ -13,10 +13,12 @@
         die("Connection failed: " . $conn->connect_error);
     }
     $aptcode = $_POST['aptcode'];
+    $unit_num = $_POST['unit_num'];
     $invoice = $_POST['invoice'];
     $po = $_POST['po'];
     $cost = $_POST['cost'];
-    $check = "INSERT INTO Worksheet VALUES (0, '$aptcode', '$invoice', '$po', '$cost')";
+    $num_workers = $_POST['num_workers'];
+    $check = "INSERT INTO Worksheet VALUES (0, '$aptcode', '$unit_num', '$invoice', '$po', '$cost', '$num_workers')";
     $result = $conn->query($check);
     echo "<script>
             alert(\"Successfully Added.\");

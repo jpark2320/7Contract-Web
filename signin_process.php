@@ -2,8 +2,8 @@
 	session_start();
     $servername = "localhost:3307";
     $username = "root";
-    $password = "123456";
-    $db = "7contract";
+    $password = "";
+    $db = "7Contract";
 
     // Create connection
     $conn = new mysqli($servername, $username, $password, $db);
