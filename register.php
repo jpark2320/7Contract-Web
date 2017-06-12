@@ -44,8 +44,8 @@
             <div class="row" align="center">
                 <form action="register_process.php" method="POST">
                     <p>
-                        <label>Username:</label>
-                        <input type="text" name="uid">
+                        <label>Email Address:</label>
+                        <input type="email" name="email">
                     </p>
                     <p>
                         <label>Password:</label>
@@ -62,10 +62,6 @@
                     <p>
                         <label>Last Name:</label>
                         <input type="text" name="lname">
-                    </p>
-                    <p>
-                        <label>Email Address:</label>
-                        <input type="email" name="email">
                     </p>
                     <input type="submit" value="Register">
                     <input type="submit" value="Back">

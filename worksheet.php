@@ -27,7 +27,7 @@
                         <li><a href="about.php">ABOUT</a></li>
                         <li><a href="contact.php">CONTACT</a></li>
                         <li><a href="worksheet.php">WORKSHEET</a></li>
-                        <?php if (isset($_SESSION['username'])): ?>
+                        <?php if (isset($_SESSION['email'])): ?>
                             <li id="abc"><a href="signout.php">SIGNOUT</a></li>
                         <?php  else: ?>
                             <li id="abc"><a href="signin.php">SIGNIN</a></li>
@@ -41,6 +41,13 @@
 
             <div class="row" align="center">
                 <?php
+                    if (!isset($_SESSION['email'])) {
+                        echo "<script>
+                                alert(\"You need to sign in first\");
+                                </script>";
+                        echo '<script>window.location.href = "signin.php";</script>';
+                        exit();
+                    }
                     $servername = "localhost:3307";
                     $username = "root";
                     $password = "";
@@ -55,19 +62,21 @@
                     }
                     $sql = "SELECT * FROM Worksheet";
                     $result = mysqli_query($conn, $sql);
-
-                    echo '
+                    if ($_SESSION['isadmin']) {
+                        $sql = 'SELECT * FROM Worksheet ORDER BY '.$order;
+                        $result = mysqli_query($conn, $sql);
+                        echo '
                         <table border="2" width="1000">
                             <thead>
                                 <tr>
-                                    <td align="center"><b>ID</b></td>
-                                    <td align="center"><b>Apt #</b></td>
-                                    <td align="center"><b>Unit #</b></td>
                                     <td align="center"><b>Invoice #</b></td>
                                     <td align="center"><b>P.O. #</b></td>
-                                    <td align="center"><b>Cost</b></td>
-                                    <td align="center"><b># of Workers</b></td>
-                                    <td align="center"><b>Assign</b></td>
+                                    <td align="center"><b>Apt #</b></td>
+                                    <td align="center"><b>Unit #</b></td>
+                                    <td align="center"><b>Size</b></td>
+                                    <td align="center"><b>Price</b></td>
+                                    <td align="center"><b>Descrition</b></td>
+                                    <td align="center"><b>Date</b></td>
                                 </tr>
                             </thead>';
 
@@ -76,18 +85,49 @@
                                 echo '
                                     <tbody>
                                         <tr>
-                                            <td align="center">'.$row['id'].'</td>
-                                            <td align="center">'.$row['Apt'].'</td>
-                                            <td align="center">'.$row['Unit_Num'].'</td>
-                                            <td align="center">'.$row['Invoice_Num'].'</td>
-                                            <td align="center">'.$row['PO_Num'].'</td>
-                                            <td align="center">'.$row['cost'].'</td>
-                                            <td align="center">'.$row['Num_Worker'].'</td>
+                                            <td align="center">'.$row['invoice'].'</td>
+                                            <td align="center">'.$row['po'].'</td>
+                                            <td align="center">'.$row['apt'].'</td>
+                                            <td align="center">'.$row['unit'].'</td>
+                                            <td align="center">'.$row['size'].'</td>
+                                            <td align="center">'.$row['price'].'</td>
+                                            <td align="center">'.$row['description'].'</td>
+                                            <td align="center">'.$row['date'].'</td>
                                             <td align="center"><input type="submit" value="Send" onclick="location.href=\'assign.php\'"></input></td>
                                         </tr>
                                     </tbody>';
                             }
                     echo '</table>';
+                    } else {
+                        $sql = 'SELECT * FROM SubWorksheet ORDER BY '.$order;
+                        $result = mysqli_query($conn, $sql);
+                        echo '
+                        <table border="2" width="1000">
+                            <thead>
+                                <tr>
+                                    <td align="center"><b>Apt #</b></td>
+                                    <td align="center"><b>Unit #</b></td>
+                                    <td align="center"><b>Message</b></td>
+                                    <td align="center"><b>Comment</b></td>
+                                    <td align="center"><b>Date</b></td>
+                                </tr>
+                            </thead>';
+
+                            while($row = mysqli_fetch_array($result))
+                            {
+                                echo '
+                                    <tbody>
+                                        <tr>
+                                            <td align="center">'.$row['apt'].'</td>
+                                            <td align="center">'.$row['unit'].'</td>
+                                            <td align="center">'.$row['message'].'</td>
+                                            <td align="center">'.$row['comment'].'</td>
+                                            <td align="center">'.$row['date'].'</td>
+                                            <td align="center"><input type="submit" value="Send" onclick="location.href=\'assign.php\'"></input></td>
+                                        </tr>
+                                    </tbody>';
+                            }
+                    }
                     mysqli_close($conn);
                 ?>
 
@@ -97,24 +137,26 @@
                 <table border="2" width="1000">
                     <thead>
                         <tr>
-                            <td align="center"><b>Apt</b></th>
-                            <td align="center"><b>Unit #</b></th>
                             <td align="center"><b>Invoice #</b></th>
                             <td align="center"><b>P.O. #</b></th>
-                            <td align="center"><b>Cost</b></th>
-                            <td align="center"><b># of Workers</b></th>
+                            <td align="center"><b>Apt</b></th>
+                            <td align="center"><b>Unit #</b></th>
+                            <td align="center"><b>Size</b></th>
+                            <td align="center"><b>Price</b></th>
+                            <td align="center"><b>Descrition</b></th>  
                             <td align="center"><b>Add</b></th>
                         </tr>
                     </thead>
                     <tbody>
                         <form action="worksheet_process.php" method="POST">
                             <tr>
-                                <td align="center"><input type="text" name="aptcode" value="<?php echo isset($_SESSION['uid']) ? $_SESSION['uid'] : '' ?>" /></td>
-                                <td align="center"><input type="text" name="unit_num"></td>
                                 <td align="center"><input type="text" name="invoice"></td>
                                 <td align="center"><input type="text" name="po"></td>
-                                <td align="center"><input type="text" name="cost"></td>
-                                <td align="center"><input type="text" name="num_workers"></td>
+                                <td align="center"><input type="text" name="apt"></td>
+                                <td align="center"><input type="text" name="unit"></td>
+                                <td align="center"><input type="text" name="size"></td>
+                                <td align="center"><input type="text" name="price"></td>
+                                <td align="center"><input type="text" name="description"></td>
                                 <td align="center"><input type="submit" value="OK"></td>
                             </tr>
                         </form>

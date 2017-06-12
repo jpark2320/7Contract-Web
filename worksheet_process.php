@@ -12,14 +12,15 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    $aptcode = $_POST['aptcode'];
-    $unit_num = $_POST['unit_num'];
     $invoice = $_POST['invoice'];
     $po = $_POST['po'];
-    $cost = $_POST['cost'];
-    $num_workers = $_POST['num_workers'];
-    $check = "INSERT INTO Worksheet VALUES (0, '$aptcode', '$unit_num', '$invoice', '$po', '$cost', '$num_workers')";
-    $result = $conn->query($check);
+    $apt = $_POST['apt'];
+    $unit = $_POST['unit'];
+    $size = $_POST['size'];
+    $price = $_POST['price'];
+    $descrption = $_POST['descrption'];
+    $sql = "INSERT INTO Worksheet VALUES ('$invoice', '$po', '$apt', '$unit', '$size', '$price', '$descrption', NOW())";
+    $result = $conn->query($sql);
     echo "<script>
             alert(\"Successfully Added.\");
             </script>";

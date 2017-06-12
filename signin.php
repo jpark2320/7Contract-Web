@@ -27,7 +27,7 @@
                         <li><a href="about.php">ABOUT</a></li>
                         <li><a href="contact.php">CONTACT</a></li>
                         <li><a href="worksheet.php">WORKSHEET</a></li>
-                        <?php if (isset($_SESSION['username'])): ?>
+                        <?php if (isset($_SESSION['email'])): ?>
                             <li id="abc"><a href="signout.php">SIGNOUT</a></li>
                         <?php  else: ?>
                             <li id="abc"><a href="signin.php">SIGNIN</a></li>
@@ -44,8 +44,8 @@
             <div class="row" align="center">
                 <form class="" action="signin_process.php" method="POST">
                     <p>
-                        <label for="">Username:</label>
-                        <input type="text" name="uid">
+                        <label for="">Email Address:</label>
+                        <input type="email" name="email">
                     </p>
                     <p>
                         <label for="">Password:</label>
@@ -56,7 +56,7 @@
                     </p>
                 </form>
                 <br>
-                <p>Forgot ID or PASSWORD?</p>
+                <p>Forgot Email Address or PASSWORD?</p>
                 Find <a href="register.php">Id</a> or <a href="#">Password</a><br><br><br>
                 <p>No account?</p>
                 <a href="register.php">Sign Up</a>
