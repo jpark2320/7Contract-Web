@@ -37,8 +37,7 @@
             </div>
         </nav>
         <div id="contact" class="container">
-            <h3 class="text-center">Write a worksheet!</h3><br>
-
+            <h3 class="text-center">Worksheet!</h3><br>
             <div class="row" align="center">
                 <?php
                     if (!isset($_SESSION['email'])) {
@@ -142,7 +141,6 @@
                                         <td align="center">'.$row['message'].'</td>
                                         <td align="center">'.$row['comment'].'</td>
                                         <td align="center">'.$row['date'].'</td>
-                                        <td align="center"><input type="submit" value="Send" onclick="location.href=\'assign.php\'"></input></td>
                                     </tr>
                                 </tbody>';
                         }

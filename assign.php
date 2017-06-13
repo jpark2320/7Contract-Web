@@ -41,7 +41,7 @@
 
             <div class="row" align="center">
                 <?php
-                    $servername = "localhost:3307";
+                    $servername = "localhost";
                     $username = "root";
                     $password = "";
                     $db = "7contract";
@@ -73,7 +73,7 @@
 
                             while($row = mysqli_fetch_array($result))
                             {
-                                echo '<option value="'. $row['username'] .'">'.$row['username'].'</option>';
+                                echo '<option value="'. $row['email'] .'">'.$row['email'].'</option>';
                             }
                             echo '
                                     </select>
