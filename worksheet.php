@@ -66,14 +66,14 @@
                             <table border="2" width="1000">
                                 <thead>
                                     <tr>
-                                        <td align="center"><a href=\"?orderBy=invoice\">Invoice #</a></td>
-                                        <td align="center"><a href=\"?orderBy=po\">P.O. #</a></td>
-                                        <td align="center"><a href=\"?orderBy=apt\">Apt #</a></td>
-                                        <td align="center"><a href=\"?orderBy=unit\">Unit #</a></td>
-                                        <td align="center"><a href=\"?orderBy=size\">Size</a></td>
-                                        <td align="center"><a href=\"?orderBy=price\">Price</a></td>
+                                        <td align="center"><a href="?orderBy=invoice">Invoice #</a></td>
+                                        <td align="center"><a href="?orderBy=po">P.O. #</a></td>
+                                        <td align="center"><a href="?orderBy=apt">Apt #</a></td>
+                                        <td align="center"><a href="?orderBy=unit">Unit #</a></td>
+                                        <td align="center"><a href="?orderBy=size">Size</a></td>
+                                        <td align="center"><a href="?orderBy=price">Price</a></td>
                                         <td align="center"><b>Descrition</b></td>
-                                        <td align="center"><a href=\"?orderBy=date\">Date</a></td>
+                                        <td align="center"><a href="?orderBy=date">Date</a></td>
                                     </tr>
                                 </thead>';
                         $orderBy = array('invoice', 'po', 'apt', 'unit', 'size', 'price', 'date');
@@ -82,6 +82,12 @@
                             $order = $_GET['orderBy'];
                         }
                         $sql = 'SELECT * FROM Worksheet ORDER BY '.$order;
+                        if (isset($_SESSION['sort'])) {
+                            $sql = $sql.' DESC';
+                            unset($_SESSION['sort']);
+                        } else {
+                            $_SESSION['sort'] = 1;
+                        }
                         $result = mysqli_query($conn, $sql);
                         while($row = mysqli_fetch_array($result))
                         {
@@ -106,11 +112,11 @@
                             <table border="2" width="1000">
                                 <thead>
                                     <tr>
-                                        <td align="center"><a href=\"?orderBy=apt\">Apt #</a></td>
-                                        <td align="center"><a href=\"?orderBy=unit\">Unit #</a></td>
+                                        <td align="center"><a href="?orderBy=apt">Apt #</a></td>
+                                        <td align="center"><a href="?orderBy=unit">Unit #</a></td>
                                         <td align="center"><b>Message</b></td>
                                         <td align="center"><b>Comment</b></td>
-                                        <td align="center"><a href=\"?orderBy=date\">Date</a></td>
+                                        <td align="center"><a href="?orderBy=date">Date</a></td>
                                     </tr>
                                 </thead>';
                         $orderBy = array('apt', 'unit', 'date');
@@ -119,9 +125,12 @@
                             $order = $_GET['orderBy'];
                         }
                         $sql = 'SELECT * FROM SubWorksheet WHERE email =\''.$_SESSION['email'].'\' ORDER BY '.$order;
-                        echo "<script>
-            alert(\"".$sql."\");
-            </script>";
+                        if (isset($_SESSION['sort'])) {
+                            $sql = $sql.' DESC';
+                            unset($_SESSION['sort']);
+                        } else {
+                            $_SESSION['sort'] = 1;
+                        }
                         $result = mysqli_query($conn, $sql);
                         while($row = mysqli_fetch_array($result))
                         {
