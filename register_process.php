@@ -27,6 +27,7 @@
         alert(\"You have to fill in all fields.\");
         </script>";
         echo '<script>window.location.href = "register.php";</script>';
+        exit();
     }
     $check = "SELECT * FROM Users WHERE email='$email'";
     $checkresult = $conn->query($check);
@@ -54,4 +55,5 @@
             </script>";
         echo '<script>window.location.href = "register.php";</script>';
     }
+    exit();
 ?>

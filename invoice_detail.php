@@ -56,6 +56,10 @@
                     if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                     }
+
+                    $i_detail = $_GET['invoice_num'];
+                    echo '<b>Invoice # : '.$i_detail.'</b>';
+
                     if (!isset($_SESSION['sort'])) {
                         $_SESSION['sort'] = 'asc';
                     }
@@ -68,13 +72,12 @@
                         $_SESSION['sort'] = $_GET['st'];
                         echo '<script>window.location.href = "invoice_detail.php";</script>';
                     }
+
                     echo '
                             <table border="2" width="1000">
                                 <thead>
                                     <tr>
-                                        <td align="center"><a href="?orderBy=A.first">First Name</a></td>
-                                        <td align="center"><a href="?orderBy=A.last">Last Name</a></td>
-                                        <td align="center"><a href="?orderBy=A.email">Email Address</a></td>
+                                        <td align="center"><a href="?orderBy=A.first">Name</a></td>
                                         <td align="center"><b>Message</b></td>
                                         <td align="center"><b>Comment</b></td>
                                         <td align="center"><a href="?orderBy=B.date">Date</a></td>
@@ -85,11 +88,11 @@
                         if (isset($_GET['orderBy']) && in_array($_GET['orderBy'], $orderBy)) {
                             $order = $_GET['orderBy'];
                         }
-                        $sql = 'SELECT * FROM
+                        $sql = "SELECT * FROM
                         	(SELECT users.first, users.last, users.email from users) AS A
 							INNER JOIN
-							(SELECT * FROM SubWorksheet WHERE invoice = \'1\') AS B
-							ON A.email =B.email ORDER BY '.$order;
+							(SELECT * FROM SubWorksheet WHERE invoice='$i_detail') AS B
+							ON A.email=B.email ORDER BY ".$order;
                         if ($_SESSION['sort']=='desc') {
                             $sql = $sql.' DESC';
                         }
@@ -99,9 +102,7 @@
                             echo '
                                 <tbody>
                                     <tr>
-                                        <td align="center">'.$row['first'].'</td>
-                                        <td align="center">'.$row['last'].'</td>
-                                        <td align="center">'.$row['email'].'</td>
+                                        <td align="center">'.$row['first'].' '.$row['last'].'</td>
                                         <td align="center">'.$row['message'].'</td>
                                         <td align="center">'.$row['comment'].'</td>
                                         <td align="center">'.$row['date'].'</td>

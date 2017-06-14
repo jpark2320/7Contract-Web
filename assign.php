@@ -43,15 +43,17 @@
 
             <div class="row" align="center">
                 <?php
-                    $_SESSION['invoice_num'] = $_GET['invoice_num'];
-                    $_SESSION['apt_num'] = $_GET['apt_num'];
-                    $_SESSION['unit_num'] = $_GET['unit_num'];
+                    if (isset($_GET['invoice_num'])) {
+                        $_SESSION['i_num'] = $_GET['invoice_num'];
+                    }
+                    if (isset($_GET['apt_num'])) {
+                        $_SESSION['a_num'] = $_GET['apt_num'];
+                    }
+                    if (isset($_GET['unit_num'])) {
+                        $_SESSION['u_num'] = $_GET['unit_num'];
+                    }
 
-                    // echo $_SESSION['invoice_num'];
-                    // echo $_SESSION['apt_num'];
-                    // echo $_SESSION['unit_num'];
-
-                    echo '<b>Invoice # : '.$_GET['invoice_num'].'</b>';
+                    echo '<b>Invoice # : '.$_SESSION['i_num'].'</b>';
 
                     $servername = "localhost:3307";
                     $username = "root";

@@ -13,27 +13,22 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // 왜 값이 안나타나는겨 assign.php까지는 나타나는데
-
     $message = $_POST['assign_message'];
     $arr = $_SESSION['workersArray'];
-    $invoice_num = $_SESSION['invoice_num'];
-    $apt_num = $_SESSION['apt_num'];
-    $unit_num = $_SESSION['unit_num'];
-    if (isset($_SESSION['apt_num']))
-    echo "<script>alert(\"$invoice_num\");</script>";
-    // echo "<script>alert(\"$apt_num\");</script>";
-    // echo "<script>alert(\"$unit_num\");</script>";
+
+    $i_num = $_SESSION['i_num'];
+    $a_num = $_SESSION['a_num'];
+    $u_num = $_SESSION['u_num'];
 
     for ($i = 0; $i < sizeof($arr); $i++) {
-        $sql = "INSERT INTO subworksheet VALUES (0, '$arr[$i]', '$invoice_num', '$apt_num', '$unit_num', '$message', 'temp_comment', NOW())";
+        $sql = "INSERT INTO subworksheet VALUES (0, '$arr[$i]', '$i_num', '$a_num', '$u_num', '$message', 'temp_comment', NOW())";
         if ($conn->query($sql) === FALSE) {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
     }
-    unset($_SESSION['invoice_num']);
-    unset($_SESSION['apt_num']);
-    unset($_SESSION['unit_num']);
+    unset($_SESSION['i_num']);
+    unset($_SESSION['a_num']);
+    unset($_SESSION['u_num']);
 
     $conn->close();
     echo "<script>alert(\"Successfully assigned.\");</script>";

@@ -81,7 +81,7 @@
                         }
 
                         echo '
-                            <table border="2" width="1000">
+                            <table border="2" width="958">
                                 <thead>
                                     <tr>
                                         <td align="center"><a href="?orderBy=invoice">Invoice #</a></td>
@@ -90,9 +90,10 @@
                                         <td align="center"><a href="?orderBy=unit">Unit #</a></td>
                                         <td align="center"><a href="?orderBy=size">Size</a></td>
                                         <td align="center"><a href="?orderBy=price">Price</a></td>
-                                        <td align="center"><b>Descrition</b></td>
+                                        <td align="center"><b>Description</b></td>
                                         <td align="center"><a href="?orderBy=date">Date</a></td>
                                         <td align="center"><b>Assign</b></td>
+                                        <td align="center"><b>Edit</b></td>
                                     </tr>
                                 </thead>';
                         $orderBy = array('invoice', 'po', 'apt', 'unit', 'size', 'price', 'date');
@@ -105,15 +106,19 @@
                             $sql = $sql.' DESC';
                         }
                         $result = mysqli_query($conn, $sql);
+                        unset($_SESSION['i_num']);
+                        unset($_SESSION['a_num']);
+                        unset($_SESSION['u_num']);
                         while($row = mysqli_fetch_array($result))
                         {
                             $temp = $row['invoice'];
                             $temp2 = $row['apt'];
                             $temp3 = $row['unit'];
+
                             echo '
                                 <tbody>
                                     <tr>
-                                        <td align="center">'.$temp.'</td>
+                                        <td align="center"><a href="invoice_detail.php?invoice_num='.$temp.'">'.$temp.'</a></td>
                                         <td align="center">'.$row['PO'].'</td>
                                         <td align="center">'.$temp2.'</td>
                                         <td align="center">'.$temp3.'</td>
@@ -126,6 +131,7 @@
                                         <td align="center">
                                             <a href="assign.php?invoice_num='.$temp.' &apt_num='.$temp2.' &unit_num='.$temp3.'">Send</a>
                                         </td>
+                                        <td align="center"><a href="edit.php?invoice_num='.$temp.'">Edit</a></td>
                                     </tr>
                                 </tbody>
                             ';
@@ -145,7 +151,7 @@
                             echo '<script>window.location.href = "worksheet.php";</script>';
                         }
                         echo '
-                            <table border="2" width="1000">
+                            <table border="2" width="958">
                                 <thead>
                                     <tr>
                                         <td align="center"><a href="?orderBy=apt">Apt #</a></td>

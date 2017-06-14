@@ -18,8 +18,8 @@
     $unit = $_POST['unit'];
     $size = $_POST['size'];
     $price = $_POST['price'];
-    $descrption = $_POST['descrption'];
-    $sql = "INSERT INTO Worksheet VALUES ('$invoice', '$po', '$apt', '$unit', '$size', '$price', '$descrption', NOW())";
+    $description = $_POST['description'];
+    $sql = "INSERT INTO worksheet VALUES ('$invoice', '$po', '$apt', '$unit', '$size', '$price', '$description', NOW())";
     $result = $conn->query($sql);
     echo "<script>
             alert(\"Successfully Added.\");
