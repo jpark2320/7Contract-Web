@@ -59,7 +59,18 @@
                     if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                     }
-
+                    if (!isset($_SESSION['sort'])) {
+                        $_SESSION['sort'] = 'asc';
+                    }
+                    if ($_SESSION['sort']=='asc') {
+                        echo '<div align="left"><h><a href="?st=desc">Show descending order</a></h><div>';
+                    } else {
+                        echo '<div align="left"><h><a href="?st=asc">Show ascending order</a></h><div>';
+                    }
+                    if (isset($_GET['st'])) {
+                        $_SESSION['sort'] = $_GET['st'];
+                        echo '<script>window.location.href = "worksheet.php";</script>';
+                    }
                     if ($_SESSION['isadmin']) {
                         echo '
                             <table border="2" width="1000">
@@ -81,12 +92,9 @@
                             $order = $_GET['orderBy'];
                         }
                         $sql = 'SELECT * FROM Worksheet ORDER BY '.$order;
-                        if (isset($_SESSION['sort'])) {
+                        if ($_SESSION['sort']=='desc') {
                             $sql = $sql.' DESC';
-                            unset($_SESSION['sort']);
-                        } else {
-                            $_SESSION['sort'] = 1;
-                        }
+                        } 
                         $result = mysqli_query($conn, $sql);
                         while($row = mysqli_fetch_array($result))
                         {

@@ -1,12 +1,6 @@
 <?php
     session_start();
-    // $to      = 'mlee432@gatech.edu';
-    // $subject = 'For test purpose';
-    // $message = 'This is the test for sending an email';
-    // $headers = 'From: leepogii@gmail.com' . "\r\n" .
-    // 'Reply-To: leepogii@gmail.com' . "\r\n" .
-    // 'X-Mailer: PHP/' . phpversion();
-    // mail($to, $subject, $message, $headers);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,55 +54,52 @@
                     if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                     }
-                    $sql = "SELECT * FROM users";
-                    $result = mysqli_query($conn, $sql);
 
                     echo '
-                        <table border="2" width="500px">
-                            <thead>
-                                <tr>
-                                    <td align="center" width="200px"><b>Subcontractors</b></th>
-                                    <td align="center" width="100px"></th>
-                                    <td align="center" width="200px"><b>Added</b></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <form class="" action="assign.php" method="post">
-                                        <td align="center">
-                                            <select name="workers[]" multiple="multiple" size="10">';
-
-                            while($row = mysqli_fetch_array($result))
-                            {
-                                echo '<option value="'. $row['email'] .'">'.$row['email'].'</option>';
-                            }
+                            <table border="2" width="1000">
+                                <thead>
+                                    <tr>
+                                        <td align="center"><a href="?orderBy=invoice">Email Address #</a></td>
+                                        <td align="center"><a href="?orderBy=po">P.O. #</a></td>
+                                        <td align="center"><a href="?orderBy=apt">Apt #</a></td>
+                                        <td align="center"><a href="?orderBy=unit">Unit #</a></td>
+                                        <td align="center"><a href="?orderBy=size">Size</a></td>
+                                        <td align="center"><a href="?orderBy=price">Price</a></td>
+                                        <td align="center"><b>Descrition</b></td>
+                                        <td align="center"><a href="?orderBy=date">Date</a></td>
+                                    </tr>
+                                </thead>';
+                        $orderBy = array('invoice', 'po', 'apt', 'unit', 'size', 'price', 'date');
+                        $order = 'date';
+                        if (isset($_GET['orderBy']) && in_array($_GET['orderBy'], $orderBy)) {
+                            $order = $_GET['orderBy'];
+                        }
+                        $sql = 'SELECT * FROM Worksheet ORDER BY '.$order;
+                        if (isset($_SESSION['sort'])) {
+                            $sql = $sql.' DESC';
+                            unset($_SESSION['sort']);
+                        } else {
+                            $_SESSION['sort'] = 1;
+                        }
+                        $result = mysqli_query($conn, $sql);
+                        while($row = mysqli_fetch_array($result))
+                        {
                             echo '
-                                    </select>
-                                </td>
-                                <td align="center">
-                                    <input type="submit" name="" value="->">
-                                </td>
-                                <td align="center">
-                                    <select multiple="multiple" size="10">
-                            ';
-                            if (isset($_POST['workers'])) {
-                                $workersArray = $_POST['workers'];
-                                for ($i = 0; $i < sizeof($workersArray); $i++) {
-                                    echo '<option value="">'.$workersArray[$i].'</option>';
-                                }
-                                echo '
-                                                </select>
-                                            </td>
-                                        </form>
+                                <tbody>
+                                    <tr>
+                                        <td align="center">'.$row['invoice'].'</td>
+                                        <td align="center">'.$row['PO'].'</td>
+                                        <td align="center">'.$row['apt'].'</td>
+                                        <td align="center">'.$row['unit'].'</td>
+                                        <td align="center">'.$row['size'].'</td>
+                                        <td align="center">'.$row['price'].'</td>
+                                        <td align="center">'.$row['description'].'</td>
+                                        <td align="center">'.$row['date'].'</td>
+                                        <td align="center"><input type="submit" value="Send" onclick="location.href=\'assign.php\'"></input></td>
                                     </tr>
                                 </tbody>';
-                            }
-                    echo '</table>';
-                    echo '
-                        <h5 class="text-center" font-color="red">When you need multiple choices, use "control" key.</h5>
-                        <br>
-                        <input type="submit" value="Confirm" onclick="location.href=\'assign.php\'"></input>
-                        <input type="submit" value="Back" onclick="location.href=\'worksheet.php\'"></input>';
+                        }
+                        echo '</table>';
                     mysqli_close($conn);
                 ?>
             </div>
