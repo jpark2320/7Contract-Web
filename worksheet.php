@@ -132,12 +132,9 @@
                             $order = $_GET['orderBy'];
                         }
                         $sql = 'SELECT * FROM SubWorksheet WHERE email =\''.$_SESSION['email'].'\' ORDER BY '.$order;
-                        if (isset($_SESSION['sort'])) {
+                        if ($_SESSION['sort']=='desc') {
                             $sql = $sql.' DESC';
-                            unset($_SESSION['sort']);
-                        } else {
-                            $_SESSION['sort'] = 1;
-                        }
+                        } 
                         $result = mysqli_query($conn, $sql);
                         while($row = mysqli_fetch_array($result))
                         {

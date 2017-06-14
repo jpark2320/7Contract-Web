@@ -38,7 +38,7 @@
             </div>
         </nav>
         <div id="contact" class="container">
-            <h3 class="text-center">Assign workers!</h3><br>
+            <h3 class="text-center">Invoice # Details</h3><br>
 
             <div class="row" align="center">
                 <?php
@@ -54,48 +54,55 @@
                     if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                     }
-
+                    if (!isset($_SESSION['sort'])) {
+                        $_SESSION['sort'] = 'asc';
+                    }
+                    if ($_SESSION['sort']=='asc') {
+                        echo '<div align="left"><h><a href="?st=desc">Show descending order</a></h><div>';
+                    } else {
+                        echo '<div align="left"><h><a href="?st=asc">Show ascending order</a></h><div>';
+                    }
+                    if (isset($_GET['st'])) {
+                        $_SESSION['sort'] = $_GET['st'];
+                        echo '<script>window.location.href = "invoice_detail.php";</script>';
+                    }
                     echo '
                             <table border="2" width="1000">
                                 <thead>
                                     <tr>
-                                        <td align="center"><a href="?orderBy=invoice">Email Address #</a></td>
-                                        <td align="center"><a href="?orderBy=po">P.O. #</a></td>
-                                        <td align="center"><a href="?orderBy=apt">Apt #</a></td>
-                                        <td align="center"><a href="?orderBy=unit">Unit #</a></td>
-                                        <td align="center"><a href="?orderBy=size">Size</a></td>
-                                        <td align="center"><a href="?orderBy=price">Price</a></td>
-                                        <td align="center"><b>Descrition</b></td>
-                                        <td align="center"><a href="?orderBy=date">Date</a></td>
+                                        <td align="center"><a href="?orderBy=A.first">First Name</a></td>
+                                        <td align="center"><a href="?orderBy=A.last">Last Name</a></td>
+                                        <td align="center"><a href="?orderBy=A.email">Email Address</a></td>
+                                        <td align="center"><b>Message</b></td>
+                                        <td align="center"><b>Comment</b></td>
+                                        <td align="center"><a href="?orderBy=B.date">Date</a></td>
                                     </tr>
                                 </thead>';
-                        $orderBy = array('invoice', 'po', 'apt', 'unit', 'size', 'price', 'date');
+                        $orderBy = array('A.first', 'A.last', 'A.email', 'B.date');
                         $order = 'date';
                         if (isset($_GET['orderBy']) && in_array($_GET['orderBy'], $orderBy)) {
                             $order = $_GET['orderBy'];
                         }
-                        $sql = 'SELECT * FROM Worksheet ORDER BY '.$order;
-                        if (isset($_SESSION['sort'])) {
+                        $sql = 'SELECT * FROM
+                        	(SELECT users.first, users.last, users.email from users) AS A 
+							INNER JOIN 
+							(SELECT * FROM SubWorksheet WHERE invoice = \'1\') AS B 
+							ON A.email =B.email ORDER BY '.$order;
+                        if ($_SESSION['sort']=='desc') {
                             $sql = $sql.' DESC';
-                            unset($_SESSION['sort']);
-                        } else {
-                            $_SESSION['sort'] = 1;
-                        }
+                        } 
                         $result = mysqli_query($conn, $sql);
                         while($row = mysqli_fetch_array($result))
                         {
                             echo '
                                 <tbody>
                                     <tr>
-                                        <td align="center">'.$row['invoice'].'</td>
-                                        <td align="center">'.$row['PO'].'</td>
-                                        <td align="center">'.$row['apt'].'</td>
-                                        <td align="center">'.$row['unit'].'</td>
-                                        <td align="center">'.$row['size'].'</td>
-                                        <td align="center">'.$row['price'].'</td>
-                                        <td align="center">'.$row['description'].'</td>
+                                        <td align="center">'.$row['first'].'</td>
+                                        <td align="center">'.$row['last'].'</td>
+                                        <td align="center">'.$row['email'].'</td>
+                                        <td align="center">'.$row['message'].'</td>
+                                        <td align="center">'.$row['comment'].'</td>
                                         <td align="center">'.$row['date'].'</td>
-                                        <td align="center"><input type="submit" value="Send" onclick="location.href=\'assign.php\'"></input></td>
                                     </tr>
                                 </tbody>';
                         }
