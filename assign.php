@@ -1,18 +1,9 @@
 <?php
     session_start();
-    // $to      = 'mlee432@gatech.edu';
-    // $subject = 'For test purpose';
-    // $message = 'This is the test for sending an email';
-    // $headers = 'From: leepogii@gmail.com' . "\r\n" .
-    // 'Reply-To: leepogii@gmail.com' . "\r\n" .
-    // 'X-Mailer: PHP/' . phpversion();
-    // mail($to, $subject, $message, $headers);
 ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <!-- Theme Made By www.w3schools.com - No Copyright -->
-        <title>Bootstrap Theme The Band</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -23,6 +14,8 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+        <!-- Header -->
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -43,12 +36,24 @@
                 </div>
             </div>
         </nav>
-        <div id="contact" class="container">
+
+        <!-- Body -->
+        <div class="container">
             <h3 class="text-center">Assign workers!</h3><br>
 
             <div class="row" align="center">
                 <?php
-                    $servername = "localhost";
+                    $_SESSION['invoice_num'] = $_GET['invoice_num'];
+                    $_SESSION['apt_num'] = $_GET['apt_num'];
+                    $_SESSION['unit_num'] = $_GET['unit_num'];
+
+                    // echo $_SESSION['invoice_num'];
+                    // echo $_SESSION['apt_num'];
+                    // echo $_SESSION['unit_num'];
+
+                    echo '<b>Invoice # : '.$_GET['invoice_num'].'</b>';
+
+                    $servername = "localhost:3307";
                     $username = "root";
                     $password = "";
                     $db = "7contract";
@@ -78,39 +83,45 @@
                                         <td align="center">
                                             <select name="workers[]" multiple="multiple" size="10">';
 
-                            while($row = mysqli_fetch_array($result))
-                            {
-                                echo '<option value="'. $row['email'] .'">'.$row['email'].'</option>';
+                        while($row = mysqli_fetch_array($result))
+                        {
+                            echo '<option value="'. $row['email'] .'">'.$row['email'].'</option>';
+                        }
+                        echo '
+                                            </select>
+                                        </td>
+                                        <td align="center">
+                                            <input type="submit" name="invoice_num" value="->"></input>
+                                        </td>
+                                        <td align="center">
+                                            <select multiple="multiple" size="10">
+                        ';
+                        if (isset($_POST['workers'])) {
+                            $_SESSION['workersArray'] = $_POST['workers'];
+
+                            for ($i = 0; $i < sizeof($_SESSION['workersArray']); $i++) {
+                                echo '<option value="">'.$_SESSION['workersArray'][$i].'</option>';
                             }
                             echo '
-                                    </select>
-                                </td>
-                                <td align="center">
-                                    <input type="submit" name="" value="->">
-                                </td>
-                                <td align="center">
-                                    <select multiple="multiple" size="10">
-                            ';
-                            if (isset($_POST['workers'])) {
-                                $workersArray = $_POST['workers'];
-                                for ($i = 0; $i < sizeof($workersArray); $i++) {
-                                    echo '<option value="">'.$workersArray[$i].'</option>';
-                                }
-                                echo '
-                                                </select>
-                                            </td>
-                                        </form>
-                                    </tr>
-                                </tbody>';
-                            }
+                                            </select>
+                                        </td>
+                                    </form>
+                                </tr>
+                            </tbody>';
+                        }
                     echo '</table>';
                     echo '
                         <h5 class="text-center" font-color="red">When you need multiple choices, use "control" key.</h5>
                         <br>
-                        <input type="submit" value="Confirm" onclick="location.href=\'assign.php\'"></input>
-                        <input type="submit" value="Back" onclick="location.href=\'worksheet.php\'"></input>';
+                    ';
                     mysqli_close($conn);
                 ?>
+                <form action="assign_process.php" method="POST">
+                    <textarea class="form-control" name="assign_message" placeholder="Leave a message here." rows="4" cols="10"></textarea>
+                    <br>
+                    <input type="submit" value="Confirm"></input>
+                    <input type="button" value="Back" onclick="location.href='worksheet.php'"></input>
+                </form>
             </div>
         </div>
 

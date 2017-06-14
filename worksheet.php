@@ -4,8 +4,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <!-- Theme Made By www.w3schools.com - No Copyright -->
-        <title>Bootstrap Theme The Band</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -16,6 +14,8 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+        <!-- Header -->
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -36,8 +36,11 @@
                 </div>
             </div>
         </nav>
-        <div id="contact" class="container">
+
+        <!-- Body -->
+        <div class="container">
             <h3 class="text-center">Worksheet!</h3><br>
+
             <div class="row" align="center">
                 <?php
                     if (!isset($_SESSION['email'])) {
@@ -47,7 +50,7 @@
                         echo '<script>window.location.href = "signin.php";</script>';
                         exit();
                     }
-                    $servername = "localhost";
+                    $servername = "localhost:3307";
                     $username = "root";
                     $password = "";
                     $db = "7Contract";
@@ -59,19 +62,24 @@
                     if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                     }
-                    if (!isset($_SESSION['sort'])) {
-                        $_SESSION['sort'] = 'asc';
-                    }
-                    if ($_SESSION['sort']=='asc') {
-                        echo '<div align="left"><h><a href="?st=desc">Show descending order</a></h><div>';
-                    } else {
-                        echo '<div align="left"><h><a href="?st=asc">Show ascending order</a></h><div>';
-                    }
-                    if (isset($_GET['st'])) {
-                        $_SESSION['sort'] = $_GET['st'];
-                        echo '<script>window.location.href = "worksheet.php";</script>';
-                    }
+
                     if ($_SESSION['isadmin']) {
+
+                        echo '<div align="right"><a href="worksheet_add.php"><img src="./img/worksheet_add.png" width="42"></a></div>';
+
+                        if (!isset($_SESSION['sort'])) {
+                            $_SESSION['sort'] = 'asc';
+                        }
+                        if ($_SESSION['sort']=='asc') {
+                            echo '<div align="left"><h><a href="?st=desc">Show descending order</a></h><div>';
+                        } else {
+                            echo '<div align="left"><h><a href="?st=asc">Show ascending order</a></h><div>';
+                        }
+                        if (isset($_GET['st'])) {
+                            $_SESSION['sort'] = $_GET['st'];
+                            echo '<script>window.location.href = "worksheet.php";</script>';
+                        }
+
                         echo '
                             <table border="2" width="1000">
                                 <thead>
@@ -84,6 +92,7 @@
                                         <td align="center"><a href="?orderBy=price">Price</a></td>
                                         <td align="center"><b>Descrition</b></td>
                                         <td align="center"><a href="?orderBy=date">Date</a></td>
+                                        <td align="center"><b>Assign</b></td>
                                     </tr>
                                 </thead>';
                         $orderBy = array('invoice', 'po', 'apt', 'unit', 'size', 'price', 'date');
@@ -94,27 +103,47 @@
                         $sql = 'SELECT * FROM Worksheet ORDER BY '.$order;
                         if ($_SESSION['sort']=='desc') {
                             $sql = $sql.' DESC';
-                        } 
+                        }
                         $result = mysqli_query($conn, $sql);
                         while($row = mysqli_fetch_array($result))
                         {
+                            $temp = $row['invoice'];
+                            $temp2 = $row['apt'];
+                            $temp3 = $row['unit'];
                             echo '
                                 <tbody>
                                     <tr>
-                                        <td align="center">'.$row['invoice'].'</td>
+                                        <td align="center">'.$temp.'</td>
                                         <td align="center">'.$row['PO'].'</td>
-                                        <td align="center">'.$row['apt'].'</td>
-                                        <td align="center">'.$row['unit'].'</td>
+                                        <td align="center">'.$temp2.'</td>
+                                        <td align="center">'.$temp3.'</td>
                                         <td align="center">'.$row['size'].'</td>
                                         <td align="center">'.$row['price'].'</td>
                                         <td align="center">'.$row['description'].'</td>
                                         <td align="center">'.$row['date'].'</td>
-                                        <td align="center"><input type="submit" value="Send" onclick="location.href=\'assign.php\'"></input></td>
+                            ';
+                            echo '
+                                        <td align="center">
+                                            <a href="assign.php?invoice_num='.$temp.' &apt_num='.$temp2.' &unit_num='.$temp3.'">Send</a>
+                                        </td>
                                     </tr>
-                                </tbody>';
+                                </tbody>
+                            ';
                         }
                         echo '</table>';
                     } else {
+                        if (!isset($_SESSION['sort'])) {
+                            $_SESSION['sort'] = 'asc';
+                        }
+                        if ($_SESSION['sort']=='asc') {
+                            echo '<div align="left"><h><a href="?st=desc">Show descending order</a></h><div>';
+                        } else {
+                            echo '<div align="left"><h><a href="?st=asc">Show ascending order</a></h><div>';
+                        }
+                        if (isset($_GET['st'])) {
+                            $_SESSION['sort'] = $_GET['st'];
+                            echo '<script>window.location.href = "worksheet.php";</script>';
+                        }
                         echo '
                             <table border="2" width="1000">
                                 <thead>
@@ -134,7 +163,7 @@
                         $sql = 'SELECT * FROM SubWorksheet WHERE email =\''.$_SESSION['email'].'\' ORDER BY '.$order;
                         if ($_SESSION['sort']=='desc') {
                             $sql = $sql.' DESC';
-                        } 
+                        }
                         $result = mysqli_query($conn, $sql);
                         while($row = mysqli_fetch_array($result))
                         {
@@ -153,40 +182,6 @@
                     }
                     mysqli_close($conn);
                 ?>
-
-                </tbody>
-                <br><br>
-                <!-- <?php if ($_SESSION['isadmin']): ?> -->
-                    <table border="2" width="1000">
-                        <thead>
-                            <tr>
-                                <td align="center"><b>Invoice #</b></th>
-                                <td align="center"><b>P.O. #</b></th>
-                                <td align="center"><b>Apt</b></th>
-                                <td align="center"><b>Unit #</b></th>
-                                <td align="center"><b>Size</b></th>
-                                <td align="center"><b>Price</b></th>
-                                <td align="center"><b>Descrition</b></th>  
-                                <td align="center"><b>Add</b></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <form action="worksheet_process.php" method="POST">
-                                <tr>
-                                    <td align="center"><input type="text" name="invoice"></td>
-                                    <td align="center"><input type="text" name="po"></td>
-                                    <td align="center"><input type="text" name="apt"></td>
-                                    <td align="center"><input type="text" name="unit"></td>
-                                    <td align="center"><input type="text" name="size"></td>
-                                    <td align="center"><input type="text" name="price"></td>
-                                    <td align="center"><input type="text" name="description"></td>
-                                    <td align="center"><input type="submit" value="OK"></td>
-                                </tr>
-                            </form>
-                        </tbody>
-                    </table>
-<!--                 <?php  else: ?>
-                <?php endif; ?> -->
             </div>
         </div>
 

@@ -5,8 +5,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <!-- Theme Made By www.w3schools.com - No Copyright -->
-        <title>Bootstrap Theme The Band</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -17,6 +15,8 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+        <!-- Header -->
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -37,12 +37,14 @@
                 </div>
             </div>
         </nav>
-        <div id="contact" class="container">
+
+        <!-- Body -->
+        <div class="container">
             <h3 class="text-center">Invoice # Details</h3><br>
 
             <div class="row" align="center">
                 <?php
-                    $servername = "localhost";
+                    $servername = "localhost:3307";
                     $username = "root";
                     $password = "";
                     $db = "7contract";
@@ -84,13 +86,13 @@
                             $order = $_GET['orderBy'];
                         }
                         $sql = 'SELECT * FROM
-                        	(SELECT users.first, users.last, users.email from users) AS A 
-							INNER JOIN 
-							(SELECT * FROM SubWorksheet WHERE invoice = \'1\') AS B 
+                        	(SELECT users.first, users.last, users.email from users) AS A
+							INNER JOIN
+							(SELECT * FROM SubWorksheet WHERE invoice = \'1\') AS B
 							ON A.email =B.email ORDER BY '.$order;
                         if ($_SESSION['sort']=='desc') {
                             $sql = $sql.' DESC';
-                        } 
+                        }
                         $result = mysqli_query($conn, $sql);
                         while($row = mysqli_fetch_array($result))
                         {
