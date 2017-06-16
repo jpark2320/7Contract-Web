@@ -11,6 +11,7 @@
     $description = $_POST['description'];
     $sql = "INSERT INTO worksheet VALUES ('$invoice', '$po', '$apt', '$unit', '$size', '$price', '$description', NOW())";
     $result = $conn->query($sql);
+    $conn->close();
     echo "<script>
             alert(\"Successfully Added.\");
             </script>";

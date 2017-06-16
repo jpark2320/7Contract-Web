@@ -23,7 +23,7 @@
                     <p><span class="glyphicon glyphicon-envelope"></span>Email: sevencontract@mail.com</p>
                 </div>
                 <div class="col-md-8">
-                    <form action="" method="post">
+                    <form action="contact_process.php" method="post">
                         <div class="row">
                             <div class="col-sm-6 form-group">
                                 <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>

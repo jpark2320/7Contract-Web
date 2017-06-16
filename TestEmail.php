@@ -29,15 +29,15 @@ $mail->SMTPSecure = 'tls';
 //Whether to use SMTP authentication
 $mail->SMTPAuth = true;
 //Username to use for SMTP authentication - use full email address for gmail
-$mail->Username = "leepogii@gmail.com";
+$mail->Username = "7contractor@gmail.com";
 //Password to use for SMTP authentication
-$mail->Password = "akals1168";
+$mail->Password = "7contract.com";
 //Set who the message is to be sent from
-$mail->setFrom('leepogii@gmail.com', 'Minho Lee');
+$mail->setFrom('mlee432@gatech.edu', 'Minho Lee');
 //Set an alternative reply-to address
-$mail->addReplyTo('leepogii@gmail.com', 'Minho Lee');
+$mail->addReplyTo('mlee432@gatech.edu', 'Minho Lee');
 //Set who the message is to be sent to
-$mail->addAddress('jpark2320@gmail.com', 'Jae Hong Park');
+$mail->addAddress('leepogii@gmail.com', 'Min Ho Lee');
 //Set the subject line
 $mail->Subject = 'PHPMailer GMail SMTP test';
 //Read an HTML message body from an external file, convert referenced images to embedded,
@@ -45,7 +45,6 @@ $mail->Subject = 'PHPMailer GMail SMTP test';
 // $mail->msgHTML(file_get_contents('contents.html'), dirname(__FILE__));
 //Replace the plain text body with one created manually
 $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-$mail->AltBody = 'This is a plain-text message body';
 //Attach an image file
 // $mail->addAttachment('images/phpmailer_mini.png');
 //send the message, check for errors
