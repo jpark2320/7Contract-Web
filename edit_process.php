@@ -1,17 +1,7 @@
 <?php
-    session_start();
-    $servername = "localhost:3307";
-    $username = "root";
-    $password = "";
-    $db = "7Contract";
+    // connection with mysql database
+    include('./includes/connection.php');
 
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $db);
-
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
     $po = $_POST['po'];
     $apt = $_POST['apt'];
     $size = $_POST['size'];
