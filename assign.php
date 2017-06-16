@@ -43,13 +43,13 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <form class="" action="assign.php" method="post">
+                                    <form action="assign.php" method="post">
                                         <td align="center">
                                             <select name="workers[]" multiple="multiple" size="10">';
 
                         while($row = mysqli_fetch_array($result))
                         {
-                            echo '<option value="'. $row['email'] .'">'.$row['email'].'</option>';
+                            echo '<option value="'.$row['email'].'">'.$row['first'].' '.$row['last'].' ('.$row['email'].')</option>';
                         }
                         echo '
                                             </select>
