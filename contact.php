@@ -6,9 +6,7 @@
     <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 
         <!-- Header -->
-        <?php
-            include('./includes/nav_bar.php');
-        ?>
+        <?php include('./includes/nav_bar.php'); ?>
 
         <!-- Body -->
         <div id="contact" class="container">
@@ -23,7 +21,7 @@
                     <p><span class="glyphicon glyphicon-envelope"></span>Email: sevencontract@mail.com</p>
                 </div>
                 <div class="col-md-8">
-                    <form action="contact_process.php" method="post">
+                    <form action="send_email.php" method="post">
                         <div class="row">
                             <div class="col-sm-6 form-group">
                                 <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>

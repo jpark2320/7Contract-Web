@@ -14,7 +14,6 @@
             $_SESSION['email'] = $email;
             unset($_SESSION['echeck']);
             echo '<script>window.location.href = "index.php";</script>';
-            $conn->close();
             exit();
         }
     } else {
@@ -22,7 +21,6 @@
         alert(\"Email Address or Password Incorrect.\");
         </script>";
         echo '<script>window.location.href = "signin.php";</script>';
-        $conn->close();
         exit();
     }
 ?>

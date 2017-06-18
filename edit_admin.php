@@ -28,14 +28,15 @@
                     }
                 }
             }
-
         ?>
+
         <!-- Body -->
         <div class="container">
             <h3 class="text-center">Edit</h3><br>
 
             <div class="row" align="center">
                 <form action="edit_process.php" method="POST">
+
                     <table width="400">
                         <colgroup>
                             <col width="50%">

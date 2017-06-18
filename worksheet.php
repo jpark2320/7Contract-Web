@@ -26,36 +26,28 @@
 
                         echo '<div align="right"><a href="worksheet_add.php"><img src="./img/worksheet_add.png" width="42"></a></div>';
 
-                        if (!isset($_SESSION['sort'])) {
-                            $_SESSION['sort'] = 'asc';
-                        }
-                        if ($_SESSION['sort']=='asc') {
-                            echo '<div align="left"><h><a href="?st=desc">Show descending order</a></h><div>';
-                        } else {
-                            echo '<div align="left"><h><a href="?st=asc">Show ascending order</a></h><div>';
-                        }
-                        if (isset($_GET['st'])) {
-                            $_SESSION['sort'] = $_GET['st'];
-                            echo '<script>window.location.href = "worksheet.php";</script>';
-                        }
+                        include('./includes/sort.php');
 
                         echo '
                             <table border="2" width="958">
                                 <thead>
                                     <tr>
-                                        <td align="center"><a href="?orderBy=invoice">Invoice #</a></td>
-                                        <td align="center"><a href="?orderBy=po">P.O. #</a></td>
-                                        <td align="center"><a href="?orderBy=apt">Apt #</a></td>
-                                        <td align="center"><a href="?orderBy=unit">Unit #</a></td>
-                                        <td align="center"><a href="?orderBy=size">Size</a></td>
-                                        <td align="center"><a href="?orderBy=price">Price</a></td>
+                                        <td align="center"><b><a href="?orderBy=isworkdone">Status</a></b></td>
+                                        <td align="center"><b><a href="?orderBy=invoice">Invoice #</a></b></td>
+                                        <td align="center"><b><a href="?orderBy=po">P.O. #</a></b></td>
+                                        <td align="center"><b><a href="?orderBy=apt">Apt #</a></b></td>
+                                        <td align="center"><b><a href="?orderBy=unit">Unit #</a></b></td>
+                                        <td align="center"><b><a href="?orderBy=size">Size</a></b></td>
+                                        <td align="center"><b><a href="?orderBy=price">Price</a></b></td>
                                         <td align="center"><b>Description</b></td>
-                                        <td align="center"><a href="?orderBy=date">Date</a></td>
-                                        <td align="center"><b>Assign</b></td>
-                                        <td align="center"><b>Edit</b></td>
+                                        <td align="center"><b><a href="?orderBy=date">Date</a></b></td>
+                                        <td align="center"><b>Assign</b></b></td>
+                                        <td align="center"><b>Edit</b></b></td>
                                     </tr>
-                                </thead>';
-                        $orderBy = array('invoice', 'po', 'apt', 'unit', 'size', 'price', 'date');
+                                </thead>
+                        ';
+
+                        $orderBy = array('invoice', 'po', 'apt', 'unit', 'size', 'price', 'date', 'isworkdone');
                         $order = 'date';
                         if (isset($_GET['orderBy']) && in_array($_GET['orderBy'], $orderBy)) {
                             $order = $_GET['orderBy'];
@@ -65,9 +57,7 @@
                             $sql = $sql.' DESC';
                         }
                         $result = mysqli_query($conn, $sql);
-                        unset($_SESSION['i_num']);
-                        unset($_SESSION['a_num']);
-                        unset($_SESSION['u_num']);
+
                         while($row = mysqli_fetch_array($result))
                         {
                             $temp = $row['invoice'];
@@ -77,6 +67,17 @@
                             echo '
                                 <tbody>
                                     <tr>
+                            ';
+
+                            if ($row['isworkdone'] == 2) {
+                                echo '<td align="center"><img src="./img/status_light_green" width="10px"></td>';
+                            } else if ($row['isworkdone'] == 1) {
+                                echo '<td align="center"><img src="./img/status_light_yellow" width="10px"></td>';
+                            } else {
+                                echo '<td align="center"><img src="./img/status_light_red" width="10px"></td>';
+                            }
+
+                            echo '
                                         <td align="center"><a href="invoice_detail.php?invoice_num='.$temp.'">'.$temp.'</a></td>
                                         <td align="center">'.$row['PO'].'</td>
                                         <td align="center">'.$temp2.'</td>
@@ -90,37 +91,34 @@
                                         <td align="center">
                                             <a href="assign.php?invoice_num='.$temp.' &apt_num='.$temp2.' &unit_num='.$temp3.'">Send</a>
                                         </td>
-                                        <td align="center"><a href="edit.php?invoice_num='.$temp.'">Edit</a></td>
+                                        <td align="center"><a href="edit_admin.php?invoice_num='.$temp.'">Edit</a></td>
                                     </tr>
                                 </tbody>
                             ';
                         }
                         echo '</table>';
                     } else {
-                        if (!isset($_SESSION['sort'])) {
-                            $_SESSION['sort'] = 'asc';
-                        }
-                        if ($_SESSION['sort']=='asc') {
-                            echo '<div align="left"><h><a href="?st=desc">Show descending order</a></h><div>';
-                        } else {
-                            echo '<div align="left"><h><a href="?st=asc">Show ascending order</a></h><div>';
-                        }
-                        if (isset($_GET['st'])) {
-                            $_SESSION['sort'] = $_GET['st'];
-                            echo '<script>window.location.href = "worksheet.php";</script>';
-                        }
+
+                        include('./includes/sort.php');
+
                         echo '
                             <table border="2" width="958">
                                 <thead>
                                     <tr>
-                                        <td align="center"><a href="?orderBy=apt">Apt #</a></td>
-                                        <td align="center"><a href="?orderBy=unit">Unit #</a></td>
+                                        <td align="center"><b><a href="?orderBy=isworkdone">Status</a></b></td>
+                                        <td align="center"><b>Email</b></td>
+                                        <td align="center"><b><a href="?orderBy=apt">Apt #</a></b></td>
+                                        <td align="center"><b><a href="?orderBy=unit">Unit #</a></b></td>
                                         <td align="center"><b>Message</b></td>
                                         <td align="center"><b>Comment</b></td>
-                                        <td align="center"><a href="?orderBy=date">Date</a></td>
+                                        <td align="center"><b><a href="?orderBy=date">Date</a></b></td>
+                                        <td align="center"><b>Edit</b></td>
+                                        <td align="center"><b>Process</b></td>
                                     </tr>
-                                </thead>';
-                        $orderBy = array('apt', 'unit', 'date');
+                                </thead>
+                        ';
+
+                        $orderBy = array('apt', 'unit', 'date', 'isworkdon');
                         $order = 'date';
                         if (isset($_GET['orderBy']) && in_array($_GET['orderBy'], $orderBy)) {
                             $order = $_GET['orderBy'];
@@ -130,16 +128,32 @@
                             $sql = $sql.' DESC';
                         }
                         $result = mysqli_query($conn, $sql);
+
                         while($row = mysqli_fetch_array($result))
                         {
+                            $temp = $row['invoice'];
+                            $temp2 = $row['email'];
+
                             echo '
                                 <tbody>
                                     <tr>
+                            ';
+
+                            if ($row['isworkdone'] == 2) {
+                                echo '<td align="center"><img src="./img/status_light_green" width="10px"></td>';
+                            } else {
+                                echo '<td align="center"><img src="./img/status_light_red" width="10px"></td>';
+                            }
+
+                            echo '
+                                        <td align="center">'.$temp2.'</td>
                                         <td align="center">'.$row['apt'].'</td>
                                         <td align="center">'.$row['unit'].'</td>
                                         <td align="center">'.$row['message'].'</td>
                                         <td align="center">'.$row['comment'].'</td>
                                         <td align="center">'.$row['date'].'</td>
+                                        <td align="center"><a href="edit_user.php?invoice_num='.$temp.'">Edit</a></td>
+                                        <td align="center"><a href="workdone_process.php?invoice_num='.$temp.' &email_user='.$temp2.'">Work Done</a></td>
                                     </tr>
                                 </tbody>';
                         }
