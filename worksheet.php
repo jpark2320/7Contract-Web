@@ -139,7 +139,7 @@
                                     <tr>
                             ';
 
-                            if ($row['isworkdone'] == 2) {
+                            if ($row['isworkdone'] == 1) {
                                 echo '<td align="center"><img src="./img/status_light_green" width="10px"></td>';
                             } else {
                                 echo '<td align="center"><img src="./img/status_light_red" width="10px"></td>';
@@ -153,13 +153,14 @@
                                         <td align="center">'.$row['comment'].'</td>
                                         <td align="center">'.$row['date'].'</td>
                                         <td align="center"><a href="edit_user.php?invoice_num='.$temp.'">Edit</a></td>
-                                        <td align="center"><a href="workdone_process.php?invoice_num='.$temp.' &email_user='.$temp2.'">Work Done</a></td>
+                                        <td align="center"><a href="workdone_process.php?invoice_num='.urlencode($temp).' &email_user='.urlencode($temp2).'">Work Done</a></td>
                                     </tr>
                                 </tbody>';
                         }
                         echo '</table>';
                     }
                     mysqli_close($conn);
+
                 ?>
             </div>
         </div>

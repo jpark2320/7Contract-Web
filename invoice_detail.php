@@ -37,6 +37,7 @@
                             <table border="2" width="1000">
                                 <thead>
                                     <tr>
+                                        <td align="center"><b><a href="?orderBy=isworkdone">Status</a></b></td>
                                         <td align="center"><a href="?orderBy=A.first">Name</a></td>
                                         <td align="center"><b>Message</b></td>
                                         <td align="center"><b>Comment</b></td>
@@ -62,6 +63,13 @@
                             echo '
                                 <tbody>
                                     <tr>
+                                ';
+                                        if ($row['isworkdone'] == 1) {
+                                            echo '<td align="center"><img src="./img/status_light_green" width="10px"></td>';
+                                        } else {
+                                            echo '<td align="center"><img src="./img/status_light_red" width="10px"></td>';
+                                        }
+                            echo        '
                                         <td align="center">'.$row['first'].' '.$row['last'].'</td>
                                         <td align="center">'.$row['message'].'</td>
                                         <td align="center">'.$row['comment'].'</td>

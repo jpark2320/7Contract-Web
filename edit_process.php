@@ -24,7 +24,7 @@
     } else {
         $comment = $_POST['comment'];
         $invoice = $_SESSION['invoice'];
-        $sql = "UPDATE SubWorksheet SET comment=\"".$comment."\" WHERE invoice=\"".$invoice."\";";
+        $sql = "UPDATE SubWorksheet SET comment=\"".$comment."\" WHERE email=\"".$_SESSION['email']."\" AND invoice=\"".$invoice."\";";
         unset($_SESSION['invoice']);
     }
 
