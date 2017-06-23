@@ -18,7 +18,7 @@
     $stwo = "SELECT * FROM subworksheet WHERE invoice='".$invoice."';";
     $result = $conn->query($stwo);
     $num_stwo = $result->num_rows;
-    echo '<script type="text/javascript">alert("' . $num_sone . " " . $num_stwo .'")</script>';
+    echo '<script type="text/javascript">alert("' . $num_sone . " " . $invoice ." " . $num_stwo .'")</script>';
     if ($num_sone == $num_stwo) {
         $sql = "UPDATE Worksheet SET isworkdone = 2 WHERE invoice='".$invoice."';";
     } else {

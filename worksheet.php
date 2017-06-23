@@ -60,7 +60,7 @@
 
                         while($row = mysqli_fetch_array($result))
                         {
-                            $temp = $row['invoice'];
+                            $temp = '7C'.$row['invoice'];
                             $temp2 = $row['apt'];
                             $temp3 = $row['unit'];
 
@@ -106,7 +106,6 @@
                                 <thead>
                                     <tr>
                                         <td align="center"><b><a href="?orderBy=isworkdone">Status</a></b></td>
-                                        <td align="center"><b>Email</b></td>
                                         <td align="center"><b><a href="?orderBy=apt">Apt #</a></b></td>
                                         <td align="center"><b><a href="?orderBy=unit">Unit #</a></b></td>
                                         <td align="center"><b>Message</b></td>
@@ -146,7 +145,6 @@
                             }
 
                             echo '
-                                        <td align="center">'.$temp2.'</td>
                                         <td align="center">'.$row['apt'].'</td>
                                         <td align="center">'.$row['unit'].'</td>
                                         <td align="center">'.$row['message'].'</td>

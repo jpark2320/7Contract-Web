@@ -49,6 +49,7 @@
                         if (isset($_GET['orderBy']) && in_array($_GET['orderBy'], $orderBy)) {
                             $order = $_GET['orderBy'];
                         }
+                        $i_detail = substr($i_detail, 2);
                         $sql = "SELECT * FROM
                         	(SELECT users.first, users.last, users.email from users) AS A
 							INNER JOIN

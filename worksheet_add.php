@@ -19,10 +19,10 @@
                             <col width="50%">
                             <col width="50%">
                         </colgroup>
-                            <tr>
+                            <!-- <tr>
                                 <td><label for="">Invoice #</label></td>
                                 <td><input type="text" name="invoice" maxlength="36" size="30"></td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td><label>P.O.</label></td>
                                 <td><input type="text" name="po" maxlength="36" size="30"></td>
@@ -41,7 +41,7 @@
                             </tr>
                             <tr>
                                 <td><label>Price</label></td>
-                                <td><input type="text" name="price" maxlength="36" size="30"></td>
+                                <td><input type="text" name="price" value="0.0" maxlength="36" size="30"></td>
                             </tr>
                             <tr>
                                 <td><label>Description</label></td>

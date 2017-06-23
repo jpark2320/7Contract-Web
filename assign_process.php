@@ -6,6 +6,7 @@
     $arr = $_SESSION['workersArray'];
 
     $i_num = $_SESSION['i_num'];
+    $i_num = substr($i_num, 2);
     $a_num = $_SESSION['a_num'];
     $u_num = $_SESSION['u_num'];
 
