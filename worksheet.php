@@ -35,10 +35,14 @@
                                         <td align="center"><b><a href="?orderBy=isworkdone">Status</a></b></td>
                                         <td align="center"><b><a href="?orderBy=invoice">Invoice #</a></b></td>
                                         <td align="center"><b><a href="?orderBy=po">P.O. #</a></b></td>
+                                        <td align="center"><b><a href="?orderBy=company">Company</a></b></td>
                                         <td align="center"><b><a href="?orderBy=apt">Apt #</a></b></td>
+                                        <td align="center"><b><a href="?orderBy=manager">Manager</a></b></td>
                                         <td align="center"><b><a href="?orderBy=unit">Unit #</a></b></td>
                                         <td align="center"><b><a href="?orderBy=size">Size</a></b></td>
                                         <td align="center"><b><a href="?orderBy=price">Price</a></b></td>
+                                        <td align="center"><b><a href="?orderBy=salary">Salary</a></b></td>
+                                        <td align="center"><b><a href="?orderBy=profit">Profit</a></b></td>
                                         <td align="center"><b>Description</b></td>
                                         <td align="center"><b><a href="?orderBy=date">Date</a></b></td>
                                         <td align="center"><b>Assign</b></b></td>
@@ -60,9 +64,11 @@
 
                         while($row = mysqli_fetch_array($result))
                         {
-                            $temp = '7C'.$row['invoice'];
-                            $temp2 = $row['apt'];
-                            $temp3 = $row['unit'];
+                            $temp_invoice = '7C'.$row['invoice'];
+                            $temp_company = $row['company'];
+                            $temp_apt = $row['apt'];
+                            $temp_manager = $row['manager'];
+                            $temp_unit = $row['unit'];
 
                             echo '
                                 <tbody>
@@ -78,20 +84,24 @@
                             }
 
                             echo '
-                                        <td align="center"><a href="invoice_detail.php?invoice_num='.$temp.'">'.$temp.'</a></td>
+                                        <td align="center"><a href="invoice_detail.php?invoice_num='.$temp_invoice.'">'.$temp_invoice.'</a></td>
                                         <td align="center">'.$row['PO'].'</td>
-                                        <td align="center">'.$temp2.'</td>
-                                        <td align="center">'.$temp3.'</td>
+                                        <td align="center"><a href="worksheet_company.php?company='.$temp_company.'">'.$temp_company.'</a></td>
+                                        <td align="center"><a href="worksheet_apt.php?apt_num='.$temp_apt.'">'.$temp_apt.'</a></td>
+                                        <td align="center"><a href="worksheet_manager.php?manager='.$temp_manager.'">'.$temp_manager.'</a></td>
+                                        <td align="center">'.$temp_unit.'</td>
                                         <td align="center">'.$row['size'].'</td>
                                         <td align="center">'.$row['price'].'</td>
+                                        <td align="center">'.$row['salary'].'</td>
+                                        <td align="center">'.$row['profit'].'</td>
                                         <td align="center">'.$row['description'].'</td>
                                         <td align="center">'.$row['date'].'</td>
                             ';
                             echo '
                                         <td align="center">
-                                            <a href="assign.php?invoice_num='.$temp.' &apt_num='.$temp2.' &unit_num='.$temp3.'">Send</a>
+                                            <a href="assign.php?invoice_num='.$temp_invoice.' &apt_num='.$tempapt.' &unit_num='.$temp_unit.'">Send</a>
                                         </td>
-                                        <td align="center"><a href="edit_admin.php?invoice_num='.$temp.'">Edit</a></td>
+                                        <td align="center"><a href="edit_admin.php?invoice_num='.$temp_invoice.'">Edit</a></td>
                                     </tr>
                                 </tbody>
                             ';

@@ -38,10 +38,12 @@
                                 <thead>
                                     <tr>
                                         <td align="center"><b><a href="?orderBy=isworkdone">Status</a></b></td>
-                                        <td align="center"><a href="?orderBy=A.first">Name</a></td>
+                                        <td align="center"><b><a href="?orderBy=A.first">Name</a></b></td>
                                         <td align="center"><b>Message</b></td>
                                         <td align="center"><b>Comment</b></td>
-                                        <td align="center"><a href="?orderBy=B.date">Date</a></td>
+                                        <td align="center"><b>Price</b></td>
+                                        <td align="center"><b><a href="?orderBy=B.date">Date</a></b></td>
+                                        <td align="center"><b>Edit</b></td>
                                     </tr>
                                 </thead>';
                         $orderBy = array('A.first', 'A.last', 'A.email', 'B.date');
@@ -61,22 +63,27 @@
                         $result = mysqli_query($conn, $sql);
                         while($row = mysqli_fetch_array($result))
                         {
+                            $temp_email = $row['email'];
+                            $temp_price = $row['row'];
                             echo '
                                 <tbody>
                                     <tr>
-                                ';
+                            ';
                                         if ($row['isworkdone'] == 1) {
                                             echo '<td align="center"><img src="./img/status_light_green" width="10px"></td>';
                                         } else {
                                             echo '<td align="center"><img src="./img/status_light_red" width="10px"></td>';
                                         }
-                            echo        '
+                            echo '
                                         <td align="center">'.$row['first'].' '.$row['last'].'</td>
                                         <td align="center">'.$row['message'].'</td>
                                         <td align="center">'.$row['comment'].'</td>
+                                        <td align="center">'.$temp_price.'</td>
                                         <td align="center">'.$row['date'].'</td>
+                                        <td align="center"><a href="pedit_process.php?invoice='.$i_detail.' &email='.$temp_email.' &price='.$temp_price.'">Edit</a></td>
                                     </tr>
-                                </tbody>';
+                                </tbody>
+                            ';
                         }
                         echo '</table>';
                     mysqli_close($conn);

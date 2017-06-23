@@ -11,7 +11,7 @@
     $u_num = $_SESSION['u_num'];
 
     for ($i = 0; $i < sizeof($arr); $i++) {
-        $sql = "INSERT INTO subworksheet VALUES (0, '$arr[$i]', '$i_num', '$a_num', '$u_num', '$message', '', NOW(), 0)";
+        $sql = "INSERT INTO subworksheet VALUES (0, '$arr[$i]', '$i_num', '$a_num', '$u_num', 0, '$message', '', NOW(), 0)";
         if ($conn->query($sql) === FALSE) {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
