@@ -10,7 +10,8 @@
 
         <!-- Body -->
         <div class="container">
-            <h3 class="text-center">Worksheet!</h3><br>
+            <h3 class="text-center">Worksheet!</h3>
+            <p class="text-center"><em>Check all your work process here!</em></p>
 
             <div class="row" align="center">
                 <?php
@@ -28,15 +29,17 @@
 
                         include('./includes/sort.php');
 
+                        echo '<div align="right"><a href="price_detail.php">Show details</a></div>';
+
                         echo '
                             <table border="2" width="958">
                                 <thead>
                                     <tr>
                                         <td align="center"><b><a href="?orderBy=isworkdone">Status</a></b></td>
                                         <td align="center"><b><a href="?orderBy=invoice">Invoice #</a></b></td>
-                                        <td align="center"><b><a href="?orderBy=po">P.O. #</a></b></td>
+                                        <td align="center"><b><a href="?orderBy=po">P.O.</a></b></td>
                                         <td align="center"><b><a href="?orderBy=company">Company</a></b></td>
-                                        <td align="center"><b><a href="?orderBy=apt">Apt #</a></b></td>
+                                        <td align="center"><b><a href="?orderBy=apt">Apt</a></b></td>
                                         <td align="center"><b><a href="?orderBy=manager">Manager</a></b></td>
                                         <td align="center"><b><a href="?orderBy=unit">Unit #</a></b></td>
                                         <td align="center"><b><a href="?orderBy=size">Size</a></b></td>
@@ -87,7 +90,7 @@
                                         <td align="center"><a href="invoice_detail.php?invoice_num='.$temp_invoice.'">'.$temp_invoice.'</a></td>
                                         <td align="center">'.$row['PO'].'</td>
                                         <td align="center"><a href="worksheet_company.php?company='.$temp_company.'">'.$temp_company.'</a></td>
-                                        <td align="center"><a href="worksheet_apt.php?apt_num='.$temp_apt.'">'.$temp_apt.'</a></td>
+                                        <td align="center"><a href="worksheet_apt.php?apt='.$temp_apt.'">'.$temp_apt.'</a></td>
                                         <td align="center"><a href="worksheet_manager.php?manager='.$temp_manager.'">'.$temp_manager.'</a></td>
                                         <td align="center">'.$temp_unit.'</td>
                                         <td align="center">'.$row['size'].'</td>
@@ -99,7 +102,7 @@
                             ';
                             echo '
                                         <td align="center">
-                                            <a href="assign.php?invoice_num='.$temp_invoice.' &apt_num='.$tempapt.' &unit_num='.$temp_unit.'">Send</a>
+                                            <a href="assign.php?invoice_num='.$temp_invoice.' &apt='.$temp_apt.' &unit_num='.$temp_unit.'">Send</a>
                                         </td>
                                         <td align="center"><a href="edit_admin.php?invoice_num='.$temp_invoice.'">Edit</a></td>
                                     </tr>
@@ -116,7 +119,7 @@
                                 <thead>
                                     <tr>
                                         <td align="center"><b><a href="?orderBy=isworkdone">Status</a></b></td>
-                                        <td align="center"><b><a href="?orderBy=apt">Apt #</a></b></td>
+                                        <td align="center"><b><a href="?orderBy=apt">Apt</a></b></td>
                                         <td align="center"><b><a href="?orderBy=unit">Unit #</a></b></td>
                                         <td align="center"><b>Message</b></td>
                                         <td align="center"><b>Comment</b></td>

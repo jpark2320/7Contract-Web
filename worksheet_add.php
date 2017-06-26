@@ -10,7 +10,7 @@
 
         <!-- Body -->
         <div class="container">
-            <h3 class="text-center">Fill in a new worksheet!</h3><br>
+            <h3 class="text-center">Make a new worksheet!</h3><br>
             <div class="row" align="center">
                 <br><br>
                 <form action="worksheet_process.php" method="POST">
@@ -24,8 +24,16 @@
                                 <td><input type="text" name="po" maxlength="36" size="30"></td>
                             </tr>
                             <tr>
-                                <td><label>Apt #</label></td>
+                                <td><label>Company</label></td>
+                                <td><input type="text" name="company" maxlength="36" size="30"></td>
+                            </tr>
+                            <tr>
+                                <td><label>Apt</label></td>
                                 <td><input type="text" name="apt" maxlength="36" size="30"></td>
+                            </tr>
+                            <tr>
+                                <td><label>Manager</label></td>
+                                <td><input type="text" name="manager" maxlength="36" size="30"></td>
                             </tr>
                             <tr>
                                 <td><label>Unit #</label></td>
@@ -37,7 +45,7 @@
                             </tr>
                             <tr>
                                 <td><label>Price</label></td>
-                                <td><input type="text" name="price" value="0.0" maxlength="36" size="30"></td>
+                                <td><input type="text" name="price" maxlength="36" size="30"></td>
                             </tr>
                             <tr>
                                 <td><label>Description</label></td>

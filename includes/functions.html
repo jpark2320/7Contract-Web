@@ -1,5 +1,5 @@
-<!-- Add smooth scrolling to all links in navbar + footer link -->
 <script>
+    // Add smooth scrolling to all links in navbar + footer link
     $(document).ready(function(){
         $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
             if (this.hash !== "") {
@@ -13,4 +13,10 @@
             }
         });
     })
+
+    // When admin wansts to edit price a user's salary in invoice_detail.php
+    function editPrice() {
+        document.getElementById("edit_price").innerHTML = "";
+        document.getElementById("edit_price").outerHTML = document.getElementById("edit_price").outerHTML.replace(/div/g,"input");
+    }
 </script>

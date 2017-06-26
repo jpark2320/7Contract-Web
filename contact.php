@@ -11,7 +11,7 @@
         <!-- Body -->
         <div id="contact" class="container">
             <h3 class="text-center">Contact</h3>
-            <p class="text-center"><em>Ask us if you have any question!</em></p>
+            <p class="text-center"><em>Ask us if you have any question!</em></p><br><br>
 
             <div class="row">
                 <div class="col-md-4">

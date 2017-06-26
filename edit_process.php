@@ -17,8 +17,7 @@
         $invoice = $_SESSION['invoice'];
         $sql = "UPDATE Worksheet SET
         	PO=\"".$po."\", company=\"".$company."\", apt=\"".$apt."\", manager=\"".$manager."\",
-            unit=\"".$unit."\", size=\"".$size."\", price=".$price.", salary=".$salary.",
-            profit=".$profit.", description=\"".$description."\" WHERE invoice=\"".$invoice."\";";
+            unit=\"".$unit."\", size=\"".$size."\", price=".$price.", description=\"".$description."\" WHERE invoice=\"".$invoice."\";";
         unset($_SESSION['invoice']);
         unset($_SESSION['po']);
         unset($_SESSION['company']);

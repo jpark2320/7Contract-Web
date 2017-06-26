@@ -2,11 +2,22 @@
     // connection with mysql database
     include('./includes/connection.php');
 
-
     if ($_SESSION['isadmin']) {
-        $invoice = $_GET['invoice'];
+        if (isset($_GET['invoice'])) {
+            $invoice = $_GET['invoice'];
+            echo "<script>alert('Hell');</script>";
+        } else {
+            echo "<script>alert('Hello World');</script>";
+        }
+        echo "<script>alert('".$invoice."');</script>";
         $email = $_GET['email'];
+        echo "<script>alert('$email');</script>";
         $price = $_GET['price'];
+        echo "<script>alert('$price');</script>";
+
+
+
+
         $sql = "UPDATE subworksheet SET price=".$price." WHERE invoice='$invoice' AND email='$email";
         $conn->query($sql);
         $sql = "SELECT price FROM subworksheet WHERE invoice='$invoice'";

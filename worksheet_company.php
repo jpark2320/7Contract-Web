@@ -22,14 +22,14 @@
                     // connection with mysql database
                     include('./includes/connection.php');
 
-                    include('./includes/sort.php');
-
                     if (isset($_GET['company'])) {
                         $company = $_GET['company'];
                     }
+                    echo '<div align="center"><b>Compnay : '.$company.'</b></div>';
+
+                    include('./includes/sort.php');
 
                     echo '
-                        <div align="center"><b>Compnay : '.$company.'</b></div>
                         <table border="2" width="958">
                             <thead>
                                 <tr>

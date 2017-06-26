@@ -17,8 +17,8 @@
                     if (isset($_GET['invoice_num'])) {
                         $_SESSION['i_num'] = $_GET['invoice_num'];
                     }
-                    if (isset($_GET['apt_num'])) {
-                        $_SESSION['a_num'] = $_GET['apt_num'];
+                    if (isset($_GET['apt'])) {
+                        $_SESSION['a_num'] = $_GET['apt'];
                     }
                     if (isset($_GET['unit_num'])) {
                         $_SESSION['u_num'] = $_GET['unit_num'];

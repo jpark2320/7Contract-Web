@@ -22,14 +22,14 @@
                     // connection with mysql database
                     include('./includes/connection.php');
 
+                    if (isset($_GET['apt'])) {
+                        $apt = $_GET['apt'];
+                    }
+                    echo '<div align="center"><b>Apt : '.$apt.'</b></div>';
+
                     include('./includes/sort.php');
 
-                    if (isset($_GET['apt_num'])) {
-                        $apt = $_GET['apt_num'];
-                    }
-
                     echo '
-                        <div align="center"><b>Apt # : '.$apt.'</b></div>
                         <table border="2" width="958">
                             <thead>
                                 <tr>

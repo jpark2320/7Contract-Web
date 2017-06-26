@@ -27,8 +27,6 @@
                         $_SESSION['size'] = $row['size'];
                         $_SESSION['unit'] = $row['unit'];
                         $_SESSION['price'] = $row['price'];
-                        $_SESSION['salary'] = $row['salary'];
-                        $_SESSION['profit'] = $row['profit'];
                         $_SESSION['description'] = $row['description'];
                     }
                 }
@@ -48,19 +46,19 @@
                             <col width="50%">
                         </colgroup>
                             <tr>
-                                <td><label>P.O Number:</label></td>
+                                <td><label>P.O Number</label></td>
                                 <td><input type="text" name="po" maxlength="36" size="30" value="<?php echo isset($_SESSION['po']) ? $_SESSION['po'] : '' ?>"></td>
                             </tr>
                             <tr>
-                                <td><label>Company:</label></td>
+                                <td><label>Company</label></td>
                                 <td><input type="text" name="company" maxlength="36" size="30" value="<?php echo isset($_SESSION['company']) ? $_SESSION['company'] : '' ?>"></td>
                             </tr>
                             <tr>
-                                <td><label>Apt #:</label></td>
+                                <td><label>Apt</label></td>
                                 <td><input type="text" name="apt" maxlength="36" size="30" value="<?php echo isset($_SESSION['apt']) ? $_SESSION['apt'] : '' ?>"></td>
                             </tr>
                             <tr>
-                                <td><label>Manager:</label></td>
+                                <td><label>Manager</label></td>
                                 <td><input type="text" name="manager" maxlength="36" size="30" value="<?php echo isset($_SESSION['manager']) ? $_SESSION['manager'] : '' ?>"></td>
                             </tr>
                             <tr>
@@ -68,23 +66,15 @@
                                 <td><input type="text" name="unit" maxlength="36" size="30" value="<?php echo isset($_SESSION['unit']) ? $_SESSION['unit'] : '' ?>"></td>
                             </tr>
                             <tr>
-                                <td><label>Size:</label></td>
+                                <td><label>Size</label></td>
                                 <td><input type="text" name="size" maxlength="36" size="30" value="<?php echo isset($_SESSION['size']) ? $_SESSION['size'] : '' ?>"></td>
                             </tr>
                             <tr>
-                                <td><label>Price:</label></td>
+                                <td><label>Price</label></td>
                                 <td><input type="text" name="price" maxlength="36" size="30" value="<?php echo isset($_SESSION['price']) ? $_SESSION['price'] : '' ?>"></td>
                             </tr>
                             <tr>
-                                <td><label>Salary:</label></td>
-                                <td><input type="text" name="salary" maxlength="36" size="30" value="<?php echo isset($_SESSION['salary']) ? $_SESSION['salary'] : '' ?>"></td>
-                            </tr>
-                            <tr>
-                                <td><label>Profit:</label></td>
-                                <td><input type="text" name="profit" maxlength="36" size="30" value="<?php echo isset($_SESSION['profit']) ? $_SESSION['profit'] : '' ?>"></td>
-                            </tr>
-                            <tr>
-                                <td><label>Description:</label></td>
+                                <td><label>Description</label></td>
                                 <td><input type="text" name="description" maxlength="36" size="30" value="<?php echo isset($_SESSION['description']) ? $_SESSION['description'] : '' ?>"></td>
                             </tr>
                     </table>
