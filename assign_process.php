@@ -23,7 +23,7 @@
     unset($_SESSION['u_num']);
 
     $conn->close();
-        echo "<script>alert(\"SIbal\");</script>";  
+        echo "<script>alert(\"SIbal\");</script>";
 
     echo "<script>alert(\"Successfully assigned.\");</script>";
     echo '<script>window.location.href = "worksheet.php";</script>';

@@ -151,7 +151,10 @@
     .form-control {
         border-radius: 0;
     }
-    /*textarea {
-        resize: none;
-    }*/
+    #doc { margin: 40px 0; }
+    #content {
+    	margin: 0 auto;
+    	min-width: 740px;
+    	max-width: 1040px;
+    }
 </style>

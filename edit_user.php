@@ -32,15 +32,13 @@
             <div class="row" align="center">
                 <form action="edit_process.php" method="POST">
 
-                    <table width="400">
-                        <colgroup>
-                            <col width="50%">
-                            <col width="50%">
-                        </colgroup>
-                            <tr>
-                                <td><label>Comment:</label></td>
-                                <td><input type="text" name="comment" maxlength="36" size="30" value="<?php echo isset($_SESSION['comment']) ? $_SESSION['comment'] : '' ?>"></td>
-                            </tr>
+                    <table width="200">
+                        <tr>
+                            <td align="center"><label>Comment</label></td>
+                        </tr>
+                        <tr>
+                            <td><textarea type="text" name="comment" rows="10" cols="60" value="<?php echo isset($_SESSION['comment']) ? $_SESSION['comment'] : '' ?>"></textarea></td>
+                        </tr>
                     </table>
                     <br>
                     <input type="submit" value="Edit">

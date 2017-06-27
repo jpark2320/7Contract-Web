@@ -8,6 +8,20 @@
         <!-- Header -->
         <?php include('./includes/nav_bar.php'); ?>
 
+        <div id="doc">
+            <div id="content">
+                <div class="blueberry">
+                    <ul class="slides">
+                        <li><img src="http://marktyrrell.com/labs/blueberry/img/slide1.jpg" /></li>
+                        <li><img src="http://marktyrrell.com/labs/blueberry/img/slide2.jpg" /></li>
+                        <li><img src="http://marktyrrell.com/labs/blueberry/img/slide3.jpg" /></li>
+                        <li><img src="http://marktyrrell.com/labs/blueberry/img/slide4.jpg" /></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
         <!-- Body -->
         <div class="container">
             <h3 class="text-center">Welcome!</h3>

@@ -15,7 +15,7 @@
         } else {
             echo "<script>alert('Hello World');</script>";
         }
-        echo '<script>alert("'.$comment.'");</script>';       
+        echo '<script>alert("'.$comment.'");</script>';
 
 
 
