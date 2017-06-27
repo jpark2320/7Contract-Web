@@ -14,7 +14,7 @@
 
             <div class="row" align="center">
 
-                <form action="pedit_process.php" method="post">
+                <form action="pedit.php" method="post">
                     <?php
                         // connection with mysql database
                         include('./includes/connection.php');
@@ -46,7 +46,6 @@
                                             <td align="center"><b>Price</b></td>
                                             <td align="center"><b><a href="?orderBy=B.date">Date</a></b></td>
                                             <td align="center"><b>Edit</b></td>
-                                            <td align="center"><b>Apply</b></td>
                                         </tr>
                                     </thead>';
                             $orderBy = array('A.first', 'A.last', 'A.email', 'B.date');
@@ -66,11 +65,10 @@
                             $result = mysqli_query($conn, $sql);
                             while($row = mysqli_fetch_array($result))
                             {
-                                $temp_email = $row['email'];
-                                $temp_price = $row['price'];
-
-                                echo "<script>alert('$temp_email');</script>";
-                                echo "<script>alert('$temp_price');</script>";
+                                $message = $row['message'];
+                                $comment = $row['comment'];
+                                $email = $row['email'];
+                                $price = $row['price'];
                                 echo '
                                     <tbody>
                                         <tr>
@@ -84,10 +82,9 @@
                                             <td align="center">'.$row['first'].' '.$row['last'].'</td>
                                             <td align="center">'.$row['message'].'</td>
                                             <td align="center">'.$row['comment'].'</td>
-                                            <td align="center"><div id="edit_price" type="text" value="'.$temp_price.'" height="5px">'.$temp_price.'</div></td>
+                                            <td align="center">'.$row['price'].'</td>
                                             <td align="center">'.$row['date'].'</td>
-                                            <td align="center"><a onclick="editPrice();">Edit</a></td>
-                                            <td align="center"><a href="pedit_process.php?invoice='.$i_detail.' &email='.$temp_email.' &price='.$temp_price.'"><input type="submit" value="Apply"></a></td>
+                                            <td align="center"><a href="pedit.php?invoice='.urlencode($i_detail).' &email='.urlencode($email).' &price='.urlencode($price).' &comment='.urlencode($comment). ' &message='.urlencode($message).'">Edit</a></td>
                                         </tr>
                                     </tbody>
                                 ';

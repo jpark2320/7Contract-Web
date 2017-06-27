@@ -10,10 +10,12 @@
     $unit = $_POST['unit'];
     $size = $_POST['size'];
     $price = $_POST['price'];
+    if (empty($price))
+        $price = 0;
     $salary = $_POST['salary'];
     $profit = $_POST['profit'];
     $description = $_POST['description'];
-    $sql = "INSERT INTO worksheet VALUES (null, '$po', '$company', '$apt', '$manager', '$unit', '$size', $price, $salary, $profit, '$description', NOW(), 0)";
+    $sql = "INSERT INTO worksheet VALUES (null, '$po', '$company', '$apt', '$manager', '$unit', '$size', $price, 0, 0, '$description', NOW(), 0)";
     $result = $conn->query($sql);
     echo "<script>
             alert(\"Successfully Added.\");

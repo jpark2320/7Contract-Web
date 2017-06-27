@@ -29,6 +29,17 @@
         unset($_SESSION['salary']);
         unset($_SESSION['profit']);
         unset($_SESSION['description']);
+        $conn->query($sql);
+        $sql = "SELECT price FROM subworksheet WHERE invoice='$invoice'";
+        $result = $conn->query($sql);
+        $totalSalary = 0;
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $totalSalary += $row['price'];
+            }
+        }
+        $profit = $price - $totalSalary;
+        $sql = "UPDATE worksheet SET profit='$profit' WHERE invoice='$invoice'";
     } else {
         $comment = $_POST['comment'];
         $invoice = $_SESSION['invoice'];

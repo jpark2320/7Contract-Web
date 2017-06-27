@@ -1,24 +1,25 @@
 <?php
+    session_start();
     // connection with mysql database
     include('./includes/connection.php');
 
     if ($_SESSION['isadmin']) {
-        if (isset($_GET['invoice'])) {
-            $invoice = $_GET['invoice'];
-            echo "<script>alert('Hell');</script>";
+        if (isset($_SESSION['invoice'])) {
+            $invoice = $_SESSION['invoice'];
+            $email = $_SESSION['temail'];
+            if (isset($_POST['message'])) {
+                $message = $_POST['message'];
+                $comment = $_POST['comment'];
+                $price = $_POST['price'];
+            }
         } else {
             echo "<script>alert('Hello World');</script>";
         }
-        echo "<script>alert('".$invoice."');</script>";
-        $email = $_GET['email'];
-        echo "<script>alert('$email');</script>";
-        $price = $_GET['price'];
-        echo "<script>alert('$price');</script>";
+        echo '<script>alert("'.$comment.'");</script>';       
 
 
 
-
-        $sql = "UPDATE subworksheet SET price=".$price." WHERE invoice='$invoice' AND email='$email";
+        $sql = "UPDATE subworksheet SET price=".$price.", message=\"".$message."\", comment=\"".$comment."\" WHERE invoice=".$invoice." AND email=\"".$email."\"";
         $conn->query($sql);
         $sql = "SELECT price FROM subworksheet WHERE invoice='$invoice'";
         $result = $conn->query($sql);
@@ -44,5 +45,10 @@
     }
 
     $conn->close();
+    unset($_SESSION['invoice']);
+    unset($_SESSION['temail']);
+    unset($_SESSION['message']);
+    unset($_SESSION['comment']);
+    unset($_SESSION['price']);
     echo '<script>window.location.href="invoice_detail.php";</script>';
 ?>
