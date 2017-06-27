@@ -16,11 +16,15 @@
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
     }
+    $sql = "UPDATE worksheet SET isworkdone=1 WHERE invoice=".$i_num.";";
+    $conn->query($sql);
     unset($_SESSION['i_num']);
     unset($_SESSION['a_num']);
     unset($_SESSION['u_num']);
 
     $conn->close();
+        echo "<script>alert(\"SIbal\");</script>";  
+
     echo "<script>alert(\"Successfully assigned.\");</script>";
     echo '<script>window.location.href = "worksheet.php";</script>';
 ?>

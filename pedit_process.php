@@ -50,5 +50,5 @@
     unset($_SESSION['message']);
     unset($_SESSION['comment']);
     unset($_SESSION['price']);
-    echo '<script>window.location.href="invoice_detail.php";</script>';
+    echo '<script>window.location.href="worksheet.php";</script>';
 ?>
