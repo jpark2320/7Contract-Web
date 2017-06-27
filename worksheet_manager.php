@@ -24,10 +24,25 @@
 
                     if (isset($_GET['manager'])) {
                         $manager = $_GET['manager'];
+                        $_SESSION['manager'] = $manager;
+                    } else {
+                        $manager = $_SESSION['manager'];
                     }
-                    echo '<div align="center"><b>Manager : '.$manager.'</b></div>';
 
-                    include('./includes/sort.php');
+                    echo '<div align="center"><b>Manager : '.$manager.'</b></div>';
+                    if (!isset($_SESSION['sort'])) {
+                        $_SESSION['sort'] = 'asc';
+                    }
+                    if ($_SESSION['sort']=='asc') {
+                        echo '<div align="left"><h><a href="?st=desc">Show descending order</a></h></div>';
+                    } else {
+                        echo '<div align="left"><h><a href="?st=asc">Show ascending order</a></h></div>';
+                    }
+                    if (isset($_GET['st'])) {
+                        $_SESSION['sort'] = $_GET['st'];
+                        echo '<script>window.location.href = "worksheet_manager.php";</script>';
+                    }
+
 
                     echo '
                         <table border="2" width="958">

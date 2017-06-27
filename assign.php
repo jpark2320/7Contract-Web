@@ -49,7 +49,7 @@
 
                         while($row = mysqli_fetch_array($result))
                         {
-                            echo '<option value="'.$row['email'].'">'.$row['first'].' '.$row['last'].' ('.$row['email'].')</option>';
+                            echo '<option value="'.$row['email'].''.'*'.$row['first'].' '.$row['last'].'">'.$row['first'].' '.$row['last'].' ('.$row['email'].')</option>';
                         }
                         echo '
                                             </select>
@@ -62,9 +62,9 @@
                         ';
                         if (isset($_POST['workers'])) {
                             $_SESSION['workersArray'] = $_POST['workers'];
-
                             for ($i = 0; $i < sizeof($_SESSION['workersArray']); $i++) {
-                                echo '<option value="">'.$_SESSION['workersArray'][$i].'</option>';
+                                $temp = split("\*" ,$_SESSION['workersArray'][$i]);
+                                echo '<option value="">'.$temp[1].' ('.$temp[0].')'.'</option>';
                             }
                             echo '
                                             </select>

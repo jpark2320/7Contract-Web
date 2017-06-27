@@ -145,6 +145,7 @@
                         {
                             $temp = $row['invoice'];
                             $temp2 = $row['email'];
+                            $id = $row['id'];
 
                             echo '
                                 <tbody>
@@ -164,7 +165,7 @@
                                         <td align="center">'.$row['comment'].'</td>
                                         <td align="center">'.$row['date'].'</td>
                                         <td align="center"><a href="edit_user.php?invoice_num='.$temp.'">Edit</a></td>
-                                        <td align="center"><a href="workdone_process.php?invoice_num='.urlencode($temp).' &email_user='.urlencode($temp2).'">Work Done</a></td>
+                                        <td align="center"><a href="workdone_process.php?invoice_num='.urlencode($temp).' &email_user='.urlencode($temp2).' &id='.urlencode($id).'">Work Done</a></td>
                                     </tr>
                                 </tbody>';
                         }

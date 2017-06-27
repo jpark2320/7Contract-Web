@@ -7,19 +7,18 @@
         if (isset($_SESSION['invoice'])) {
             $invoice = $_SESSION['invoice'];
             $email = $_SESSION['temail'];
-            if (isset($_POST['message'])) {
-                $message = $_POST['message'];
-                $comment = $_POST['comment'];
-                $price = $_POST['price'];
-            }
+            $id = $_SESSION['id'];
+            $message = $_POST['message'];
+            $comment = $_POST['comment'];
+            $price = $_POST['price'];
         } else {
-            echo "<script>alert('Hello World');</script>";
+            echo "<script>alert('You are not admin');</script>";
+            echo '<script>window.location.href="worksheet.php";</script>';
+            exit();
         }
-        echo '<script>alert("'.$comment.'");</script>';
 
 
-
-        $sql = "UPDATE subworksheet SET price=".$price.", message=\"".$message."\", comment=\"".$comment."\" WHERE invoice=".$invoice." AND email=\"".$email."\"";
+        $sql = "UPDATE subworksheet SET price=".$price.", message=\"".$message."\", comment=\"".$comment."\" WHERE id=".$id." AND invoice=".$invoice." AND email=\"".$email."\"";
         $conn->query($sql);
         $sql = "SELECT price FROM subworksheet WHERE invoice='$invoice'";
         $result = $conn->query($sql);
@@ -45,10 +44,10 @@
     }
 
     $conn->close();
-    unset($_SESSION['invoice']);
     unset($_SESSION['temail']);
     unset($_SESSION['message']);
     unset($_SESSION['comment']);
     unset($_SESSION['price']);
-    echo '<script>window.location.href="worksheet.php";</script>';
+    unset($_SESSION['id']);
+    echo '<script>window.location.href="invoice_detail.php";</script>';
 ?>

@@ -13,12 +13,14 @@
             include('./includes/connection.php');
             unset($_SESSION['invoice']);
             unset($_SESSION['temail']);
+            unset($_SESSION['id']);
             unset($_SESSION['message']);
             unset($_SESSION['comment']);
             unset($_SESSION['price']);
             if (isset($_GET['invoice'])) {
                 $_SESSION['invoice'] = $_GET['invoice'];
                 $_SESSION['temail'] = $_GET['email'];
+                $_SESSION['id'] = $_GET['id'];
 				$_SESSION['message'] = $_GET['message'];
 				$_SESSION['comment'] = $_GET['comment'];
 				$_SESSION['price'] = $_GET['price'];
@@ -56,7 +58,7 @@
                     </table>
                     <br>
                     <input type="submit" value="Edit">
-                    <input type="button" value="Back" onclick="location.href='worksheet.php'">
+                    <input type="button" value="Back" onclick="location.href='invoice_detail.php'">
                 </form>
             </div>
         </div>

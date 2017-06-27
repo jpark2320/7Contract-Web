@@ -23,12 +23,24 @@
                     include('./includes/connection.php');
 
                     if (isset($_GET['apt'])) {
-                        $apt = $_GET['apt'];
+                        $manager = $_GET['apt'];
+                        $_SESSION['apt'] = $apt;
+                    } else {
+                        $apt = $_SESSION['apt'];
                     }
                     echo '<div align="center"><b>Apt : '.$apt.'</b></div>';
-
-                    include('./includes/sort.php');
-
+                    if (!isset($_SESSION['sort'])) {
+                        $_SESSION['sort'] = 'asc';
+                    }
+                    if ($_SESSION['sort']=='asc') {
+                        echo '<div align="left"><h><a href="?st=desc">Show descending order</a></h></div>';
+                    } else {
+                        echo '<div align="left"><h><a href="?st=asc">Show ascending order</a></h></div>';
+                    }
+                    if (isset($_GET['st'])) {
+                        $_SESSION['sort'] = $_GET['st'];
+                        echo '<script>window.location.href = "worksheet_apt.php";</script>';
+                    }
                     echo '
                         <table border="2" width="958">
                             <thead>

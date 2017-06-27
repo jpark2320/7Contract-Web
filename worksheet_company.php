@@ -21,13 +21,27 @@
                     }
                     // connection with mysql database
                     include('./includes/connection.php');
-
                     if (isset($_GET['company'])) {
                         $company = $_GET['company'];
+                        $_SESSION['company'] = $company;
+                    } else {
+                        $company = $_SESSION['company'];
                     }
-                    echo '<div align="center"><b>Compnay : '.$company.'</b></div>';
 
-                    include('./includes/sort.php');
+                    echo '<div align="center"><b>Company : '.$company.'</b></div>';
+
+                    if (!isset($_SESSION['sort'])) {
+                        $_SESSION['sort'] = 'asc';
+                    }
+                    if ($_SESSION['sort']=='asc') {
+                        echo '<div align="left"><h><a href="?st=desc">Show descending order</a></h></div>';
+                    } else {
+                        echo '<div align="left"><h><a href="?st=asc">Show ascending order</a></h></div>';
+                    }
+                    if (isset($_GET['st'])) {
+                        $_SESSION['sort'] = $_GET['st'];
+                        echo '<script>window.location.href = "worksheet_company.php";</script>';
+                    }
 
                     echo '
                         <table border="2" width="958">

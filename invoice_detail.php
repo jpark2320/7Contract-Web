@@ -18,8 +18,13 @@
                     <?php
                         // connection with mysql database
                         include('./includes/connection.php');
-
-                        $i_detail = $_GET['invoice_num'];
+                        if (isset($_GET['invoice_num'])) {
+                            $i_detail = $_GET['invoice_num'];
+                            $_SESSION['invoice'] = str_replace('7C', '', $i_detail);
+                        } else {
+                            $i_detail = '7C'.$_SESSION['invoice'];
+                        }
+                    
                         echo '<b>Invoice # : '.$i_detail.'</b>';
 
                         if (!isset($_SESSION['sort'])) {
@@ -34,7 +39,8 @@
                             $_SESSION['sort'] = $_GET['st'];
                             echo '<script>window.location.href = "invoice_detail.php";</script>';
                         }
-
+                        $i_detail = str_replace('7C', '', $i_detail);
+                        $_SESSION['invoice'] = $i_detail;
                         echo '
                                 <table border="2" width="1000">
                                     <thead>
@@ -48,12 +54,11 @@
                                             <td align="center"><b>Edit</b></td>
                                         </tr>
                                     </thead>';
-                            $orderBy = array('A.first', 'A.last', 'A.email', 'B.date');
-                            $order = 'date';
+                            $orderBy = array('A.first', 'A.email', 'B.date', 'B.isworkdone');
+                            $order = 'B.date';
                             if (isset($_GET['orderBy']) && in_array($_GET['orderBy'], $orderBy)) {
                                 $order = $_GET['orderBy'];
                             }
-                            $i_detail = substr($i_detail, 2);
                             $sql = "SELECT * FROM
                             	(SELECT users.first, users.last, users.email from users) AS A
     							INNER JOIN
@@ -69,6 +74,7 @@
                                 $comment = $row['comment'];
                                 $email = $row['email'];
                                 $price = $row['price'];
+                                $id = $row['id'];
                                 echo '
                                     <tbody>
                                         <tr>
@@ -84,7 +90,7 @@
                                             <td align="center">'.$row['comment'].'</td>
                                             <td align="center">'.$row['price'].'</td>
                                             <td align="center">'.$row['date'].'</td>
-                                            <td align="center"><a href="pedit.php?invoice='.urlencode($i_detail).' &email='.urlencode($email).' &price='.urlencode($price).' &comment='.urlencode($comment). ' &message='.urlencode($message).'">Edit</a></td>
+                                            <td align="center"><a href="pedit.php?invoice='.urlencode($i_detail).' &email='.urlencode($email).' &id='.urlencode($id).' &price='.urlencode($price).' &comment='.urlencode($comment). ' &message='.urlencode($message).'">Edit</a></td>
                                         </tr>
                                     </tbody>
                                 ';

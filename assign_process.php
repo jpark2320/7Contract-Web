@@ -10,11 +10,30 @@
     $a_num = $_SESSION['a_num'];
     $u_num = $_SESSION['u_num'];
 
+    date_default_timezone_set('Etc/UTC');
+    require 'PHPMailer/PHPMailerAutoload.php';
+    $mail = new PHPMailer;
+    $mail->isSMTP();
+    $mail->SMTPDebug = 0;
+    $mail->Debugoutput = 'html';
+    $mail->Host = 'smtp.gmail.com';
+    $mail->Port = 587;
+    $mail->SMTPSecure = 'tls';
+    $mail->SMTPAuth = true;
+    $mail->Username = "7contractor@gmail.com";
+    $mail->Password = "7contract.com";
+    $mail->setFrom('7contractor@gmail.com', '7 Contract');
+    $mail->addReplyTo('7contractor@gmail.com', '7 Contract');
+
     for ($i = 0; $i < sizeof($arr); $i++) {
-        $sql = "INSERT INTO subworksheet VALUES (0, '$arr[$i]', '$i_num', '$a_num', '$u_num', 0, '$message', '', NOW(), 0)";
+        $worker = split("\*", $arr[$i]);
+        $sql = "INSERT INTO subworksheet VALUES (null, '$worker[0]', '$i_num', '$a_num', '$u_num', 0, '$message', '', NOW(), 0)";
         if ($conn->query($sql) === FALSE) {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
+        $mail->addAddress($worker[0], $worker[1]);
+
+        echo $worker[0]." AND ". $worker[1];
     }
     $sql = "UPDATE worksheet SET isworkdone=1 WHERE invoice=".$i_num.";";
     $conn->query($sql);
@@ -22,9 +41,14 @@
     unset($_SESSION['a_num']);
     unset($_SESSION['u_num']);
 
+    $mail->Subject = '[7 Contract] Work Request for Apt:'.$a_num.' Unit:'.$u_num.'.';
+    $mail->Body    = $message;
+    if (!$mail->send()) {
+        echo "Mailer Error: " . $mail->ErrorInfo;
+    } else {
+        echo "Message sent!";
+    }
     $conn->close();
-        echo "<script>alert(\"SIbal\");</script>";
-
     echo "<script>alert(\"Successfully assigned.\");</script>";
     echo '<script>window.location.href = "worksheet.php";</script>';
 ?>
