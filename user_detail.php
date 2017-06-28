@@ -10,7 +10,7 @@
 
         <!-- Body -->
         <div class="container">
-            <h3 class="text-center">Invoice Details</h3><br>
+            <h3 class="text-center">User Detail</h3><br>
 
             <div class="row" align="center">
 
@@ -19,15 +19,25 @@
                         // connection with mysql database
                         include('./includes/connection.php');
 
-                        // $i_detail = $_GET['invoice_num'];
-                        if (isset($_GET['invoice_num'])) {
-                            $i_detail = $_GET['invoice_num'];
-                            $_SESSION['invoice'] = str_replace('7C', '', $i_detail);
-                        } else {
-                            $i_detail = '7C'.$_SESSION['invoice'];
-                        }
-
-                        echo '<b>Invoice # : '.$i_detail.'</b>';
+                        $_SESSION['invoice'] = $_GET['invoice'];
+                        $email = $_GET['email'];
+                        $user_name = $_GET['user_name'];
+                        echo '
+                            <table width="300">
+                                <colgroup>
+                                    <col width="50%">
+                                    <col width="50%">
+                                </colgroup>
+                                    <tr>
+                                        <td align="left"><label>User Name</label></td>
+                                        <td align="right">'.$user_name.'</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left"><label>Email</label></td>
+                                        <td align="right">'.$email.'</td>
+                                    </tr>
+                            </table>
+                        ';
 
                         if (!isset($_SESSION['sort'])) {
                             $_SESSION['sort'] = 'asc';
@@ -41,46 +51,40 @@
                             $_SESSION['sort'] = $_GET['st'];
                             echo '<script>window.location.href = "invoice_detail.php";</script>';
                         }
-                        $i_detail = str_replace('7C', '', $i_detail);
-                        $_SESSION['invoice'] = $i_detail;
 
                         echo '
                                 <table border="2" width="1000">
                                     <thead>
                                         <tr style="border: 2px double black;" bgcolor="#c9c9c9">
                                             <td align="center"><b><a href="?orderBy=isworkdone">Status</a></b></td>
-                                            <td align="center"><b><a href="?orderBy=A.first">Name</a></b></td>
-                                            <td align="center"><b>Message</b></td>
-                                            <td align="center"><b>Comment</b></td>
-                                            <td align="center"><b>Price</b></td>
-                                            <td align="center"><b><a href="?orderBy=B.date">Date</a></b></td>
-                                            <td align="center"><b>Edit</b></td>
+                                            <td align="center"><b><a href="?orderBy=invoice">Invoice #</a></b></td>
+                                            <td align="center"><b><a href="?orderBy=apt">Apt</a></b></td>
+                                            <td align="center"><b><a href="?orderBy=unit">Unit</a></b></td>
+                                            <td align="center"><b><a href="?orderBy=price">Price</a></b></td>
+                                            <td align="center"><b><a href="?orderBy=message">Message</a></b></td>
+                                            <td align="center"><b><a href="?orderBy=comment">Comment</a></b></td>
+                                            <td align="center"><b><a href="?orderBy=date">Date</a></b></td>
                                         </tr>
                                     </thead>';
-                            $orderBy = array('A.first', 'A.email', 'B.date', 'B.isworkdone');
-                            $order = 'B.date';
+                            $orderBy = array('A.first', 'A.last', 'A.email', 'B.date');
+                            $order = 'date';
                             if (isset($_GET['orderBy']) && in_array($_GET['orderBy'], $orderBy)) {
                                 $order = $_GET['orderBy'];
                             }
+                            $i_detail = substr($i_detail, 2);
+
                             $sql = "SELECT * FROM
                             	(SELECT users.first, users.last, users.email from users) AS A
     							INNER JOIN
-    							(SELECT * FROM SubWorksheet WHERE invoice='$i_detail') AS B
+    							(SELECT * FROM SubWorksheet WHERE email='$email') AS B
     							ON A.email=B.email ORDER BY ".$order;
                             if ($_SESSION['sort']=='desc') {
                                 $sql = $sql.' DESC';
                             }
                             $result = mysqli_query($conn, $sql);
-                            $isOdd = false;
+                            $idOdd = false;
                             while($row = mysqli_fetch_array($result))
                             {
-                                $message = $row['message'];
-                                $comment = $row['comment'];
-                                $email = $row['email'];
-                                $price = $row['price'];
-                                $user_name = $row['first'].' '.$row['last'];
-                                $id = $row['id'];
-
                                 echo '<tbody>';
                                 if ($isOdd) {
                                     $isOdd = false;
@@ -95,14 +99,14 @@
                                 } else {
                                     echo '<td align="center"><img src="./img/status_light_red" width="10px"></td>';
                                 }
-
                                 echo '
-                                            <td align="center"><a href="user_detail.php?invoice='.urlencode($i_detail).' &email='.urlencode($email).' &user_name='.urlencode($user_name).'">'.$user_name.'</a></td>
+                                            <td align="center">'.$row['invoice'].'</td>
+                                            <td align="center">'.$row['apt'].'</td>
+                                            <td align="center">'.$row['unit'].'</td>
+                                            <td align="center">'.$row['price'].'</td>
                                             <td align="center">'.$row['message'].'</td>
                                             <td align="center">'.$row['comment'].'</td>
-                                            <td align="center">'.$row['price'].'</td>
                                             <td align="center">'.$row['date'].'</td>
-                                            <td align="center"><a href="pedit.php?invoice='.urlencode($i_detail).' &email='.urlencode($email).' &id='.urlencode($id).' &price='.urlencode($price).' &comment='.urlencode($comment). ' &message='.urlencode($message).'">Edit</a></td>
                                         </tr>
                                     </tbody>
                                 ';
@@ -112,7 +116,7 @@
                     ?>
                 </form>
                 <br>
-                <input type="button" value="Back" onclick="location.href='worksheet.php'"></input>
+                <input type="button" value="Back" onclick="location.href='invoice_detail.php'"></input>
             </div>
         </div>
 

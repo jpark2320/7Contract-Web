@@ -12,10 +12,12 @@
             $comment = $_POST['comment'];
             $price = $_POST['price'];
         } else {
-            echo "<script>alert('You are not admin');</script>";
+            echo "<script>alert('You are not admin.');</script>";
             echo '<script>window.location.href="worksheet.php";</script>';
             exit();
         }
+        echo '<script>alert("'.$comment.'");</script>';
+
 
 
         $sql = "UPDATE subworksheet SET price=".$price.", message=\"".$message."\", comment=\"".$comment."\" WHERE id=".$id." AND invoice=".$invoice." AND email=\"".$email."\"";

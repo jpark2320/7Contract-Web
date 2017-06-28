@@ -35,7 +35,7 @@
                     echo '
                         <table border="2" width="500px">
                             <thead>
-                                <tr>
+                                <tr style="border: 2px double black;" bgcolor="#c9c9c9">
                                     <td align="center" width="200px"><b>Subcontractors</b></th>
                                     <td align="center" width="100px"></th>
                                     <td align="center" width="200px"><b>Added</b></th>

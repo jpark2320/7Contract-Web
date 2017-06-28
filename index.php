@@ -17,10 +17,15 @@
                         <li><img src="http://marktyrrell.com/labs/blueberry/img/slide3.jpg" /></li>
                         <li><img src="http://marktyrrell.com/labs/blueberry/img/slide4.jpg" /></li>
                     </ul>
+                    <ul class="pager">
+                        <li><a href="#"><span></span></a></li>
+                        <li><a href="#"><span></span></a></li>
+                        <li><a href="#"><span></span></a></li>
+                        <li><a href="#"><span></span></a></li>
+                    </ul>
                 </div>
             </div>
         </div>
-
 
         <!-- Body -->
         <div class="container">

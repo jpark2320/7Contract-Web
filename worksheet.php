@@ -34,7 +34,7 @@
                         echo '
                             <table border="2" width="958">
                                 <thead>
-                                    <tr>
+                                    <tr style="border: 2px double black;" bgcolor="#c9c9c9">
                                         <td align="center"><b><a href="?orderBy=isworkdone">Status</a></b></td>
                                         <td align="center"><b><a href="?orderBy=invoice">Invoice #</a></b></td>
                                         <td align="center"><b><a href="?orderBy=po">P.O.</a></b></td>
@@ -65,6 +65,7 @@
                         }
                         $result = mysqli_query($conn, $sql);
 
+                        $isOdd = false;
                         while($row = mysqli_fetch_array($result))
                         {
                             $temp_invoice = '7C'.$row['invoice'];
@@ -73,10 +74,14 @@
                             $temp_manager = $row['manager'];
                             $temp_unit = $row['unit'];
 
-                            echo '
-                                <tbody>
-                                    <tr>
-                            ';
+                            echo '<tbody>';
+                            if ($isOdd) {
+                                $isOdd = false;
+                                echo '<tr bgcolor="#ffeed3">';
+                            } else {
+                                $isOdd = true;
+                                echo '<tr>';
+                            }
 
                             if ($row['isworkdone'] == 2) {
                                 echo '<td align="center"><img src="./img/status_light_green" width="10px"></td>';
@@ -117,7 +122,7 @@
                         echo '
                             <table border="2" width="958">
                                 <thead>
-                                    <tr>
+                                    <tr style="border: 2px double black;" bgcolor="#c9c9c9">
                                         <td align="center"><b><a href="?orderBy=isworkdone">Status</a></b></td>
                                         <td align="center"><b><a href="?orderBy=apt">Apt</a></b></td>
                                         <td align="center"><b><a href="?orderBy=unit">Unit #</a></b></td>
@@ -141,16 +146,21 @@
                         }
                         $result = mysqli_query($conn, $sql);
 
+                        $isOdd = false;
                         while($row = mysqli_fetch_array($result))
                         {
                             $temp = $row['invoice'];
                             $temp2 = $row['email'];
                             $id = $row['id'];
 
-                            echo '
-                                <tbody>
-                                    <tr>
-                            ';
+                            echo '<tbody>';
+                            if ($isOdd) {
+                                $isOdd = false;
+                                echo '<tr bgcolor="#ffeed3">';
+                            } else {
+                                $isOdd = true;
+                                echo '<tr>';
+                            }
 
                             if ($row['isworkdone'] == 1) {
                                 echo '<td align="center"><img src="./img/status_light_green" width="10px"></td>';
@@ -172,7 +182,6 @@
                         echo '</table>';
                     }
                     mysqli_close($conn);
-
                 ?>
             </div>
         </div>

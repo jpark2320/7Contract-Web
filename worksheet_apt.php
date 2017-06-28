@@ -23,12 +23,13 @@
                     include('./includes/connection.php');
 
                     if (isset($_GET['apt'])) {
-                        $manager = $_GET['apt'];
+                        $apt = $_GET['apt'];
                         $_SESSION['apt'] = $apt;
                     } else {
                         $apt = $_SESSION['apt'];
                     }
                     echo '<div align="center"><b>Apt : '.$apt.'</b></div>';
+
                     if (!isset($_SESSION['sort'])) {
                         $_SESSION['sort'] = 'asc';
                     }
@@ -41,10 +42,11 @@
                         $_SESSION['sort'] = $_GET['st'];
                         echo '<script>window.location.href = "worksheet_apt.php";</script>';
                     }
+
                     echo '
                         <table border="2" width="958">
                             <thead>
-                                <tr>
+                                <tr style="border: 2px double black;" bgcolor="#c9c9c9">
                                     <td align="center"><b><a href="?orderBy=invoice">Invoice #</a></b></td>
                                     <td align="center"><b><a href="?orderBy=po">P.O. #</a></b></td>
                                     <td align="center"><b><a href="?orderBy=company">Company</a></b></td>
@@ -79,13 +81,19 @@
                     {
                         $temp_invoice = '7C'.$row['invoice'];
                         $temp_company = $row['company'];
-                        $temp_apt = $row['apt'];
                         $temp_manager = $row['manager'];
                         $temp_unit = $row['unit'];
 
+                        echo '<tbody>';
+                        if ($isOdd) {
+                            $isOdd = false;
+                            echo '<tr bgcolor="#ffeed3">';
+                        } else {
+                            $isOdd = true;
+                            echo '<tr>';
+                        }
+
                         echo '
-                            <tbody>
-                                <tr>
                                     <td align="center"><a href="invoice_detail.php?invoice_num='.$temp_invoice.'">'.$temp_invoice.'</a></td>
                                     <td align="center">'.$row['PO'].'</td>
                                     <td align="center"><a href="worksheet_company.php?company='.$temp_company.'">'.$temp_company.'</a></td>
@@ -99,13 +107,13 @@
                                     <td align="center">'.$row['date'].'</td>
                                 </tr>
                             </tbody>
-                        </table>
                         ';
                     }
-
+                    echo '</table>';
                     mysqli_close($conn);
-
                 ?>
+                <br>
+                <input type="button" value="Back" onclick="location.href='worksheet.php'"></input>
             </div>
         </div>
 

@@ -151,10 +151,41 @@
     .form-control {
         border-radius: 0;
     }
-    #doc { margin: 40px 0; }
+    #doc {
+        margin: 40px 0;
+        margin-right: 3%;
+    }
     #content {
     	margin: 0 auto;
-    	min-width: 740px;
+    	/*min-width: 740px;*/
     	max-width: 1040px;
+    }
+    .blueberry .slides li {
+        position: relative;
+    }
+    .blueberry .pager {
+        margin-left: 3%;
+    }
+    .blueberry .pager li a, .blueberry .pager li a span {
+        width: 5px;
+        height: 5px;
+    }
+    .blueberry .pager li a {
+        border: none;
+    }
+    .blueberry .pager li a:hover {
+        background: none;
+    }
+    .blueberry .pager li a:link {
+        background: none;
+    }
+    @media screen and (max-width: 740px) {
+        #doc {
+            margin: 40px 0;
+            margin-right: 9%;
+        }
+        .blueberry .pager {
+            margin-left: 10%;
+        }
     }
 </style>

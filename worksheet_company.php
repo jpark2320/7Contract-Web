@@ -21,6 +21,7 @@
                     }
                     // connection with mysql database
                     include('./includes/connection.php');
+
                     if (isset($_GET['company'])) {
                         $company = $_GET['company'];
                         $_SESSION['company'] = $company;
@@ -46,7 +47,7 @@
                     echo '
                         <table border="2" width="958">
                             <thead>
-                                <tr>
+                                <tr style="border: 2px double black;" bgcolor="#c9c9c9">
                                     <td align="center"><b><a href="?orderBy=invoice">Invoice #</a></b></td>
                                     <td align="center"><b><a href="?orderBy=po">P.O. #</a></b></td>
                                     <td align="center"><b><a href="?orderBy=apt">Apt #</a></b></td>
@@ -77,17 +78,24 @@
                         exit();
                     }
 
+                    $isOdd = false;
                     while($row = mysqli_fetch_array($result))
                     {
                         $temp_invoice = '7C'.$row['invoice'];
-                        $temp_company = $row['company'];
                         $temp_apt = $row['apt'];
                         $temp_manager = $row['manager'];
                         $temp_unit = $row['unit'];
 
+                        echo '<tbody>';
+                        if ($isOdd) {
+                            $isOdd = false;
+                            echo '<tr bgcolor="#ffeed3">';
+                        } else {
+                            $isOdd = true;
+                            echo '<tr>';
+                        }
+
                         echo '
-                            <tbody>
-                                <tr>
                                     <td align="center"><a href="invoice_detail.php?invoice_num='.$temp_invoice.'">'.$temp_invoice.'</a></td>
                                     <td align="center">'.$row['PO'].'</td>
                                     <td align="center"><a href="worksheet_apt.php?apt_num='.$temp_apt.'">'.$temp_apt.'</a></td>
@@ -101,13 +109,13 @@
                                     <td align="center">'.$row['date'].'</td>
                                 </tr>
                             </tbody>
-                        </table>
                         ';
                     }
-
+                    echo '</table>';
                     mysqli_close($conn);
-
                 ?>
+                <br>
+                <input type="button" value="Back" onclick="location.href='worksheet.php'"></input>
             </div>
         </div>
 

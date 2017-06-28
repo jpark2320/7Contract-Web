@@ -25,7 +25,7 @@
 
 			//default values for plugin options
 			var defaults = {
-				interval: 5000,
+				interval: 100,
 				duration: 500,
 				lineheight: 1,
 				height: 'auto', //reserved
@@ -35,7 +35,7 @@
 				keynav: true
 			}
 			var options =  $.extend(defaults, options);
- 
+
 			return this.each(function() {
 				var o = options;
 				var obj = $(this);
@@ -59,7 +59,7 @@
 
 				//hide all slides, fade in the first, add active class to first slide
 				slides.hide().eq(current).fadeIn(o.duration).addClass('active');
-				
+
 
 				//build pager if it doesn't already exist and if enabled
 				if(pager.length) {
@@ -145,8 +145,8 @@
 				$(window).resize(function(){
 					setsize();
 				});
-				
-				
+
+
 
 				//Add keyboard navigation
 
