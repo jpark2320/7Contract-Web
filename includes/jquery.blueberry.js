@@ -25,7 +25,7 @@
 
 			//default values for plugin options
 			var defaults = {
-				interval: 100,
+				interval: 5000,
 				duration: 500,
 				lineheight: 1,
 				height: 'auto', //reserved
@@ -90,7 +90,7 @@
 				var rotate = function(){
 					//fade out current slide and remove active class,
 					//fade in next slide and add active class
-					slides.eq(current).fadeOut(o.duration).removeClass('active')
+					slides.hide().eq(current).fadeOut(o.duration).removeClass('active')
 						.end().eq(next).fadeIn(o.duration).addClass('active').queue(function(){
 							//add rotateTimer function to end of animation queue
 							//this prevents animation buildup caused by requestAnimationFrame
@@ -141,41 +141,27 @@
 				};
 				setsize();
 
-				//bind setsize function to window resize event
+				// bind setsize function to window resize event
 				$(window).resize(function(){
 					setsize();
 				});
 
-
-
 				//Add keyboard navigation
-
 				if(o.keynav){
 					$(document).keyup(function(e){
-
 						switch (e.which) {
-
 							case 39: case 32: //right arrow & space
-
 								clearTimeout(obj.play);
-
 								rotate();
-
 								break;
-
-
 							case 37: // left arrow
 								clearTimeout(obj.play);
 								next = current - 1;
 								rotate();
-
 								break;
 						}
-
 					});
 				}
-
-
 			});
 		}
 	});

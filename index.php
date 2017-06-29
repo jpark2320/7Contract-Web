@@ -12,10 +12,10 @@
             <div id="content">
                 <div class="blueberry">
                     <ul class="slides">
-                        <li><img src="http://marktyrrell.com/labs/blueberry/img/slide1.jpg" /></li>
-                        <li><img src="http://marktyrrell.com/labs/blueberry/img/slide2.jpg" /></li>
-                        <li><img src="http://marktyrrell.com/labs/blueberry/img/slide3.jpg" /></li>
-                        <li><img src="http://marktyrrell.com/labs/blueberry/img/slide4.jpg" /></li>
+                        <li><img src="http://marktyrrell.com/labs/blueberry/img/slide1.jpg" alt=""></li>
+                        <li><img src="http://marktyrrell.com/labs/blueberry/img/slide2.jpg" alt=""></li>
+                        <li><img src="http://marktyrrell.com/labs/blueberry/img/slide3.jpg" alt=""></li>
+                        <li><img src="http://marktyrrell.com/labs/blueberry/img/slide4.jpg" alt=""></li>
                     </ul>
                     <ul class="pager">
                         <li><a href="#"><span></span></a></li>
