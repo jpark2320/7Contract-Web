@@ -31,7 +31,7 @@
                         echo '
                             <table border="2" width="958">
                                 <thead>
-                                    <tr>
+                                    <tr style="border: 2px double black;" bgcolor="#c9c9c9">
                                         <td align="center"><b><a href="?orderBy=invoice">Invoice #</a></b></td>
                                         <td align="center"><b><a href="?orderBy=po">P.O. #</a></b></td>
                                         <td align="center"><b><a href="?orderBy=apt">Apt #</a></b></td>
@@ -58,6 +58,8 @@
                         $totalPrice = 0;
                         $totalSalary = 0;
                         $totalProfit = 0;
+
+                        $isOdd = false;
                         while($row = mysqli_fetch_array($result))
                         {
                             $temp = '7C'.$row['invoice'];
@@ -66,10 +68,15 @@
                             $totalPrice += $row['price'];
                             $totalSalary += $row['salary'];
                             $totalProfit += $row['profit'];
-                            echo '
-                                <tbody>
-                                    <tr>
-                            ';
+
+                            echo '<tbody>';
+                            if ($isOdd) {
+                                $isOdd = false;
+                                echo '<tr bgcolor="#ffeed3">';
+                            } else {
+                                $isOdd = true;
+                                echo '<tr>';
+                            }
 
                             echo '
                                         <td align="center"><a href="invoice_detail.php?invoice_num='.$temp.'">'.$temp.'</a></td>
@@ -110,7 +117,7 @@
                                 </tbody>
                             ';
                         echo '</table>';
-                    } 
+                    }
                     mysqli_close($conn);
 
                 ?>
