@@ -12,13 +12,12 @@
             // connection with mysql database
             include('./includes/connection.php');
 
-            if (isset($_GET['invoice_num'])) {
-                $invoice = $_GET['invoice_num'];
-                $check = "SELECT * FROM subworksheet WHERE invoice = '".$invoice."';";
+            if (isset($_GET['id'])) {
+                $_SESSION['id'] = $_GET['id'];
+                $check = "SELECT * FROM subworksheet WHERE id=".$_SESSION['id'].";";
                 $result = $conn->query($check);
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
-                        $_SESSION['invoice'] = $row['invoice'];
                         $_SESSION['comment'] = $row['comment'];
                     }
                 }

@@ -72,7 +72,7 @@
 				$this->Cell(20, 6, $arr[$i][1], 0, 0, 'C');
 				$this->Cell(35, 6, '$ '.number_format((float)$arr[$i][2], 2, '.', ''), 0, 0, 'C');
 				$this->total = $arr[$i][2];
-				$this->SetXY($x, $y + 24);
+				$this->SetXY($x, $y + 18);
 			}
 		}
 		function DrawTable() {
@@ -113,17 +113,8 @@
 			$this->Cell(80, 5,'Authorized Signature',0,0,'C');
 			$this->Cell(80, 5,'Date',0,0,'C');
 
-
-
 		}
 
-		// Page footer
-		function Footer()
-		{
-		    $this->SetY(-15);
-		    $this->SetFont('Arial','I',8);
-		    $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
-		}
 
 		function LayOut() {
 			$this->AddPage();
@@ -134,7 +125,8 @@
 
 	$pdf = new PDF();
 	$pdf->LayOut();
-	$pdf->Output();
+	$filename = $apt.'_'.$invoice;
+	$pdf->Output('I', substr($filename, 0, -1).'.pdf');
 
 	unset($_SESSION['invoice']);
 	unset($_SESSION['po_pdf']);

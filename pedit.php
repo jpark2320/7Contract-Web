@@ -45,14 +45,14 @@
                         </colgroup>
                             <tr>
                                 <td><label>Message</label></td>
-                                <td><input type="text" name="message" maxlength="36" size="30" value="<?php echo isset($_SESSION['message']) ? $_SESSION['message'] : '' ?>"></td>
+                                <td><?php echo isset($_SESSION['message']) ? $_SESSION['message'] : '' ?></td>
                             </tr>
                             <tr>
                                 <td><label>Comment</label></td>
-                                <td><input type="text" name="comment" maxlength="36" size="30" value="<?php echo isset($_SESSION['comment']) ? $_SESSION['comment'] : '' ?>"></td>
+                                <td><?php echo isset($_SESSION['comment']) ? $_SESSION['comment'] : '' ?></td>
                             </tr>
                             <tr>
-                                <td><label>Price</label></td>
+                                <td><label>Salary</label></td>
                                 <td><input type="text" name="price" maxlength="36" size="30" value="<?php echo isset($_SESSION['price']) ? $_SESSION['price'] : '' ?>"></td>
                             </tr>
                     </table>

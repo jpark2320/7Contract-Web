@@ -13,7 +13,7 @@
             <h1>Contact</h1>
             <p><em>Ask us if you have any question!</em></p>
 
-            <form action="send_email.php" method="post">
+            <form action="contact_process.php" method="post">
                 <table>
                     <colgroup>
                         <col align="left" width="32%">
@@ -32,7 +32,7 @@
                             <p><img src="./img/email.png" style="width:10px;height:10px;"> Email: sevencontract@mail.com</p>
                         </td>
                         <td align="right" colspan="2">
-                            <textarea id="message" name="message" placeholder="Enter message" row="5" cols="101"></textarea>
+                            <textarea id="message" name="message" placeholder="Enter message" row="5" cols="101" required></textarea>
                         </td>
                     </tr>
                 </table>

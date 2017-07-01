@@ -87,8 +87,8 @@
                                 <thead>
                                     <tr style="border: 2px double black;" bgcolor="#c9c9c9">
                                         <td align="center"><b>Description</b></td>
-                                        <td align="center"><b>Price</b></td>
                                         <td align="center"><b>Qty</b></td>
+                                        <td align="center"><b>Price</b></td>
                                     </tr>
                                 </thead>
                                 <tbody>

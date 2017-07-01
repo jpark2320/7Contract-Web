@@ -42,7 +42,8 @@
     unset($_SESSION['u_num']);
 
     $mail->Subject = '[7 Contract] Work Request for Apt:'.$a_num.' Unit:'.$u_num.'.';
-    $mail->Body    = $message;
+    $contact = "\n\n\n\n".'Seven Contract LLC.'."\n"."sevencontract1@gmail.com"."\n"."(678)727-3371";
+    $mail->Body    = $message.$contact;
     if (!$mail->send()) {
         echo "Mailer Error: " . $mail->ErrorInfo;
     } else {
