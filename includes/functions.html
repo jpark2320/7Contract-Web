@@ -1,13 +1,14 @@
+<?php session_start(); ?>
 <script>
     // Add smooth scrolling to all links in navbar + footer link
     $(document).ready(function(){
-        $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+        $("#up_arrow").on('click', function(event) {
             if (this.hash !== "") {
                 event.preventDefault();
                 var hash = this.hash;
                 $('html, body').animate({
                     scrollTop: $(hash).offset().top
-                }, 900, function(){
+                }, 1000, function(){
                     window.location.hash = hash;
                 });
             }

@@ -32,7 +32,7 @@
                         echo '<div align="right"><a href="price_detail.php">Show details</a></div>';
 
                         echo '
-                            <table border="2" width="958">
+                            <table border="5" width="958">
                                 <thead>
                                     <tr style="border: 2px double black;" bgcolor="#c9c9c9">
                                         <td align="center"><b><a href="?orderBy=isworkdone">Status</a></b></td>
@@ -92,7 +92,7 @@
                             }
 
                             echo '
-                                        <td align="center"><a href="invoice_detail.php?invoice_num='.$temp_invoice.'">'.$temp_invoice.'</a></td>
+                                        <td align="center"><a href="invoice_detail.php?invoice_num='.$temp_invoice.' &unit='.$temp_unit.'">'.$temp_invoice.'</a></td>
                                         <td align="center">'.$row['PO'].'</td>
                                         <td align="center"><a href="worksheet_company.php?company='.$temp_company.'">'.$temp_company.'</a></td>
                                         <td align="center"><a href="worksheet_apt.php?apt='.$temp_apt.'">'.$temp_apt.'</a></td>
