@@ -1,7 +1,7 @@
 <?php session_start(); ?>
 <script>
     // Add smooth scrolling to all links in navbar + footer link
-    $(document).ready(function(){
+    $(document).ready(function() {
         $("#up_arrow").on('click', function(event) {
             if (this.hash !== "") {
                 event.preventDefault();
@@ -19,5 +19,10 @@
     function editPrice() {
         document.getElementById("edit_price").innerHTML = "";
         document.getElementById("edit_price").outerHTML = document.getElementById("edit_price").outerHTML.replace(/div/g,"input");
+    }
+
+    // var a = <?php echo ''; ?>
+    $(document).ready(function() {
+        // $(addRow).
     }
 </script>

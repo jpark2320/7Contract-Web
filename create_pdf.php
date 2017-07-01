@@ -2,27 +2,14 @@
 	session_start();
 	date_default_timezone_set('Etc/UTC');
 	require('./FPDF/fpdf.php');
-	// $invoice = $_GET['invoice'];
-	// $po = $_GET['po'];
-	// $apt = $_GET['apt'];
-	// $arr = $_GET['arr'];
-	// $unit = $_GET['unit'];
-	// $size = $_GET['size'];
-	// $arr = $_GET['arr'];
-	$invoice = '7C1122';
-	$po = '1011527';
-	$apt = 'Jasmine Winters';
-	$unit = '121';
-	$size = '2x2';
-	$arr = array(array());
-	$arr[0][0] = "This is going to be long line because I need to test how it is going to perform hahahahaha I don't think so.";
-	$arr[0][1] = 1;
-	$arr[0][2] = 1000;
-	$arr[1][0] = "This is going to be lorform hahahahaha I don't think so.";
-	$arr[1][1] = 12;
-	$arr[1][2] = 120;
-	$arr[2][0] = "This is going to be long line because I need to test how it is going to perform hahahahaha I don't think so.";
-	$arr[2][2] = 10000;
+
+	$invoice = '7C'.$_SESSION['invoice'];
+	$po = $_SESSION['po_pdf'];
+	$apt = $_SESSION['apt_pdf'];
+	$unit = $_SESSION['unit_pdf'];
+	$size = $_SESSION['size_pdf'];
+	$arr = $_SESSION['pdf_arr'];
+
 	class PDF extends FPDF
 	{
 		function Header()
@@ -128,7 +115,7 @@
 
 
 
-		} 
+		}
 
 		// Page footer
 		function Footer()
@@ -148,4 +135,11 @@
 	$pdf = new PDF();
 	$pdf->LayOut();
 	$pdf->Output();
+
+	unset($_SESSION['invoice']);
+	unset($_SESSION['po_pdf']);
+	unset($_SESSION['apt_pdf']);
+	unset($_SESSION['unit_pdf']);
+	unset($_SESSION['size_pdf']);
+	unset($_SESSION['pdf_arr']);
 ?>

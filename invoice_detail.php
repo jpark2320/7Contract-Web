@@ -28,7 +28,7 @@
                         }
 
                         if (isset($_GET['unit'])) {
-                            $unit_num = $_GET['unit'];
+                            $_SESSION['unit_pdf'] = $_GET['unit'];
                         }
 
                         echo '
@@ -43,7 +43,7 @@
                                 </tr>
                                 <tr>
                                     <td><b>Unit # : </b></td>
-                                    <td>'.$unit_num.'</td>
+                                    <td>'.$_SESSION['unit_pdf'].'</td>
                                 </tr>
                             </table>
 

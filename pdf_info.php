@@ -60,37 +60,25 @@
                         ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
                     ';
 
-                    // if (isset($_GET['st'])) {
-                    //     $_SESSION['sort'] = $_GET['st'];
-                    //     echo '<script>window.location.href = "invoice_detail.php";</script>';
-                    // }
-                    // $i_detail = str_replace('7C', '', $i_detail);
-                    // $_SESSION['invoice'] = $i_detail;
-
                     if ($_POST['description'] !== null) {
-                        echo '<script>alert("yo");</script>';
-                        $_SESSION['pdf_arr'][$_SESSION['i']][0] = $description;
-                    }else {
-                        echo '<script>alert("yao");</script>';
+                        $_SESSION['pdf_arr'][$_SESSION['i']][0] = $_POST['description'];
                     }
                     if ($_POST['price'] !== null) {
-                        $_SESSION['pdf_arr'][$_SESSION['i']][1] = $price;
+                        $_SESSION['pdf_arr'][$_SESSION['i']][1] = $_POST['price'];
                     }
                     if ($_POST['qty'] !== null) {
-                        $_SESSION['pdf_arr'][$_SESSION['i']][2] = $qty;
+                        $_SESSION['pdf_arr'][$_SESSION['i']][2] = $_POST['qty'];
                     }
 
                     if (isset($_POST['submit'])) {
                         $_SESSION['i']++;
-                        echo '<script>alert('.$_SESSION['i'].');</script>';
                     }
 
-                    // test
                     print_r(array_values($_SESSION['pdf_arr']));
 
                     echo '
                         <form action="pdf_info.php" method="post">
-                            <table border="2" width="958">
+                            <table border="2" width="958" id="pdf_table">
                                 <colgroup>
                                     <col width="50%">
                                     <col width="25%">
@@ -103,7 +91,7 @@
                                         <td align="center"><b>Qty</b></td>
                                     </tr>
                                 </thead>
-                                <tbody id="pdf_table">
+                                <tbody>
                                     <tr>
                                         <td><input type="text" name="description" size="77"></td>
                                         <td><input type="text" name="price" size="37"></td>
@@ -111,12 +99,12 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <input type="submit" name="submit" value="Send">
+                            <input type="submit" name="submit" id="addRow" value="Send">
                         </form>
                     ';
                 ?>
                 <br>
-                <input type="button" value="Create PDF" onclick=""></input>
+                <input type="button" value="Create PDF" onclick="location.href='create_pdf.php'"></input>
                 <input type="button" value="Back" onclick="location.href='invoice_detail.php'"></input>
             </div>
         </div>
