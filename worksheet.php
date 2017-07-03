@@ -28,9 +28,9 @@
                         echo '<div align="right"><a href="worksheet_add.php"><img src="./img/worksheet_add.png" width="42"></a></div>';
 
                         include('./includes/sort.php');
-
-                        echo '<div align="right"><a href="price_detail.php">Show details</a></div>';
-
+                        if ($_SESSION['admin'] == 2) {
+                            echo '<div align="right"><a href="price_detail.php">Show details</a></div>';
+                        }
                         echo '
                             <table border="5" width="958">
                                 <thead>
