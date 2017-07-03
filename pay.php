@@ -13,7 +13,6 @@
             include('./includes/connection.php');
             unset($_SESSION['invoice']);
             unset($_SESSION['username']);
-            unset($_SESSION['temail']);
             unset($_SESSION['id']);
             unset($_SESSION['message']);
             unset($_SESSION['comment']);
@@ -21,7 +20,6 @@
             if (isset($_GET['invoice'])) {
                 $_SESSION['invoice'] = $_GET['invoice'];
                 $_SESSION['username'] = $_GET['username'];
-                $_SESSION['temail'] = $_GET['email'];
                 $_SESSION['id'] = $_GET['id'];
                 $_SESSION['message'] = $_GET['message'];
                 $_SESSION['comment'] = $_GET['comment'];
@@ -31,6 +29,14 @@
                  echo '<script>window.location.href="worksheet.php";</script>';
                  exit();
             }
+            $sql = "SELECT * FROM subworksheet WHERE id=".$_SESSION['id'].";";
+            $result = $conn->query($sql);
+	        if ($result->num_rows > 0) {
+	            while($row = $result->fetch_assoc()) {
+	            	$_SESSION['paid'] = $row['paid'];
+	                $_SESSION['remaining'] = $_SESSION['price'] - $row['paid'];
+	            }
+	        }
         ?>
 
         <!-- Body -->
@@ -38,7 +44,7 @@
             <h3 class="text-center">Edit</h3><br>
 
             <div class="row" align="center">
-                <form action="pedit_process.php" method="POST">
+                <form action="pay_process.php" method="POST">
 
                     <table width="400">
                         <colgroup>
@@ -59,11 +65,19 @@
                             </tr>
                             <tr>
                                 <td><label>Salary</label></td>
-                                <td><input type="text" name="price" maxlength="36" size="30" value="<?php echo isset($_SESSION['price']) ? $_SESSION['price'] : '' ?>"></td>
+                                <td><?php echo "$ ".$_SESSION['price']?></td>
+                            </tr>
+                            <tr>
+                                <td><label>Remaining Balance</label></td>
+                                <td><?php echo "$ ".$_SESSION['remaining']?></td>
+                            </tr>
+                            <tr>
+                                <td><label>Pay Amount</label></td>
+                                <td><input type="text" name="pay" maxlength="36" size="30"></td>
                             </tr>
                     </table>
                     <br>
-                    <input type="submit" value="Edit">
+                    <input type="submit" value="Pay">
                     <input type="button" value="Back" onclick="location.href='invoice_detail.php'">
                 </form>
             </div>
@@ -76,3 +90,4 @@
         <?php include('./includes/functions.html'); ?>
     </body>
 </html>
+

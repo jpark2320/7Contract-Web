@@ -6,21 +6,17 @@
     if ($_SESSION['isadmin']) {
         if (isset($_SESSION['invoice'])) {
             $invoice = $_SESSION['invoice'];
-            $email = $_SESSION['temail'];
             $id = $_SESSION['id'];
-            $message = $_POST['message'];
-            $comment = $_POST['comment'];
             $price = $_POST['price'];
         } else {
             echo "<script>alert('You are not admin.');</script>";
             echo '<script>window.location.href="worksheet.php";</script>';
             exit();
         }
-        echo '<script>alert("'.$comment.'");</script>';
 
 
 
-        $sql = "UPDATE subworksheet SET price=".$price.", message=\"".$message."\", comment=\"".$comment."\" WHERE id=".$id." AND invoice=".$invoice." AND email=\"".$email."\"";
+        $sql = "UPDATE subworksheet SET price=".$price." WHERE id=".$id.";";
         $conn->query($sql);
         $sql = "SELECT price FROM subworksheet WHERE invoice='$invoice'";
         $result = $conn->query($sql);
@@ -46,7 +42,6 @@
     }
 
     $conn->close();
-    unset($_SESSION['temail']);
     unset($_SESSION['message']);
     unset($_SESSION['comment']);
     unset($_SESSION['price']);

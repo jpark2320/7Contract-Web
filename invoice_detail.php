@@ -68,16 +68,19 @@
                             <table border="2" width="1000">
                                 <thead>
                                     <tr style="border: 2px double black;" bgcolor="#c9c9c9">
-                                        <td align="center"><b><a href="?orderBy=isworkdone">Status</a></b></td>
+                                        <td align="center"><b><a href="?orderBy=isworkdone">Work Status</a></b></td>
+                                        <td align="center"><b><a href="?orderBy=ispaidoff">Paid Off</a></b></td>
                                         <td align="center"><b><a href="?orderBy=A.first">Name</a></b></td>
                                         <td align="center"><b>Message</b></td>
                                         <td align="center"><b>Comment</b></td>
                                         <td align="center"><b>Salary</b></td>
+                                        <td align="center"><b>Paid</b></td>
                                         <td align="center"><b><a href="?orderBy=B.date">Date</a></b></td>
                                         <td align="center"><b>Edit</b></td>
+                                        <td align="center"><b>Pay</b></td>
                                     </tr>
                                 </thead>';
-                        $orderBy = array('A.first', 'A.email', 'B.date', 'B.isworkdone');
+                        $orderBy = array('A.first', 'A.email', 'B.date', 'B.isworkdone', 'B.ispaidoff');
                         $order = 'B.date';
                         if (isset($_GET['orderBy']) && in_array($_GET['orderBy'], $orderBy)) {
                             $order = $_GET['orderBy'];
@@ -115,14 +118,21 @@
                             } else {
                                 echo '<td align="center"><img src="./img/status_light_red" width="10px"></td>';
                             }
+                            if ($row['ispaidoff'] == 1) {
+                                echo '<td align="center"><img src="./img/status_light_green" width="10px"></td>';
+                            } else {
+                                echo '<td align="center"><img src="./img/status_light_red" width="10px"></td>';
+                            }
 
                             echo '
                                         <td align="center"><a href="user_detail.php?invoice='.urlencode($i_detail).' &email='.urlencode($email).' &user_name='.urlencode($user_name).'">'.$user_name.'</a></td>
                                         <td align="center">'.$row['message'].'</td>
                                         <td align="center">'.$row['comment'].'</td>
                                         <td align="center">'.$row['price'].'</td>
+                                        <td align="center">'.$row['paid'].'</td>
                                         <td align="center">'.$row['date'].'</td>
-                                        <td align="center"><a href="pedit.php?invoice='.urlencode($i_detail).' &email='.urlencode($email).' &id='.urlencode($id).' &price='.urlencode($price).' &comment='.urlencode($comment). ' &message='.urlencode($message).'">Edit</a></td>
+                                        <td align="center"><a href="pedit.php?invoice='.urlencode($i_detail).' &id='.urlencode($id).' &price='.urlencode($price).' &comment='.urlencode($comment). ' &message='.urlencode($message).'&username='.urlencode($user_name).'">Edit</a></td>
+                                        <td align="center"><a href="pay.php?invoice='.urlencode($i_detail).' &id='.urlencode($id).' &price='.urlencode($price).' &comment='.urlencode($comment). ' &message='.urlencode($message).'&username='.urlencode($user_name).'">Pay</a></td>
                                     </tr>
                                 </tbody>
                             ';
