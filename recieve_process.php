@@ -6,33 +6,29 @@
     if ($_SESSION['isadmin']) {
         if (isset($_SESSION['invoice'])) {
             $invoice = $_SESSION['invoice'];
-            $id = $_SESSION['id'];
-            $remaining = $_SESSION['remaining'];
             $paid = $_SESSION['paid'];
             $price = $_SESSION['price'];
-            $pay = $_POST['pay'];
+            $recieve = $_POST['recieve'];
         } else {
             echo "<script>alert('You are not admin.');</script>";
             echo '<script>window.location.href="worksheet.php";</script>';
             exit();
         }
-        $balance = $paid + $pay;
+        $balance = $paid + $recieve;
         if ($price <= $balance) {
         	$paidoff = 1;
         } else {
         	$paidoff = 0;
         }
-        $sql = "UPDATE subworksheet SET paid=".$balance.", ispaidoff=".$paidoff." WHERE id=".$id;
+        $sql = "UPDATE worksheet SET paid=".$balance.", ispaidoff=".$paidoff." WHERE invoice=".$invoice;
         $conn->query($sql);
     }
 
     $conn->close();
-    unset($_SESSION['invoice'])
-    unset($_SESSION['remaining']);
-    unset($_SESSION['message']);
-    unset($_SESSION['comment']);
-    unset($_SESSION['price']);
+    unset($_SESSION['invoice']);
     unset($_SESSION['paid']);
-    unset($_SESSION['id']);
+    unset($_SESSION['price']);
+    unset($_SESSION['apt']);
+    unset($_SESSION['unit']);
     echo '<script>window.location.href="price_detail.php";</script>';
 ?>

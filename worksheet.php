@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php session_start(); 
+    unset($_SESSION['unpaid']);
+?>
 <!DOCTYPE html>
 <html lang="en">
     <!-- Header Tag -->
@@ -28,7 +30,7 @@
                         echo '<div align="right"><a href="worksheet_add.php"><img src="./img/worksheet_add.png" width="42"></a></div>';
 
                         include('./includes/sort.php');
-                        if ($_SESSION['admin'] == 2) {
+                        if ($_SESSION['isadmin'] == 2) {
                             echo '<div align="right"><a href="price_detail.php">Show details</a></div>';
                         }
                         echo '

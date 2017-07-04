@@ -34,10 +34,15 @@
                         $_SESSION['sort'] = 'asc';
                     }
                     if ($_SESSION['sort']=='asc') {
-                        echo '<div align="left"><h><a href="?st=desc">Show descending order</a></h></div>';
+                        echo '<div align="left" style="float: left;"><h><a href="?st=desc">Show descending order</a></h></div>';
                     } else {
-                        echo '<div align="left"><h><a href="?st=asc">Show ascending order</a></h></div>';
+                        echo '<div align="left" style="float: left;"><h><a href="?st=asc">Show ascending order</a></h></div>';
                     }
+                    if ($_SESSION['unpaid']) {
+                        echo '<div align="right"><a href="?unpaid=0">Show All</a></div>';
+                    } else {
+                        echo '<div align="right"><a href="?unpaid=1">Show Unpaid</a></div>';
+                    }                    
                     if (isset($_GET['st'])) {
                         $_SESSION['sort'] = $_GET['st'];
                         echo '<script>window.location.href = "worksheet_apt.php";</script>';
@@ -47,6 +52,7 @@
                         <table border="2" width="958">
                             <thead>
                                 <tr style="border: 2px double black;" bgcolor="#c9c9c9">
+                                    <td align="center"><b><a href="?orderBy=ispaidoff">Paid off</a></b></td>
                                     <td align="center"><b><a href="?orderBy=invoice">Invoice #</a></b></td>
                                     <td align="center"><b><a href="?orderBy=po">P.O. #</a></b></td>
                                     <td align="center"><b><a href="?orderBy=company">Company</a></b></td>
@@ -62,12 +68,20 @@
                             </thead>
                     ';
 
-                    $orderBy = array('invoice', 'po', 'apt', 'unit', 'size', 'price', 'date', 'isworkdone');
+                    $orderBy = array('invoice', 'po', 'apt', 'unit', 'size', 'price', 'date', 'ispaidoff');
                     $order = 'date';
                     if (isset($_GET['orderBy']) && in_array($_GET['orderBy'], $orderBy)) {
                         $order = $_GET['orderBy'];
                     }
-                    $sql = 'SELECT * FROM Worksheet WHERE apt="'.$apt.'" ORDER BY '.$order;
+                    if ($_SESSION['unpaid']) {
+                        $sql = 'SELECT * FROM Worksheet WHERE apt="'.$apt.'" AND ispaidoff=0 ORDER BY '.$order;
+                    } else {
+                        $sql = 'SELECT * FROM Worksheet WHERE apt="'.$apt.'" ORDER BY '.$order;
+                    }
+                    if (isset($_GET['unpaid'])) {
+                        $_SESSION['unpaid'] = $_GET['unpaid'];
+                        echo '<script>window.location.href = "worksheet_apt.php";</script>';
+                    }
                     if ($_SESSION['sort']=='desc') {
                         $sql = $sql.' DESC';
                     }
@@ -92,7 +106,11 @@
                             $isOdd = true;
                             echo '<tr>';
                         }
-
+                        if ($row['ispaidoff'] == 1) {
+                            echo '<td align="center"><img src="./img/status_light_green" width="10px"></td>';
+                        } else {
+                            echo '<td align="center"><img src="./img/status_light_red" width="10px"></td>';
+                        }
                         echo '
                                     <td align="center"><a href="invoice_detail.php?invoice_num='.$temp_invoice.'">'.$temp_invoice.'</a></td>
                                     <td align="center">'.$row['PO'].'</td>
@@ -113,6 +131,7 @@
                     mysqli_close($conn);
                 ?>
                 <br>
+                <input type="button" value="Make PDF" onclick="location.href='outstanding_pdf.php'"></input>
                 <input type="button" value="Back" onclick="location.href='worksheet.php'"></input>
             </div>
         </div>

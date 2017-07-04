@@ -24,7 +24,7 @@
                             $i_detail = $_GET['invoice_num'];
                             $_SESSION['invoice'] = str_replace('7C', '', $i_detail);
                         } else {
-                            $i_detail = '7C'.$_SESSION['invoice'];
+                            $i_detail = '7C'.str_replace('7C', '', $_SESSION['invoice']);
                         }
 
                         if (isset($_GET['unit'])) {
@@ -97,10 +97,10 @@
                             $order = $_GET['orderBy'];
                         }
                         $sql = "SELECT * FROM
-                        	(SELECT users.first, users.last, users.email from users) AS A
-							INNER JOIN
-							(SELECT * FROM SubWorksheet WHERE invoice='$i_detail') AS B
-							ON A.email=B.email ORDER BY ".$order;
+                            (SELECT users.first, users.last, users.email from users) AS A
+                            INNER JOIN
+                            (SELECT * FROM SubWorksheet WHERE invoice='$i_detail') AS B
+                            ON A.email=B.email ORDER BY ".$order;
                         if ($_SESSION['sort']=='desc') {
                             $sql = $sql.' DESC';
                         }
