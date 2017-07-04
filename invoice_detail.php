@@ -9,10 +9,8 @@
         <?php include('./includes/nav_bar.php'); ?>
 
         <!-- Body -->
-        <div class="container">
+        <div class="primary" align="center">
             <h3 class="text-center">Invoice Details</h3><br>
-
-            <div class="row" align="center">
 
                 <form action="pedit.php" method="post">
                     <?php
@@ -32,7 +30,7 @@
                         }
 
                         echo '
-                            <table width="200">
+                            <table width="200" align="center">
                                 <colgroup>
                                     <col width+"50%">
                                     <col width+"50%">
@@ -65,7 +63,7 @@
                         $_SESSION['invoice'] = $i_detail;
 
                         echo '
-                            <table border="2" width="1000">
+                            <table border="3" width="100%">
                                 <thead>
                                     <tr style="border: 2px double black;" bgcolor="#c9c9c9">
                                         <td align="center"><b><a href="?orderBy=isworkdone">Work Status</a></b></td>
@@ -75,10 +73,13 @@
                                         <td align="center"><b>Comment</b></td>
                         ';
                         if ($_SESSION['isadmin'] == 2) {
-                            echo '<td align="center"><b>Salary</b></td>';
+                            echo '
+                                <td align="center"><b>Salary</b></td>
+                                <td align="center"><b>Paid</b></td>
+                            ';
                         }
                         echo '
-                                        <td align="center"><b>Paid</b></td>
+
                                         <td align="center"><b><a href="?orderBy=B.date">Date</a></b></td>
                         ';
                         if ($_SESSION['isadmin'] == 2) {
@@ -118,7 +119,7 @@
                             echo '<tbody>';
                             if ($isOdd) {
                                 $isOdd = false;
-                                echo '<tr bgcolor="#ffeed3">';
+                                echo '<tr bgcolor="#e8fff1">';
                             } else {
                                 $isOdd = true;
                                 echo '<tr>';
@@ -180,7 +181,6 @@
                     echo '<button><a href="pdf_info.php?invoice='.urlencode($i_detail).' &po='.urlencode($po).' &company='.urlencode($company).' &apt='.urlencode($apt).' &unit='.urlencode($unit). ' &size='.urlencode($size).'">Make PDF</a></button>';
                 ?>
                 <input type="button" value="Back" onclick="location.href='worksheet.php'"></input>
-            </div>
         </div>
         <br><br><br><br><br>
 

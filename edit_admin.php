@@ -3,7 +3,7 @@
 <html lang="en">
     <!-- Header Tag -->
     <?php include('./includes/head_tag.html'); ?>
-    <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+    <body id="myPage">
 
         <!-- Header -->
         <?php include('./includes/nav_bar.php'); ?>
@@ -34,55 +34,53 @@
         ?>
 
         <!-- Body -->
-        <div class="container">
+        <div class="primary" align="center">
             <h3 class="text-center">Edit Worksheet</h3><br>
 
-            <div class="row" align="center">
-                <form action="edit_process.php" method="POST">
+            <form action="edit_process.php" method="POST">
 
-                    <table width="400">
-                        <colgroup>
-                            <col width="50%">
-                            <col width="50%">
-                        </colgroup>
-                            <tr>
-                                <td><label>P.O Number</label></td>
-                                <td><input type="text" name="po" maxlength="36" size="30" value="<?php echo isset($_SESSION['po']) ? $_SESSION['po'] : '' ?>"></td>
-                            </tr>
-                            <tr>
-                                <td><label>Company</label></td>
-                                <td><input type="text" name="company" maxlength="36" size="30" value="<?php echo isset($_SESSION['company']) ? $_SESSION['company'] : '' ?>"></td>
-                            </tr>
-                            <tr>
-                                <td><label>Apt</label></td>
-                                <td><input type="text" name="apt" maxlength="36" size="30" value="<?php echo isset($_SESSION['apt']) ? $_SESSION['apt'] : '' ?>"></td>
-                            </tr>
-                            <tr>
-                                <td><label>Manager</label></td>
-                                <td><input type="text" name="manager" maxlength="36" size="30" value="<?php echo isset($_SESSION['manager']) ? $_SESSION['manager'] : '' ?>"></td>
-                            </tr>
-                            <tr>
-                                <td><label>Unit #</label></td>
-                                <td><input type="text" name="unit" maxlength="36" size="30" value="<?php echo isset($_SESSION['unit']) ? $_SESSION['unit'] : '' ?>"></td>
-                            </tr>
-                            <tr>
-                                <td><label>Size</label></td>
-                                <td><input type="text" name="size" maxlength="36" size="30" value="<?php echo isset($_SESSION['size']) ? $_SESSION['size'] : '' ?>"></td>
-                            </tr>
-                            <tr>
-                                <td><label>Price</label></td>
-                                <td><input type="text" name="price" maxlength="36" size="30" value="<?php echo isset($_SESSION['price']) ? $_SESSION['price'] : '' ?>"></td>
-                            </tr>
-                            <tr>
-                                <td><label>Description</label></td>
-                                <td><input type="text" name="description" maxlength="36" size="30" value="<?php echo isset($_SESSION['description']) ? $_SESSION['description'] : '' ?>"></td>
-                            </tr>
-                    </table>
-                    <br>
-                    <input type="submit" value="Edit">
-                    <input type="button" value="Back" onclick="location.href='worksheet.php'">
-                </form>
-            </div>
+                <table width="400">
+                    <colgroup>
+                        <col width="50%">
+                        <col width="50%">
+                    </colgroup>
+                        <tr>
+                            <td><label>P.O Number</label></td>
+                            <td><input type="text" name="po" maxlength="36" size="30" value="<?php echo isset($_SESSION['po']) ? $_SESSION['po'] : '' ?>"></td>
+                        </tr>
+                        <tr>
+                            <td><label>Company</label></td>
+                            <td><input type="text" name="company" maxlength="36" size="30" value="<?php echo isset($_SESSION['company']) ? $_SESSION['company'] : '' ?>"></td>
+                        </tr>
+                        <tr>
+                            <td><label>Apt</label></td>
+                            <td><input type="text" name="apt" maxlength="36" size="30" value="<?php echo isset($_SESSION['apt']) ? $_SESSION['apt'] : '' ?>"></td>
+                        </tr>
+                        <tr>
+                            <td><label>Manager</label></td>
+                            <td><input type="text" name="manager" maxlength="36" size="30" value="<?php echo isset($_SESSION['manager']) ? $_SESSION['manager'] : '' ?>"></td>
+                        </tr>
+                        <tr>
+                            <td><label>Unit #</label></td>
+                            <td><input type="text" name="unit" maxlength="36" size="30" value="<?php echo isset($_SESSION['unit']) ? $_SESSION['unit'] : '' ?>"></td>
+                        </tr>
+                        <tr>
+                            <td><label>Size</label></td>
+                            <td><input type="text" name="size" maxlength="36" size="30" value="<?php echo isset($_SESSION['size']) ? $_SESSION['size'] : '' ?>"></td>
+                        </tr>
+                        <tr>
+                            <td><label>Price</label></td>
+                            <td><input type="text" name="price" maxlength="36" size="30" value="<?php echo isset($_SESSION['price']) ? $_SESSION['price'] : '' ?>"></td>
+                        </tr>
+                        <tr>
+                            <td><label>Description</label></td>
+                            <td><input type="text" name="description" maxlength="36" size="30" value="<?php echo isset($_SESSION['description']) ? $_SESSION['description'] : '' ?>"></td>
+                        </tr>
+                </table>
+                <br>
+                <input type="submit" value="Edit">
+                <input type="button" value="Back" onclick="location.href='worksheet.php'">
+            </form>
         </div>
 
         <!-- Footer -->

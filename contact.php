@@ -3,18 +3,18 @@
 <html lang="en">
     <!-- Header Tag -->
     <?php include('./includes/head_tag.html'); ?>
-    <body class="body">
+    <body id="myPage">
 
         <!-- Header -->
         <?php include('./includes/nav_bar.php'); ?>
 
         <!-- Body -->
-        <div id="contact" class="container">
+        <div class="primary" align="center">
             <h1>Contact</h1>
             <p><em>Ask us if you have any question!</em></p>
 
             <form action="send_email.php" method="post">
-                <table>
+                <table align="center">
                     <colgroup>
                         <col align="left" width="32%">
                         <col width="34%">

@@ -115,7 +115,6 @@
 
 		}
 
-
 		function LayOut() {
 			$this->AddPage();
 			$this->DrawTable();
