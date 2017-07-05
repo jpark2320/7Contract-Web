@@ -35,5 +35,5 @@
     unset($_SESSION['price']);
     unset($_SESSION['paid']);
     unset($_SESSION['id']);
-    echo '<script>window.location.href="price_detail.php";</script>';
+    echo '<script>window.location.href="invoice_detail.php";</script>';
 ?>

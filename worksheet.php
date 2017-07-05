@@ -17,6 +17,7 @@
             <p class="text-center"><em>Check all your work process here!</em></p>
 
             <?php
+                include('./includes/data_range.html');
                 if (!isset($_SESSION['email'])) {
                     echo "<script>alert(\"You need to sign in first.\");</script>";
                     echo '<script>window.location.href = "signin.php";</script>';
@@ -55,13 +56,18 @@
                                 </tr>
                             </thead>
                     ';
-
                     $orderBy = array('invoice', 'po', 'apt', 'unit', 'size', 'price', 'date', 'isworkdone');
                     $order = 'date';
                     if (isset($_GET['orderBy']) && in_array($_GET['orderBy'], $orderBy)) {
                         $order = $_GET['orderBy'];
                     }
-                    $sql = 'SELECT * FROM Worksheet ORDER BY '.$order;
+                    $sql = 'SELECT * FROM Worksheet ';
+                    if (isset($_POST['year']) && isset($_POST['month'])) {
+                        $sql .= "WHERE YEAR(date)=".$_POST['year']." AND MONTH(date)=".$_POST['month']." ";
+                    } else if (isset($_POST['year'])){
+                        $sql .= "WHERE YEAR(date)=".$_POST['year']." ";
+                    }
+                    $sql .= 'ORDER BY '.$order;
                     if ($_SESSION['sort']=='desc') {
                         $sql = $sql.' DESC';
                     }

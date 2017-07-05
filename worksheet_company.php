@@ -73,7 +73,13 @@
                 if (isset($_GET['orderBy']) && in_array($_GET['orderBy'], $orderBy)) {
                     $order = $_GET['orderBy'];
                 }
-                $sql = 'SELECT * FROM Worksheet WHERE company="'.$company.'" ORDER BY '.$order;
+                $sql = "SELECT * FROM Worksheet WHERE company=\"".$company."\" ";
+                if (isset($_POST['year']) && isset($_POST['month'])) {
+                    $sql .= "AND YEAR(date)=".$_POST['year']." AND MONTH(date)=".$_POST['month']." ";
+                } else if (isset($_POST['year'])){
+                    $sql .= "AND YEAR(date)=".$_POST['year']." ";
+                }
+                $sql .= 'ORDER BY '.$order;
                 if ($_SESSION['sort']=='desc') {
                     $sql = $sql.' DESC';
                 }
@@ -82,7 +88,6 @@
                     printf("Error: %s\n", mysqli_error($conn));
                     exit();
                 }
-
                 $isOdd = false;
                 while($row = mysqli_fetch_array($result))
                 {
@@ -103,7 +108,7 @@
                     echo '
                                 <td align="center"><a href="invoice_detail.php?invoice_num='.$temp_invoice.'">'.$temp_invoice.'</a></td>
                                 <td align="center">'.$row['PO'].'</td>
-                                <td align="center"><a href="worksheet_apt.php?apt_num='.$temp_apt.'">'.$temp_apt.'</a></td>
+                                <td align="center"><a href="worksheet_apt.php?apt='.$temp_apt.'">'.$temp_apt.'</a></td>
                                 <td align="center"><a href="worksheet_manager.php?manager='.$temp_manager.'">'.$temp_manager.'</a></td>
                                 <td align="center">'.$temp_unit.'</td>
                                 <td align="center">'.$row['size'].'</td>

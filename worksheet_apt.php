@@ -13,6 +13,7 @@
             <h3 class="text-center">Worksheet!</h3><br>
 
             <?php
+                include('./includes/data_range.html');
                 if (!isset($_SESSION['email'])) {
                     echo "<script>alert(\"You need to sign in first.\");</script>";
                     echo '<script>window.location.href = "signin.php";</script>';
@@ -73,17 +74,27 @@
                 if (isset($_GET['orderBy']) && in_array($_GET['orderBy'], $orderBy)) {
                     $order = $_GET['orderBy'];
                 }
+                $sql = "SELECT * FROM Worksheet WHERE apt=\"".$apt."\" ";
                 if ($_SESSION['unpaid']) {
-                    $sql = 'SELECT * FROM Worksheet WHERE apt="'.$apt.'" AND ispaidoff=0 ORDER BY '.$order;
-                } else {
-                    $sql = 'SELECT * FROM Worksheet WHERE apt="'.$apt.'" ORDER BY '.$order;
+                    $sql .= 'AND ispaidoff=0 ';
                 }
+                if (isset($_POST['year']) && isset($_POST['month'])) {
+                    $sql .= "AND YEAR(date)=".$_POST['year']." AND MONTH(date)=".$_POST['month']." ";
+                } else if (isset($_POST['year'])){
+                    $sql .= "AND YEAR(date)=".$_POST['year']." ";
+                }
+                $sql .= 'ORDER BY '.$order;
                 if (isset($_GET['unpaid'])) {
                     $_SESSION['unpaid'] = $_GET['unpaid'];
                     echo '<script>window.location.href = "worksheet_apt.php";</script>';
                 }
                 if ($_SESSION['sort']=='desc') {
                     $sql = $sql.' DESC';
+                }
+                $result = mysqli_query($conn, $sql);
+                if (!$result) {
+                    printf("Error: %s\n", mysqli_error($conn));
+                    exit();
                 }
                 $result = mysqli_query($conn, $sql);
                 if (!$result) {

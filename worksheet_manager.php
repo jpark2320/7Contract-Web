@@ -13,6 +13,7 @@
             <h3 class="text-center">Worksheet!</h3><br>
 
             <?php
+                include('./includes/data_range.html');
                 if (!isset($_SESSION['email'])) {
                     echo "<script>alert(\"You need to sign in first.\");</script>";
                     echo '<script>window.location.href = "signin.php";</script>';
@@ -73,7 +74,13 @@
                 if (isset($_GET['orderBy']) && in_array($_GET['orderBy'], $orderBy)) {
                     $order = $_GET['orderBy'];
                 }
-                $sql = 'SELECT * FROM Worksheet WHERE manager="'.$manager.'" ORDER BY '.$order;
+                $sql = "SELECT * FROM Worksheet WHERE manager=\"".$manager."\" ";
+                if (isset($_POST['year']) && isset($_POST['month'])) {
+                    $sql .= "AND YEAR(date)=".$_POST['year']." AND MONTH(date)=".$_POST['month']." ";
+                } else if (isset($_POST['year'])){
+                    $sql .= "AND YEAR(date)=".$_POST['year']." ";
+                }
+                $sql .= 'ORDER BY '.$order;
                 if ($_SESSION['sort']=='desc') {
                     $sql = $sql.' DESC';
                 }
@@ -106,7 +113,7 @@
                                 <td align="center"><a href="invoice_detail.php?invoice_num='.$temp_invoice.'">'.$temp_invoice.'</a></td>
                                 <td align="center">'.$row['PO'].'</td>
                                 <td align="center"><a href="worksheet_company.php?company='.$temp_company.'">'.$temp_company.'</a></td>
-                                <td align="center"><a href="worksheet_apt.php?apt_num='.$temp_apt.'">'.$temp_apt.'</a></td>
+                                <td align="center"><a href="worksheet_apt.php?apt='.$temp_apt.'">'.$temp_apt.'</a></td>
                                 <td align="center">'.$temp_unit.'</td>
                                 <td align="center">'.$row['size'].'</td>
                                 <td align="center">'.$row['price'].'</td>

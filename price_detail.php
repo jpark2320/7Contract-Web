@@ -11,8 +11,8 @@
         <!-- Body -->
         <div class="primary" align="center">
             <h3 class="text-center">Work History Details</h3><br>
-
             <?php
+                include('./includes/data_range.html');
                 if (!isset($_SESSION['email'])) {
                     echo "<script>alert(\"You need to sign in first.\");</script>";
                     echo '<script>window.location.href = "signin.php";</script>';
@@ -72,11 +72,22 @@
                     if (isset($_GET['orderBy']) && in_array($_GET['orderBy'], $orderBy)) {
                         $order = $_GET['orderBy'];
                     }
+                    $sql = 'SELECT * FROM Worksheet ';
                     if ($_SESSION['unpaid']) {
-                        $sql = 'SELECT * FROM Worksheet WHERE ispaidoff=0 ORDER BY '.$order;
+                        $sql .= 'WHERE ispaidoff=0 ';
+                        if (isset($_POST['year']) && isset($_POST['month'])) {
+                            $sql .= "AND YEAR(date)=".$_POST['year']." AND MONTH(date)=".$_POST['month']." ";
+                        } else if (isset($_POST['year'])){
+                            $sql .= "AND YEAR(date)=".$_POST['year']." ";
+                        }
                     } else {
-                        $sql = 'SELECT * FROM Worksheet ORDER BY '.$order;
+                        if (isset($_POST['year']) && isset($_POST['month'])) {
+                            $sql .= "WHERE YEAR(date)=".$_POST['year']." AND MONTH(date)=".$_POST['month']." ";
+                        } else if (isset($_POST['year'])){
+                            $sql .= "WHERE YEAR(date)=".$_POST['year']." ";
+                        }
                     }
+                    $sql .= 'ORDER BY '.$order;
                     if ($_SESSION['sort']=='desc') {
                         $sql = $sql.' DESC';
                     }
@@ -123,7 +134,7 @@
                                     <td align="center">'.$row['salary'].'</td>
                                     <td align="center">'.$row['profit'].'</td>
                                     <td align="center">'.$row['date'].'</td>
-                                    <td align="center"><button><a href="recieve.php?invoice='.$invoice.'&apt='.urlencode($apt).'&unit='.$row['unit'].'&price='.$row['price'].'&paid='.$row['paid'].'">Recieve</a></button</td>
+                                    <td align="center"><button><a href="recieve.php?invoice='.$invoice.'&apt='.urlencode($apt).'&unit='.$row['unit'].'&price='.$row['price'].'&paid='.$row['paid'].'">Recieve</a></button></td>
                         ';
                         echo '
                                 </tr>
