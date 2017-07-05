@@ -51,6 +51,7 @@
                     <table border="2" width="100%">
                         <thead>
                             <tr style="border: 2px double black;" bgcolor="#c9c9c9">
+                                <td align="center"><b><a href="?orderBy=ispaidoff">Check</a></b></td>
                                 <td align="center"><b><a href="?orderBy=ispaidoff">Paid off</a></b></td>
                                 <td align="center"><b><a href="?orderBy=invoice">Invoice #</a></b></td>
                                 <td align="center"><b><a href="?orderBy=po">P.O. #</a></b></td>
@@ -96,6 +97,8 @@
                     $temp_company = $row['company'];
                     $temp_manager = $row['manager'];
                     $temp_unit = $row['unit'];
+                    // $arr_apt = array($temp_invoice, $row['PO'], $row['date'], $row['price'], $row['paid']);
+                    // print_r($arr_apt);
 
                     echo '<tbody>';
                     if ($isOdd) {
@@ -106,6 +109,15 @@
                         echo '<tr>';
                     }
 
+                    echo '
+                        <form action="outstanding_pdf.php" method="post">
+                            <td align="center"><input type="checkbox" name="check[]" value="'.$temp_invoice.'">
+                            <input type="hidden" name="check[]" value="'.$row['PO'].'">
+                            <input type="hidden" name="check[]" value="'.substr($row['date'], 0, -9).'">
+                            <input type="hidden" name="check[]" value="'.$row['price'].'">
+                            <input type="hidden" name="check[]" value="'.$row['paid'].'"></td>
+                    ';
+
                     if ($row['ispaidoff'] == 1) {
                         echo '<td align="center"><img src="./img/status_light_green" width="10px"></td>';
                     } else {
@@ -113,27 +125,30 @@
                     }
 
                     echo '
-                                <td align="center"><a href="invoice_detail.php?invoice_num='.$temp_invoice.'">'.$temp_invoice.'</a></td>
-                                <td align="center">'.$row['PO'].'</td>
-                                <td align="center"><a href="worksheet_company.php?company='.$temp_company.'">'.$temp_company.'</a></td>
-                                <td align="center"><a href="worksheet_manager.php?manager='.$temp_manager.'">'.$temp_manager.'</a></td>
-                                <td align="center">'.$temp_unit.'</td>
-                                <td align="center">'.$row['size'].'</td>
-                                <td align="center">'.$row['price'].'</td>
-                                <td align="center">'.$row['salary'].'</td>
-                                <td align="center">'.$row['profit'].'</td>
-                                <td align="center">'.$row['description'].'</td>
-                                <td align="center">'.$row['date'].'</td>
-                            </tr>
-                        </tbody>
+                                    <td align="center"><a href="invoice_detail.php?invoice_num='.$temp_invoice.'">'.$temp_invoice.'</a></td>
+                                    <td align="center">'.$row['PO'].'</td>
+                                    <td align="center"><a href="worksheet_company.php?company='.$temp_company.'">'.$temp_company.'</a></td>
+                                    <td align="center"><a href="worksheet_manager.php?manager='.$temp_manager.'">'.$temp_manager.'</a></td>
+                                    <td align="center">'.$temp_unit.'</td>
+                                    <td align="center">'.$row['size'].'</td>
+                                    <td align="center">'.$row['price'].'</td>
+                                    <td align="center">'.$row['salary'].'</td>
+                                    <td align="center">'.$row['profit'].'</td>
+                                    <td align="center">'.$row['description'].'</td>
+                                    <td align="center">'.$row['date'].'</td>
+                                </tr>
+                            </tbody>
                     ';
                 }
-                echo '</table>';
+                echo '
+                        </table>
+                        <br>
+                        <input type="submit" name="sub" value="Make PDF"></input>
+                        <input type="button" value="Back" onclick="location.href=\'worksheet.php\'"></input>
+                    </form>
+                ';
                 mysqli_close($conn);
             ?>
-            <br>
-            <input type="button" value="Make PDF" onclick="location.href='outstanding_pdf.php'"></input>
-            <input type="button" value="Back" onclick="location.href='worksheet.php'"></input>
         </div>
         <br><br><br><br><br>
 

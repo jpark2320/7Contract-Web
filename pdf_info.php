@@ -109,14 +109,26 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <input type="submit" name="submit" value="Send">
-                        <input type="button" id="addRow" value="Add">
+                        <input type="submit" name="submit" value="Add">
+                        <br><br>
                     </form>
+                    <form action="create_pdf.php" method="post">
+                        <table border="2" width="200">
+                            <tr align="center" bgcolor="#c9c9c9">
+                                <td><label>Set Date</label></td>
+                            </tr>
+                            <tr align="center">
+                                <td><input type="text" name="date" value="'.$_SESSION['date_pdf'].'" size="10"></td>
+                            </tr>
+                        </table>
+                        <br>   
                 ';
             ?>
             <br>
-            <input type="button" value="Create PDF" onclick="location.href='create_pdf.php'"></input>
+            <input type="submit" value="Create PDF"></input>
             <input type="button" value="Back" onclick="location.href='invoice_detail.php'"></input>
+            </form>
+
         </div>
 
         <!-- Footer -->

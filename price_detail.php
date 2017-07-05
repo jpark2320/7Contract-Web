@@ -123,7 +123,7 @@
                                     <td align="center">'.$row['salary'].'</td>
                                     <td align="center">'.$row['profit'].'</td>
                                     <td align="center">'.$row['date'].'</td>
-                                    <td align="center"><a href="recieve.php?invoice='.$invoice.'&apt='.urlencode($apt).'&unit='.$row['unit'].'&price='.$row['price'].'&paid='.$row['paid'].'">Recieve</a></td>
+                                    <td align="center"><button><a href="recieve.php?invoice='.$invoice.'&apt='.urlencode($apt).'&unit='.$row['unit'].'&price='.$row['price'].'&paid='.$row['paid'].'">Recieve</a></button</td>
                         ';
                         echo '
                                 </tr>

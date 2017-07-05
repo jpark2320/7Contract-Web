@@ -152,8 +152,8 @@
                             ';
                             if ($_SESSION['isadmin'] == 2) {
                                 echo '
-                                    <td align="center"><a href="pedit.php?invoice='.urlencode($i_detail).' &id='.urlencode($id).' &price='.urlencode($price).' &comment='.urlencode($comment). ' &message='.urlencode($message).'&username='.urlencode($user_name).'">Edit</a></td>
-                                    <td align="center"><a href="pay.php?invoice='.urlencode($i_detail).' &id='.urlencode($id).' &price='.urlencode($price).' &comment='.urlencode($comment). ' &message='.urlencode($message).'&username='.urlencode($user_name).'">Pay</a></td>
+                                    <td align="center"><button><a href="pedit.php?invoice='.urlencode($i_detail).' &id='.urlencode($id).' &price='.urlencode($price).' &comment='.urlencode($comment). ' &message='.urlencode($message).'&username='.urlencode($user_name).'">Edit</a></button></td>
+                                    <td align="center"><button><a href="pay.php?invoice='.urlencode($i_detail).' &id='.urlencode($id).' &price='.urlencode($price).' &comment='.urlencode($comment). ' &message='.urlencode($message).'&username='.urlencode($user_name).'">Pay</a></button></td>
                                 ';
                             }
                             echo '
@@ -172,7 +172,8 @@
                         $_SESSION['size_pdf'] = $row['size'];
                         $_SESSION['pdf_arr'] = array(array());
                         $_SESSION['i'] = 0;
-
+                        date_default_timezone_set('Etc/UTC');
+                        $_SESSION['date_pdf'] = date("Y-m-d");
                         mysqli_close($conn);
                     ?>
                 </form>

@@ -9,6 +9,9 @@
 	$unit = $_SESSION['unit_pdf'];
 	$size = $_SESSION['size_pdf'];
 	$arr = $_SESSION['pdf_arr'];
+	if (isset($_POST['date'])) {
+		$_SESSION['date_pdf'] = $_POST['date'];
+	}
 
 	class PDF extends FPDF
 	{
@@ -26,7 +29,7 @@
 		    $this->Cell(50, 10,'Bill to: '.$apt);
 		    $this->SetFont('Times','',13);
 		    $this->SetXY(145,35);
-		    $this->Cell(50, 10,'Date: '.date("Y-m-d"));
+		    $this->Cell(50, 10,'Date: '.$_SESSION['date_pdf']);
 		    $this->Ln();
 		    $this->SetX(137);
 		    $this->Cell(50, 10,'Invoice #: '.$invoice);
@@ -133,4 +136,5 @@
 	unset($_SESSION['unit_pdf']);
 	unset($_SESSION['size_pdf']);
 	unset($_SESSION['pdf_arr']);
+	unset($_SESSION['date_pdf']);
 ?>
