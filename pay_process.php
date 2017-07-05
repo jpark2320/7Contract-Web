@@ -22,13 +22,11 @@
         } else {
         	$paidoff = 0;
         }
-        echo "<script>alert(\"".$balance."\");</script>";
         $sql = "UPDATE subworksheet SET paid=".$balance.", ispaidoff=".$paidoff." WHERE id=".$id;
         $conn->query($sql);
     }
 
     $conn->close();
-    unset($_SESSION['invoice']);
     unset($_SESSION['remaining']);
     unset($_SESSION['message']);
     unset($_SESSION['comment']);

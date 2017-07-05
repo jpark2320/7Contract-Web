@@ -1,6 +1,9 @@
 <?php
     session_start();
+    $_SESSION['i'] = 0;
     unset($_SESSION['unpaid']);
+    unset($_SESSION['arr']);
+    unset($_SESSION['pdf_arr']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,8 +30,8 @@
                 include('./includes/connection.php');
 
                 if ($_SESSION['isadmin'] > 0) {
-
-                    echo '<div align="right"><a href="worksheet_add.php"><img src="./img/worksheet_add.png" width="42"></a></div>';
+                    echo '<div align="right"><button><a href="estimate_info.php">Make Estimate</a></button>
+                    <button><a href="worksheet_add.php">Add to Worksheet</a></button></div>';
 
                     include('./includes/sort.php');
 

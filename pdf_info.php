@@ -62,10 +62,10 @@
                     $_SESSION['pdf_arr'][$_SESSION['i']][0] = $_POST['description'];
                 }
                 if ($_POST['price'] !== null) {
-                    $_SESSION['pdf_arr'][$_SESSION['i']][1] = $_POST['price'];
+                    $_SESSION['pdf_arr'][$_SESSION['i']][1] = $_POST['qty'];
                 }
                 if ($_POST['qty'] !== null) {
-                    $_SESSION['pdf_arr'][$_SESSION['i']][2] = $_POST['qty'];
+                    $_SESSION['pdf_arr'][$_SESSION['i']][2] = $_POST['price'];
                 }
 
                 if (isset($_POST['submit'])) {
@@ -83,15 +83,15 @@
                             <thead>
                                 <tr style="border: 2px double black;" bgcolor="#c9c9c9">
                                     <td align="center"><b>Description</b></td>
-                                    <td align="center"><b>Price</b></td>
                                     <td align="center"><b>Qty</b></td>
+                                    <td align="center"><b>Price</b></td>
                                 </tr>
                             </thead>
                             <tbody id="pdf_table">
                                 <tr>
                                     <td><input type="text" name="description" size="91" required></td>
-                                    <td><input type="text" name="price" size="44"></td>
                                     <td><input type="text" name="qty" size="44"></td>
+                                    <td><input type="text" name="price" size="44"></td>
                 ';
                 for ($i = 0; $i < sizeof($_SESSION['pdf_arr']); $i++) {
                     if ($_SESSION['pdf_arr'][$i][0] !== null) {

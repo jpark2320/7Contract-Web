@@ -84,17 +84,13 @@
                     $sql .= "AND YEAR(date)=".$_POST['year']." ";
                 }
                 $sql .= 'ORDER BY '.$order;
+                echo "<script>alert(\"".$sql."\");</script>";
                 if (isset($_GET['unpaid'])) {
                     $_SESSION['unpaid'] = $_GET['unpaid'];
                     echo '<script>window.location.href = "worksheet_apt.php";</script>';
                 }
                 if ($_SESSION['sort']=='desc') {
                     $sql = $sql.' DESC';
-                }
-                $result = mysqli_query($conn, $sql);
-                if (!$result) {
-                    printf("Error: %s\n", mysqli_error($conn));
-                    exit();
                 }
                 $result = mysqli_query($conn, $sql);
                 if (!$result) {

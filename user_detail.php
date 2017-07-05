@@ -54,6 +54,7 @@
                             <table border="2" width="100%">
                                 <thead>
                                     <tr style="border: 2px double black;" bgcolor="#c9c9c9">
+                                        <td align="center"><b><a href="?orderBy=ispaidoff">Paid off</a></b></td>
                                         <td align="center"><b><a href="?orderBy=isworkdone">Status</a></b></td>
                                         <td align="center"><b><a href="?orderBy=invoice">Invoice #</a></b></td>
                                         <td align="center"><b><a href="?orderBy=apt">Apt</a></b></td>
@@ -98,6 +99,7 @@
                                 echo '<td align="center"><img src="./img/status_light_red" width="10px"></td>';
                             }
                             echo '
+                                        <td align="center">'.$row['ispaidoff'].'</td>
                                         <td align="center">'.$row['invoice'].'</td>
                                         <td align="center">'.$row['apt'].'</td>
                                         <td align="center">'.$row['unit'].'</td>

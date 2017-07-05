@@ -1,41 +1,29 @@
 <?php
 	session_start();
-	date_default_timezone_set('Etc/UTC');
 	require('./FPDF/fpdf.php');
 
-	$invoice = '7C'.$_SESSION['invoice'];
-	$po = $_SESSION['po_pdf'];
-	$apt = $_SESSION['apt_pdf'];
-	$unit = $_SESSION['unit_pdf'];
-	$size = $_SESSION['size_pdf'];
-	$arr = $_SESSION['pdf_arr'];
-	if (isset($_POST['date'])) {
-		$_SESSION['date_pdf'] = $_POST['date'];
-	}
+	$apt = $_POST['apt'];
+	$unit = $_POST['unit'];
+	$size = $_POST['size'];
+	$date = $_POST['date'];
+	$arr = $_SESSION['arr'];
 
 	class PDF extends FPDF
 	{
 		function Header()
 		{
-			global $invoice;
-			global $po;
+			global $date;
 			global $apt;
 		    $this->Image('./img/7C_Logo.png',3,3,35,35);
 		    $this->SetXY(70,6);
 		    $this->SetFont('Times','B',40);
-		    $this->Cell(80, 20, 'INVOICE', 1, 0,'C');
+		    $this->Cell(80, 20, 'Estimate', 1, 0,'C');
 		    $this->SetFont('Times','B',14);
 		    $this->SetXY(70, 25);
 		    $this->Cell(50, 10,'Bill to: '.$apt);
 		    $this->SetFont('Times','',13);
 		    $this->SetXY(145,35);
-		    $this->Cell(50, 10,'Date: '.$_SESSION['date_pdf']);
-		    $this->Ln();
-		    $this->SetX(137);
-		    $this->Cell(50, 10,'Invoice #: '.$invoice);
-		    $this->Ln();
-		    $this->SetX(145);
-		    $this->Cell(50, 10,'PO #: '.$po);
+		    $this->Cell(50, 10,'Date: '.$date);
 		    $this->SetXY(3, 42);
 		    $this->SetFont('Times','',11);
 		    $this->Cell(50, 6,'2891 Cardinal Lake Dr. Duluth GA 30096');
@@ -97,24 +85,7 @@
 			$this->SetX(151);
 			$this->Cell(20, 6,'Total:',1,0,'C');
 			$this->Cell(35, 6,'$ '.number_format((float)$this->getTotal(), 2, '.', ''),1,0,'C');
-			$this->Ln();
-			$this->Ln();
-			$this->SetX(14);
-			$this->SetFont('Times','',12);
-			$this->MultiCell(180, 8,'All payment should be made in 30 days.'."\n".
-				'Any balance over 30 days will result in additional late fees or finance charge whichever greater.'
-				."\n".'Any past due balance over 60 days will result in legal action including a lien on the property',1,'C');
-			$this->Ln();
-			$this->Ln();
-			$this->SetFont('Times','U', 12);
-			$this->SetX(30);
-			$this->Cell(80, 5,'                                                              ',0,0,'C');
-			$this->Cell(80, 5,'                                 ',0,0,'C');
-			$this->Ln();
-			$this->SetX(30);
-			$this->SetFont('Times','', 12);
-			$this->Cell(80, 5,'Authorized Signature',0,0,'C');
-			$this->Cell(80, 5,'Date',0,0,'C');
+
 
 		}
 
@@ -127,15 +98,9 @@
 
 	$pdf = new PDF();
 	$pdf->LayOut();
-	$filename = $apt.'_'.$invoice;
+	$filename = "Estimate_".$apt;
 	$pdf->Output('I', substr($filename, 0, -1).'.pdf');
 
-	unset($_SESSION['po_pdf']);
-	unset($_SESSION['apt_pdf']);
-	unset($_SESSION['unit_pdf']);
-	unset($_SESSION['size_pdf']);
-	unset($_SESSION['pdf_arr']);
-	unset($_SESSION['date_pdf']);
+	unset($_SESSION['arr']);
 	$_SESSION['i'] = 0;
-
 ?>

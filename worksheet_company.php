@@ -13,6 +13,7 @@
             <h3 class="text-center">Worksheet!</h3><br>
 
             <?php
+                include('./includes/data_range.html');
                 if (!isset($_SESSION['email'])) {
                     echo "<script>alert(\"You need to sign in first.\");</script>";
                     echo '<script>window.location.href = "signin.php";</script>';
