@@ -115,19 +115,20 @@
                     <form action="create_pdf.php" method="post">
                         <table border="2" width="200">
                             <tr align="center" bgcolor="#c9c9c9">
-                                <td><label><b>Date</b></label></td>
+                                <td><label>Set Date</label></td>
                             </tr>
                             <tr align="center">
-                                <td><input type="date" name="date" id="theDate" value="" size="8"></td>
+                                <td><input type="text" name="date" value="'.$_SESSION['date_pdf'].'" size="10"></td>
                             </tr>
                         </table>
-                        <br>
+                        <br>   
                 ';
             ?>
             <br>
             <input type="submit" value="Create PDF"></input>
             <input type="button" value="Back" onclick="location.href='invoice_detail.php'"></input>
             </form>
+
         </div>
 
         <!-- Footer -->

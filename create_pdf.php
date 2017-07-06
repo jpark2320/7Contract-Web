@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	date_default_timezone_set('EST');
+	date_default_timezone_set('Etc/UTC');
 	require('./FPDF/fpdf.php');
 
 	$invoice = '7C'.$_SESSION['invoice'];
@@ -137,4 +137,5 @@
 	unset($_SESSION['pdf_arr']);
 	unset($_SESSION['date_pdf']);
 	$_SESSION['i'] = 0;
+
 ?>

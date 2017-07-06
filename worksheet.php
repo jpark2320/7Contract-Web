@@ -30,23 +30,14 @@
                 include('./includes/connection.php');
 
                 if ($_SESSION['isadmin'] > 0) {
-                    echo '
-                        <div align="left" style="float: left;">
-                    ';
+                    echo '<div align="right"><button><a href="estimate_info.php">Make Estimate</a></button>
+                    <button><a href="worksheet_add.php">Add to Worksheet</a></button></div>';
+
                     include('./includes/sort.php');
 
-                    echo '
-                        </div>
-                        <div align="right">
-                            <button><a href="estimate_info.php">Make Estimate</a></button>
-                            <button><a href="worksheet_add.php">Add to Worksheet</a></button>
-                    ';
                     if ($_SESSION['isadmin'] == 2) {
-                        echo '<a href="price_detail.php">Show details</a>';
+                        echo '<div align="right"><a href="price_detail.php">Show details</a></div>';
                     }
-                    echo '
-                        </div>
-                    ';
 
                     echo '
                         <table border="3" width="100%">
@@ -112,7 +103,7 @@
                         }
 
                         echo '
-                                    <td align="center"><a href="invoice_detail.php?invoice_num='.$temp_invoice.' &unit='.$temp_unit.'">'.$temp_invoice.'</a></td>
+                                    <td align="center"><a href="invoice_detail.php?invoice_num='.$temp_invoice.'">'.$temp_invoice.'</a></td>
                                     <td align="center">'.$row['PO'].'</td>
                                     <td align="center"><a href="worksheet_company.php?company='.$temp_company.'">'.$temp_company.'</a></td>
                                     <td align="center"><a href="worksheet_apt.php?apt='.$temp_apt.'">'.$temp_apt.'</a></td>
@@ -143,9 +134,8 @@
                                     <td align="center"><b><a href="?orderBy=apt">Apt</a></b></td>
                                     <td align="center"><b><a href="?orderBy=unit">Unit #</a></b></td>
                                     <td align="center"><b>Message</b></td>
-                                    <td align="center"><b>Comment</b></td>
                                     <td align="center"><b><a href="?orderBy=date">Date</a></b></td>
-                                    <td align="center"><b>Edit</b></td>
+                                    <td align="center"><b>Comment</b></td>
                                     <td align="center"><b>Process</b></td>
                                 </tr>
                             </thead>
@@ -188,9 +178,8 @@
                                     <td align="center">'.$row['apt'].'</td>
                                     <td align="center">'.$row['unit'].'</td>
                                     <td align="center">'.$row['message'].'</td>
-                                    <td align="center">'.$row['comment'].'</td>
                                     <td align="center">'.$row['date'].'</td>
-                                    <td align="center"><button><a href="edit_user.php?invoice_num='.$temp.'">Edit</a></button></td>
+                                    <td align="center"><button><a href="show_comment.php?id='.$id.'&apt='.$row['apt'].'&unit='.$row['unit'].'">Show</a></button><button><a href="edit_user.php?id='.$id.'">Add</a></button></td>
                                     <td align="center"><button><a href="workdone_process.php?invoice_num='.urlencode($temp).' &email_user='.urlencode($temp2).' &id='.urlencode($id).'">Work Done</a></button></td>
                                 </tr>
                             </tbody>';
