@@ -107,8 +107,7 @@
                         }
                         $result = mysqli_query($conn, $sql);
                         $isOdd = false;
-                        while($row = mysqli_fetch_array($result))
-                        {
+                        while($row = mysqli_fetch_array($result)) {
                             $message = $row['message'];
                             $comment = $row['comment'];
                             $email = $row['email'];
@@ -172,8 +171,8 @@
                         $_SESSION['size_pdf'] = $row['size'];
                         $_SESSION['pdf_arr'] = array(array());
                         $_SESSION['i'] = 0;
-                        date_default_timezone_set('Etc/UTC');
-                        $_SESSION['date_pdf'] = date("Y-m-d");
+                        date_default_timezone_set('EST');
+                        $_SESSION['date_pdf'] = date("m-d-Y");
                         mysqli_close($conn);
                     ?>
                 </form>

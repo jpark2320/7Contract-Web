@@ -30,14 +30,23 @@
                 include('./includes/connection.php');
 
                 if ($_SESSION['isadmin'] > 0) {
-                    echo '<div align="right"><button><a href="estimate_info.php">Make Estimate</a></button>
-                    <button><a href="worksheet_add.php">Add to Worksheet</a></button></div>';
-
+                    echo '
+                        <div align="left" style="float: left;">
+                    ';
                     include('./includes/sort.php');
 
+                    echo '
+                        </div>
+                        <div align="right">
+                            <button><a href="estimate_info.php">Make Estimate</a></button>
+                            <button><a href="worksheet_add.php">Add to Worksheet</a></button>
+                    ';
                     if ($_SESSION['isadmin'] == 2) {
-                        echo '<div align="right"><a href="price_detail.php">Show details</a></div>';
+                        echo '<a href="price_detail.php">Show details</a>';
                     }
+                    echo '
+                        </div>
+                    ';
 
                     echo '
                         <table border="3" width="100%">
