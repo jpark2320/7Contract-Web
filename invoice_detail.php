@@ -37,7 +37,6 @@
                         date_default_timezone_set('Etc/UTC');
                         $_SESSION['date_pdf'] = date("Y-m-d");
 
-                        
                         echo '
                             <table width="200" align="center">
                                 <colgroup>
@@ -95,6 +94,12 @@
 
                                         <td align="center"><b><a href="?orderBy=B.date">Date</a></b></td>
                         ';
+                        if ($_SESSION['isadmin'] == 2) {
+                            echo '
+                                <td align="center"><b>Edit</b></td>
+                                <td align="center"><b>Pay</b></td>
+                            ';
+                        }
                         echo '
                                     </tr>
                                 </thead>
@@ -114,8 +119,7 @@
                         }
                         $result = mysqli_query($conn, $sql);
                         $isOdd = false;
-                        while($row = mysqli_fetch_array($result))
-                        {
+                        while($row = mysqli_fetch_array($result)) {
                             $message = $row['message'];
                             $email = $row['email'];
                             $price = $row['price'];
@@ -155,11 +159,31 @@
                             }
                             echo '
                                         <td align="center">'.$row['date'].'</td>
+                            ';
+                            if ($_SESSION['isadmin'] == 2) {
+                                echo '
+                                    <td align="center"><button><a href="pedit.php?invoice='.urlencode($i_detail).' &id='.urlencode($id).' &price='.urlencode($price).' &comment='.urlencode($comment). ' &message='.urlencode($message).'&username='.urlencode($user_name).'">Edit</a></button></td>
+                                    <td align="center"><button><a href="pay.php?invoice='.urlencode($i_detail).' &id='.urlencode($id).' &price='.urlencode($price).' &comment='.urlencode($comment). ' &message='.urlencode($message).'&username='.urlencode($user_name).'">Pay</a></button></td>
+                                ';
+                            }
+                            echo '
                                     </tr>
                                 </tbody>
                             ';
                         }
                         echo '</table>';
+                        $sql = "SELECT * FROM Worksheet WHERE invoice=$i_detail";;
+                        $result = mysqli_query($conn, $sql);
+                        $row = mysqli_fetch_array($result);
+                        $_SESSION['po_pdf'] = $row['PO'];
+                        $_SESSION['company_pdf'] = $row['company'];
+                        $_SESSION['apt_pdf'] = $row['apt'];
+                        $_SESSION['unit_pdf'] = $row['unit'];
+                        $_SESSION['size_pdf'] = $row['size'];
+                        $_SESSION['pdf_arr'] = array(array());
+                        $_SESSION['i'] = 0;
+                        date_default_timezone_set('EST');
+                        $_SESSION['date_pdf'] = date("m-d-Y");
                         mysqli_close($conn);
                     ?>
                 </form>

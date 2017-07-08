@@ -10,12 +10,25 @@
 
         <?php
             // connection with mysql database
-            include('./includes/connection.php');;
-            if (isset($_GET['id'])) {
+            include('./includes/connection.php');
+            unset($_SESSION['invoice']);
+            unset($_SESSION['username']);
+            unset($_SESSION['temail']);
+            unset($_SESSION['id']);
+            unset($_SESSION['message']);
+            unset($_SESSION['comment']);
+            unset($_SESSION['price']);
+            if (isset($_GET['invoice'])) {
+                $_SESSION['invoice'] = $_GET['invoice'];
+                $_SESSION['username'] = $_GET['username'];
+                $_SESSION['temail'] = $_GET['email'];
                 $_SESSION['id'] = $_GET['id'];
+				$_SESSION['message'] = $_GET['message'];
+				$_SESSION['comment'] = $_GET['comment'];
+				$_SESSION['price'] = $_GET['price'];
             } else {
             	 echo '<script>alert("Something is not valid.");</script>';
-            	 echo '<script>window.location.href="invoice_detail.php";</script>';
+            	 echo '<script>window.location.href="worksheet.php";</script>';
             	 exit();
             }
         ?>
@@ -35,6 +48,10 @@
                             <tr>
                                 <td><label>Name</label></td>
                                 <td><?php echo $_SESSION['username']?></td>
+                            </tr>
+                            <tr>
+                                <td><label>Message</label></td>
+                                <td><?php echo $_SESSION['message']?></td>
                             </tr>
                             <tr>
                                 <td><label>Comment</label></td>

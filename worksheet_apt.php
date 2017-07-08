@@ -27,6 +27,7 @@
                     $_SESSION['apt'] = $apt;
                 } else {
                     $apt = $_SESSION['apt'];
+                    $_SESSION['apt'] = $apt;
                 }
                 echo '<div align="center"><b>Apt : '.$apt.'</b></div>';
 
@@ -84,7 +85,6 @@
                     $sql .= "AND YEAR(date)=".$_POST['year']." ";
                 }
                 $sql .= 'ORDER BY '.$order;
-                echo "<script>alert(\"".$sql."\");</script>";
                 if (isset($_GET['unpaid'])) {
                     $_SESSION['unpaid'] = $_GET['unpaid'];
                     echo '<script>window.location.href = "worksheet_apt.php";</script>';
@@ -92,20 +92,18 @@
                 if ($_SESSION['sort']=='desc') {
                     $sql = $sql.' DESC';
                 }
+                
                 $result = mysqli_query($conn, $sql);
                 if (!$result) {
                     printf("Error: %s\n", mysqli_error($conn));
                     exit();
                 }
 
-                while($row = mysqli_fetch_array($result))
-                {
+                while($row = mysqli_fetch_array($result)) {
                     $temp_invoice = '7C'.$row['invoice'];
                     $temp_company = $row['company'];
                     $temp_manager = $row['manager'];
                     $temp_unit = $row['unit'];
-                    // $arr_apt = array($temp_invoice, $row['PO'], $row['date'], $row['price'], $row['paid']);
-                    // print_r($arr_apt);
 
                     echo '<tbody>';
                     if ($isOdd) {
@@ -118,11 +116,9 @@
 
                     echo '
                         <form action="outstanding_pdf.php" method="post">
-                            <td align="center"><input type="checkbox" name="check[]" value="'.$temp_invoice.'">
-                            <input type="hidden" name="check[]" value="'.$row['PO'].'">
-                            <input type="hidden" name="check[]" value="'.substr($row['date'], 0, -9).'">
-                            <input type="hidden" name="check[]" value="'.$row['price'].'">
-                            <input type="hidden" name="check[]" value="'.$row['paid'].'"></td>
+                            <td align="center">
+                                <input type="checkbox" name="check[]" value="'.$temp_invoice.'">
+                            </td>
                     ';
 
                     if ($row['ispaidoff'] == 1) {

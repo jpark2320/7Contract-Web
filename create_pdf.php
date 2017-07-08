@@ -137,5 +137,4 @@
 	unset($_SESSION['pdf_arr']);
 	unset($_SESSION['date_pdf']);
 	$_SESSION['i'] = 0;
-
 ?>

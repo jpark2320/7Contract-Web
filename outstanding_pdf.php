@@ -1,14 +1,37 @@
 <?php
 	session_start();
-	date_default_timezone_set('Etc/UTC');
+	date_default_timezone_set('EST');
 	require('./FPDF/fpdf.php');
 
 	if ($_POST['sub']) {
-		$arr = $_POST['check'];
-	}
+		$invoices = $_POST['check'];
+		if (!isset($_POST['check'])) {
+			echo '<script>alert("You must select at least one checkbox to issue an invoice.")</script>';
+			echo '<script>window.location.href = "worksheet_apt.php";</script>';
+		}
 
-	$apt = $_SESSION['apt'];
+		$apt = $_SESSION['apt'];
+		$i = 0;
 
+		include('./includes/connection.php');
+		$arr = array(array());
+		foreach ($invoices as $invoice) {
+			$invoice = str_replace('7C', '', $invoice);
+			$sql = "SELECT * FROM Worksheet WHERE invoice='$invoice';";
+			$result = mysqli_query($conn, $sql);
+
+		    while($row = mysqli_fetch_array($result)) {
+				$arr[$i][0] = '7C'.$row['invoice'];
+				$arr[$i][1] = $row['PO'];
+				$arr[$i][2] = substr($row['date'], 5, -9)."-".substr($row['date'], 0, 4);
+				$arr[$i][3] = $row['price'];
+				$arr[$i][4] = $row['paid'];
+			}
+			$i++;
+		}
+ 	}
+	// print_r($arr);
+	mysqli_close($conn);
 
 	class PDF extends FPDF
 	{
@@ -24,7 +47,6 @@
 		    $this->Cell(50, 10,'Bill to: '.$apt);
 		    $this->SetFont('Times','',13);
 		    $this->SetXY(145,45);
-		    // $this->Cell(50, 10,'Date: '.date("Y-m-d"));
 
 		    $this->SetXY(3, 42);
 		    $this->SetFont('Times','',11);
@@ -49,49 +71,46 @@
 			$this->Cell(33, 6,'invoice #',1,0,'C');
 			$this->Cell(33, 6,'P.O. #',1,0,'C');
 			$this->Cell(33, 6,'Date',1,0,'C');
-			$this->Cell(33, 6,'Amount',1,0,'C');
-			$this->Cell(33, 6,'Total Paid',1,0,'C');
-			$this->Cell(33, 6,'Outstanding',1,0,'C');
+			$this->Cell(35, 6,'Amount',1,0,'C');
+			$this->Cell(35, 6,'Total Paid',1,0,'C');
+			$this->Cell(35, 6,'Outstanding',1,0,'C');
 			$this->Ln();
 			$this->SetFont('Times','',12);
 			$amount = 0;
 			$paid = 0;
 			$outstanding = 0;
-			for ($j = 0; $j < count($arr) / 5; $j++) {
-				$i = $j * 5;
+			for ($i = 0; $i < count($arr); $i++) {
 				$this->SetX(3);
-				$this->Cell(33, 6, $arr[$i],1,0,'C');
-				$this->Cell(33, 6, $arr[$i + 1],1,0,'C');
-				$this->Cell(33, 6, $arr[$i + 2],1,0,'C');
-				$this->Cell(33, 6, "$ ".number_format((float)$arr[$i + 3], 2, '.', ''),1,0,'C');
-				$this->Cell(33, 6, "$ ".number_format((float)$arr[$i + 4], 2, '.', ''),1,0,'C');
-				$this->Cell(33, 6, "$ ".number_format((float)($arr[$i + 3] - $arr[$i + 4]), 2, '.', ''),1,0,'C');
-				$amount += $arr[$i + 3];
-				$paid += $arr[$i + 4];
-				$outstanding += $arr[$i + 3] - $arr[$i + 4];
+				$this->Cell(33, 6, $arr[$i][0],1,0,'C');
+				$this->Cell(33, 6, $arr[$i][1],1,0,'C');
+				$this->Cell(33, 6, $arr[$i][2],1,0,'C');
+				$this->Cell(35, 6, "$ ".number_format((float)$arr[$i][3], 2, '.', ''),1,0,'C');
+				$this->Cell(35, 6, "$ ".number_format((float)$arr[$i][4], 2, '.', ''),1,0,'C');
+				$this->Cell(35, 6, "$ ".number_format((float)($arr[$i][3] - $arr[$i][4]), 2, '.', ''),1,0,'C');
+				$amount += $arr[$i][3];
+				$paid += $arr[$i][4];
+				$outstanding += $arr[$i][3] - $arr[$i][4];
 				$this->Ln();
 			}
 			$this->SetX(3);
 			$this->Cell(99, 6, "",0,0,'C');
 			$this->SetFont('Times','B',12);
-			$this->Cell(33, 6,'$ '.number_format((float)$amount, 2, '.', ''),1,0,'C');
-			$this->Cell(33, 6,'$ '.number_format((float)$paid, 2, '.', ''),1,0,'C');
-			$this->Cell(33, 6,'$ '.number_format((float)$outstanding, 2, '.', ''),1,0,'C');
-
+			$this->Cell(35, 6,'$ '.number_format((float)$amount, 2, '.', ''),1,0,'C');
+			$this->Cell(35, 6,'$ '.number_format((float)$paid, 2, '.', ''),1,0,'C');
+			$this->Cell(35, 6,'$ '.number_format((float)$outstanding, 2, '.', ''),1,0,'C');
 		}
 
 
 		function LayOut() {
 			$this->AddPage();
 			$this->DrawTable();
-			// $this->InsertInput();
 		}
 	}
 
 	$pdf = new PDF();
 	$pdf->LayOut();
-	$filename = $apt;
-	$pdf->Output('I', substr($filename, 0, -1).'.pdf');
+	$filename = $apt."_".date("Y/m/d");
+	$pdf->Output('I', $filename.'.pdf');
 
 	unset($_SESSION['invoice']);
 	unset($_SESSION['apt']);

@@ -59,13 +59,16 @@
                 ';
 
                 if ($_POST['description'] !== null) {
-                    $_SESSION['pdf_arr'][$_SESSION['i']][0] = $_POST['description'];
-                }
-                if ($_POST['price'] !== null) {
-                    $_SESSION['pdf_arr'][$_SESSION['i']][1] = $_POST['qty'];
+                    $_SESSION['description_pdf'] = $_POST['description'];
+                    $_SESSION['pdf_arr'][$_SESSION['i']][0] = $_SESSION['description_pdf'];
                 }
                 if ($_POST['qty'] !== null) {
-                    $_SESSION['pdf_arr'][$_SESSION['i']][2] = $_POST['price'];
+                    $_SESSION['qty_pdf'] = $_POST['qty'];
+                    $_SESSION['pdf_arr'][$_SESSION['i']][1] = $_SESSION['qty_pdf'];
+                }
+                if ($_POST['price'] !== null) {
+                    $_SESSION['price_pdf'] = $_POST['price'];
+                    $_SESSION['pdf_arr'][$_SESSION['i']][2] = $_SESSION['price_pdf'];
                 }
 
                 if (isset($_POST['submit'])) {
@@ -76,15 +79,17 @@
                     <form action="pdf_info.php" method="post">
                         <table border="2" width="100%">
                             <colgroup>
-                                <col width="50%">
-                                <col width="25%">
-                                <col width="25%">
+                                <col width="45%">
+                                <col width="20%">
+                                <col width="20%">
+                                <col width="15%">
                             </colgroup>
                             <thead>
                                 <tr style="border: 2px double black;" bgcolor="#c9c9c9">
                                     <td align="center"><b>Description</b></td>
                                     <td align="center"><b>Qty</b></td>
                                     <td align="center"><b>Price</b></td>
+                                    <td align="center"><b>Edit</b></td>
                                 </tr>
                             </thead>
                             <tbody id="pdf_table">
@@ -92,6 +97,7 @@
                                     <td><input type="text" name="description" size="91" required></td>
                                     <td><input type="text" name="qty" size="44"></td>
                                     <td><input type="text" name="price" size="44"></td>
+                                    <td></td>
                 ';
                 for ($i = 0; $i < sizeof($_SESSION['pdf_arr']); $i++) {
                     if ($_SESSION['pdf_arr'][$i][0] !== null) {
@@ -101,7 +107,10 @@
                         echo '<td>'.$_SESSION['pdf_arr'][$i][1].'</td>';
                     }
                     if ($_SESSION['pdf_arr'][$i][2] !== null) {
-                        echo '<td>'.$_SESSION['pdf_arr'][$i][2].'</td></tr>';
+                        echo '<td>'.$_SESSION['pdf_arr'][$i][2].'</td>';
+                    }
+                    if ($_SESSION['pdf_arr'][$i][0] !== null) {
+                        echo '<td><button><a href="edit_pdf.php?description='.$_SESSION['pdf_arr'][$_SESSION['i']][0].' &qty='.$_SESSION['pdf_arr'][$_SESSION['i']][1].' &price='.$_SESSION['pdf_arr'][$_SESSION['i']][2].'">Edit</a></button></td></tr>';
                     }
                 }
 
@@ -115,20 +124,19 @@
                     <form action="create_pdf.php" method="post">
                         <table border="2" width="200">
                             <tr align="center" bgcolor="#c9c9c9">
-                                <td><label>Set Date</label></td>
+                                <td><label><b>Date</b></label></td>
                             </tr>
                             <tr align="center">
-                                <td><input type="text" name="date" value="'.$_SESSION['date_pdf'].'" size="10"></td>
+                                <td><input type="date" name="date" id="theDate" value="" size="8"></td>
                             </tr>
                         </table>
-                        <br>   
+                        <br>
                 ';
             ?>
             <br>
             <input type="submit" value="Create PDF"></input>
             <input type="button" value="Back" onclick="location.href='invoice_detail.php'"></input>
             </form>
-
         </div>
 
         <!-- Footer -->

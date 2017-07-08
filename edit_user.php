@@ -14,14 +14,6 @@
 
             if (isset($_GET['id'])) {
                 $_SESSION['id'] = $_GET['id'];
-                // $check = "SELECT * FROM user_comment WHERE id=".$_SESSION['id'].";";
-                // $result = $conn->query($check);
-                // if ($result->num_rows > 0) {
-                //     while($row = $result->fetch_assoc()) {
-                //         $_SESSION['arr'][$_SESSION[i]] = $row['comment'];
-                //         $_SESSION['i']++;
-                //     }
-                // }
             }
         ?>
 
@@ -38,7 +30,7 @@
                 }
 
                 echo '
-                    
+
                     <form action="edit_user.php" method="post">
                         <table border="2" width="100%">
                             <colgroup>
