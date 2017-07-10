@@ -6,7 +6,7 @@
 	$unit = $_POST['unit'];
 	$size = $_POST['size'];
 	$date = $_POST['date'];
-	$arr = $_SESSION['arr'];
+	$arr = $_SESSION['estm_arr'];
 
 	class PDF extends FPDF
 	{

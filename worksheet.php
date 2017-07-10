@@ -1,8 +1,11 @@
 <?php
     session_start();
-    $_SESSION['i'] = 0;
+    $_SESSION['i_pdf'] = 0;
+    // unset($_SESSION['i_pdf']);
+    $_SESSION['i_estm'] = 0;
+    // unset($_SESSION['i_estm']);
     unset($_SESSION['unpaid']);
-    unset($_SESSION['arr']);
+    unset($_SESSION['estm_arr']);
     unset($_SESSION['pdf_arr']);
 ?>
 <!DOCTYPE html>

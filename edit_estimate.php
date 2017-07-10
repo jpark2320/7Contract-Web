@@ -12,16 +12,17 @@
             // connection with mysql database
             include('./includes/connection.php');
 
-            // This is for values from deleting in pdf_info.php
+            // This is for values from deleting in estimate_info.php
             if (isset($_GET['index_deleted'])) {
-                echo '<script>window.location.href="pdf_info.php";</script>';
-                array_splice($_SESSION['pdf_arr'], $_GET['index_deleted'], 1);
-                $_SESSION['i_pdf']--;
+                echo '<script>window.location.href="estimate_info.php";</script>';
+                array_splice($_SESSION['estm_arr'], $_GET['index_deleted'], 1);
+                $_SESSION['i_estm']--;
                 exit();
             }
 
-            // This is for values passed from editing in pdf_info.php
+            // This is for values passed from editing in estimate_info.php
             if (isset($_GET['description'])) {
+                echo '<script>alert("Ana")</script>';
                 $description = $_GET['description'];
             }
             if (isset($_GET['qty'])) {
@@ -39,7 +40,7 @@
         <div class="primary" align="center">
             <h3 class="text-center">Edit PDF Information</h3><br>
 
-            <form action="pdf_info.php" method="GET">
+            <form action="estimate_info.php" method="GET">
 
                 <table width="400">
                     <colgroup>
@@ -48,24 +49,24 @@
                     </colgroup>
                     <tr>
                         <td><label>Description</label></td>
-                        <td><input type="text" name="desc_edited_pdf" maxlength="36" size="30" value="<?php echo isset($description) ? $description : '' ?>"></td>
+                        <td><input type="text" name="desc_edited_estm" maxlength="36" size="30" value="<?php echo isset($description) ? $description : '' ?>"></td>
                     </tr>
                     <tr>
                         <td><label>Qty</label></td>
-                        <td><input type="text" name="qty_edited_pdf" maxlength="36" size="30" value="<?php echo isset($qty) ? $qty : '' ?>"></td>
+                        <td><input type="text" name="qty_edited_estm" maxlength="36" size="30" value="<?php echo isset($qty) ? $qty : '' ?>"></td>
                     </tr>
                     <tr>
                         <td><label>Price</label></td>
-                        <td><input type="text" name="price_edited_pdf" maxlength="36" size="30" value="<?php echo isset($price) ? $price : '' ?>"></td>
+                        <td><input type="text" name="price_edited_estm" maxlength="36" size="30" value="<?php echo isset($price) ? $price : '' ?>"></td>
                     </tr>
                     <tr hidden>
                         <td><label>Index</label></td>
-                        <td><input type="text" name="index_edited_pdf" value="<?php echo $index ?>"></td>
+                        <td><input type="text" name="index_edited_estm" value="<?php echo $index ?>"></td>
                     </tr>
                 </table>
                 <br>
                 <input type="submit" value="Edit">
-                <input type="button" value="Back" onclick="location.href='pdf_info.php'">
+                <input type="button" value="Back" onclick="location.href='estimate_info.php'">
             </form>
         </div>
 
