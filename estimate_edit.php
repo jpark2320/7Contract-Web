@@ -11,29 +11,24 @@
         <?php
             // connection with mysql database
             include('./includes/connection.php');
-
-            if (isset($_GET['invoice_num'])) {
-                $invoice = $_GET['invoice_num'];
-                $invoice = str_replace("7C", "", $invoice);
-                $sql = "SELECT * FROM Worksheet WHERE invoice ='".$invoice."';";
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                $sql = "SELECT * FROM estimate WHERE id ='$id';";
                 $result = mysqli_query($conn, $sql);
-                $row = mysqli_fetch_array($result);
-                $_SESSION['invoice'] = $row['invoice'];
-                $_SESSION['po'] = $row['PO'];
+    			$row = mysqli_fetch_array($result);
+                $_SESSION['id'] = $row['id'];
                 $_SESSION['company'] = $row['company'];
                 $_SESSION['apt'] = $row['apt'];
-                $_SESSION['manager'] = $row['manager'];
                 $_SESSION['size'] = $row['size'];
                 $_SESSION['unit'] = $row['unit'];
                 $_SESSION['price'] = $row['price'];
-                $_SESSION['description'] = $row['description'];
-                $sql = "SELECT * FROM worksheet_description WHERE invoice ='$invoice';";
+                $sql = "SELECT * FROM estimate_description WHERE estimate_id ='$id';";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
-                        $_SESSION['arr'][$_SESSION['i']][0] = $row['description'];
-                        $_SESSION['arr'][$_SESSION['i']][1] = $row['quantity'];
-                        $_SESSION['arr'][$_SESSION['i']][2] = $row['price'];
+                        $_SESSION['edit_arr'][$_SESSION['i']][0] = $row['description'];
+                        $_SESSION['edit_arr'][$_SESSION['i']][1] = $row['quantity'];
+                        $_SESSION['edit_arr'][$_SESSION['i']][2] = $row['price'];
                         $_SESSION['i']++;
                     }
                 }
@@ -45,22 +40,22 @@
             <h3 class="text-center">Edit Worksheet</h3><br>
             <?php
                 if (isset($_GET['desc_edited_estm'])) {
-                    $_SESSION['arr'][$_GET['index_edited_estm']][0] = $_GET['desc_edited_estm'];
+                    $_SESSION['edit_arr'][$_GET['index_edited_estm']][0] = $_GET['desc_edited_estm'];
                 }
                 if (isset($_GET['qty_edited_estm'])) {
-                    $_SESSION['arr'][$_GET['index_edited_estm']][1] = $_GET['qty_edited_estm'];
+                    $_SESSION['edit_arr'][$_GET['index_edited_estm']][1] = $_GET['qty_edited_estm'];
                 }
                 if (isset($_GET['price_edited_estm'])) {
-                    $_SESSION['arr'][$_GET['index_edited_estm']][2] = $_GET['price_edited_estm'];
+                    $_SESSION['edit_arr'][$_GET['index_edited_estm']][2] = $_GET['price_edited_estm'];
                 }
                 if ($_POST['description'] !== null) {
-                    $_SESSION['arr'][$_SESSION['i']][0] = $_POST['description'];
+                    $_SESSION['edit_arr'][$_SESSION['i']][0] = $_POST['description'];
                 }
                 if ($_POST['price'] !== null) {
-                    $_SESSION['arr'][$_SESSION['i']][1] = $_POST['qty'];
+                    $_SESSION['edit_arr'][$_SESSION['i']][1] = $_POST['qty'];
                 }
                 if ($_POST['qty'] !== null) {
-                    $_SESSION['arr'][$_SESSION['i']][2] = $_POST['price'];
+                    $_SESSION['edit_arr'][$_SESSION['i']][2] = $_POST['price'];
                 }
 
                 if (isset($_POST['submit'])) {
@@ -69,7 +64,7 @@
 
                 echo '
                     
-                    <form action="edit_admin.php" method="post">
+                    <form action="estimate_edit.php" method="post">
                         <table border="2" width="100%">
                             <colgroup>
                                 <col width="70%">
@@ -94,22 +89,22 @@
                                     <td colspan="2" align="center"><input type="submit" name="submit" value="Add"></td>
                                 </tr>
                 ';
-                for ($i = 0; $i < sizeof($_SESSION['arr']); $i++) {
-                    if ($_SESSION['arr'][$i][0] !== null) {
-                        echo '<tr bgcolor="#c4daff"><td>'.$_SESSION['arr'][$i][0].'</td>';
+                for ($i = 0; $i < sizeof($_SESSION['edit_arr']); $i++) {
+                    if ($_SESSION['edit_arr'][$i][0] !== null) {
+                        echo '<tr bgcolor="#c4daff"><td>'.$_SESSION['edit_arr'][$i][0].'</td>';
                     }
-                    if ($_SESSION['arr'][$i][1] !== null) {
-                        echo '<td>'.$_SESSION['arr'][$i][1].'</td>';
+                    if ($_SESSION['edit_arr'][$i][1] !== null) {
+                        echo '<td>'.$_SESSION['edit_arr'][$i][1].'</td>';
                     }
 
-                    if ($_SESSION['arr'][$i][2] !== null) {
-                        echo '<td>'.$_SESSION['arr'][$i][2].'</td>';
+                    if ($_SESSION['edit_arr'][$i][2] !== null) {
+                        echo '<td>'.$_SESSION['edit_arr'][$i][2].'</td>';
                     }
-                    if ($_SESSION['arr'][$i][0] !== null) {
-                        echo '<td align="center"><button><a href="edit_invoice_detail.php?description='.$_SESSION['arr'][$i][0].' &qty='.$_SESSION['arr'][$i][1].' &price='.$_SESSION['arr'][$i][2].' &index='.$i.'">Edit</a></button></td>';
+                    if ($_SESSION['edit_arr'][$i][0] !== null) {
+                        echo '<td align="center"><button><a href="edit_estimate_detail.php?description='.$_SESSION['edit_arr'][$i][0].' &qty='.$_SESSION['edit_arr'][$i][1].' &price='.$_SESSION['edit_arr'][$i][2].' &index='.$i.'">Edit</a></button></td>';
                     }
-                    if ($_SESSION['arr'][$i][0] !== null) {
-                        echo '<td align="center"><button><a href="edit_invoice_detail.php?index_deleted='.$i.'">Delete</a></button></td></tr>';
+                    if ($_SESSION['edit_arr'][$i][0] !== null) {
+                        echo '<td align="center"><button><a href="edit_estimate_detail.php?index_deleted='.$i.'">Delete</a></button></td></tr>';
                     }
                 }
 
@@ -119,7 +114,7 @@
                         <br>
                     </form>';
             ?>
-            <form action="edit_process.php" method="POST">
+            <form action="estimate_edit_process.php" method="POST">
 
                 <table width="400">
                     <colgroup>
@@ -127,20 +122,12 @@
                         <col width="50%">
                     </colgroup>
                         <tr>
-                            <td><label>P.O Number</label></td>
-                            <td><input type="text" name="po" maxlength="36" size="30" value="<?php echo isset($_SESSION['po']) ? $_SESSION['po'] : '' ?>"></td>
-                        </tr>
-                        <tr>
                             <td><label>Company</label></td>
                             <td><input type="text" name="company" maxlength="36" size="30" value="<?php echo isset($_SESSION['company']) ? $_SESSION['company'] : '' ?>"></td>
                         </tr>
                         <tr>
                             <td><label>Apt</label></td>
                             <td><input type="text" name="apt" maxlength="36" size="30" value="<?php echo isset($_SESSION['apt']) ? $_SESSION['apt'] : '' ?>"></td>
-                        </tr>
-                        <tr>
-                            <td><label>Manager</label></td>
-                            <td><input type="text" name="manager" maxlength="36" size="30" value="<?php echo isset($_SESSION['manager']) ? $_SESSION['manager'] : '' ?>"></td>
                         </tr>
                         <tr>
                             <td><label>Unit #</label></td>
@@ -153,7 +140,7 @@
                 </table>
                 <br>
                 <input type="submit" value="Edit">
-                <input type="button" value="Back" onclick="location.href='worksheet.php'">
+                <input type="button" value="Back" onclick="location.href='view_estimate.php'">
             </form>
         </div>
 

@@ -10,31 +10,20 @@
 
         <?php
             // connection with mysql database
-            include('./includes/connection.php');
-            unset($_SESSION['invoice']);
-            unset($_SESSION['username']);
-            unset($_SESSION['temail']);
-            unset($_SESSION['id']);
-            unset($_SESSION['message']);
-            unset($_SESSION['comment']);
-            unset($_SESSION['price']);
-            if (isset($_GET['invoice'])) {
-                $_SESSION['invoice'] = $_GET['invoice'];
-                $_SESSION['username'] = $_GET['username'];
-                $_SESSION['temail'] = $_GET['email'];
+            include('./includes/connection.php');;
+            if (isset($_GET['id'])) {
                 $_SESSION['id'] = $_GET['id'];
-				$_SESSION['message'] = $_GET['message'];
-				$_SESSION['comment'] = $_GET['comment'];
-				$_SESSION['price'] = $_GET['price'];
-            } else {
+            } else if (isset($_SESSION['id'])) {
+                continue;
+            }else {
             	 echo '<script>alert("Something is not valid.");</script>';
-            	 echo '<script>window.location.href="worksheet.php";</script>';
+            	 echo '<script>window.location.href="invoice_detail.php";</script>';
             	 exit();
             }
         ?>
 
         <!-- Body -->
-        <div class="container">
+        <div class="primary" align="center">
             <h3 class="text-center">Edit</h3><br>
 
             <div class="row" align="center">
@@ -47,19 +36,15 @@
                         </colgroup>
                             <tr>
                                 <td><label>Name</label></td>
-                                <td><?php echo $_SESSION['username']?></td>
-                            </tr>
-                            <tr>
-                                <td><label>Message</label></td>
-                                <td><?php echo $_SESSION['message']?></td>
+                                <td><?php echo $_GET['username']?></td>
                             </tr>
                             <tr>
                                 <td><label>Comment</label></td>
-                                <td><?php echo $_SESSION['comment']?></td>
+                                <td><?php echo $_GET['comment']?></td>
                             </tr>
                             <tr>
                                 <td><label>Salary</label></td>
-                                <td><input type="text" name="price" maxlength="36" size="30" value="<?php echo isset($_SESSION['price']) ? $_SESSION['price'] : '' ?>"></td>
+                                <td><input type="text" name="salary" maxlength="36" size="30" value="0"></td>
                             </tr>
                     </table>
                     <br>

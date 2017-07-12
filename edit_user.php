@@ -14,6 +14,7 @@
 
             if (isset($_GET['id'])) {
                 $_SESSION['id'] = $_GET['id'];
+                $_SESSION['invoice'] = $_GET['invoice'];
             }
         ?>
 
@@ -30,7 +31,7 @@
                 }
 
                 echo '
-
+                    
                     <form action="edit_user.php" method="post">
                         <table border="2" width="100%">
                             <colgroup>

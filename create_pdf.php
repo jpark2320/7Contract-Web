@@ -29,7 +29,7 @@
 		    $this->Cell(50, 10,'Bill to: '.$apt);
 		    $this->SetFont('Times','',13);
 		    $this->SetXY(145,35);
-		    $this->Cell(50, 10,'Date: '.$_SESSION['date_pdf']);
+		    $this->Cell(50, 10,'Date: '.substr($_SESSION['date_pdf'], 5).'-'.substr($_SESSION['date_pdf'], 0, 4));
 		    $this->Ln();
 		    $this->SetX(137);
 		    $this->Cell(50, 10,'Invoice #: '.$invoice);
@@ -137,4 +137,5 @@
 	unset($_SESSION['pdf_arr']);
 	unset($_SESSION['date_pdf']);
 	$_SESSION['i'] = 0;
+
 ?>

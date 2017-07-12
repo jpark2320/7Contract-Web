@@ -16,10 +16,20 @@
                 // connection with mysql database
                 include('./includes/connection.php');
 
-                // This is for values passed from invoice_detail.php
-                if (isset($_GET['invoice_num'])) {
-                    $i_detail = $_GET['invoice_num'];
+                if (isset($_GET['invoice'])) {
+                    $i_detail = $_GET['invoice'];
                     $_SESSION['invoice'] = str_replace('7C', '', $i_detail);
+                    $invoice = $_SESSION['invoice'];
+                    $sql = "SELECT * FROM save_progress WHERE invoice ='$invoice';";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                            $_SESSION['pdf_arr'][$_SESSION['i_pdf']][0] = $row['description'];
+                            $_SESSION['pdf_arr'][$_SESSION['i_pdf']][1] = $row['quantity'];
+                            $_SESSION['pdf_arr'][$_SESSION['i_pdf']][2] = $row['price'];
+                            $_SESSION['i_pdf']++;
+                        }
+                    }
                 } else {
                     $i_detail = '7C'.$_SESSION['invoice'];
                 }
@@ -28,8 +38,6 @@
                 $apt = $_SESSION['apt_pdf'];
                 $unit = $_SESSION['unit_pdf'];
                 $size = $_SESSION['size_pdf'];
-                // till here
-
                 echo '
                     <table width="800">
                         <colgroup>
@@ -59,8 +67,6 @@
                     </table>
                     <br>
                 ';
-
-                // This comes from edit_pdf when admin wants to edit values on pdf.
                 if (isset($_GET['desc_edited_pdf'])) {
                     $_SESSION['pdf_arr'][$_GET['index_edited_pdf']][0] = $_GET['desc_edited_pdf'];
                 }
@@ -70,9 +76,63 @@
                 if (isset($_GET['price_edited_pdf'])) {
                     $_SESSION['pdf_arr'][$_GET['index_edited_pdf']][2] = $_GET['price_edited_pdf'];
                 }
-                // till here
+                $sql = "SELECT * FROM user_comment WHERE invoice=".$_SESSION['invoice'];
+                $result = mysqli_query($conn, $sql);
+                $isOdd = false;
+                $i = 0;
+                echo '
+                    <table border="3" width="100%">
+                        <colgroup>
+                            <col width="5%">
+                            <col width="10%">
+                            <col width="45%">
+                            <col width="10%">
+                            <col width="10%">
+                            <col width="20%">
+                            <col width="10%">
+                            <col width="10%">
+                        </colgroup>
+                        <thead>
+                            <tr style="border: 2px double black;" bgcolor="#c9c9c9">
+                                <td align="center"><b>#</b></td>
+                                <td align="center"><b>Paid Off</b></td>
+                                <td align="center"><b>Comment</b></td>
+                                <td align="center"><b>Salary</b></td>
+                                <td align="center"><b>Paid</b></td>
+                                <td align="center"><b>Date</b></td>
+                            </tr>
+                        </thead>
+                ';
+                while($row = mysqli_fetch_array($result))
+                {   
+                    $i++;
 
-                // This keep updating contents for description, unit, price for pdf
+                    echo '<tbody>';
+                    if ($isOdd) {
+                        $isOdd = false;
+                        echo '<tr bgcolor="#e8fff1">';
+                    } else {
+                        $isOdd = true;
+                        echo '<tr>';
+                    }
+                    echo '<td align="center">'.$i.'</td>';
+                    if ($row['ispaidoff'] == 1) {
+                        echo '<td align="center"><img src="./img/status_light_green" width="10px"></td>';
+                    } else {
+                        echo '<td align="center"><img src="./img/status_light_red" width="10px"></td>';
+                    }
+                    echo '
+                                <td align="center">'.$row['comment'].'</td>
+                                <td align="center">'.$row['salary'].'</td>
+                                <td align="center">'.$row['paid'].'</td>
+                                <td align="center">'.$row['date'].'</td>
+                            </tr>
+                        </tbody>
+                    ';
+               
+                }
+                echo '</table><br>';
+
                 if ($_POST['description'] !== null) {
                     $_SESSION['description_pdf'] = $_POST['description'];
                     $_SESSION['pdf_arr'][$_SESSION['i_pdf']][0] = $_SESSION['description_pdf'];
@@ -85,14 +145,13 @@
                     $_SESSION['price_pdf'] = $_POST['price'];
                     $_SESSION['pdf_arr'][$_SESSION['i_pdf']][2] = $_SESSION['price_pdf'];
                 }
-                // till here
 
                 if (isset($_POST['submit'])) {
                     $_SESSION['i_pdf']++;
                 }
 
                 echo '
-                    <form action="pdf_info.php" method="POST">
+                    <form action="pdf_info.php" method="post">
                         <table border="2" width="100%">
                             <colgroup>
                                 <col width="70%">
@@ -153,6 +212,7 @@
             ?>
             <br>
             <input type="submit" value="Create PDF"></input>
+            <input type="button" value="Save Progress" onclick="location.href='save_progress.php'"></input>
             <input type="button" value="Back" onclick="location.href='invoice_detail.php'"></input>
             </form>
         </div>

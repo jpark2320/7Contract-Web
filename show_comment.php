@@ -22,17 +22,18 @@
 	                        	$email = $_SESSION['email'];
 	                        }
 	                        $username = $_GET['username'];
-                        }
+                        } 
+                        $invoice = $_SESSION['invoice'];
                         echo '<table width="200" align="center">
                                 <colgroup>
                                     <col width="50%">
                                     <col width="50%">
                                 </colgroup>';
-                        echo ' <tr>
-                            <td><b>Username : </b></td>
-                            <td>'.$username.'</td>
-                        </tr>';
                         if ($_SESSION['isadmin'] > 0) {
+                        	echo ' <tr>
+	                            <td><b>Username : </b></td>
+	                            <td>'.$username.'</td>
+                        	</tr>';
                         	echo ' <tr>
                                     <td><b>Invoice # : </b></td>
                                     <td>'."7C".$_SESSION['invoice'].'</td>
@@ -122,8 +123,8 @@
 	                                        <td align="center">'.$row['salary'].'</td>
 	                                        <td align="center">'.$row['paid'].'</td>
 	                                        <td align="center">'.$row['date'].'</td>
-			                                <td align="center"><button><a href="pedit.php?id='.$row['id'].' &comment='.urlencode($comment).'&username='.$username.'">Edit</a></button></td>
-                                    		<td align="center"><button><a href="pay.php?invoice='.urlencode($i_detail).' &id='.urlencode($id).' &price='.urlencode($price).' &comment='.urlencode($comment). ' &message='.urlencode($message).'&username='.urlencode($user_name).'">Pay</a></button></td>
+			                                <td align="center"><button><a href="pedit.php?id='.$row['id'].' &comment='.urlencode($row['comment']).'&username='.$username.'">Edit</a></button></td>
+                                    		<td align="center"><button><a href="pay.php?id='.$row['id'].'&salary='.$row['salary'].' &comment='.urlencode($row['comment']).'&username='.urlencode($user_name).'&paid='.$row['paid'].'">Pay</a></button></td>
 	                                    </tr>
 	                                </tbody>
 	                            ';
@@ -141,7 +142,7 @@
                     ?>
                 <br>
                 <?php if($_SESSION['isadmin'] > 0): ?>
-                	<input type="button" value="Back" onclick="location.href='invoice_detail.php'"></input>
+                    <input type="button" value="Back" onclick="location.href='invoice_detail.php'"></input>
                 <?php else: ?>
                 	<input type="button" value="Back" onclick="location.href='worksheet.php'"></input>
                 <?php endif ?>

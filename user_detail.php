@@ -19,7 +19,9 @@
 
                     $_SESSION['invoice'] = $_GET['invoice'];
                     $email = $_GET['email'];
+                    $_SESSION['user_email'] = $email;
                     $user_name = $_GET['user_name'];
+                    $_SESSION['user_name'] = $user_name;
                     echo '
                         <table width="300">
                             <colgroup>
@@ -54,8 +56,8 @@
                             <table border="2" width="100%">
                                 <thead>
                                     <tr style="border: 2px double black;" bgcolor="#c9c9c9">
+                                        <td align="center"><b><a href="?orderBy=isworkdone">Work Status</a></b></td>
                                         <td align="center"><b><a href="?orderBy=ispaidoff">Paid off</a></b></td>
-                                        <td align="center"><b><a href="?orderBy=isworkdone">Status</a></b></td>
                                         <td align="center"><b><a href="?orderBy=invoice">Invoice #</a></b></td>
                                         <td align="center"><b><a href="?orderBy=apt">Apt</a></b></td>
                                         <td align="center"><b><a href="?orderBy=unit">Unit</a></b></td>
@@ -98,14 +100,18 @@
                             } else {
                                 echo '<td align="center"><img src="./img/status_light_red" width="10px"></td>';
                             }
+                            if ($row['ispaidoff'] == 1) {
+                                echo '<td align="center"><img src="./img/status_light_green" width="10px"></td>';
+                            } else {
+                                echo '<td align="center"><img src="./img/status_light_red" width="10px"></td>';
+                            }
                             echo '
-                                        <td align="center">'.$row['ispaidoff'].'</td>
-                                        <td align="center">'.$row['invoice'].'</td>
-                                        <td align="center">'.$row['apt'].'</td>
+                                        <td align="center"><a href="invoice_detail?invoice_num='.$row['invoice'].'">'."7C".$row['invoice'].'</a></td>
+                                        <td align="center"><a href="invoice_detail?invoice_num='.$row['apt'].'">'.$row['apt'].'</a></td>
                                         <td align="center">'.$row['unit'].'</td>
                                         <td align="center">'.$row['price'].'</td>
                                         <td align="center">'.$row['message'].'</td>
-                                        <td align="center">'.$row['comment'].'</td>
+                                        <td align="center"><button><a href="show_comment.php?id='.$row['id'].'&email='.$email.'&apt='.$row['apt'].'&unit='.$row['unit'].'&username='.urlencode($user_name).'&from_user=1">Show Comments</a></button></td>
                                         <td align="center">'.$row['date'].'</td>
                                     </tr>
                                 </tbody>
@@ -116,6 +122,7 @@
                 ?>
             </form>
             <br>
+            <input type="button" value="Show All History" onclick="location.href='user_history.php'"></input>
             <input type="button" value="Back" onclick="location.href='invoice_detail.php'"></input>
         </div>
         <br><br><br><br><br>

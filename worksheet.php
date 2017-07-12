@@ -1,11 +1,12 @@
 <?php
     session_start();
     $_SESSION['i_pdf'] = 0;
-    // unset($_SESSION['i_pdf']);
     $_SESSION['i_estm'] = 0;
-    // unset($_SESSION['i_estm']);
+    $_SESSION['i'] = 0;
     unset($_SESSION['unpaid']);
+    unset($_SESSION['arr']);
     unset($_SESSION['estm_arr']);
+    unset($_SESSION['edit_arr']);
     unset($_SESSION['pdf_arr']);
 ?>
 <!DOCTYPE html>
@@ -33,23 +34,15 @@
                 include('./includes/connection.php');
 
                 if ($_SESSION['isadmin'] > 0) {
-                    echo '
-                        <div align="left" style="float: left;">
-                    ';
+                    echo '<div align="right"><button><a href="view_estimate.php">View Estimate</a></button>
+                    <button><a href="estimate_info.php">Make Estimate</a></button>
+                    <button><a href="worksheet_add.php">Add to Worksheet</a></button></div>';
+
                     include('./includes/sort.php');
 
-                    echo '
-                        </div>
-                        <div align="right">
-                            <button><a href="estimate_info.php">Make Estimate</a></button>
-                            <button><a href="worksheet_add.php">Add to Worksheet</a></button>
-                    ';
                     if ($_SESSION['isadmin'] == 2) {
-                        echo '<a href="price_detail.php">Show details</a>';
+                        echo '<div align="right"><a href="price_detail.php">Show details</a></div>';
                     }
-                    echo '
-                        </div>
-                    ';
 
                     echo '
                         <table border="3" width="100%">
@@ -77,9 +70,9 @@
                         $order = $_GET['orderBy'];
                     }
                     $sql = 'SELECT * FROM Worksheet ';
-                    if (isset($_POST['year']) && isset($_POST['month'])) {
+                    if (strlen($_POST['year'])>0 && strlen($_POST['month'])>0) {
                         $sql .= "WHERE YEAR(date)=".$_POST['year']." AND MONTH(date)=".$_POST['month']." ";
-                    } else if (isset($_POST['year'])){
+                    } else if (strlen($_POST['year'])>0){
                         $sql .= "WHERE YEAR(date)=".$_POST['year']." ";
                     }
                     $sql .= 'ORDER BY '.$order;
@@ -118,12 +111,12 @@
                                     <td align="center"><a href="invoice_detail.php?invoice_num='.$temp_invoice.'">'.$temp_invoice.'</a></td>
                                     <td align="center">'.$row['PO'].'</td>
                                     <td align="center"><a href="worksheet_company.php?company='.$temp_company.'">'.$temp_company.'</a></td>
-                                    <td align="center"><a href="worksheet_apt.php?apt='.$temp_apt.'">'.$temp_apt.'</a></td>
+                                    <td align="center"><a href="worksheet_apt.php?apt='.$temp_apt.'&company='.$row['company'].'">'.$temp_apt.'</a></td>
                                     <td align="center"><a href="worksheet_manager.php?manager='.$temp_manager.'">'.$temp_manager.'</a></td>
                                     <td align="center">'.$temp_unit.'</td>
                                     <td align="center">'.$row['size'].'</td>
                                     <td align="center">'.$row['price'].'</td>
-                                    <td align="center">'.$row['description'].'</td>
+                                    <td align="center"><a href="worksheet_description.php?invoice='.$row['invoice'].'&apt='.$row['apt'].'&unit='.$row['unit'].'&size='.$row['size'].'">'.$row['description'].'</a></td>
                                     <td align="center">'.$row['date'].'</td>
                                     <td align="center">
                                         <button><a href="assign.php?invoice_num='.$temp_invoice.' &apt='.$temp_apt.' &unit_num='.$temp_unit.'">Send</a></button>
@@ -147,13 +140,13 @@
                                     <td align="center"><b><a href="?orderBy=unit">Unit #</a></b></td>
                                     <td align="center"><b>Message</b></td>
                                     <td align="center"><b><a href="?orderBy=date">Date</a></b></td>
-                                    <td align="center"><b>Edit</b></td>
+                                    <td align="center"><b>Comment</b></td>
                                     <td align="center"><b>Process</b></td>
                                 </tr>
                             </thead>
                     ';
 
-                    $orderBy = array('apt', 'unit', 'date', 'isworkdon');
+                    $orderBy = array('apt', 'unit', 'date', 'isworkdone');
                     $order = 'date';
                     if (isset($_GET['orderBy']) && in_array($_GET['orderBy'], $orderBy)) {
                         $order = $_GET['orderBy'];
@@ -190,10 +183,8 @@
                                     <td align="center">'.$row['apt'].'</td>
                                     <td align="center">'.$row['unit'].'</td>
                                     <td align="center">'.$row['message'].'</td>
-                                    <td align="center">'.$row['comment'].'</td>
                                     <td align="center">'.$row['date'].'</td>
-                                    <td align="center"><button><a href="edit_user.php?invoice_num='.$temp.'">Edit</a></button></td>
-                                    <td align="center"><button><a href="show_comment.php?id='.$id.'&apt='.$row['apt'].'&unit='.$row['unit'].'">Show</a></button><button><a href="edit_user.php?id='.$id.'">Add</a></button></td>
+                                    <td align="center"><button><a href="show_comment.php?id='.$id.'&apt='.$row['apt'].'&unit='.$row['unit'].'">Show</a></button><button><a href="edit_user.php?id='.$id.'&invoice='.$row['invoice'].'">Add</a></button></td>
                                     <td align="center"><button><a href="workdone_process.php?invoice_num='.urlencode($temp).' &email_user='.urlencode($temp2).' &id='.urlencode($id).'">Work Done</a></button></td>
                                 </tr>
                             </tbody>';

@@ -1,13 +1,44 @@
 <?php
 	session_start();
+	date_default_timezone_set('Etc/UTC');
+	include('./includes/connection.php');
 	require('./FPDF/fpdf.php');
-
+	$company = $_POST['company'];
 	$apt = $_POST['apt'];
 	$unit = $_POST['unit'];
 	$size = $_POST['size'];
 	$date = $_POST['date'];
 	$arr = $_SESSION['estm_arr'];
-
+	$sql = "INSERT INTO estimate VALUES (null, '$company', '$apt', '$unit', '$size', 0, null, '$date')";
+    $conn->query($sql);
+    $sql = "SELECT MAX(id) FROM estimate";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result);
+    $maxid = $row['MAX(id)'];
+    // echo "<script>alert(\"".$maxid."\");</script>;";
+    $total = 0;
+    // print_r($arr);
+    for ($i = 0; $i < count($arr); $i++) {
+    	// $s = str_replace("\"", "'", $arr[$i][0]);
+    	$desc = str_replace("\"", "'", $arr[$i][0]);
+    	if (!empty($arr[$i][1])) {
+    		$qty = $arr[$i][1];
+    	} else {
+    		$qty = 0;
+    	}
+    	if (!empty($arr[$i][2])) {
+    		$price = $arr[$i][2];
+    	} else {
+    		$price = 0;
+    	}
+    	$sql = "INSERT INTO estimate_description VALUES (null, '$maxid', '$qty', '$price', \"".$desc."\")";
+    	// echo "<script>alert(\"".$price."\");</script>;";
+    	$conn->query($sql);
+    	$total += $price;
+    }
+    $sql = "UPDATE estimate SET price='$total', description=\"".$arr[0][0]."\" WHERE id='$maxid'";
+    $conn->query($sql);
+    $conn->close();
 	class PDF extends FPDF
 	{
 		function Header()
@@ -23,7 +54,7 @@
 		    $this->Cell(50, 10,'Bill to: '.$apt);
 		    $this->SetFont('Times','',13);
 		    $this->SetXY(145,35);
-		    $this->Cell(50, 10,'Date: '.$date);
+		    $this->Cell(50, 10,'Date: '.substr($date, 5).'-'.substr($date, 0, 4));
 		    $this->SetXY(3, 42);
 		    $this->SetFont('Times','',11);
 		    $this->Cell(50, 6,'2891 Cardinal Lake Dr. Duluth GA 30096');

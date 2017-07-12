@@ -14,9 +14,9 @@
 
             // This is for values from deleting in estimate_info.php
             if (isset($_GET['index_deleted'])) {
-                echo '<script>window.location.href="estimate_info.php";</script>';
-                array_splice($_SESSION['estm_arr'], $_GET['index_deleted'], 1);
-                $_SESSION['i_estm']--;
+                echo '<script>window.location.href="estimate_edit.php";</script>';
+                array_splice($_SESSION['edit_arr'], $_GET['index_deleted'], 1);
+                $_SESSION['i']--;
                 exit();
             }
 
@@ -37,9 +37,9 @@
 
         <!-- Body -->
         <div class="primary" align="center">
-            <h3 class="text-center">Edit PDF Information</h3><br>
+            <h3 class="text-center">Edit Estimate Information</h3><br>
 
-            <form action="estimate_info.php" method="GET">
+            <form action="estimate_edit.php" method="GET">
 
                 <table width="400">
                     <colgroup>
@@ -65,7 +65,7 @@
                 </table>
                 <br>
                 <input type="submit" value="Edit">
-                <input type="button" value="Back" onclick="location.href='estimate_info.php'">
+                <input type="button" value="Back" onclick="location.href='estimate_edit.php'">
             </form>
         </div>
 

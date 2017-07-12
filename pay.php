@@ -11,37 +11,21 @@
         <?php
             // connection with mysql database
             include('./includes/connection.php');
-            unset($_SESSION['invoice']);
-            unset($_SESSION['username']);
-            unset($_SESSION['id']);
-            unset($_SESSION['message']);
-            unset($_SESSION['comment']);
-            unset($_SESSION['price']);
-            if (isset($_GET['invoice'])) {
-                $_SESSION['invoice'] = $_GET['invoice'];
-                $_SESSION['username'] = $_GET['username'];
+            if (isset($_GET['id'])) {
                 $_SESSION['id'] = $_GET['id'];
-                $_SESSION['message'] = $_GET['message'];
-                $_SESSION['comment'] = $_GET['comment'];
-                $_SESSION['price'] = $_GET['price'];
+                $_SESSION['paid'] = $_GET['paid'];
+                $_SESSION['salary'] = $_GET['salary'];
             } else {
                  echo '<script>alert("Something is not valid.");</script>';
                  echo '<script>window.location.href="worksheet.php";</script>';
                  exit();
             }
-            $sql = "SELECT * FROM subworksheet WHERE id=".$_SESSION['id'].";";
-            $result = $conn->query($sql);
-	        if ($result->num_rows > 0) {
-	            while($row = $result->fetch_assoc()) {
-	            	$_SESSION['paid'] = $row['paid'];
-	                $_SESSION['remaining'] = $_SESSION['price'] - $row['paid'];
-	            }
-	        }
+            $remaining = $_GET['salary'] - $_GET['paid'];
         ?>
 
         <!-- Body -->
-        <div class="container">
-            <h3 class="text-center">Edit</h3><br>
+        <div class="primary" align="center">
+            <h3 class="text-center">Pay</h3><br>
 
             <div class="row" align="center">
                 <form action="pay_process.php" method="POST">
@@ -53,23 +37,19 @@
                         </colgroup>
                             <tr>
                                 <td><label>Name</label></td>
-                                <td><?php echo $_SESSION['username']?></td>
-                            </tr>
-                            <tr>
-                                <td><label>Message</label></td>
-                                <td><?php echo $_SESSION['message']?></td>
+                                <td><?php echo $_GET['username']?></td>
                             </tr>
                             <tr>
                                 <td><label>Comment</label></td>
-                                <td><?php echo $_SESSION['comment']?></td>
+                                <td><?php echo $_GET['comment']?></td>
                             </tr>
                             <tr>
                                 <td><label>Salary</label></td>
-                                <td><?php echo "$ ".$_SESSION['price']?></td>
+                                <td><?php echo "$ ".$_GET['salary']?></td>
                             </tr>
                             <tr>
                                 <td><label>Remaining Balance</label></td>
-                                <td><?php echo "$ ".number_format((float)$_SESSION['remaining'], 2, '.', '')?></td>
+                                <td><?php echo "$ ".number_format((float)$remaining, 2, '.', '')?></td>
                             </tr>
                             <tr>
                                 <td><label>Pay Amount</label></td>

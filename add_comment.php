@@ -9,10 +9,12 @@
         exit();
     }
     $id = $_SESSION['id'];
+    $invoice = $_SESSION['invoice'];
     $email = $_SESSION['email'];
     $arr = $_SESSION['arr'];
-    for ($i = 0; $i < count($_SESSION['arr']); $i++) {
-    	$sql = "INSERT INTO user_comment VALUES (null, '$id', '$email', 0, 0, '$arr[$i]', NOW(), 0)";
+    for ($i = 0; $i < sizeof($_SESSION['arr']); $i++) {
+    	$s = str_replace("\"", "'", $arr[$i]);
+    	$sql = "INSERT INTO user_comment VALUES (null, '$invoice', '$id', '$email', 0, 0, \"".$s."\", NOW(), 0)";
     	$conn->query($sql);
     }
     $conn->close();

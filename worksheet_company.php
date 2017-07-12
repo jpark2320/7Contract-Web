@@ -69,15 +69,15 @@
                         </thead>
                 ';
 
-                $orderBy = array('invoice', 'po', 'apt', 'unit', 'size', 'price', 'date', 'isworkdone');
+                $orderBy = array('invoice', 'po', 'apt', 'unit', 'size', 'price', 'salary','date', 'isworkdone');
                 $order = 'date';
                 if (isset($_GET['orderBy']) && in_array($_GET['orderBy'], $orderBy)) {
                     $order = $_GET['orderBy'];
                 }
                 $sql = "SELECT * FROM Worksheet WHERE company=\"".$company."\" ";
-                if (isset($_POST['year']) && isset($_POST['month'])) {
+                if (strlen($_POST['year'])>0 && strlen($_POST['month'])>0) {
                     $sql .= "AND YEAR(date)=".$_POST['year']." AND MONTH(date)=".$_POST['month']." ";
-                } else if (isset($_POST['year'])){
+                } else if (strlen($_POST['year'])>0){
                     $sql .= "AND YEAR(date)=".$_POST['year']." ";
                 }
                 $sql .= 'ORDER BY '.$order;
@@ -109,7 +109,7 @@
                     echo '
                                 <td align="center"><a href="invoice_detail.php?invoice_num='.$temp_invoice.'">'.$temp_invoice.'</a></td>
                                 <td align="center">'.$row['PO'].'</td>
-                                <td align="center"><a href="worksheet_apt.php?apt='.$temp_apt.'">'.$temp_apt.'</a></td>
+                                <td align="center"><a href="worksheet_apt.php?apt='.$temp_apt.'&company='.$row['company'].'">'.$temp_apt.'</a></td>
                                 <td align="center"><a href="worksheet_manager.php?manager='.$temp_manager.'">'.$temp_manager.'</a></td>
                                 <td align="center">'.$temp_unit.'</td>
                                 <td align="center">'.$row['size'].'</td>
@@ -122,7 +122,7 @@
                         ';
                     }
                     echo '
-                                <td align="center">'.$row['description'].'</td>
+                                <td align="center"><a href="worksheet_description.php?invoice='.$row['invoice'].'&apt='.$row['apt'].'&unit='.$row['unit'].'&size='.$row['size'].'&from_company=1">'.$row['description'].'</a></td>
                                 <td align="center">'.$row['date'].'</td>
                             </tr>
                         </tbody>

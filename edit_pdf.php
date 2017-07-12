@@ -12,18 +12,17 @@
             // connection with mysql database
             include('./includes/connection.php');
 
-            // This is for values from deleting in pdf_info.php
             if (isset($_GET['index_deleted'])) {
                 echo '<script>window.location.href="pdf_info.php";</script>';
                 array_splice($_SESSION['pdf_arr'], $_GET['index_deleted'], 1);
                 $_SESSION['i_pdf']--;
                 exit();
             }
-
-            // This is for values passed from editing in pdf_info.php
             if (isset($_GET['description'])) {
                 $description = $_GET['description'];
+
             }
+
             if (isset($_GET['qty'])) {
                 $qty = $_GET['qty'];
             }
@@ -47,21 +46,21 @@
                         <col width="50%">
                     </colgroup>
                     <tr>
-                        <td><label>Description</label></td>
-                        <td><input type="text" name="desc_edited_pdf" maxlength="36" size="30" value="<?php echo isset($description) ? $description : '' ?>"></td>
-                    </tr>
-                    <tr>
-                        <td><label>Qty</label></td>
-                        <td><input type="text" name="qty_edited_pdf" maxlength="36" size="30" value="<?php echo isset($qty) ? $qty : '' ?>"></td>
-                    </tr>
-                    <tr>
-                        <td><label>Price</label></td>
-                        <td><input type="text" name="price_edited_pdf" maxlength="36" size="30" value="<?php echo isset($price) ? $price : '' ?>"></td>
-                    </tr>
-                    <tr hidden>
-                        <td><label>Index</label></td>
-                        <td><input type="text" name="index_edited_pdf" value="<?php echo $index ?>"></td>
-                    </tr>
+                         <td><label>Description</label></td>
+                         <td><input type="text" name="desc_edited_pdf" maxlength="36" size="30" value="<?php echo isset($description) ? $description : '' ?>"></td>
+                     </tr>
+                     <tr>
+                         <td><label>Qty</label></td>
+                         <td><input type="text" name="qty_edited_pdf" maxlength="36" size="30" value="<?php echo isset($qty) ? $qty : '' ?>"></td>
+                     </tr>
+                     <tr>
+                         <td><label>Price</label></td>
+                         <td><input type="text" name="price_edited_pdf" maxlength="36" size="30" value="<?php echo isset($price) ? $price : '' ?>"></td>
+                     </tr>
+                     <tr hidden>
+                         <td><label>Index</label></td>
+                         <td><input type="text" name="index_edited_pdf" value="<?php echo $index ?>"></td>
+                     </tr>
                 </table>
                 <br>
                 <input type="submit" value="Edit">

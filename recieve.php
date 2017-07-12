@@ -37,8 +37,8 @@
         ?>
 
         <!-- Body -->
-        <div class="container">
-            <h3 class="text-center">Edit</h3><br>
+        <div class="primary" align="center">
+            <h3 class="text-center">Recieve</h3><br>
 
             <div class="row" align="center">
                 <form action="recieve_process.php" method="POST">

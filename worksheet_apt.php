@@ -29,6 +29,7 @@
                     $apt = $_SESSION['apt'];
                     $_SESSION['apt'] = $apt;
                 }
+                $company = $_GET['company'];
                 echo '<div align="center"><b>Apt : '.$apt.'</b></div>';
 
                 if (!isset($_SESSION['sort'])) {
@@ -75,13 +76,13 @@
                 if (isset($_GET['orderBy']) && in_array($_GET['orderBy'], $orderBy)) {
                     $order = $_GET['orderBy'];
                 }
-                $sql = "SELECT * FROM Worksheet WHERE apt=\"".$apt."\" ";
+                $sql = "SELECT * FROM Worksheet WHERE apt=\"".$apt."\" AND company=\"".$company."\"";
                 if ($_SESSION['unpaid']) {
                     $sql .= 'AND ispaidoff=0 ';
                 }
-                if (isset($_POST['year']) && isset($_POST['month'])) {
+                if (strlen($_POST['year'])>0 && strlen($_POST['month'])>0) {
                     $sql .= "AND YEAR(date)=".$_POST['year']." AND MONTH(date)=".$_POST['month']." ";
-                } else if (isset($_POST['year'])){
+                } else if (strlen($_POST['year'])>0){
                     $sql .= "AND YEAR(date)=".$_POST['year']." ";
                 }
                 $sql .= 'ORDER BY '.$order;
@@ -137,7 +138,7 @@
                                     <td align="center">'.$row['price'].'</td>
                                     <td align="center">'.$row['salary'].'</td>
                                     <td align="center">'.$row['profit'].'</td>
-                                    <td align="center">'.$row['description'].'</td>
+                                    <td align="center"><a href="worksheet_description.php?invoice='.$row['invoice'].'&apt='.$row['apt'].'&unit='.$row['unit'].'&size='.$row['size'].'&from_apt=1">'.$row['description'].'</a></td>
                                     <td align="center">'.$row['date'].'</td>
                                 </tr>
                             </tbody>
