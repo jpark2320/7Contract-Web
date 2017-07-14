@@ -32,7 +32,16 @@
                 $totalpaid += $row['paid'];
             }
         }
-        $sql = "UPDATE subworksheet SET paid='$totalpaid' WHERE id='$sub_id'";
+        $sql = "SELECT price FROM subworksheet WHERE id='$sub_id'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_array($result);
+        $salary = $row['price'];
+        if ($totalpaid >= $salary) {
+            $paidoff = 1;
+        } else {
+            $paidoff = 0;
+        }
+        $sql = "UPDATE subworksheet SET paid='$totalpaid', ispaidoff=".$paidoff." WHERE id='$sub_id'";
         $conn->query($sql);
     }
 
