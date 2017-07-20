@@ -13,7 +13,7 @@
             <h1>Contact</h1>
             <p><em>Ask us if you have any question!</em></p>
 
-            <form action="send_email.php" method="post">
+            <form action="contact_process.php" method="post">
                 <table align="center">
                     <colgroup>
                         <col align="left" width="32%">

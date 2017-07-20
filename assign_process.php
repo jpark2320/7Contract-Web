@@ -22,8 +22,8 @@
     $mail->SMTPAuth = true;
     $mail->Username = "7contractor@gmail.com";
     $mail->Password = "7contract.com";
-    $mail->setFrom('7contractor@gmail.com', '7 Contract');
-    $mail->addReplyTo('7contractor@gmail.com', '7 Contract');
+    $mail->setFrom('sevencontract1@gmail.com', 'Seven Contract');
+    $mail->addReplyTo('sevencontract1@gmail.com', 'Seven Contract');
 
     for ($i = 0; $i < sizeof($arr); $i++) {
         $worker = split("\*", $arr[$i]);
@@ -35,6 +35,7 @@
 
         echo $worker[0]." AND ". $worker[1];
     }
+    $mail->addAddress("leepogii@gmail.com", "MINO Lee");
     $sql = "UPDATE worksheet SET isworkdone=1 WHERE invoice=".$i_num.";";
     $conn->query($sql);
     unset($_SESSION['i_num']);
@@ -43,7 +44,7 @@
 
     $mail->Subject = '[7 Contract] Work Request for Apt:'.$a_num.' Unit:'.$u_num.'.';
     $contact = "\n\n\n\n".'Seven Contract LLC.'."\n"."sevencontract1@gmail.com"."\n"."(678)727-3371";
-    $mail->Body = $message;
+    $mail->Body = $message.$contact;
     if (!$mail->send()) {
         echo "Mailer Error: " . $mail->ErrorInfo;
     } else {

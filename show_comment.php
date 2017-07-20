@@ -21,9 +21,15 @@
 	                        } else {
 	                        	$email = $_SESSION['email'];
 	                        }
-	                        $username = $_GET['username'];
-                        } 
-                        $invoice = $_SESSION['invoice'];
+							if (isset($_GET['username'])) {
+								$username = $_GET['username'];
+							}
+                        }
+						
+						if (isset($_SESSION['invoice'])) {
+							$invoice = $_SESSION['invoice'];
+						}
+                        
                         echo '<table width="200" align="center">
                                 <colgroup>
                                     <col width="50%">
@@ -124,7 +130,11 @@
 	                                        <td align="center">'.$row['paid'].'</td>
 	                                        <td align="center">'.$row['date'].'</td>
 			                                <td align="center"><button><a href="pedit.php?id='.$row['id'].' &comment='.urlencode($row['comment']).'&username='.$username.'">Edit</a></button></td>
-                                    		<td align="center"><button><a href="pay.php?id='.$row['id'].'&salary='.$row['salary'].' &comment='.urlencode($row['comment']).'&username='.urlencode($user_name).'&paid='.$row['paid'].'">Pay</a></button></td>
+                                ';    		
+								if(isset($user_name)) {
+									echo '<td align="center"><button><a href="pay.php?id='.$row['id'].'&salary='.$row['salary'].' &comment='.urlencode($row['comment']).'&username='.urlencode($user_name).'&paid='.$row['paid'].'">Pay</a></button></td>';
+								}
+								echo '
 	                                    </tr>
 	                                </tbody>
 	                            ';

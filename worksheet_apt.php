@@ -40,11 +40,14 @@
                 } else {
                     echo '<div align="left" style="float: left;"><h><a href="?st=asc">Show ascending order</a></h></div>';
                 }
-                if ($_SESSION['unpaid']) {
-                    echo '<div align="right"><a href="?unpaid=0">Show All</a></div>';
-                } else {
-                    echo '<div align="right"><a href="?unpaid=1">Show Unpaid</a></div>';
-                }
+				if (isset($_SESSION['unpaid'])) {
+					if ($_SESSION['unpaid']) {
+						echo '<div align="right"><a href="?unpaid=0">Show All</a></div>';
+					} else {
+						echo '<div align="right"><a href="?unpaid=1">Show Unpaid</a></div>';
+					}
+				}
+                
                 if (isset($_GET['st'])) {
                     $_SESSION['sort'] = $_GET['st'];
                     echo '<script>window.location.href = "worksheet_apt.php";</script>';
@@ -77,14 +80,20 @@
                     $order = $_GET['orderBy'];
                 }
                 $sql = "SELECT * FROM Worksheet WHERE apt=\"".$apt."\" AND company=\"".$company."\"";
-                if ($_SESSION['unpaid']) {
-                    $sql .= 'AND ispaidoff=0 ';
-                }
-                if (strlen($_POST['year'])>0 && strlen($_POST['month'])>0) {
-                    $sql .= "AND YEAR(date)=".$_POST['year']." AND MONTH(date)=".$_POST['month']." ";
-                } else if (strlen($_POST['year'])>0){
-                    $sql .= "AND YEAR(date)=".$_POST['year']." ";
-                }
+				if (isset($_SESSION['unpaid'])) {
+					if ($_SESSION['unpaid']) {
+						$sql .= 'AND ispaidoff=0 ';
+					}
+				}
+                
+				if (isset($_POST['year']) && isset($_POST['month'])) {
+					if (strlen($_POST['year'])>0 && strlen($_POST['month'])>0) {
+						$sql .= "AND YEAR(date)=".$_POST['year']." AND MONTH(date)=".$_POST['month']." ";
+					} else if (strlen($_POST['year'])>0){
+						$sql .= "AND YEAR(date)=".$_POST['year']." ";
+					}
+				}
+                
                 $sql .= 'ORDER BY '.$order;
                 if (isset($_GET['unpaid'])) {
                     $_SESSION['unpaid'] = $_GET['unpaid'];
@@ -107,13 +116,15 @@
                     $temp_unit = $row['unit'];
 
                     echo '<tbody>';
-                    if ($isOdd) {
-                        $isOdd = false;
-                        echo '<tr bgcolor="#e8fff1">';
-                    } else {
-                        $isOdd = true;
-                        echo '<tr>';
-                    }
+					if (isset($isOdd)) {
+						if ($isOdd) {
+							$isOdd = false;
+							echo '<tr bgcolor="#e8fff1">';
+						} else {
+							$isOdd = true;
+							echo '<tr>';
+						}
+					}
 
                     echo '
                         <form action="outstanding_pdf.php" method="post">

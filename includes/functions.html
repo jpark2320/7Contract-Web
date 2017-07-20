@@ -14,6 +14,13 @@
         });
     });
 
+    // On mobile screen, it helpes show navigation bar when the button is clicked
+    $(document).ready(function() {
+        $('#menu_icon').on('click', function() {
+            $('.header nav ul').toggleClass('show');
+        });
+    });
+
     // When admin wansts to edit price a user's salary in invoice_detail.php
     function editPrice() {
         document.getElementById("edit_price").innerHTML = "";
@@ -35,10 +42,8 @@
 
     // Get formatted date YYYY-MM-DD
     function getFormattedDate(date) {
-        return date.getFullYear()
-            + "-"
-            + ("0" + (date.getMonth() + 1)).slice(-2)
-            + "-"
+        return date.getFullYear() + "-"
+            + ("0" + (date.getMonth() + 1)).slice(-2) + "-"
             + ("0" + date.getDate()).slice(-2);
     }
 </script>

@@ -75,11 +75,14 @@
                     $order = $_GET['orderBy'];
                 }
                 $sql = "SELECT * FROM Worksheet WHERE manager=\"".$manager."\" ";
-                if (strlen($_POST['year'])>0 && strlen($_POST['month'])>0) {
-                    $sql .= "AND YEAR(date)=".$_POST['year']." AND MONTH(date)=".$_POST['month']." ";
-                } else if (strlen($_POST['year'])>0){
-                    $sql .= "AND YEAR(date)=".$_POST['year']." ";
-                }
+				if (isset($_POST['year']) && isset($_POST['month'])) {
+					if (strlen($_POST['year'])>0 && strlen($_POST['month'])>0) {
+						$sql .= "AND YEAR(date)=".$_POST['year']." AND MONTH(date)=".$_POST['month']." ";
+					} else if (strlen($_POST['year'])>0){
+						$sql .= "AND YEAR(date)=".$_POST['year']." ";
+					}
+				}
+                
                 $sql .= 'ORDER BY '.$order;
                 if ($_SESSION['sort']=='desc') {
                     $sql = $sql.' DESC';

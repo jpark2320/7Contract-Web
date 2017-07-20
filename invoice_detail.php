@@ -1,4 +1,4 @@
-<?php 
+<?php
     session_start();
     $_SESSION['i_pdf'] = 0;
     $_SESSION['i_estm'] = 0;
@@ -7,7 +7,7 @@
     unset($_SESSION['arr']);
     unset($_SESSION['estm_arr']);
     unset($_SESSION['edit_arr']);
-    unset($_SESSION['pdf_arr']); 
+    unset($_SESSION['pdf_arr']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +45,7 @@
                         date_default_timezone_set('Etc/UTC');
                         $_SESSION['date_pdf'] = date("Y-m-d");
 
-                        
+
                         echo '
                             <table width="200" align="center">
                                 <colgroup>
@@ -173,7 +173,9 @@
                 </form>
                 <br>
                 <?php
-                    echo '<button><a href="pdf_info.php?invoice='.urlencode($i_detail).' &po='.urlencode($po).' &company='.urlencode($company).' &apt='.urlencode($apt).' &unit='.urlencode($unit). ' &size='.urlencode($size).'">Make PDF</a></button>';
+                    if (isset($_SESSION['po_pdf']) && isset($_SESSION['company_pdf']) && isset($_SESSION['apt_pdf']) && isset($_SESSION['unit_pdf']) && isset($_SESSION['size_pdf'])) {
+                        echo '<button><a href="pdf_info.php?invoice='.urlencode($i_detail).' &po='.$_SESSION['po_pdf'].' &company='.$_SESSION['company_pdf'].' &apt='.$_SESSION['apt_pdf'].' &unit='.$_SESSION['unit_pdf']. ' &size='.$_SESSION['size_pdf'].'">Make PDF</a></button>';
+                    }
                 ?>
                 <input type="button" value="Back" onclick="location.href='worksheet.php'"></input>
         </div>

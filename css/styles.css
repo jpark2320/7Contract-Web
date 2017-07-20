@@ -2,7 +2,6 @@
     body {
         margin: 0;
         padding: 0;
-        width: 100%
     }
     table {
         color: #333;
@@ -15,7 +14,6 @@
     }
     a {
         text-decoration: none;
-        color: black;
     }
     .header {
         background-color: #3a3a3a;
@@ -26,6 +24,9 @@
         top: 0;
         font-family: 'Montserrat';
         z-index: 100;
+    }
+    .header a {
+        color: #ffffff;
     }
     .header h1 {
         margin-top: 1%;
@@ -63,6 +64,9 @@
         padding: 5% 10%;
         color: black;
         text-decoration: none;
+    }
+    .primary a {
+        color: black;
     }
     section {
         width: 50%;
@@ -126,40 +130,54 @@
         body {
             margin: 0;
             padding: 0;
-            width: 100%;
-            max-width: 740px;
-            /*width: 740px;*/
-            font-size: 1%;
+            max-width: 100%;
+        }
+        .header {
+            margin: 0;
+            padding: 0;
+            border: 0;
         }
         .header h1 {
-            margin-top: 4%;
+            margin-top: 3%;
+            margin-left: 3.5%;
             font-size: 20px;
         }
         #menu_icon {
+            margin-top: 4%;
+            margin-right: 5%;
             display: block;
         }
+        #menu_icon img {
+            width: 20px;
+            height: 20px;
+        }
         .header nav ul {
-            overflow: hidden;
-            height: 0;
+            border: 0;
+            width: 100%;
+            visibility: hidden;
         }
-        .header nav a {
-            float: right;
-            padding: 20px 20px;
-        }
-        .header nav :active {
-            height: auto;
-        }
-        .header nav ul.open {
-            height: auto;
+        .header nav ul.show {
+            max-height: 20em;
         }
         .header nav ul li {
-            float: none;
+            margin: 0;
+            box-sizing: border-box;
+            background-color: #515151;
+            width: 100%;
+            text-align: center;
+            color: #ffffff;
+        }
+        .header nav ul li a {
+            font-size: 10px;
+        }
+        .header nav ul li a:hover:before {
+            visibility: visible;
         }
         .footer {
-            font-size: 10px;;
+            font-size: 10px;
         }
         #doc {
-            margin-top: 20%;
+            margin-top: 15%;
             margin-left: 3%;
         }
     }

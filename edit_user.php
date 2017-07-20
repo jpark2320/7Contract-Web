@@ -23,9 +23,11 @@
             <h3 class="text-center">Add Comments!</h3><br>
 
             <?php
-                if ($_POST['comment'] !== null) {
-                    $_SESSION['arr'][$_SESSION['i']] = $_POST['comment'];
-                }
+				if (isset($_POST['comment'])) {
+					if ($_POST['comment'] !== null) {
+						$_SESSION['arr'][$_SESSION['i']] = $_POST['comment'];
+					}
+				}          
                 if (isset($_POST['submit'])) {
                     $_SESSION['i']++;
                 }
@@ -48,11 +50,13 @@
                                 <tr>
                                     <td><input type="text" name="comment" placeholder="Add comment here.." size="165" required></td>
                 ';
-                for ($i = 0; $i < sizeof($_SESSION['arr']); $i++) {
-                    if ($_SESSION['arr'][$i] !== null) {
-                        echo '<tr bgcolor="#c4daff"><td>'.$_SESSION['arr'][$i].'</td>';
-                    }
-                }
+				if (isset($_SESSION['arr'])) {
+					for ($i = 0; $i < sizeof($_SESSION['arr']); $i++) {
+						if ($_SESSION['arr'][$i] !== null) {
+							echo '<tr bgcolor="#c4daff"><td>'.$_SESSION['arr'][$i].'</td>';
+						}
+					}
+				}
 
                 echo '
                                 </tr>

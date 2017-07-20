@@ -33,11 +33,14 @@
                     } else {
                         echo '<div align="left" style="float: left;"><h><a href="?st=asc">Show ascending order</a></h></div>';
                     }
-                    if ($_SESSION['unpaid']) {
-                        echo '<div align="right"><a href="?unpaid=0">Show All</a></div>';
-                    } else {
-                        echo '<div align="right"><a href="?unpaid=1">Show Unpaid</a></div>';
-                    }
+					if (isset($_SESSION['unpaid'])) {
+						if ($_SESSION['unpaid']) {
+							echo '<div align="right"><a href="?unpaid=0">Show All</a></div>';
+						} else {
+							echo '<div align="right"><a href="?unpaid=1">Show Unpaid</a></div>';
+						}
+					}
+                    
                     if (isset($_GET['st'])) {
                         $_SESSION['sort'] = $_GET['st'];
                         echo '<script>window.location.href = "price_detail.php";</script>';
@@ -73,20 +76,23 @@
                         $order = $_GET['orderBy'];
                     }
                     $sql = 'SELECT * FROM Worksheet ';
-                    if ($_SESSION['unpaid']) {
-                        $sql .= 'WHERE ispaidoff=0 ';
-                        if (isset($_POST['year']) && isset($_POST['month'])) {
-                            $sql .= "AND YEAR(date)=".$_POST['year']." AND MONTH(date)=".$_POST['month']." ";
-                        } else if (isset($_POST['year'])){
-                            $sql .= "AND YEAR(date)=".$_POST['year']." ";
-                        }
-                    } else {
-                        if (isset($_POST['year']) && isset($_POST['month'])) {
-                            $sql .= "WHERE YEAR(date)=".$_POST['year']." AND MONTH(date)=".$_POST['month']." ";
-                        } else if (isset($_POST['year'])){
-                            $sql .= "WHERE YEAR(date)=".$_POST['year']." ";
-                        }
-                    }
+					if (isset($_SESSION['unpaid'])) {
+						if ($_SESSION['unpaid']) {
+							$sql .= 'WHERE ispaidoff=0 ';
+							if (isset($_POST['year']) && isset($_POST['month'])) {
+								$sql .= "AND YEAR(date)=".$_POST['year']." AND MONTH(date)=".$_POST['month']." ";
+							} else if (isset($_POST['year'])){
+								$sql .= "AND YEAR(date)=".$_POST['year']." ";
+							}
+						} else {
+							if (isset($_POST['year']) && isset($_POST['month'])) {
+								$sql .= "WHERE YEAR(date)=".$_POST['year']." AND MONTH(date)=".$_POST['month']." ";
+							} else if (isset($_POST['year'])){
+								$sql .= "WHERE YEAR(date)=".$_POST['year']." ";
+							}
+						}
+					}
+                    
                     $sql .= 'ORDER BY '.$order;
                     if ($_SESSION['sort']=='desc') {
                         $sql = $sql.' DESC';

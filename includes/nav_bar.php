@@ -1,8 +1,10 @@
 <!-- Header -->
 <div class="header">
-    <h1>SEVEN <span>CONTRACT</span> LLC.</h1>
+    <h1><a href="index.php">SEVEN <span>CONTRACT</span> LLC.</a></h1>
     <nav>
-        <a href="" id="menu_icon"><img src="img/menu_button.png" width="20px" height="20px"></a>
+        <div align="right">
+            <a href="" id="menu_icon"><img src="img/menu_button.png"></a>
+        </div>
         <ul>
             <li><a href="index.php">HOME</a></li>
             <li><a href="about.php">ABOUT</a></li>

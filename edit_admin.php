@@ -53,15 +53,22 @@
                 if (isset($_GET['price_edited_estm'])) {
                     $_SESSION['arr'][$_GET['index_edited_estm']][2] = $_GET['price_edited_estm'];
                 }
-                if ($_POST['description'] !== null) {
-                    $_SESSION['arr'][$_SESSION['i']][0] = $_POST['description'];
-                }
-                if ($_POST['price'] !== null) {
-                    $_SESSION['arr'][$_SESSION['i']][1] = $_POST['qty'];
-                }
-                if ($_POST['qty'] !== null) {
-                    $_SESSION['arr'][$_SESSION['i']][2] = $_POST['price'];
-                }
+				
+				if (isset($_POST['description'])) {
+					if ($_POST['description'] !== null) {
+						$_SESSION['arr'][$_SESSION['i']][0] = $_POST['description'];
+					}
+				}
+                if (isset($_POST['price'])) {
+					if ($_POST['price'] !== null) {
+						$_SESSION['arr'][$_SESSION['i']][1] = $_POST['qty'];
+					}
+				}
+                if (isset($_POST['qty'])) {
+					if ($_POST['qty'] !== null) {
+						$_SESSION['arr'][$_SESSION['i']][2] = $_POST['price'];
+					}
+				}
 
                 if (isset($_POST['submit'])) {
                     $_SESSION['i']++;
@@ -94,24 +101,26 @@
                                     <td colspan="2" align="center"><input type="submit" name="submit" value="Add"></td>
                                 </tr>
                 ';
-                for ($i = 0; $i < sizeof($_SESSION['arr']); $i++) {
-                    if ($_SESSION['arr'][$i][0] !== null) {
-                        echo '<tr bgcolor="#c4daff"><td>'.$_SESSION['arr'][$i][0].'</td>';
-                    }
-                    if ($_SESSION['arr'][$i][1] !== null) {
-                        echo '<td>'.$_SESSION['arr'][$i][1].'</td>';
-                    }
+				if (isset($_SESSION['arr'])) {
+					for ($i = 0; $i < sizeof($_SESSION['arr']); $i++) {
+						if ($_SESSION['arr'][$i][0] !== null) {
+							echo '<tr bgcolor="#c4daff"><td>'.$_SESSION['arr'][$i][0].'</td>';
+						}
+						if ($_SESSION['arr'][$i][1] !== null) {
+							echo '<td>'.$_SESSION['arr'][$i][1].'</td>';
+						}
 
-                    if ($_SESSION['arr'][$i][2] !== null) {
-                        echo '<td>'.$_SESSION['arr'][$i][2].'</td>';
-                    }
-                    if ($_SESSION['arr'][$i][0] !== null) {
-                        echo '<td align="center"><button><a href="edit_invoice_detail.php?description='.$_SESSION['arr'][$i][0].' &qty='.$_SESSION['arr'][$i][1].' &price='.$_SESSION['arr'][$i][2].' &index='.$i.'">Edit</a></button></td>';
-                    }
-                    if ($_SESSION['arr'][$i][0] !== null) {
-                        echo '<td align="center"><button><a href="edit_invoice_detail.php?index_deleted='.$i.'">Delete</a></button></td></tr>';
-                    }
-                }
+						if ($_SESSION['arr'][$i][2] !== null) {
+							echo '<td>'.$_SESSION['arr'][$i][2].'</td>';
+						}
+						if ($_SESSION['arr'][$i][0] !== null) {
+							echo '<td align="center"><button><a href="edit_invoice_detail.php?description='.$_SESSION['arr'][$i][0].' &qty='.$_SESSION['arr'][$i][1].' &price='.$_SESSION['arr'][$i][2].' &index='.$i.'">Edit</a></button></td>';
+						}
+						if ($_SESSION['arr'][$i][0] !== null) {
+							echo '<td align="center"><button><a href="edit_invoice_detail.php?index_deleted='.$i.'">Delete</a></button></td></tr>';
+						}
+					}
+				}
 
                 echo '
                             </tbody>

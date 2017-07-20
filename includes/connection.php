@@ -1,6 +1,9 @@
 <?php
-    session_start();
-    $servername = "127.0.0.1";
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    }
+    $servername = "localhost";
     $username = "root";
     $password = "";
     $db = "7contract";

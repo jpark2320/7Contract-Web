@@ -17,7 +17,7 @@
 	$mail->Password = "7contract.com";
 	$mail->setFrom($from, $name);
 	$mail->addReplyTo($from, $name);
-	$mail->addAddress('leepogii@gmail.com', 'Min Ho Lee');
+	$mail->addAddress('sevencontract1@gmail.com', 'Seven Contract');
 	$mail->Subject = '[7 Contract] Message from '.$name;
 	$mail->Body    = $message;
 	if (!$mail->send()) {

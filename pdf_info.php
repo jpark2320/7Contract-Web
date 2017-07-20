@@ -104,7 +104,7 @@
                         </thead>
                 ';
                 while($row = mysqli_fetch_array($result))
-                {   
+                {
                     $i++;
 
                     echo '<tbody>';
@@ -129,22 +129,28 @@
                             </tr>
                         </tbody>
                     ';
-               
+
                 }
                 echo '</table><br>';
+                if (isset($_POST['description'])) {
+                    if ($_POST['description'] !== null) {
+                        $_SESSION['description_pdf'] = $_POST['description'];
+                        $_SESSION['pdf_arr'][$_SESSION['i_pdf']][0] = $_SESSION['description_pdf'];
+                    }
+                }
+                if (isset($_POST['qty'])) {
+                    if ($_POST['qty'] !== null) {
+                        $_SESSION['qty_pdf'] = $_POST['qty'];
+                        $_SESSION['pdf_arr'][$_SESSION['i_pdf']][1] = $_SESSION['qty_pdf'];
+                    }
+                }
+                if (isset($_POST['price'])) {
+                    if ($_POST['price'] !== null) {
+                        $_SESSION['price_pdf'] = $_POST['price'];
+                        $_SESSION['pdf_arr'][$_SESSION['i_pdf']][2] = $_SESSION['price_pdf'];
+                    }
+                }
 
-                if ($_POST['description'] !== null) {
-                    $_SESSION['description_pdf'] = $_POST['description'];
-                    $_SESSION['pdf_arr'][$_SESSION['i_pdf']][0] = $_SESSION['description_pdf'];
-                }
-                if ($_POST['qty'] !== null) {
-                    $_SESSION['qty_pdf'] = $_POST['qty'];
-                    $_SESSION['pdf_arr'][$_SESSION['i_pdf']][1] = $_SESSION['qty_pdf'];
-                }
-                if ($_POST['price'] !== null) {
-                    $_SESSION['price_pdf'] = $_POST['price'];
-                    $_SESSION['pdf_arr'][$_SESSION['i_pdf']][2] = $_SESSION['price_pdf'];
-                }
 
                 if (isset($_POST['submit'])) {
                     $_SESSION['i_pdf']++;
@@ -176,21 +182,23 @@
                                     <td colspan="2" align="center"><input type="submit" name="submit" value="Add"></td>
                                 </tr>
                 ';
-                for ($i = 0; $i < sizeof($_SESSION['pdf_arr']); $i++) {
-                    if ($_SESSION['pdf_arr'][$i][0] !== null) {
-                        echo '<tr bgcolor="#c4daff"><td>'.$_SESSION['pdf_arr'][$i][0].'</td>';
-                    }
-                    if ($_SESSION['pdf_arr'][$i][1] !== null) {
-                        echo '<td>'.$_SESSION['pdf_arr'][$i][1].'</td>';
-                    }
-                    if ($_SESSION['pdf_arr'][$i][2] !== null) {
-                        echo '<td>'.$_SESSION['pdf_arr'][$i][2].'</td>';
-                    }
-                    if ($_SESSION['pdf_arr'][$i][0] !== null) {
-                        echo '<td align="center"><button><a href="edit_pdf.php?description='.$_SESSION['pdf_arr'][$i][0].' &qty='.$_SESSION['pdf_arr'][$i][1].' &price='.$_SESSION['pdf_arr'][$i][2].' &index='.$i.'">Edit</a></button></td>';
-                    }
-                    if ($_SESSION['pdf_arr'][$i][0] !== null) {
-                        echo '<td align="center"><button><a href="edit_pdf.php?index_deleted='.$i.'">Delete</a></button></td></tr>';
+                if (isset($_SESSION['pdf_arr'])) {
+                    for ($i = 0; $i < sizeof($_SESSION['pdf_arr']); $i++) {
+                        if ($_SESSION['pdf_arr'][$i][0] !== null) {
+                            echo '<tr bgcolor="#c4daff"><td>'.$_SESSION['pdf_arr'][$i][0].'</td>';
+                        }
+                        if ($_SESSION['pdf_arr'][$i][1] !== null) {
+                            echo '<td>'.$_SESSION['pdf_arr'][$i][1].'</td>';
+                        }
+                        if ($_SESSION['pdf_arr'][$i][2] !== null) {
+                            echo '<td>'.$_SESSION['pdf_arr'][$i][2].'</td>';
+                        }
+                        if ($_SESSION['pdf_arr'][$i][0] !== null) {
+                            echo '<td align="center"><button><a href="edit_pdf.php?description='.$_SESSION['pdf_arr'][$i][0].' &qty='.$_SESSION['pdf_arr'][$i][1].' &price='.$_SESSION['pdf_arr'][$i][2].' &index='.$i.'">Edit</a></button></td>';
+                        }
+                        if ($_SESSION['pdf_arr'][$i][0] !== null) {
+                            echo '<td align="center"><button><a href="edit_pdf.php?index_deleted='.$i.'">Delete</a></button></td></tr>';
+                        }
                     }
                 }
 
