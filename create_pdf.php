@@ -65,37 +65,38 @@
 			global $arr;
 			$this->SetXY(3,76);
 			$this->SetFont('Times','',12);
-			$this->Cell(25, 6, $unit,0,0,'C');
-			$this->Cell(25, 6, $size,0,0,'C');
-			$x = 53;
+			$this->Cell(22, 6, $unit,0,0,'C');
+			$this->MultiCell(25, 6, $size,0,'C');
+			$x = 50;
+			$this->SetXY($x, 76);
 			for ($i = 0; $i < count($arr); $i++) {
 				$y = $this->GetY();
-				$this->MultiCell(98, 6, $arr[$i][0],0,'C');
-				$this->SetXY($x + 98, $y);
-				$this->Cell(20, 6, $arr[$i][1], 0, 0, 'C');
-				$this->Cell(35, 6, '$ '.number_format((float)$arr[$i][2], 2, '.', ''), 0, 0, 'C');
+				$this->MultiCell(104, 6, $arr[$i][0],0,'C');
+				$this->SetXY($x + 104, $y);
+				$this->Cell(17, 6, $arr[$i][1], 0, 0, 'C');
+				$this->Cell(35, 6, '$ '.(int)$arr[$i][2], 0, 0, 'C');
 				$this->total = $arr[$i][2];
-				$this->SetXY($x, $y + 12);
+				$this->SetXY($x, $y + 6);
 			}
 		}
 		function DrawTable() {
 			$this->SetXY(3,70);
 			$this->SetFont('Times','B',12);
-			$this->Cell(25, 6,'Unit #',1,0,'C');
+			$this->Cell(22, 6,'Unit #',1,0,'C');
 			$this->Cell(25, 6,'Size',1,0,'C');
-			$this->Cell(98, 6,'Description',1,0,'C');
-			$this->Cell(20, 6,'QTY',1,0,'C');
+			$this->Cell(104, 6,'Description',1,0,'C');
+			$this->Cell(17, 6,'QTY',1,0,'C');
 			$this->Cell(35, 6,'Amount',1,0,'C');
 			$this->Ln();
 			$this->SetX(3);
+			$this->Cell(22, 130,'',1,0,'T');
 			$this->Cell(25, 130,'',1,0,'T');
-			$this->Cell(25, 130,'',1,0,'T');
-			$this->Cell(98, 130,'',1,0,'T');
-			$this->Cell(20, 130,'',1,0,'T');
+			$this->Cell(104, 130,'',1,0,'T');
+			$this->Cell(17, 130,'',1,0,'T');
 			$this->Cell(35, 130,'',1,0,'T');
 			$this->Ln();
-			$this->SetX(151);
-			$this->Cell(20, 6,'Total:',1,0,'C');
+			$this->SetX(154);
+			$this->Cell(17, 6,'Total:',1,0,'C');
 			$this->Cell(35, 6,'$ '.number_format((float)$this->getTotal(), 2, '.', ''),1,0,'C');
 			$this->Ln();
 			$this->Ln();

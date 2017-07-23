@@ -29,7 +29,11 @@
                     $apt = $_SESSION['apt'];
                     $_SESSION['apt'] = $apt;
                 }
-                $company = $_GET['company'];
+                if (isset($_GET['company'])) {
+                    $company = $_GET['company'];
+                } else {
+                    $company = $_SESSION['company'];
+                }
                 echo '<div align="center"><b>Apt : '.$apt.'</b></div>';
 
                 if (!isset($_SESSION['sort'])) {
@@ -47,7 +51,7 @@
 						echo '<div align="right"><a href="?unpaid=1">Show Unpaid</a></div>';
 					}
 				}
-                
+
                 if (isset($_GET['st'])) {
                     $_SESSION['sort'] = $_GET['st'];
                     echo '<script>window.location.href = "worksheet_apt.php";</script>';
@@ -85,7 +89,7 @@
 						$sql .= 'AND ispaidoff=0 ';
 					}
 				}
-                
+
 				if (isset($_POST['year']) && isset($_POST['month'])) {
 					if (strlen($_POST['year'])>0 && strlen($_POST['month'])>0) {
 						$sql .= "AND YEAR(date)=".$_POST['year']." AND MONTH(date)=".$_POST['month']." ";
@@ -93,7 +97,7 @@
 						$sql .= "AND YEAR(date)=".$_POST['year']." ";
 					}
 				}
-                
+
                 $sql .= 'ORDER BY '.$order;
                 if (isset($_GET['unpaid'])) {
                     $_SESSION['unpaid'] = $_GET['unpaid'];
@@ -102,7 +106,7 @@
                 if ($_SESSION['sort']=='desc') {
                     $sql = $sql.' DESC';
                 }
-                
+
                 $result = mysqli_query($conn, $sql);
                 if (!$result) {
                     printf("Error: %s\n", mysqli_error($conn));

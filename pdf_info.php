@@ -48,7 +48,7 @@
                         </colgroup>
                         <tr>
                             <td><label>Invoice # : </label></td>
-                            <td>'.$i_detail.'</td>
+                            <td>'.'7C'.$_SESSION['invoice'].'</td>
                             <td><label>Apt : </label></td>
                             <td>'.$apt.'</td>
                         </tr>
@@ -176,7 +176,7 @@
                             </thead>
                             <tbody id="pdf_table">
                                 <tr>
-                                    <td><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="description" size="50" required></td>
+                                    <td><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="description" size="50"></td>
                                     <td><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="qty" size="44"></td>
                                     <td><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="price" size="44"></td>
                                     <td colspan="2" align="center"><input type="submit" name="submit" value="Add"></td>

@@ -62,7 +62,7 @@
                     if (isset($_POST['workers'])) {
                         $_SESSION['workersArray'] = $_POST['workers'];
                         for ($i = 0; $i < sizeof($_SESSION['workersArray']); $i++) {
-                            $temp = split("\*" ,$_SESSION['workersArray'][$i]);
+                            $temp = explode("*" ,$_SESSION['workersArray'][$i]);
                             echo '<option value="">'.$temp[1].' ('.$temp[0].')'.'</option>';
                         }
                         echo '

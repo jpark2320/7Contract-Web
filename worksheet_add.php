@@ -1,5 +1,5 @@
-<?php 
-    session_start(); 
+<?php
+    session_start();
     date_default_timezone_set('Etc/UTC');
 ?>
 <!DOCTYPE html>
@@ -27,12 +27,12 @@
                 if (isset($_GET['price_edited_estm'])) {
                     $_SESSION['arr'][$_GET['index_edited_estm']][2] = $_GET['price_edited_estm'];
                 }
-				
+
 				if (isset($_POST['description'])) {
 					if ($_POST['description'] !== null) {
 						$_SESSION['arr'][$_SESSION['i']][0] = $_POST['description'];
 					}
-				}				
+				}
                 if (isset($_POST['price'])) {
 					if ($_POST['price'] !== null) {
 						$_SESSION['arr'][$_SESSION['i']][1] = $_POST['qty'];
@@ -49,7 +49,7 @@
                 }
 
                 echo '
-                    
+
                     <form action="worksheet_add.php" method="post">
                         <table border="2" width="100%">
                             <colgroup>
@@ -68,13 +68,13 @@
                             </thead>
                             <tbody id="pdf_table">
                                 <tr>
-                                    <td><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="description" size="10" required></td>
+                                    <td><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="description" size="10"></td>
                                     <td><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="qty" size="10"></td>
                                     <td><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="price" size="10"></td>
                                     <td colspan="2" align="center"><input type="submit" name="submit" value="Add"></td>
                                 </tr>
                 ';
-				
+
 				if (isset($_SESSION['arr'])) {
 					for ($i = 0; $i < sizeof($_SESSION['arr']); $i++) {
 						if ($_SESSION['arr'][$i][0] !== null) {
@@ -87,10 +87,10 @@
 							echo '<td>'.$_SESSION['arr'][$i][2].'</td>';
 						}
 						if ($_SESSION['arr'][$i][0] !== null) {
-							echo '<td align="center"><button><a href="edit_estimate.php?description='.$_SESSION['arr'][$i][0].' &qty='.$_SESSION['arr'][$i][1].' &price='.$_SESSION['arr'][$i][2].' &index='.$i.'">Edit</a></button></td>';
+							echo '<td align="center"><button><a href="edit_worksheet.php?description='.$_SESSION['arr'][$i][0].' &qty='.$_SESSION['arr'][$i][1].' &price='.$_SESSION['arr'][$i][2].' &index='.$i.'">Edit</a></button></td>';
 						}
 						if ($_SESSION['arr'][$i][0] !== null) {
-							echo '<td align="center"><button><a href="edit_estimate.php?index_deleted='.$i.'">Delete</a></button></td></tr>';
+							echo '<td align="center"><button><a href="edit_worksheet.php?index_deleted='.$i.'">Delete</a></button></td></tr>';
 						}
 					}
 				}

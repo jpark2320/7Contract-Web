@@ -14,18 +14,15 @@
 
             // This is for values from deleting in estimate_info.php
             if (isset($_GET['index_deleted'])) {
-                echo '<script>window.location.href="estimate_info.php";</script>';
-                array_splice($_SESSION['estm_arr'], $_GET['index_deleted'], 1);
-                $_SESSION['i_estm']--;
+                echo '<script>window.location.href="worksheet_add.php";</script>';
+                array_splice($_SESSION['arr'], $_GET['index_deleted'], 1);
+                $_SESSION['i']--;
                 exit();
             }
+
             // This is for values passed from editing in estimate_info.php
             if (isset($_GET['description'])) {
                 $description = $_GET['description'];
-                if (strlen($description) == 0) {
-                    echo '<script>window.location.href="estimate_info.php";</script>';
-                    exit();
-                }
             }
             if (isset($_GET['qty'])) {
                 $qty = $_GET['qty'];
@@ -40,9 +37,9 @@
 
         <!-- Body -->
         <div class="primary" align="center">
-            <h3 class="text-center">Edit PDF Information</h3><br>
+            <h3 class="text-center">Edit Worksheet Information</h3><br>
 
-            <form action="estimate_info.php" method="GET">
+            <form action="worksheet_add.php" method="GET">
 
                 <table width="400">
                     <colgroup>
@@ -51,15 +48,15 @@
                     </colgroup>
                     <tr>
                         <td><label>Description</label></td>
-                        <td><input type="text" name="desc_edited_estm" maxlength="36" size="30" value="<?php echo isset($description) ? rtrim($description, " ") : '' ?>"></td>
+                        <td><input type="text" name="desc_edited_estm" maxlength="36" size="30" value="<?php echo isset($description) ? rtrim($description," ") : '' ?>"></td>
                     </tr>
                     <tr>
                         <td><label>Qty</label></td>
-                        <td><input type="text" name="qty_edited_estm" maxlength="36" size="30" value="<?php echo isset($qty) ? rtrim($qty, " ") : '' ?>"></td>
+                        <td><input type="text" name="qty_edited_estm" maxlength="36" size="30" value="<?php echo isset($qty) ? rtrim($qty," ") : '' ?>"></td>
                     </tr>
                     <tr>
                         <td><label>Price</label></td>
-                        <td><input type="text" name="price_edited_estm" maxlength="36" size="30" value="<?php echo isset($price) ? rtrim($price, " ") : '' ?>"></td>
+                        <td><input type="text" name="price_edited_estm" maxlength="36" size="30" value="<?php echo isset($price) ? rtrim($price," ") : '' ?>"></td>
                     </tr>
                     <tr hidden>
                         <td><label>Index</label></td>
@@ -68,7 +65,7 @@
                 </table>
                 <br>
                 <input type="submit" value="Edit">
-                <input type="button" value="Back" onclick="location.href='estimate_info.php'">
+                <input type="button" value="Back" onclick="location.href='worksheet_add.php'">
             </form>
         </div>
 

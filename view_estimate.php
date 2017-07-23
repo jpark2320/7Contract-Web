@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php session_start();
+unset($_SESSION['edit_arr']);
+$_SESSION['i'] = 0;
+?>
 <!DOCTYPE html>
 <html lang="en">
     <!-- Header Tag -->

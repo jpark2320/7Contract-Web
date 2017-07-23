@@ -1,7 +1,7 @@
 <?php
-    if(!isset($_SESSION)) 
-    { 
-        session_start(); 
+    if(!isset($_SESSION))
+    {
+        session_start();
     }
     $_SESSION['i_pdf'] = 0;
     $_SESSION['i_estm'] = 0;
@@ -29,9 +29,9 @@
             <?php
 				// connection with mysql database
                 include('./includes/connection.php');
-			
+
                 include('./includes/data_range.html');
-				
+
                 if (!isset($_SESSION['email'])) {
                     echo "<script>alert(\"You need to sign in first.\");</script>";
                     echo '<script>window.location.href = "signin.php";</script>';
@@ -82,7 +82,7 @@
 									$sql .= "WHERE YEAR(date)=".$_POST['year']." ";
 								}
 							}
-							
+
 							$sql .= 'ORDER BY '.$order;
 							if ($_SESSION['sort']=='desc') {
 								$sql = $sql.' DESC';

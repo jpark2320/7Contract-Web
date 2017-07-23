@@ -25,11 +25,11 @@
 								$username = $_GET['username'];
 							}
                         }
-						
+
 						if (isset($_SESSION['invoice'])) {
 							$invoice = $_SESSION['invoice'];
 						}
-                        
+
                         echo '<table width="200" align="center">
                                 <colgroup>
                                     <col width="50%">
@@ -55,7 +55,7 @@
                                 </tr>
                             </table>';
 
-                       
+
                         if ($_SESSION['isadmin'] == 2) {
                         	echo '
 	                            <table border="3" width="100%">
@@ -99,14 +99,14 @@
 	                                </thead>
 	                        ';
 	                    }
-                        
+
                         $sql = "SELECT * FROM user_comment WHERE sub_id='$id' AND email='$email'";
-                        
+
                         $result = mysqli_query($conn, $sql);
                         $isOdd = false;
                         $i = 0;
                         while($row = mysqli_fetch_array($result))
-                        {	
+                        {
                         	$i++;
 
                             echo '<tbody>';
@@ -130,10 +130,10 @@
 	                                        <td align="center">'.$row['paid'].'</td>
 	                                        <td align="center">'.$row['date'].'</td>
 			                                <td align="center"><button><a href="pedit.php?id='.$row['id'].' &comment='.urlencode($row['comment']).'&username='.$username.'">Edit</a></button></td>
-                                ';    		
-								if(isset($user_name)) {
-									echo '<td align="center"><button><a href="pay.php?id='.$row['id'].'&salary='.$row['salary'].' &comment='.urlencode($row['comment']).'&username='.urlencode($user_name).'&paid='.$row['paid'].'">Pay</a></button></td>';
-								}
+                                ';
+								// if(isset($user_name)) {
+									echo '<td align="center"><button><a href="pay.php?id='.$row['id'].'&salary='.$row['salary'].' &comment='.urlencode($row['comment']).'&username='.urlencode($username).'&paid='.$row['paid'].'">Pay</a></button></td>';
+								// }
 								echo '
 	                                    </tr>
 	                                </tbody>

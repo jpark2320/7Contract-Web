@@ -42,7 +42,7 @@
     $conn->close();
     unset($_SESSION['arr']);
     $_SESSION['i'] = 0;
-    
+
 
     unset($_SESSION['invoice']);
     unset($_SESSION['id']);
@@ -57,7 +57,5 @@
     unset($_SESSION['profit']);
     unset($_SESSION['description']);
 
-    $conn->query($sql);
-    $conn->close();
     echo '<script>window.location.href="worksheet.php";</script>';
 ?>

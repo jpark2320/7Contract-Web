@@ -14,7 +14,7 @@
             if (isset($_GET['id'])) {
                 $_SESSION['id'] = $_GET['id'];
             } else if (isset($_SESSION['id'])) {
-                continue;
+                $_SESSION['id'] = $_SESSION['id'];
             }else {
             	 echo '<script>alert("Something is not valid.");</script>';
             	 echo '<script>window.location.href="invoice_detail.php";</script>';

@@ -72,7 +72,8 @@
                         if (isset($_GET['orderBy']) && in_array($_GET['orderBy'], $orderBy)) {
                             $order = $_GET['orderBy'];
                         }
-                        $i_detail = substr($i_detail, 2);
+                        if (isset($i_detail))
+                            $i_detail = substr($i_detail, 2);
 
                         $sql = "SELECT * FROM
                         	(SELECT users.first, users.last, users.email from users) AS A
@@ -87,14 +88,15 @@
                         while($row = mysqli_fetch_array($result))
                         {
                             echo '<tbody>';
-                            if ($isOdd) {
-                                $isOdd = false;
-                                echo '<tr bgcolor="#e8fff1">';
-                            } else {
-                                $isOdd = true;
-                                echo '<tr>';
+                            if (isset($isOdd)) {
+                                if ($isOdd) {
+                                    $isOdd = false;
+                                    echo '<tr bgcolor="#e8fff1">';
+                                } else {
+                                    $isOdd = true;
+                                    echo '<tr>';
+                                }
                             }
-
                             if ($row['isworkdone'] == 1) {
                                 echo '<td align="center"><img src="./img/status_light_green" width="10px"></td>';
                             } else {

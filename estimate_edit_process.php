@@ -4,7 +4,9 @@
     $apt = $_POST['apt'];
     $unit = $_POST['unit'];
     $size = $_POST['size'];
-    $price = $_POST['price'];
+    if (isset($_POST['price'])) {
+        $price = $_POST['price'];
+    }
     $id = $_SESSION['id'];
     $arr = $_SESSION['edit_arr'];
     $sql = "UPDATE estimate SET company=\"".$company."\", apt=\"".$apt."\",
@@ -16,12 +18,12 @@
     for ($i = 0; $i < count($arr); $i++) {
         $desc = str_replace("\"", "'", $arr[$i][0]);
         if (!empty($arr[$i][1])) {
-            $qty = $arr[$i][1];
+            $qty = rtrim($arr[$i][1], " ");
         } else {
             $qty = 0;
         }
         if (!empty($arr[$i][2])) {
-            $price = $arr[$i][2];
+            $price = rtrim($arr[$i][2], " ");
         } else {
             $price = 0;
         }
