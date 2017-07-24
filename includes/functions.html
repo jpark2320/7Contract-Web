@@ -21,11 +21,32 @@
         });
     });
 
+    // This makes the footer located at the bottom of page all the Times
+    // $(document).ready(function() {
+    //     $('.footer').css('margin-top', $(document).height() - ($('.primary').height() + $('.footer').height()) - 200);
+    // });
+
+    $(document).ready(function() {
+        $('#ResponsiveTable td').html().replace('12', 'abc');
+        // $('#ResponsiveTable td a').html().replace('', '.');
+    });
+
+    $('#ResponsiveTable td a').keyup(function() {
+        var replaceSpace = $(this).val();
+        var result = replaceSpace.replace(/ /g, ".");
+        $("#ResponsiveTable td a").val(result);
+
+    });
+
+    // $("#ResponsiveTable td a").text(function () {
+    //     return $(this).text().replaceAll("12", "aaa");
+    // });​​​​​
+
     // When admin wansts to edit price a user's salary in invoice_detail.php
-    function editPrice() {
-        document.getElementById("edit_price").innerHTML = "";
-        document.getElementById("edit_price").outerHTML = document.getElementById("edit_price").outerHTML.replace(/div/g,"input");
-    }
+    // function editPrice() {
+    //     document.getElementById("edit_price").innerHTML = "";
+    //     document.getElementById("edit_price").outerHTML = document.getElementById("edit_price").outerHTML.replace(/div/g,"input");
+    // }
 
     $("#theDate").val(getFormattedDate(today()));
     $('#theDate').attr('value', today());

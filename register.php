@@ -10,7 +10,7 @@
 
         <!-- Body -->
         <div class="primary" align="center">
-            <h3 class="text-center">Join us today!</h3><br>
+            <h3 class="text-center">Sign up</h3><br>
 
             <form action="register_process.php" method="POST">
                 <table width="250">

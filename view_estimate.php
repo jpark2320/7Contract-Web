@@ -1,6 +1,7 @@
-<?php session_start();
-unset($_SESSION['edit_arr']);
-$_SESSION['i'] = 0;
+<?php
+    session_start();
+    unset($_SESSION['edit_arr']);
+    $_SESSION['i'] = 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,8 +37,8 @@ $_SESSION['i'] = 0;
                     }
 
                     echo '
-                        <table border="3" width="100%">
-                            <thead>
+                        <table id="ResponsiveTable" border="3" width="100%">
+                            <thead id="HeadRow">
                                 <tr style="border: 2px double black;" bgcolor="#c9c9c9">
                                     <td align="center"><b><a href="?orderBy=id">ID</a></b></td>
                                     <td align="center"><b><a href="?orderBy=company">Company</a></b></td>
@@ -66,6 +67,26 @@ $_SESSION['i'] = 0;
                     $isOdd = false;
                     while($row = mysqli_fetch_array($result))
                     {
+                        $company = $row['company'];
+                        if ($company == null) $company = "-";
+
+                        $apt = $row['apt'];
+                        if ($apt == null) $apt = "-";
+
+                        $unit = $row['unit'];
+                        if ($unit == null) $unit = "-";
+
+                        $size = $row['size'];
+                        if ($size == null) $size = "-";
+
+                        $price = $row['price'];
+                        if ($price == null) $price = "-";
+
+                        $description = $row['description'];
+                        if ($description == null) $description = "-";
+
+                        $date = $row['date'];
+                        if ($date == null) $date = "-";
 
                         echo '<tbody>';
                         if ($isOdd) {
@@ -77,16 +98,16 @@ $_SESSION['i'] = 0;
                         }
 
                         echo '
-                                    <td align="center">'.$row['id'].'</td>
-                                    <td align="center"><a href="worksheet_company.php?company='.$row['company'].'">'.$row['company'].'</a></td>
-                                    <td align="center"><a href="worksheet_apt.php?apt='.$row['apt'].'">'.$row['apt'].'</a></td>
-                                    <td align="center">'.$row['unit'].'</td>
-                                    <td align="center">'.$row['size'].'</td>
-                                    <td align="center">'.$row['price'].'</td>
-                                    <td align="center"><a href="estimate_description.php?id='.$row['id'].'&company='.$row['company'].'&apt='.$row['apt'].'&unit='.$row['unit'].'&size='.$row['size'].'">'.$row['description'].'</a></td>
-                                    <td align="center">'.substr($row['date'], 0, 10).'</td>
+                                    <td tableHeadData="ID" align="center">'.$row['id'].'</td>
+                                    <td tableHeadData="Company" align="center"><a href="worksheet_company.php?company='.$company.'">'.$company.'</a></td>
+                                    <td tableHeadData="Apartment" align="center"><a href="worksheet_apt.php?apt='.$apt.'">'.$apt.'</a></td>
+                                    <td tableHeadData="Unit" align="center">'.$unit.'</td>
+                                    <td tableHeadData="Size" align="center">'.$size.'</td>
+                                    <td tableHeadData="Price" align="center">'.$price.'</td>
+                                    <td tableHeadData="Description" align="center"><a href="estimate_description.php?id='.$row['id'].'&company='.$company.'&apt='.$apt.'&unit='.$unit.'&size='.$size.'">'.$description.'</a></td>
+                                    <td tableHeadData="Date" align="center">'.substr($date, 0, 10).'</td>
                                     <td align="center">
-                                        <button><a href="toWorksheet.php?id='.$row['id'].'&company='.$row['company'].'&apt='.$row['apt'].'&unit='.$row['unit'].'&size='.$row['size'].'&price='.$row['price'].'&description='.$row['description'].'">Convert</a></button>
+                                        <button><a href="toWorksheet.php?id='.$row['id'].'&company='.$company.'&apt='.$apt.'&unit='.$unit.'&size='.$size.'&price='.$price.'&description='.$description.'">Convert</a></button>
                                         <button><a href="estimate_edit.php?id='.$row['id'].'">Edit</a></button>
                                         <button><a href="remove_estimate.php?id='.$row['id'].'">Remove</a></button>
                                     </td>

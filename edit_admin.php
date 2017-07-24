@@ -56,11 +56,11 @@
 
 				if (isset($_POST['description'])) {
                     if (strlen($_POST['description']) > 0) {
-						$_SESSION['arr'][$_SESSION['i']][0] = $_POST['description'];
-					} else {
-						echo '<script>alert("Description is required");</script>';
-						echo '<script>window.location.href="edit_admin.php";</script>';
-						exit();
+  						$_SESSION['arr'][$_SESSION['i']][0] = $_POST['description'];
+ 					} else {
+ 						echo '<script>alert("Description is required");</script>';
+ 						echo '<script>window.location.href="edit_admin.php";</script>';
+ 						exit();
 					}
 				}
                 if (isset($_POST['price'])) {
@@ -79,9 +79,8 @@
                 }
 
                 echo '
-
                     <form action="edit_admin.php" method="post">
-                        <table border="2" width="100%">
+                        <table id="ResponsiveTable" border="2" width="100%">
                             <colgroup>
                                 <col width="70%">
                                 <col width="10%">
@@ -89,7 +88,7 @@
                                 <col width="5%">
                                 <col width="5%">
                             </colgroup>
-                            <thead>
+                            <thead id="HeadRow">
                                 <tr style="border: 2px double black;" bgcolor="#c9c9c9">
                                     <td align="center"><b>Description</b></td>
                                     <td align="center"><b>Qty</b></td>
@@ -99,23 +98,23 @@
                             </thead>
                             <tbody id="pdf_table">
                                 <tr>
-                                    <td><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="description" size="10"></td>
-                                    <td><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="qty" size="10"></td>
-                                    <td><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="price" size="10"></td>
+                                    <td tableHeadData="Description"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="description" size="10"></td>
+                                    <td tableHeadData="Qty"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="qty" size="10"></td>
+                                    <td tableHeadData="Price"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="price" size="10"></td>
                                     <td colspan="2" align="center"><input type="submit" name="submit" value="Add"></td>
                                 </tr>
                 ';
 				if (isset($_SESSION['arr'])) {
 					for ($i = 0; $i < sizeof($_SESSION['arr']); $i++) {
 						if ($_SESSION['arr'][$i][0] !== null) {
-							echo '<tr bgcolor="#c4daff"><td>'.$_SESSION['arr'][$i][0].'</td>';
+							echo '<tr bgcolor="#c4daff"><td tableHeadData="Description">'.$_SESSION['arr'][$i][0].'</td>';
 						}
 						if ($_SESSION['arr'][$i][1] !== null) {
-							echo '<td>'.$_SESSION['arr'][$i][1].'</td>';
+							echo '<td tableHeadData="Qty">'.$_SESSION['arr'][$i][1].'</td>';
 						}
 
 						if ($_SESSION['arr'][$i][2] !== null) {
-							echo '<td>'.$_SESSION['arr'][$i][2].'</td>';
+							echo '<td tableHeadData="Price">'.$_SESSION['arr'][$i][2].'</td>';
 						}
 						if ($_SESSION['arr'][$i][0] !== null) {
 							echo '<td align="center"><button><a href="edit_invoice_detail.php?description='.$_SESSION['arr'][$i][0].' &qty='.$_SESSION['arr'][$i][1].' &price='.$_SESSION['arr'][$i][2].' &index='.$i.'">Edit</a></button></td>';

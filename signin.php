@@ -10,8 +10,7 @@
 
         <!-- Body -->
         <div class="primary" align="center">
-            <h3 class="text-center">Sign in!</h3>
-            <p class="text-center"><em>or sign up if don't have an account</em></p><br><br>
+            <h3 class="text-center">Sign in</h3><br>
 
             <form class="" action="signin_process.php" method="POST">
                 <table width="250">
@@ -29,8 +28,7 @@
                         </tr>
                 </table>
                 <br>
-                <input type="submit" value="login">
-                <input type="button" value="Back" onclick="location.href='worksheet.php'">
+                <input type="submit" value="Login">
             </form>
             <br><br>
             <p>Forgot username or password?</p>

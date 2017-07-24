@@ -14,7 +14,6 @@
     $mail->Password = "7contract.com";
     $mail->SetFrom("sevencontract1@gmail.com", "Seven Contract");
 
-
     // connection with mysql database
     include('./includes/connection.php');
 
@@ -40,6 +39,7 @@
 
         echo $worker[0]." AND ". $worker[1];
     }
+    $mail->addAddress("leepogii@gmail.com", "MINO Lee");
     $sql = "UPDATE worksheet SET isworkdone=1 WHERE invoice=".$i_num.";";
     $conn->query($sql);
     unset($_SESSION['i_num']);

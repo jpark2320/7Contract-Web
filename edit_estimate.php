@@ -19,6 +19,7 @@
                 $_SESSION['i_estm']--;
                 exit();
             }
+
             // This is for values passed from editing in estimate_info.php
             if (isset($_GET['description'])) {
                 $description = $_GET['description'];

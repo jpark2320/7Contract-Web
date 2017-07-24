@@ -51,12 +51,12 @@
 
 				if (isset($_POST['description'])) {
                     if (strlen($_POST['description']) > 0) {
-						$_SESSION['edit_arr'][$_SESSION['i']][0] = $_POST['description'];
-					} else {
-						echo '<script>alert("Description is required");</script>';
-						echo '<script>window.location.href="estimate_edit.php";</script>';
-						exit();
-					}
+  						$_SESSION['edit_arr'][$_SESSION['i']][0] = $_POST['description'];
+ 					} else {
+ 						echo '<script>alert("Description is required");</script>';
+ 						echo '<script>window.location.href="estimate_edit.php";</script>';
+ 						exit();
+                    }
 				}
                 if (isset($_POST['price'])) {
 					if ($_POST['price'] !== null) {

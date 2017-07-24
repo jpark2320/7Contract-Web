@@ -27,28 +27,28 @@
 					if ($_POST['comment'] !== null) {
 						$_SESSION['arr'][$_SESSION['i']] = $_POST['comment'];
 					}
-				}          
+				}
                 if (isset($_POST['submit'])) {
                     $_SESSION['i']++;
                 }
 
                 echo '
-                    
+
                     <form action="edit_user.php" method="post">
-                        <table border="2" width="100%">
+                        <table id="ResponsiveTable" border="2" width="80%">
                             <colgroup>
                                 <col width="50%">
                                 <col width="25%">
                                 <col width="25%">
                             </colgroup>
-                            <thead>
+                            <thead id="HeadRow">
                                 <tr style="border: 2px double black;" bgcolor="#c9c9c9">
-                                    <td align="center"><b>Comments</b></td>
+                                    <td align="center"><b>Comment</b></td>
                                 </tr>
                             </thead>
                             <tbody id="pdf_table">
                                 <tr>
-                                    <td><input type="text" name="comment" placeholder="Add comment here.." size="165" required></td>
+                                    <td tableHeadData="Comment"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="comment" placeholder="Add comment here.." size="165" required></td>
                 ';
 				if (isset($_SESSION['arr'])) {
 					for ($i = 0; $i < sizeof($_SESSION['arr']); $i++) {

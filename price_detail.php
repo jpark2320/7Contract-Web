@@ -23,15 +23,13 @@
 
                 if ($_SESSION['isadmin']) {
 
-                    echo '<div align="right"><a href="worksheet_add.php"><img src="./img/worksheet_add.png" width="42"></a></div>';
-
                     if (!isset($_SESSION['sort'])) {
                         $_SESSION['sort'] = 'asc';
                     }
                     if ($_SESSION['sort']=='asc') {
-                        echo '<div align="left" style="float: left;"><h><a href="?st=desc">Show descending order</a></h></div>';
+                        echo '<div align="left"><h><a href="?st=desc">Show descending order</a></h></div>';
                     } else {
-                        echo '<div align="left" style="float: left;"><h><a href="?st=asc">Show ascending order</a></h></div>';
+                        echo '<div align="left"><h><a href="?st=asc">Show ascending order</a></h></div>';
                     }
 					if (isset($_SESSION['unpaid'])) {
 						if ($_SESSION['unpaid']) {
@@ -40,7 +38,7 @@
 							echo '<div align="right"><a href="?unpaid=1">Show Unpaid</a></div>';
 						}
 					}
-                    
+
                     if (isset($_GET['st'])) {
                         $_SESSION['sort'] = $_GET['st'];
                         echo '<script>window.location.href = "price_detail.php";</script>';
@@ -51,13 +49,13 @@
                     }
 
                     echo '
-                        <table border="2" width="100%">
-                            <thead>
+                        <table id="ResponsiveTable" border="2" width="100%">
+                            <thead id="HeadRow">
                                 <tr style="border: 2px double black;" bgcolor="#c9c9c9">
                                     <td align="center"><b><a href="?orderBy=ispaidoff">Paid Off</a></b></td>
                                     <td align="center"><b><a href="?orderBy=invoice">Invoice #</a></b></td>
-                                    <td align="center"><b><a href="?orderBy=po">P.O. #</a></b></td>
-                                    <td align="center"><b><a href="?orderBy=apt">Apt #</a></b></td>
+                                    <td align="center"><b><a href="?orderBy=po">P.O.</a></b></td>
+                                    <td align="center"><b><a href="?orderBy=apt">Apt</a></b></td>
                                     <td align="center"><b><a href="?orderBy=unit">Unit #</a></b></td>
                                     <td align="center"><b><a href="?orderBy=size">Size</a></b></td>
                                     <td align="center"><b><a href="?orderBy=price">Price</a></b></td>
@@ -92,7 +90,7 @@
 							}
 						}
 					}
-                    
+
                     $sql .= 'ORDER BY '.$order;
                     if ($_SESSION['sort']=='desc') {
                         $sql = $sql.' DESC';
@@ -124,23 +122,23 @@
                         }
 
                         if ($row['ispaidoff'] == 1) {
-                            echo '<td align="center"><img src="./img/status_light_green" width="10px"></td>';
+                            echo '<td tableHeadData="Paid Off" align="center"><img src="./img/status_light_green" width="10px"></td>';
                         } else {
-                            echo '<td align="center"><img src="./img/status_light_red" width="10px"></td>';
+                            echo '<td tableHeadData="Paid Off" align="center"><img src="./img/status_light_red" width="10px"></td>';
                         }
 
                         echo '
-                                    <td align="center"><a href="invoice_detail.php?invoice_num='.$invoice.'">'.$invoice.'</a></td>
-                                    <td align="center">'.$row['PO'].'</td>
-                                    <td align="center"><a href="worksheet_apt.php?apt='.$apt.'">'.$apt.'</td>
-                                    <td align="center">'.$unit.'</td>
-                                    <td align="center">'.$row['size'].'</td>
-                                    <td align="center">'.$row['price'].'</td>
-                                    <td align="center">'.$row['paid'].'</td>
-                                    <td align="center">'.$row['salary'].'</td>
-                                    <td align="center">'.$row['profit'].'</td>
-                                    <td align="center">'.$row['date'].'</td>
-                                    <td align="center"><button><a href="recieve.php?invoice='.$invoice.'&apt='.urlencode($apt).'&unit='.$row['unit'].'&price='.$row['price'].'&paid='.$row['paid'].'">Recieve</a></button></td>
+                                    <td tableHeadData="Invoice #" align="center"><a href="invoice_detail.php?invoice_num='.$invoice.'">'.$invoice.'</a></td>
+                                    <td tableHeadData="P.O." align="center">'.$row['PO'].'</td>
+                                    <td tableHeadData="Apt" align="center"><a href="worksheet_apt.php?apt='.$apt.'">'.$apt.'</td>
+                                    <td tableHeadData="Unit #" align="center">'.$unit.'</td>
+                                    <td tableHeadData="Size" align="center">'.$row['size'].'</td>
+                                    <td tableHeadData="Price" align="center">'.$row['price'].'</td>
+                                    <td tableHeadData="Received" align="center">'.$row['paid'].'</td>
+                                    <td tableHeadData="Salary" align="center">'.$row['salary'].'</td>
+                                    <td tableHeadData="Profit" align="center">'.$row['profit'].'</td>
+                                    <td tableHeadData="Date" align="center">'.$row['date'].'</td>
+                                    <td tableHeadData="Receive" align="center"><button><a href="recieve.php?invoice='.$invoice.'&apt='.urlencode($apt).'&unit='.$row['unit'].'&price='.$row['price'].'&paid='.$row['paid'].'">Recieve</a></button></td>
                         ';
                         echo '
                                 </tr>
@@ -159,10 +157,10 @@
                                     <td align="center"></td>
                                     <td align="center"></td>
                                     <td align="center"></td>
-                                    <td align="center"><b>'.number_format($totalPrice, 2, '.', '').'</b></td>
-                                    <td align="center"><b>'.number_format($totalPaid, 2, '.', '').'</b></td>
-                                    <td align="center"><b>'.number_format($totalSalary, 2, '.', '').'</b></td>
-                                    <td align="center"><b>'.number_format($totalProfit, 2, '.', '').'</b></td>
+                                    <td tableHeadData="Total Price" align="center"><b>'.number_format($totalPrice, 2, '.', '').'</b></td>
+                                    <td tableHeadData="Total Received" align="center"><b>'.number_format($totalPaid, 2, '.', '').'</b></td>
+                                    <td tableHeadData="Total Salary" align="center"><b>'.number_format($totalSalary, 2, '.', '').'</b></td>
+                                    <td tableHeadData="Total Profit" align="center"><b>'.number_format($totalProfit, 2, '.', '').'</b></td>
                                     <td align="center"></td>
                                     <td align="center"></td>
                         ';
@@ -175,8 +173,8 @@
                 }
                 mysqli_close($conn);
             ?>
-            <br>
-            <input type="button" value="Back" onclick="location.href='worksheet.php'"></input>
+            <input id="btn_back" type="button" value="Back" onclick="location.href='worksheet.php'"></input>
+            <br><br><br><br>
         </div>
 
         <!-- Footer -->

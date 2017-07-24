@@ -58,7 +58,7 @@
 
                         if ($_SESSION['isadmin'] == 2) {
                         	echo '
-	                            <table border="3" width="100%">
+	                            <table id="ResponsiveTable" border="3" width="100%">
 									<colgroup>
 	                                    <col width="5%">
 	                                    <col width="10%">
@@ -69,7 +69,7 @@
 	                                    <col width="10%">
 	                                    <col width="10%">
 	                                </colgroup>
-	                                <thead>
+	                                <thead id="HeadRow">
 	                                    <tr style="border: 2px double black;" bgcolor="#c9c9c9">
 	                                        <td align="center"><b>#</b></td>
 	                                        <td align="center"><b>Paid Off</b></td>
@@ -84,13 +84,13 @@
 	                        ';
                         } else {
 	                        echo '
-	                            <table border="3" width="100%">
+	                            <table id="ResponsiveTable" border="3" width="100%">
 	                            	<colgroup>
 	                                    <col width="10%">
 	                                    <col width="60%">
 	                                    <col width="30%">
 	                                </colgroup>
-	                                <thead>
+	                                <thead id="HeadRow">
 	                                    <tr style="border: 2px double black;" bgcolor="#c9c9c9">
 	                                        <td align="center"><b>#</b></td>
 	                                        <td align="center"><b>Comment</b></td>
@@ -109,6 +109,18 @@
                         {
                         	$i++;
 
+                            $comment = $row['comment'];
+                            if ($comment == null) $comment = '-';
+
+                            $salary = $row['salary'];
+                            if ($salary == null) $salary = '-';
+
+                            $paid = $row['paid'];
+                            if ($paid == null) $paid = '-';
+
+                            $date = $row['date'];
+                            if ($date == null) $date = '-';
+
                             echo '<tbody>';
                             if ($isOdd) {
                                 $isOdd = false;
@@ -120,29 +132,29 @@
                             if ($_SESSION['isadmin'] == 2) {
                             	echo '<td align="center">'.$i.'</td>';
 	                            if ($row['ispaidoff'] == 1) {
-	                                echo '<td align="center"><img src="./img/status_light_green" width="10px"></td>';
+	                                echo '<td tableHeadData="Status" align="center"><img src="./img/status_light_green" width="10px"></td>';
 	                            } else {
-	                                echo '<td align="center"><img src="./img/status_light_red" width="10px"></td>';
+	                                echo '<td tableHeadData="Status" align="center"><img src="./img/status_light_red" width="10px"></td>';
 	                            }
 	                            echo '
-	                                        <td align="center">'.$row['comment'].'</td>
-	                                        <td align="center">'.$row['salary'].'</td>
-	                                        <td align="center">'.$row['paid'].'</td>
-	                                        <td align="center">'.$row['date'].'</td>
-			                                <td align="center"><button><a href="pedit.php?id='.$row['id'].' &comment='.urlencode($row['comment']).'&username='.$username.'">Edit</a></button></td>
+	                                        <td tableHeadData="Comment" align="center">'.$comment.'</td>
+	                                        <td tableHeadData="Salary" align="center">'.$salary.'</td>
+	                                        <td tableHeadData="Paid" align="center">'.$paid.'</td>
+	                                        <td tableHeadData="Date" align="center">'.$date.'</td>
+			                                <td tableHeadData="Edit" align="center"><button><a href="pedit.php?id='.$row['id'].' &comment='.urlencode($comment).'&username='.$username.'">Edit</a></button></td>
                                 ';
-								// if(isset($user_name)) {
-									echo '<td align="center"><button><a href="pay.php?id='.$row['id'].'&salary='.$row['salary'].' &comment='.urlencode($row['comment']).'&username='.urlencode($username).'&paid='.$row['paid'].'">Pay</a></button></td>';
-								// }
+                                
+								echo '<td tableHeadData="Pay" align="center"><button><a href="pay.php?id='.$row['id'].'&salary='.$salary.' &comment='.urlencode($comment).'&username='.urlencode($username).'&paid='.$paid.'">Pay</a></button></td>';
+
 								echo '
 	                                    </tr>
 	                                </tbody>
 	                            ';
 	                        } else {
 	                            echo '
-	                            			<td align="center">'.$i.'</td>
-	                                        <td align="center">'.$row['comment'].'</td>
-	                                        <td align="center">'.$row['date'].'</td>
+	                            			<td tableHeadData="#" align="center">'.$i.'</td>
+	                                        <td tableHeadData="Comment" align="center">'.$comment.'</td>
+	                                        <td tableHeadData="Date" align="center">'.$date.'</td>
 	                                    </tr>
 	                                </tbody>
 	                            ';

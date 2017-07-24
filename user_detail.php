@@ -97,6 +97,7 @@
                                     echo '<tr>';
                                 }
                             }
+
                             if ($row['isworkdone'] == 1) {
                                 echo '<td align="center"><img src="./img/status_light_green" width="10px"></td>';
                             } else {
