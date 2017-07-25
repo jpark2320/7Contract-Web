@@ -67,6 +67,14 @@
         color: #f0c330;
         transform: scale(1.5, 1.5);
     }
+    #toggle_label {
+        display: none;
+        width: 20px;
+        float: right;
+    }
+    #toggle {
+        display: none;
+    }
     .primary {
         width: 80%;
         padding: 5% 10%;
@@ -163,39 +171,32 @@
             margin-top: 3.5%;
             font-size: 20px;
         }
-        #menu_icon {
+        #toggle_label {
             margin-top: 4%;
             margin-right: 5%;
             display: block;
+            cursor: pointer;
         }
-        #menu_icon img {
-            width: 20px;
-            height: 20px;
-        }
-        .header nav ul {
-            border: 0;
-            width: 100%;
-            display: none;
-        }
-        .header nav ul, .header nav:active ul {
-            display: none;
-        }
-        .header nav:hover ul {
+        #toggle:checked + .menu {
             display: block;
         }
-        .header nav ul li {
-            width: 100px;
-            padding: 5px 0;
-            background-color: #3a3a3a;
+        .menu {
             text-align: center;
-            color: #ffffff;
-            border: 1px solid #ffffff;
+            width: 30%;
             margin-left: 310px;
+            background-color: #3a3a3a;
+            border: 1px solid #ffffff;
+            display: none;
         }
-        .header ul li a:hover {
+        .menu li {
+            float: right;
+            border-bottom: 1px solid #;
+            padding: 5px 0;
+        }
+        .menu li a:hover {
             transform: scale(1.2, 1.2);
         }
-        .header nav ul li a {
+        .menu li a {
             font-size: 12px;
         }
         /*About Section*/
@@ -234,17 +235,18 @@
             display: block;
             border: 1px solid black;
             font-size: 14px;
-            /*white-space: pre-wrap;*/
         }
         #ResponsiveTable button {
             width: 50px;
             border-radius: 5px;
             border: 1px solid black;
         }
-        #ResponsiveTable #btn_workdone {
+        #ResponsiveTable #btn_workdone,
+        #ResponsiveTable #btn_showComment {
             width: 100px;
         }
-        #ResponsiveTable #btn_worksheet {
+        #ResponsiveTable #btn_worksheet,
+        #ResponsiveTable #btn_makePDF {
             width: 100px;
             border-radius: 5px;
             border: 1px solid black;
@@ -279,5 +281,6 @@
         #data_range select {
             border: 1px solid black;
         }
+        
     }
 </style>

@@ -24,7 +24,7 @@
                                 </colgroup>';
                     	echo ' <tr>
                             <td><b>Invoice # : </b></td>
-                            	<td>'."7C".$_GET['invoice'].'</td>
+                            	<td>'.$_GET['invoice'].'</td>
                     		</tr>
                             <tr>
                                 <td><b>Apartment : </b></td>
@@ -38,7 +38,7 @@
                             	<td>'.$_GET['size'].'</td>
                     		</tr>
                         </table>
-                        <table border="3" width="100%">
+                        <table id="ResponsiveTable" border="3" width="100%">
 							<colgroup>
 								<col width="5%">
                                 <col width="10%">
@@ -46,7 +46,7 @@
                                 <col width="75%">
 
                             </colgroup>
-                            <thead>
+                            <thead id="HeadRow">
                                 <tr style="border: 2px double black;" bgcolor="#c9c9c9">
                                     <td align="center"><b>#</b></td>
                                     <td align="center"><b>Quantity</b></td>
@@ -64,7 +64,16 @@
                         while($row = mysqli_fetch_array($result))
                         {	
                         	$i++;
+
                         	$quantity = $row['quantity'];
+                            if ($quantity == null) $quantity = '-';
+
+                            $price = $row['price'];
+                            if ($price == null) $price = '-';
+
+                            $description = $row['description'];
+                            if ($description == null) $description = '-';
+
                             echo '<tbody>';
                             if ($isOdd) {
                                 $isOdd = false;
@@ -76,10 +85,10 @@
                             if ($quantity == 0) {
                             	$quantity = '';
                             }
-                        	echo '<td align="center">'.$i.'</td>
-                                        <td align="center">'.$quantity.'</td>
-                                        <td align="center">'.$row['price'].'</td>
-                                        <td align="center">'.$row['description'].'</td>
+                        	echo '<td tableHeadData="#" align="center">'.$i.'</td>
+                                        <td tableHeadData="Quantity" align="center">'.$quantity.'</td>
+                                        <td tableHeadData="Price" align="center">'.$price.'</td>
+                                        <td tableHeadData="Description" align="center">'.$description.'</td>
                                     </tr>
                                 </tbody>
                             ';

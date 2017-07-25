@@ -45,12 +45,12 @@
                 }
 
                 echo '
-                    <table border="2" width="100%">
-                        <thead>
+                    <table id="ResponsiveTable" border="2" width="100%">
+                        <thead id="HeadRow">
                             <tr style="border: 2px double black;" bgcolor="#c9c9c9">
                                 <td align="center"><b><a href="?orderBy=invoice">Invoice #</a></b></td>
-                                <td align="center"><b><a href="?orderBy=po">P.O. #</a></b></td>
-                                <td align="center"><b><a href="?orderBy=apt">Apt #</a></b></td>
+                                <td align="center"><b><a href="?orderBy=po">P.O.</a></b></td>
+                                <td align="center"><b><a href="?orderBy=apt">Apt</a></b></td>
                                 <td align="center"><b><a href="?orderBy=manager">Manager</a></b></td>
                                 <td align="center"><b><a href="?orderBy=unit">Unit #</a></b></td>
                                 <td align="center"><b><a href="?orderBy=size">Size</a></b></td>
@@ -96,9 +96,37 @@
                 while($row = mysqli_fetch_array($result))
                 {
                     $temp_invoice = '7C'.$row['invoice'];
+                    if ($temp_invoice == null) $temp_invoice = '-';
+
+                    $temp_po = $row['PO'];
+                    if ($temp_po == null) $temp_po = '-';
+
                     $temp_apt = $row['apt'];
+                    if ($temp_apt == null) $temp_apt = '-';
+
                     $temp_manager = $row['manager'];
+                    if ($temp_manager == null) $temp_manager = '-';
+
                     $temp_unit = $row['unit'];
+                    if ($temp_unit == null) $temp_unit = '-';
+
+                    $temp_size = $row['size'];
+                    if ($temp_size == null) $temp_size = '-';
+
+                    $temp_price = $row['price'];
+                    if ($temp_price == null) $temp_price = '-';
+
+                    $temp_salary = $row['salary'];
+                    if ($temp_salary == null) $temp_salary = '-';
+
+                    $temp_profit = $row['profit'];
+                    if ($temp_profit == null) $temp_profit = '-';
+
+                    $temp_description = $row['description'];
+                    if ($temp_description == null) $temp_description = '-';
+
+                    $temp_date = $row['date'];
+                    if ($temp_date == null) $temp_date = '-';
 
                     echo '<tbody>';
                     if ($isOdd) {
@@ -110,23 +138,23 @@
                     }
 
                     echo '
-                                <td align="center"><a href="invoice_detail.php?invoice_num='.$temp_invoice.'">'.$temp_invoice.'</a></td>
-                                <td align="center">'.$row['PO'].'</td>
-                                <td align="center"><a href="worksheet_apt.php?apt='.$temp_apt.'&company='.$row['company'].'">'.$temp_apt.'</a></td>
-                                <td align="center"><a href="worksheet_manager.php?manager='.$temp_manager.'">'.$temp_manager.'</a></td>
-                                <td align="center">'.$temp_unit.'</td>
-                                <td align="center">'.$row['size'].'</td>
-                                <td align="center">'.$row['price'].'</td>
+                                <td tableHeadData="Invoice #" align="center"><a href="invoice_detail.php?invoice_num='.$temp_invoice.'">'.$temp_invoice.'</a></td>
+                                <td tableHeadData="P.O." align="center">'.$temp_po.'</td>
+                                <td tableHeadData="Apt" align="center"><a href="worksheet_apt.php?apt='.$temp_apt.'&company='.$row['company'].'">'.$temp_apt.'</a></td>
+                                <td tableHeadData="Manager" align="center"><a href="worksheet_manager.php?manager='.$temp_manager.'">'.$temp_manager.'</a></td>
+                                <td tableHeadData="Unit #" align="center">'.$temp_unit.'</td>
+                                <td tableHeadData="Size" align="center">'.$temp_size.'</td>
+                                <td tableHeadData="Price" align="center">'.$temp_price.'</td>
                     ';
                     if ($_SESSION['isadmin'] == 2) {
                         echo '
-                            <td align="center">'.$row['salary'].'</td>
-                            <td align="center">'.$row['profit'].'</td>
+                            <td tableHeadData="Salary" align="center">'.$temp_salary.'</td>
+                            <td tableHeadData="Profit" align="center">'.$temp_profit.'</td>
                         ';
                     }
                     echo '
-                                <td align="center"><a href="worksheet_description.php?invoice='.$row['invoice'].'&apt='.$row['apt'].'&unit='.$row['unit'].'&size='.$row['size'].'&from_company=1">'.$row['description'].'</a></td>
-                                <td align="center">'.$row['date'].'</td>
+                                <td tableHeadData="Description" align="center"><a href="worksheet_description.php?invoice='.$temp_invoice.'&apt='.$temp_apt.'&unit='.$temp_unit.'&size='.$temp_size.'&from_company=1">'.$temp_description.'</a></td>
+                                <td tableHeadData="Date" align="center">'.$temp_date.'</td>
                             </tr>
                         </tbody>
                     ';

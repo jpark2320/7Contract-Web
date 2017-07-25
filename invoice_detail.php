@@ -84,8 +84,8 @@
                         $_SESSION['invoice'] = $i_detail;
 
                         echo '
-                            <table border="3" width="100%">
-                                <thead>
+                            <table id="ResponsiveTable" border="3" width="100%">
+                                <thead id="HeadRow">
                                     <tr style="border: 2px double black;" bgcolor="#c9c9c9">
                                         <td align="center"><b><a href="?orderBy=isworkdone">Work Status</a></b></td>
                                         <td align="center"><b><a href="?orderBy=ispaidoff">Paid Off</a></b></td>
@@ -124,11 +124,22 @@
                         $isOdd = false;
                         while($row = mysqli_fetch_array($result))
                         {
-                            $message = $row['message'];
-                            $email = $row['email'];
-                            $price = $row['price'];
-                            $user_name = $row['first'].' '.$row['last'];
                             $id = $row['id'];
+
+                            $user_name = $row['first'].' '.$row['last'];
+                            if ($user_name == null) $user_name = '-';
+
+                            $message = $row['message'];
+                            if ($message == null) $message = '-';
+
+                            $price = $row['price'];
+                            if ($price == null) $price = '-';
+
+                            $paid = $row['paid'];
+                            if ($paid == null) $paid = '-';
+
+                            $date = $row['date'];
+                            if ($date == null) $date = '-';
 
                             echo '<tbody>';
                             if ($isOdd) {
@@ -140,29 +151,29 @@
                             }
 
                             if ($row['isworkdone'] == 1) {
-                                echo '<td align="center"><img src="./img/status_light_green" width="10px"></td>';
+                                echo '<td tableHeadData="Work Status" align="center"><img src="./img/status_light_green" width="10px"></td>';
                             } else {
-                                echo '<td align="center"><img src="./img/status_light_red" width="10px"></td>';
+                                echo '<td tableHeadData="Work Status" align="center"><img src="./img/status_light_red" width="10px"></td>';
                             }
                             if ($row['ispaidoff'] == 1) {
-                                echo '<td align="center"><img src="./img/status_light_green" width="10px"></td>';
+                                echo '<td tableHeadData="Paid Off" align="center"><img src="./img/status_light_green" width="10px"></td>';
                             } else {
-                                echo '<td align="center"><img src="./img/status_light_red" width="10px"></td>';
+                                echo '<td tableHeadData="Paid Off" align="center"><img src="./img/status_light_red" width="10px"></td>';
                             }
 
                             echo '
-                                        <td align="center"><a href="user_detail.php?invoice='.urlencode($i_detail).' &email='.urlencode($email).' &user_name='.urlencode($user_name).'">'.$user_name.'</a></td>
-                                        <td align="center">'.$row['message'].'</td>
-                                        <td align="center"><button><a href="show_comment.php?id='.$id.'&email='.$email.'&apt='.$_SESSION['apt_pdf'].'&unit='.$_SESSION['unit_pdf'].'&username='.urlencode($user_name).'">Show Comments</a></button></td>
+                                        <td tableHeadData="Name" align="center"><a href="user_detail.php?invoice='.urlencode($i_detail).' &email='.urlencode($row['email']).' &user_name='.urlencode($user_name).'">'.$user_name.'</a></td>
+                                        <td tableHeadData="Message" align="center">'.$row['message'].'</td>
+                                        <td tableHeadData="Comment" align="center"><button id="btn_showComment"><a href="show_comment.php?id='.$id.'&email='.$row['email'].'&apt='.$_SESSION['apt_pdf'].'&unit='.$_SESSION['unit_pdf'].'&username='.urlencode($user_name).'">Show Comments</a></button></td>
                             ';
                             if ($_SESSION['isadmin'] == 2) {
                                 echo '
-                                    <td align="center">'.$row['price'].'</td>
-                                    <td align="center">'.$row['paid'].'</td>
+                                    <td tableHeadData="Salary" align="center">'.$price.'</td>
+                                    <td tableHeadData="Paid" align="center">'.$paid.'</td>
                                 ';
                             }
                             echo '
-                                        <td align="center">'.$row['date'].'</td>
+                                        <td tableHeadData="Date" align="center">'.$date.'</td>
                                     </tr>
                                 </tbody>
                             ';
@@ -174,7 +185,7 @@
                 <br>
                 <?php
                     if (isset($_SESSION['po_pdf']) && isset($_SESSION['company_pdf']) && isset($_SESSION['apt_pdf']) && isset($_SESSION['unit_pdf']) && isset($_SESSION['size_pdf'])) {
-                        echo '<button><a href="pdf_info.php?invoice='.urlencode($i_detail).' &po='.$_SESSION['po_pdf'].' &company='.$_SESSION['company_pdf'].' &apt='.$_SESSION['apt_pdf'].' &unit='.$_SESSION['unit_pdf']. ' &size='.$_SESSION['size_pdf'].'">Make PDF</a></button>';
+                        echo '<button id="btn_makePDF"><a href="pdf_info.php?invoice='.urlencode($i_detail).' &po='.$_SESSION['po_pdf'].' &company='.$_SESSION['company_pdf'].' &apt='.$_SESSION['apt_pdf'].' &unit='.$_SESSION['unit_pdf']. ' &size='.$_SESSION['size_pdf'].'">Make PDF</a></button>';
                     }
                 ?>
                 <input type="button" value="Back" onclick="location.href='worksheet.php'"></input>

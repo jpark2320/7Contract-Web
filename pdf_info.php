@@ -81,7 +81,7 @@
                 $isOdd = false;
                 $i = 0;
                 echo '
-                    <table border="3" width="100%">
+                    <table id="ResponsiveTable" border="3" width="100%">
                         <colgroup>
                             <col width="5%">
                             <col width="10%">
@@ -92,7 +92,7 @@
                             <col width="10%">
                             <col width="10%">
                         </colgroup>
-                        <thead>
+                        <thead id="HeadRow">
                             <tr style="border: 2px double black;" bgcolor="#c9c9c9">
                                 <td align="center"><b>#</b></td>
                                 <td align="center"><b>Paid Off</b></td>
@@ -107,6 +107,18 @@
                 {
                     $i++;
 
+                    $commnet = $row['comment'];
+                    if ($comment == null) $comment = '-';
+
+                    $salary = $row['salary'];
+                    if ($salary == null) $salary = '-';
+
+                    $paid = $row['paid'];
+                    if ($paid == null) $paid = '-';
+
+                    $date = $row['date'];
+                    if ($date == null) $date = '-';
+
                     echo '<tbody>';
                     if ($isOdd) {
                         $isOdd = false;
@@ -115,17 +127,17 @@
                         $isOdd = true;
                         echo '<tr>';
                     }
-                    echo '<td align="center">'.$i.'</td>';
+                    echo '<td tableHeadData="#" align="center">'.$i.'</td>';
                     if ($row['ispaidoff'] == 1) {
-                        echo '<td align="center"><img src="./img/status_light_green" width="10px"></td>';
+                        echo '<td tableHeadData="Paid Off" align="center"><img src="./img/status_light_green" width="10px"></td>';
                     } else {
-                        echo '<td align="center"><img src="./img/status_light_red" width="10px"></td>';
+                        echo '<td tableHeadData="Paid Off" align="center"><img src="./img/status_light_red" width="10px"></td>';
                     }
                     echo '
-                                <td align="center">'.$row['comment'].'</td>
-                                <td align="center">'.$row['salary'].'</td>
-                                <td align="center">'.$row['paid'].'</td>
-                                <td align="center">'.$row['date'].'</td>
+                                <td tableHeadData="Comment" align="center">'.$comment.'</td>
+                                <td tableHeadData="Salary" align="center">'.$salary.'</td>
+                                <td tableHeadData="Paid" align="center">'.$paid.'</td>
+                                <td tableHeadData="Date" align="center">'.$date.'</td>
                             </tr>
                         </tbody>
                     ';
@@ -158,7 +170,7 @@
 
                 echo '
                     <form action="pdf_info.php" method="post">
-                        <table border="2" width="100%">
+                        <table id="ResponsiveTable" border="2" width="100%">
                             <colgroup>
                                 <col width="70%">
                                 <col width="10%">
@@ -166,7 +178,7 @@
                                 <col width="5%">
                                 <col width="5%">
                             </colgroup>
-                            <thead>
+                            <thead id="HeadRow">
                                 <tr style="border: 2px double black;" bgcolor="#c9c9c9">
                                     <td align="center"><b>Description</b></td>
                                     <td align="center"><b>Qty</b></td>
@@ -176,9 +188,9 @@
                             </thead>
                             <tbody id="pdf_table">
                                 <tr>
-                                    <td><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="description" size="50"></td>
-                                    <td><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="qty" size="44"></td>
-                                    <td><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="price" size="44"></td>
+                                    <td tableHeadData="Description"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="description" size="50"></td>
+                                    <td tableHeadData="Qty"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="qty" size="44"></td>
+                                    <td tableHeadData="Price"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="price" size="44"></td>
                                     <td colspan="2" align="center"><input type="submit" name="submit" value="Add"></td>
                                 </tr>
                 ';
@@ -208,12 +220,12 @@
                         <br>
                     </form>
                     <form action="create_pdf.php" method="post">
-                        <table border="2" width="8%">
-                            <tr align="center" bgcolor="#c9c9c9">
+                        <table id="ResponsiveTable" border="2" width="8%">
+                            <tr id="HeadRow" align="center" bgcolor="#c9c9c9">
                                 <td><label><b>Date</b></label></td>
                             </tr>
                             <tr align="center">
-                                <td><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="date" name="date" id="theDate" value="" size="8"></td>
+                                <td tableHeadData="Date"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="date" name="date" id="theDate" value="" size="8"></td>
                             </tr>
                         </table>
                 ';
@@ -224,6 +236,7 @@
             <input type="button" value="Back" onclick="location.href='invoice_detail.php'"></input>
             </form>
         </div>
+        <br><br><br><br>
 
         <!-- Footer -->
         <?php include('./includes/footer.html'); ?>

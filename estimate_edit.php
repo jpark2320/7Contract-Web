@@ -76,7 +76,7 @@
                 echo '
 
                     <form action="estimate_edit.php" method="post">
-                        <table border="2" width="100%">
+                        <table id="ResponsiveTable" border="2" width="100%">
                             <colgroup>
                                 <col width="70%">
                                 <col width="10%">
@@ -84,7 +84,7 @@
                                 <col width="5%">
                                 <col width="5%">
                             </colgroup>
-                            <thead>
+                            <thead id="HeadRow">
                                 <tr style="border: 2px double black;" bgcolor="#c9c9c9">
                                     <td align="center"><b>Description</b></td>
                                     <td align="center"><b>Qty</b></td>
@@ -94,9 +94,9 @@
                             </thead>
                             <tbody id="pdf_table">
                                 <tr>
-                                    <td><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="description" size="10"></td>
-                                    <td><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="qty" size="10"></td>
-                                    <td><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="price" size="10"></td>
+                                    <td tableHeadData="Description"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="description" size="10"></td>
+                                    <td tableHeadData="Qty"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="qty" size="10"></td>
+                                    <td tableHeadData="Price" ><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="price" size="10"></td>
                                     <td colspan="2" align="center"><input type="submit" name="submit" value="Add"></td>
                                 </tr>
                 ';

@@ -130,7 +130,7 @@
                                 echo '<tr>';
                             }
                             if ($_SESSION['isadmin'] == 2) {
-                            	echo '<td align="center">'.$i.'</td>';
+                            	echo '<td tableHeadData="#" align="center">'.$i.'</td>';
 	                            if ($row['ispaidoff'] == 1) {
 	                                echo '<td tableHeadData="Status" align="center"><img src="./img/status_light_green" width="10px"></td>';
 	                            } else {
