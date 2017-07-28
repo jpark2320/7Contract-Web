@@ -139,7 +139,7 @@
                         <col width="50%">
                     </colgroup>
                         <tr>
-                            <td><label>P.O Number</label></td>
+                            <td><label>P.O.</label></td>
                             <td><input type="text" name="po" maxlength="36" size="30" value="<?php echo isset($_SESSION['po']) ? $_SESSION['po'] : '' ?>"></td>
                         </tr>
                         <tr>

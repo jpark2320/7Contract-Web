@@ -75,7 +75,8 @@
     #toggle {
         display: none;
     }
-    .primary {
+    .primary, 
+    .primary_contact {
         width: 80%;
         padding: 5% 10%;
         color: black;
@@ -111,9 +112,6 @@
         height: 100px;
         font-size: 12px;
         border: 1px solid gray;
-    }
-    #menu_icon {
-        display: none;
     }
     #doc {
         margin-top: 60px;
@@ -161,6 +159,11 @@
         }
         .primary {
             margin-top: 10%;
+            margin-bottom: 30%;
+        }
+        .primary_contact {
+            margin-top: 10%;
+            margin-bottom: 1%;
         }
         .header {
             margin: 0;
@@ -181,23 +184,25 @@
             display: block;
         }
         .menu {
-            text-align: center;
             width: 30%;
+            height: 130px;
             margin-left: 310px;
             background-color: #3a3a3a;
             border: 1px solid #ffffff;
+            padding: 5px 0;
             display: none;
         }
         .menu li {
             float: right;
             border-bottom: 1px solid #;
-            padding: 5px 0;
-        }
-        .menu li a:hover {
-            transform: scale(1.2, 1.2);
         }
         .menu li a {
             font-size: 12px;
+            padding: 5px 0;
+            text-align: center;
+        }
+        .menu li a:hover {
+            transform: scale(1.1, 1.1);
         }
         /*About Section*/
         #about_img img {
@@ -241,16 +246,6 @@
             border-radius: 5px;
             border: 1px solid black;
         }
-        #ResponsiveTable #btn_workdone,
-        #ResponsiveTable #btn_showComment {
-            width: 100px;
-        }
-        #ResponsiveTable #btn_worksheet,
-        #ResponsiveTable #btn_makePDF {
-            width: 100px;
-            border-radius: 5px;
-            border: 1px solid black;
-        }
         #HeadRow {
             position: absolute;
             top: -9999px;
@@ -275,12 +270,50 @@
             border-right: 1px solid black;
 
         }
+        #ResponsiveTable .assignTd::before {
+            position: absolute;
+            left: 5px;
+            width: 80%;
+            float: left;
+            padding-right: 10px;
+            text-align: left;
+            font-weight: bold;
+            content: attr(tableHeadData);
+            border-right: 1px solid black;
+        }
+        #btn_workdone {
+            width: 150px;
+        }
+        #ResponsiveTable #btn_showComment {
+            width: 120px;
+        }
+        #btn_worksheet {
+            width: 100px;
+            border-radius: 5px;
+            border: 1px solid black;
+        }
+        #btn_makePDF {
+            width: 70px;
+            border-radius: 5px;
+            border: 1px solid black;
+        }
+        #btn_invoiceDetail {
+            padding: -30px 0;
+        }
+        #msg_assign {
+            width: 90%;
+            border: 1px solid black;
+        }
         #data_range {
             padding: 10px 0;
         }
         #data_range select {
             border: 1px solid black;
         }
-        
+        #name,
+        #email,
+        #message {
+            border: 1px solid gray;
+        }
     }
 </style>

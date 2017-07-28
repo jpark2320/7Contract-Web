@@ -32,8 +32,8 @@
                 $result = mysqli_query($conn, $sql);
 
                 echo '
-                    <table border="2" width="500px">
-                        <thead>
+                    <table id="ResponsiveTable" border="2" width="500px">
+                        <thead id="HeadRow">
                             <tr style="border: 2px double black;" bgcolor="#c9c9c9">
                                 <td align="center" width="200px"><b>Subcontractors</b></th>
                                 <td align="center" width="100px"></th>
@@ -43,7 +43,7 @@
                         <tbody>
                             <tr>
                                 <form action="assign.php" method="post">
-                                    <td align="center">
+                                    <td class="assignTd" align="center">
                                         <select name="workers[]" multiple="multiple" size="10">';
 
                     while($row = mysqli_fetch_array($result))
@@ -53,10 +53,10 @@
                     echo '
                                         </select>
                                     </td>
-                                    <td align="center">
+                                    <td class="assignTd" align="center">
                                         <input type="submit" name="invoice_num" value="->"></input>
                                     </td>
-                                    <td align="center">
+                                    <td class="assignTd" align="center">
                                         <select multiple="multiple" size="10">
                     ';
                     if (isset($_POST['workers'])) {
@@ -80,7 +80,7 @@
                 mysqli_close($conn);
             ?>
             <form action="assign_process.php" method="POST">
-                <textarea class="form-control" name="assign_message" placeholder="Leave a message here." rows="8" cols="100"></textarea>
+                <textarea id="msg_assign" name="assign_message" placeholder="Leave a message here." rows="8" cols="100"></textarea>
                 <br>
                 <input type="submit" value="Confirm"></input>
                 <input type="button" value="Back" onclick="location.href='worksheet.php'"></input>

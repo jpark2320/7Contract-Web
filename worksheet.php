@@ -37,9 +37,13 @@
                 } else {
 					if (isset($_SESSION['isadmin'])) {
 						if ($_SESSION['isadmin'] > 0) {
-							echo '<div id="btn_worksheet" align="right"><button><a href="view_estimate.php">View Estimate</a></button>
-							<button><a href="estimate_info.php">Make Estimate</a></button>
-							<button><a href="worksheet_add.php">Add to Worksheet</a></button></div>';
+							echo '
+								<div align="center">
+									<button id="btn_worksheet"><a href="view_estimate.php">View Estimate</a></button>
+									<button id="btn_worksheet"><a href="estimate_info.php">Make Estimate</a></button>
+									<button id="btn_worksheet"><a href="worksheet_add.php">Add Worksheet</a></button
+								</div>
+							';
 
                             echo '<div align="left" text-decoration:none; color:#ff0000;">';
 
@@ -47,9 +51,9 @@
                                 $_SESSION['sort'] = 'asc';
                             }
                             if ($_SESSION['sort']=='asc') {
-                                echo '<a href="?st=desc">Show descending order</a>';
+                                echo '<a href="?st=desc">Show Descending Order</a>';
                             } else {
-                                echo '<a href="?st=asc">Show ascending order</a>';
+                                echo '<a href="?st=asc">Show Ascending Order</a>';
                             }
                             if (isset($_GET['st'])) {
                                 $_SESSION['sort'] = $_GET['st'];
@@ -57,7 +61,7 @@
                             }
 
 							if ($_SESSION['isadmin'] == 2) {
-								echo '<a style="float: right;"href="price_detail.php">Show details</a>';
+								echo '<a style="float: right;"href="price_detail.php">Show Detail</a>';
 							}
 
                             echo '</div>';
@@ -155,7 +159,7 @@
 											<td tableHeadData="Invoice #" align="center"><a href="invoice_detail.php?invoice_num='.$temp_invoice.'">'.$temp_invoice.'</a></td>
 											<td tableHeadData="P.O." align="center">'.$temp_po.'</td>
 											<td tableHeadData="Company" align="center"><a href="worksheet_company.php?company='.$temp_company.'">'.$temp_company.'</a></td>
-											<td tableHeadData="Apt" align="center"><a href="worksheet_apt.php?apt='.$temp_apt.'&company='.$row['company'].'">'.$temp_apt.'</a></td>
+											<td tableHeadData="Apt" align="center"><a href="worksheet_apt.php?apt='.$temp_apt.'&company='.$temp_company.'">'.$temp_apt.'</a></td>
 											<td tableHeadData="Manager" align="center"><a href="worksheet_manager.php?manager='.$temp_manager.'">'.$temp_manager.'</a></td>
 											<td tableHeadData="Unit" align="center">'.$temp_unit.'</td>
 											<td tableHeadData="Size" align="center">'.$temp_size.'</td>
@@ -252,7 +256,6 @@
                 mysqli_close($conn);
             ?>
         </div>
-        <br><br><br><br><br>
 
         <!-- Footer -->
         <?php include('./includes/footer.html'); ?>

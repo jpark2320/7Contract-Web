@@ -35,9 +35,9 @@
                     $_SESSION['sort'] = 'asc';
                 }
                 if ($_SESSION['sort']=='asc') {
-                    echo '<div align="left"><h><a href="?st=desc">Show descending order</a></h></div>';
+                    echo '<div align="left"><h><a href="?st=desc">Show Descending Order</a></h></div>';
                 } else {
-                    echo '<div align="left"><h><a href="?st=asc">Show ascending order</a></h></div>';
+                    echo '<div align="left"><h><a href="?st=asc">Show Ascending Order</a></h></div>';
                 }
                 if (isset($_GET['st'])) {
                     $_SESSION['sort'] = $_GET['st'];
@@ -130,17 +130,17 @@
                     if ($temp_date == null) $temp_date = '-';
 
                     echo '<tbody>';
-                    if ($isOdd) {
-                        $isOdd = false;
-                        echo '<tr bgcolor="#e8fff1">';
-                    } else {
-                        $isOdd = true;
-                        echo '<tr>';
+                    if (isset($isOdd)) {
+                        if ($isOdd) {
+                            $isOdd = false;
+                            echo '<tr bgcolor="#e8fff1">';
+                        } else {
+                            $isOdd = true;
+                            echo '<tr>';
+                        }
                     }
 
                     echo '
-                        <tbody>
-                            <tr>
                                 <td tableHeadData="Invoice #" align="center"><a href="invoice_detail.php?invoice_num='.$temp_invoice.'">'.$temp_invoice.'</a></td>
                                 <td tableHeadData="P.O." align="center">'.$temp_po.'</td>
                                 <td tableHeadData="Company" align="center"><a href="worksheet_company.php?company='.$temp_company.'">'.$temp_company.'</a></td>
@@ -168,7 +168,6 @@
             <br>
             <input type="button" value="Back" onclick="location.href='worksheet.php'"></input>
         </div>
-        <br><br><br><br><br>
 
         <!-- Footer -->
         <?php include('./includes/footer.html'); ?>

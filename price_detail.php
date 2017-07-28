@@ -3,7 +3,7 @@
 <html lang="en">
     <!-- Header Tag -->
     <?php include('./includes/head_tag.html'); ?>
-    <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+    <body id="myPage">
 
         <!-- Header -->
         <?php include('./includes/nav_bar.php'); ?>
@@ -27,9 +27,9 @@
                         $_SESSION['sort'] = 'asc';
                     }
                     if ($_SESSION['sort']=='asc') {
-                        echo '<div align="left"><h><a href="?st=desc">Show descending order</a></h></div>';
+                        echo '<div align="left"><h><a href="?st=desc">Show Descending Order</a></h></div>';
                     } else {
-                        echo '<div align="left"><h><a href="?st=asc">Show ascending order</a></h></div>';
+                        echo '<div align="left"><h><a href="?st=asc">Show Ascending Order</a></h></div>';
                     }
 					if (isset($_SESSION['unpaid'])) {
 						if ($_SESSION['unpaid']) {

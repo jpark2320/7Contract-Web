@@ -35,9 +35,9 @@
                     $_SESSION['sort'] = 'asc';
                 }
                 if ($_SESSION['sort']=='asc') {
-                    echo '<div align="left"><h><a href="?st=desc">Show descending order</a></h></div>';
+                    echo '<div align="left"><h><a href="?st=desc">Show Descending Order</a></h></div>';
                 } else {
-                    echo '<div align="left"><h><a href="?st=asc">Show ascending order</a></h></div>';
+                    echo '<div align="left"><h><a href="?st=asc">Show Ascending Order</a></h></div>';
                 }
                 if (isset($_GET['st'])) {
                     $_SESSION['sort'] = $_GET['st'];
@@ -165,7 +165,6 @@
             <br>
             <input type="button" value="Back" onclick="location.href='worksheet.php'"></input>
         </div>
-        <br><br><br><br><br>
 
         <!-- Footer -->
         <?php include('./includes/footer.html'); ?>

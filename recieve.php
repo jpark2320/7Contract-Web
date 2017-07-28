@@ -48,25 +48,26 @@
                             <col width="50%">
                             <col width="50%">
                         </colgroup>
+                            <!-- <?php echo isset($_SESSION['echeck']) ? $_SESSION['echeck'] : '' ?> -->
                             <tr>
                                 <td><label>Invoice #</label></td>
-                                <td><?php echo "7C".$_SESSION['invoice']?></td>
+                                <td><?php echo isset($_SESSION['invoice']) ? "7C".$_SESSION['invoice'] : '-' ?></td>
                             </tr>
                             <tr>
                                 <td><label>Apt</label></td>
-                                <td><?php echo $_SESSION['apt']?></td>
+                                <td><?php echo isset($_SESSION['apt']) ? $_SESSION['apt'] : '-' ?></td>
                             </tr>
                             <tr>
                                 <td><label>Unit</label></td>
-                                <td><?php echo $_SESSION['unit']?></td>
+                                <td><?php echo isset($_SESSION['unit']) ? $_SESSION['unit'] : '-' ?></td>
                             </tr>
                             <tr>
                                 <td><label>Price</label></td>
-                                <td><?php echo "$ ".$_SESSION['price']?></td>
+                                <td><?php echo isset($_SESSION['price']) ? "$ ".$_SESSION['price']  : '-' ?></td>
                             </tr>
                             <tr>
                                 <td><label>Remaining Balance</label></td>
-                                <td><?php echo "$ ".number_format((float)$_SESSION['remaining'], 2, '.', '')?></td>
+                                <td><?php echo isset($_SESSION['remaining']) ? "$ ".number_format((float)$_SESSION['remaining'], 2, '.', '') : '-' ?></td>
                             </tr>
                             <tr>
                                 <td><label>Recieved Amount</label></td>

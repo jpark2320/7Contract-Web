@@ -13,7 +13,7 @@
 <html lang="en">
     <!-- Header Tag -->
     <?php include('./includes/head_tag.html'); ?>
-    <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+    <body id="myPage">
 
         <!-- Header -->
         <?php include('./includes/nav_bar.php'); ?>
@@ -72,9 +72,9 @@
                             $_SESSION['sort'] = 'asc';
                         }
                         if ($_SESSION['sort']=='asc') {
-                            echo '<div align="left"><h><a href="?st=desc">Show descending order</a></h></div>';
+                            echo '<div align="left"><h><a href="?st=desc">Show Descending Order</a></h></div>';
                         } else {
-                            echo '<div align="left"><h><a href="?st=asc">Show ascending order</a></h></div>';
+                            echo '<div align="left"><h><a href="?st=asc">Show Ascending Order</a></h></div>';
                         }
                         if (isset($_GET['st'])) {
                             $_SESSION['sort'] = $_GET['st'];
@@ -183,14 +183,15 @@
                     ?>
                 </form>
                 <br>
-                <?php
-                    if (isset($_SESSION['po_pdf']) && isset($_SESSION['company_pdf']) && isset($_SESSION['apt_pdf']) && isset($_SESSION['unit_pdf']) && isset($_SESSION['size_pdf'])) {
-                        echo '<button id="btn_makePDF"><a href="pdf_info.php?invoice='.urlencode($i_detail).' &po='.$_SESSION['po_pdf'].' &company='.$_SESSION['company_pdf'].' &apt='.$_SESSION['apt_pdf'].' &unit='.$_SESSION['unit_pdf']. ' &size='.$_SESSION['size_pdf'].'">Make PDF</a></button>';
-                    }
-                ?>
-                <input type="button" value="Back" onclick="location.href='worksheet.php'"></input>
+                <div id="btn_invoiceDetail">
+                    <?php
+                        if (isset($_SESSION['po_pdf']) && isset($_SESSION['company_pdf']) && isset($_SESSION['apt_pdf']) && isset($_SESSION['unit_pdf']) && isset($_SESSION['size_pdf'])) {
+                            echo '<button id="btn_makePDF"><a href="pdf_info.php?invoice='.urlencode($i_detail).' &po='.$_SESSION['po_pdf'].' &company='.$_SESSION['company_pdf'].' &apt='.$_SESSION['apt_pdf'].' &unit='.$_SESSION['unit_pdf']. ' &size='.$_SESSION['size_pdf'].'">Make PDF</a></button>';
+                        }
+                    ?>
+                    <input type="button" value="Back" onclick="location.href='worksheet.php'"></input>
+                </div>
         </div>
-        <br><br><br><br><br>
 
         <!-- Footer -->
         <?php include('./includes/footer.html'); ?>

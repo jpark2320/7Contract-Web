@@ -17,7 +17,7 @@
                         if (isset($_GET['invoice'])) {
                         	$invoice = $_GET['invoice'];
                         }  
-                        echo '<table width="200" align="center">
+                        echo '<table width="250" align="center">
                                 <colgroup>
                                     <col width="50%">
                                     <col width="50%">

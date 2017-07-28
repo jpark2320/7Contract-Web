@@ -33,21 +33,24 @@
                     $apt = $_SESSION['apt'];
                     $_SESSION['apt'] = $apt;
                 }
+
                 if (isset($_GET['company'])) {
                     $company = $_GET['company'];
                 } else {
                     $company = $_SESSION['company'];
                 }
+
                 echo '<div align="center"><b>Apt : '.$apt.'</b></div>';
 
                 if (!isset($_SESSION['sort'])) {
                     $_SESSION['sort'] = 'asc';
                 }
                 if ($_SESSION['sort']=='asc') {
-                    echo '<div align="left"><h><a href="?st=desc">Show descending order</a></h></div>';
+                    echo '<div align="left"><h><a href="?st=desc">Show Descending Order</a></h></div>';
                 } else {
-                    echo '<div align="left"><h><a href="?st=asc">Show ascending order</a></h></div>';
+                    echo '<div align="left"><h><a href="?st=asc">Show Ascending Order</a></h></div>';
                 }
+
 				if (isset($_SESSION['unpaid'])) {
 					if ($_SESSION['unpaid']) {
 						echo '<div align="right"><a href="?unpaid=0">Show All</a></div>';
@@ -116,7 +119,7 @@
                     printf("Error: %s\n", mysqli_error($conn));
                     exit();
                 }
-
+                $isOdd = false;
                 while($row = mysqli_fetch_array($result)) 
                 {
                     $temp_invoice = '7C'.$row['invoice'];
@@ -202,7 +205,6 @@
                 mysqli_close($conn);
             ?>
         </div>
-        <br><br><br><br><br>
 
         <!-- Footer -->
         <?php include('./includes/footer.html'); ?>
