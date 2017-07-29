@@ -20,7 +20,11 @@
         } else {
         	$paidoff = 0;
         }
-        $sql = "UPDATE worksheet SET paid=".$balance.", ispaidoff=".$paidoff." WHERE invoice=".$invoice;
+        $sql = "SELECT salary FROM worksheet";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_array($result);
+        $profit = $balance - $row['salary'];
+        $sql = "UPDATE worksheet SET paid=".$balance.", ispaidoff=".$paidoff.", profit=".$profit." WHERE invoice=".$invoice;
         $conn->query($sql);
     }
 

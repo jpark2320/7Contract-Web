@@ -77,7 +77,7 @@
 											<td align="center"><b><a href="?orderBy=apt">Apt</a></b></td>
 											<td align="center"><b><a href="?orderBy=manager">Manager</a></b></td>
 											<td align="center"><b><a href="?orderBy=unit">Unit #</a></b></td>
-											<td align="center"><b><a href="?orderBy=size">Size</a></b></td>
+											
 											<td align="center"><b><a href="?orderBy=price">Price</a></b></td>
 											<td align="center"><b>Description</b></td>
 											<td align="center"><b><a href="?orderBy=date">Date</a></b></td>
@@ -130,12 +130,17 @@
                                 if ($temp_size == null) $temp_size = '-';
 
                                 $temp_price = $row['price'];
+                              	$temp_price = str_replace(".00", "", $temp_price);
                                 if ($temp_price == null) $temp_price = '-';
 
                                 $temp_description = $row['description'];
                                 if ($temp_description == null) $temp_description = '-';
+                                if (strlen($temp_description) > 20) {
+                                	$temp_description = substr($temp_description, 0, 20)." ...";
+                                }
 
                                 $temp_date = $row['date'];
+                                $temp_date = substr($temp_date, 0, 11);
                                 if ($temp_date == null) $temp_date = '-';
 
 								echo '<tbody>';
@@ -162,9 +167,8 @@
 											<td tableHeadData="Apt" align="center"><a href="worksheet_apt.php?apt='.$temp_apt.'&company='.$temp_company.'">'.$temp_apt.'</a></td>
 											<td tableHeadData="Manager" align="center"><a href="worksheet_manager.php?manager='.$temp_manager.'">'.$temp_manager.'</a></td>
 											<td tableHeadData="Unit" align="center">'.$temp_unit.'</td>
-											<td tableHeadData="Size" align="center">'.$temp_size.'</td>
 											<td tableHeadData="Price" align="center">'.$temp_price.'</td>
-											<td tableHeadData="Description" align="center"><a href="worksheet_description.php?invoice='.$temp_invoice.'&apt='.$temp_apt.'&unit='.$temp_unit.'&size='.$temp_size.'">'.$temp_description.'</a></td>
+											<td tableHeadData="Description" align="left"><a href="worksheet_description.php?invoice='.$temp_invoice.'&apt='.$temp_apt.'&unit='.$temp_unit.'&size='.$temp_size.'">'.$temp_description.'</a></td>
 											<td tableHeadData="Date" align="center">'.$temp_date.'</td>
 											<td tableHeadData="Assign" align="center">
 												<button><a href="assign.php?invoice_num='.$temp_invoice.' &apt='.$temp_apt.' &unit_num='.$temp_unit.'">Send</a></button>
@@ -234,7 +238,7 @@
 								}
 
 								if ($row['isworkdone'] == 1) {
-									echo '<td tableHeadData="Status" lign="center"><img src="./img/status_light_green" width="10px"></td>';
+									echo '<td tableHeadData="Status" align="center"><img src="./img/status_light_green" width="10px"></td>';
 								} else {
 									echo '<td tableHeadData="Status" align="center"><img src="./img/status_light_red" width="10px"></td>';
 								}

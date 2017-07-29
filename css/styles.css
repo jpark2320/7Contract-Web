@@ -268,7 +268,6 @@
             font-weight: bold;
             content: attr(tableHeadData);
             border-right: 1px solid black;
-
         }
         #ResponsiveTable .assignTd::before {
             position: absolute;

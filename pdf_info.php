@@ -107,7 +107,7 @@
                 {
                     $i++;
 
-                    $commnet = $row['comment'];
+                    $comment = $row['comment'];
                     if ($comment == null) $comment = '-';
 
                     $salary = $row['salary'];

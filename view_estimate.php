@@ -41,7 +41,6 @@
                             <thead id="HeadRow">
                                 <tr style="border: 2px double black;" bgcolor="#c9c9c9">
                                     <td align="center"><b><a href="?orderBy=id">ID</a></b></td>
-                                    <td align="center"><b><a href="?orderBy=company">Company</a></b></td>
                                     <td align="center"><b><a href="?orderBy=apt">Apartment</a></b></td>
                                     <td align="center"><b><a href="?orderBy=unit">Unit</a></b></td>
                                     <td align="center"><b><a href="?orderBy=size">Size</a></b></td>
@@ -81,7 +80,7 @@
 
                         $price = $row['price'];
                         if ($price == null) $price = "-";
-
+                        $price = str_replace(".00", "", $price);
                         $description = $row['description'];
                         if ($description == null) $description = "-";
 
@@ -99,12 +98,12 @@
 
                         echo '
                                     <td tableHeadData="ID" align="center">'.$row['id'].'</td>
-                                    <td tableHeadData="Company" align="center"><a href="worksheet_company.php?company='.$company.'">'.$company.'</a></td>
+                                    
                                     <td tableHeadData="Apartment" align="center"><a href="worksheet_apt.php?apt='.$apt.'">'.$apt.'</a></td>
                                     <td tableHeadData="Unit" align="center">'.$unit.'</td>
                                     <td tableHeadData="Size" align="center">'.$size.'</td>
                                     <td tableHeadData="Price" align="center">'.$price.'</td>
-                                    <td tableHeadData="Description" align="center"><a href="estimate_description.php?id='.$row['id'].'&company='.$company.'&apt='.$apt.'&unit='.$unit.'&size='.$size.'">'.$description.'</a></td>
+                                    <td tableHeadData="Description" align="left"><a href="estimate_description.php?id='.$row['id'].'&company='.$company.'&apt='.$apt.'&unit='.$unit.'&size='.$size.'">'.$description.'</a></td>
                                     <td tableHeadData="Date" align="center">'.substr($date, 0, 10).'</td>
                                     <td align="center">
                                         <button><a href="toWorksheet.php?id='.$row['id'].'&company='.$company.'&apt='.$apt.'&unit='.$unit.'&size='.$size.'&price='.$price.'&description='.$description.'">Convert</a></button>

@@ -8,7 +8,12 @@
     $manager = $_POST['manager'];
     $unit = $_POST['unit'];
     $size = $_POST['size'];
-    $arr = $_SESSION['arr'];
+    $skip = 1;
+    if (isset($_SESSION['arr'])) {
+        $arr = $_SESSION['arr'];
+    } else {
+        $skip = 0;
+    }
     $invoice = $_SESSION['invoice'];
     $sql = "UPDATE Worksheet SET
     	PO=\"".$po."\", company=\"".$company."\", apt=\"".$apt."\", manager=\"".$manager."\",
@@ -17,25 +22,26 @@
     $total = 0;
     $sql = "DELETE FROM worksheet_description WHERE invoice='$invoice'";
     $conn->query($sql);
-    for ($i = 0; $i < count($arr); $i++) {
-        $desc = str_replace("\"", "'", $arr[$i][0]);
-        if (!empty($arr[$i][1])) {
-            $qty = $arr[$i][1];
-        } else {
-            $qty = 0;
+    if ($skip) {
+        for ($i = 0; $i < count($arr); $i++) {
+            $desc = str_replace("\"", "'", $arr[$i][0]);
+            if (!empty($arr[$i][1])) {
+                $qty = $arr[$i][1];
+            } else {
+                $qty = 0;
+            }
+            if (!empty($arr[$i][2])) {
+                $price = $arr[$i][2];
+            } else {
+                $price = 0;
+            }
+            $sql = "INSERT INTO worksheet_description VALUES (null, '$invoice', '$qty', '$price', \"".$desc."\")";
+            $conn->query($sql);
+            $total += $price;
         }
-        if (!empty($arr[$i][2])) {
-            $price = $arr[$i][2];
-        } else {
-            $price = 0;
-        }
-        $sql = "INSERT INTO worksheet_description VALUES (null, '$invoice', '$qty', '$price', \"".$desc."\")";
+        $sql = "UPDATE worksheet SET price='$total' WHERE invoice='$invoice'";
         $conn->query($sql);
-        $total += $price;
     }
-    $sql = "UPDATE worksheet SET price='$total' WHERE invoice='$invoice'";
-    $conn->query($sql);
-
     $sql = "UPDATE subworksheet SET apt=\"".$apt."\", unit=\"".$unit."\" WHERE invoice=\"".$invoice."\";";
     $conn->query($sql);
 

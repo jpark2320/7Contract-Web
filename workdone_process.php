@@ -1,8 +1,8 @@
 <?php
     // connection with mysql database
     include('./includes/connection.php');
-
-    session_start();
+    if (!isset($_SESSION))
+        session_start();
 
     if (isset($_GET['invoice_num'])) {
         $invoice = $_GET['invoice_num'];

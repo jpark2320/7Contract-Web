@@ -16,6 +16,7 @@
                         include('./includes/connection.php');
                         if (isset($_GET['invoice'])) {
                         	$invoice = $_GET['invoice'];
+                            $invoice = str_replace("7C", "", $invoice);
                         }  
                         echo '<table width="250" align="center">
                                 <colgroup>

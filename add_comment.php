@@ -1,7 +1,7 @@
 <?php
 	include('./includes/connection.php');
-
-    session_start();
+    if (!isset($_SESSION))
+        session_start();
 
     if (count($_SESSION['arr']) == 0) {
     	echo '<script>alert("You need to add at least 1 column");</script>';

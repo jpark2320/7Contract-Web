@@ -28,7 +28,7 @@
                 // connection with mysql database
                 include('./includes/connection.php');
 
-                $sql = "SELECT * FROM users";
+                $sql = "SELECT * FROM users WHERE isadmin=0";
                 $result = mysqli_query($conn, $sql);
 
                 echo '

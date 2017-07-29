@@ -43,9 +43,9 @@
                         $_SESSION['sort'] = 'asc';
                     }
                     if ($_SESSION['sort']=='asc') {
-                        echo '<div align="left"><h><a href="?st=desc">Show descending order</a></h></div>';
+                        echo '<div align="left"><h><a href="?st=desc">Show Descending Order</a></h></div>';
                     } else {
-                        echo '<div align="left"><h><a href="?st=asc">Show ascending order</a></h></div>';
+                        echo '<div align="left"><h><a href="?st=asc">Show Ascending Order</a></h></div>';
                     }
                     if (isset($_GET['st'])) {
                         $_SESSION['sort'] = $_GET['st'];
@@ -53,14 +53,14 @@
                     }
 
                     echo '
-                            <table border="2" width="100%">
-                                <thead>
+                            <table id="ResponsiveTable" border="2" width="100%">
+                                <thead id="HeadRow">
                                     <tr style="border: 2px double black;" bgcolor="#c9c9c9">
-                                        <td align="center"><b><a href="?orderBy=isworkdone">Work Status</a></b></td>
+                                        <td align="center"><b><a href="?orderBy=isworkdone">Status</a></b></td>
                                         <td align="center"><b><a href="?orderBy=ispaidoff">Paid off</a></b></td>
                                         <td align="center"><b><a href="?orderBy=invoice">Invoice #</a></b></td>
                                         <td align="center"><b><a href="?orderBy=apt">Apt</a></b></td>
-                                        <td align="center"><b><a href="?orderBy=unit">Unit</a></b></td>
+                                        <td align="center"><b><a href="?orderBy=unit">Unit #</a></b></td>
                                         <td align="center"><b><a href="?orderBy=price">Price</a></b></td>
                                         <td align="center"><b><a href="?orderBy=message">Message</a></b></td>
                                         <td align="center"><b><a href="?orderBy=comment">Comment</a></b></td>
@@ -99,23 +99,23 @@
                             }
 
                             if ($row['isworkdone'] == 1) {
-                                echo '<td align="center"><img src="./img/status_light_green" width="10px"></td>';
+                                echo '<td tableHeadData="Status" align="center"><img src="./img/status_light_green" width="10px"></td>';
                             } else {
-                                echo '<td align="center"><img src="./img/status_light_red" width="10px"></td>';
+                                echo '<td tableHeadData="Status" align="center"><img src="./img/status_light_red" width="10px"></td>';
                             }
                             if ($row['ispaidoff'] == 1) {
-                                echo '<td align="center"><img src="./img/status_light_green" width="10px"></td>';
+                                echo '<td tableHeadData="Paid Off" align="center"><img src="./img/status_light_green" width="10px"></td>';
                             } else {
-                                echo '<td align="center"><img src="./img/status_light_red" width="10px"></td>';
+                                echo '<td tableHeadData="Paid Off" align="center"><img src="./img/status_light_red" width="10px"></td>';
                             }
                             echo '
-                                        <td align="center"><a href="invoice_detail?invoice_num='.$row['invoice'].'">'."7C".$row['invoice'].'</a></td>
-                                        <td align="center"><a href="invoice_detail?invoice_num='.$row['apt'].'">'.$row['apt'].'</a></td>
-                                        <td align="center">'.$row['unit'].'</td>
-                                        <td align="center">'.$row['price'].'</td>
-                                        <td align="center">'.$row['message'].'</td>
-                                        <td align="center"><button><a href="show_comment.php?id='.$row['id'].'&email='.$email.'&apt='.$row['apt'].'&unit='.$row['unit'].'&username='.urlencode($user_name).'&from_user=1">Show Comments</a></button></td>
-                                        <td align="center">'.$row['date'].'</td>
+                                        <td tableHeadData="Invoice #" align="center"><a href="invoice_detail?invoice_num='.$row['invoice'].'">'."7C".$row['invoice'].'</a></td>
+                                        <td tableHeadData="Apt" align="center"><a href="invoice_detail?invoice_num='.$row['apt'].'">'.$row['apt'].'</a></td>
+                                        <td tableHeadData="Unit #" align="center">'.$row['unit'].'</td>
+                                        <td tableHeadData="Price" align="center">'.$row['price'].'</td>
+                                        <td tableHeadData="Message" align="center">'.$row['message'].'</td>
+                                        <td tableHeadData="Comment" align="center"><button id="btn_showComment"><a href="show_comment.php?id='.$row['id'].'&email='.$email.'&apt='.$row['apt'].'&unit='.$row['unit'].'&username='.urlencode($user_name).'&from_user=1">Show Comments</a></button></td>
+                                        <td tableHeadData="Date" align="center">'.$row['date'].'</td>
                                     </tr>
                                 </tbody>
                             ';

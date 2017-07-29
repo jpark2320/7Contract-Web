@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php 
+    if (!isset($_SESSION))
+        session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <!-- Header Tag -->
@@ -50,11 +53,10 @@
 		    </p>
 		</form>
                     <?php
-						session_start();
 						include("./includes/connection.php");
 						$email = $_SESSION['user_email'];
 						$username = $_SESSION['user_name'];
-                        echo '<table width="200" align="center">
+                        echo '<table width="250" align="center">
                                 <colgroup>
                                     <col width="50%">
                                     <col width="50%">
@@ -92,18 +94,24 @@
 	                        ';
                         
                         $sql = "SELECT * FROM user_comment WHERE email='$email' ";
-                        $year = $_POST['year'];
-                        $month = $_POST['month'];
-                        $week = $_POST['week'] * 7 + 1;
-                        $week_end = $week + 6;
-                        $q = "AND date BETWEEN '".$year."-".$month."-".$week." 00:00:00' AND '".$year."-".$month."-".$week_end." 23:59:59'";
-                        if (strlen($_POST['year'])>0 && strlen($_POST['month'])>0 && strlen($_POST['week'])>0) {
-                        	$sql .= $q;
-                        } else if (strlen($_POST['year'])>0 && strlen($_POST['month'])>0) {
-	                        $sql .= "AND YEAR(date)=".$_POST['year']." AND MONTH(date)=".$_POST['month']." ";
-	                    } else if (strlen($_POST['year'])>0){
-	                        $sql .= "AND YEAR(date)=".$_POST['year']." ";
-	                    }
+                        if (isset($year)) $year = $_POST['year'];
+                        if (isset($month)) $month = $_POST['month'];
+                        if (isset($week)) {
+                            $week = $_POST['week'] * 7 + 1;
+                            $week_end = $week + 6;
+                        }
+                        if (isset($year) && isset($month) && isset($week)) {
+                            $q = "AND date BETWEEN '".$year."-".$month."-".$week." 00:00:00' AND '".$year."-".$month."-".$week_end." 23:59:59'";
+                        }
+                        if (isset($year) && isset($month) && isset($week)) {
+                            if (strlen($_POST['year'])>0 && strlen($_POST['month'])>0 && strlen($_POST['week'])>0) {
+                                $sql .= $q;
+                            } else if (strlen($_POST['year'])>0 && strlen($_POST['month'])>0) {
+                                $sql .= "AND YEAR(date)=".$_POST['year']." AND MONTH(date)=".$_POST['month']." ";
+                            } else if (strlen($_POST['year'])>0){
+                                $sql .= "AND YEAR(date)=".$_POST['year']." ";
+                            }
+                        }
                         $result = mysqli_query($conn, $sql);
                         $isOdd = false;
                         $i = 0;

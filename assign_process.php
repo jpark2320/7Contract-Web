@@ -4,7 +4,7 @@
 
     $mail = new PHPMailer();
     $mail->IsSMTP();
-    $mail->SMTPDebug = 1;
+    $mail->SMTPDebug = 0;
     $mail->SMTPAuth = true;
     $mail->SMTPSecure = 'ssl';
     $mail->Host = "ssl://smtp.gmail.com";
@@ -36,10 +36,7 @@
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
         $mail->AddAddress($worker[0], $worker[1]);
-
-        echo $worker[0]." AND ". $worker[1];
     }
-    $mail->addAddress("leepogii@gmail.com", "MINO Lee");
     $sql = "UPDATE worksheet SET isworkdone=1 WHERE invoice=".$i_num.";";
     $conn->query($sql);
     unset($_SESSION['i_num']);
@@ -51,8 +48,6 @@
     $mail->Body = $message.$contact;
     if (!$mail->send()) {
         echo "Mailer Error: " . $mail->ErrorInfo;
-    } else {
-        echo "Message sent!";
     }
     $conn->close();
     echo "<script>alert(\"Successfully assigned.\");</script>";
