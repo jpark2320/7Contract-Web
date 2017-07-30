@@ -62,6 +62,7 @@
                         $result = mysqli_query($conn, $sql);
                         $isOdd = false;
                         $i = 0;
+                        $total = 0;
                         while($row = mysqli_fetch_array($result))
                         {	
                         	$i++;
@@ -71,7 +72,7 @@
 
                             $price = $row['price'];
                             if ($price == null) $price = '-';
-
+                            $total += $price;
                             $description = $row['description'];
                             if ($description == null) $description = '-';
 
@@ -88,14 +89,18 @@
                             }
                         	echo '<td tableHeadData="#" align="center">'.$i.'</td>
                                         <td tableHeadData="Quantity" align="center">'.$quantity.'</td>
-                                        <td tableHeadData="Price" align="center">'.$price.'</td>
+                                        <td tableHeadData="Price" align="center">'.number_format($price).'</td>
                                         <td tableHeadData="Description" align="center">'.$description.'</td>
                                     </tr>
                                 </tbody>
                             ';
-	
                         }
-                        echo '</table>';
+                        echo '<tbody>
+                        <td tableHeadData="#" align="center"></td>
+                        <td tableHeadData="Quantity" align="center"><b>Total:</b></td>
+                        <td tableHeadData="Price" align="center"><b>'.number_format($total).'</b></td>
+                        <td tableHeadData="Description" align="center"></td>
+                        </tbody></table>';
                     ?>
                 <br>
                 <?php if (isset($_GET['from_company'])): ?>

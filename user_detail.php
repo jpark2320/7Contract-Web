@@ -114,7 +114,7 @@
                                         <td tableHeadData="Unit #" align="center">'.$row['unit'].'</td>
                                         <td tableHeadData="Price" align="center">'.$row['price'].'</td>
                                         <td tableHeadData="Message" align="center">'.$row['message'].'</td>
-                                        <td tableHeadData="Comment" align="center"><button id="btn_showComment"><a href="show_comment.php?id='.$row['id'].'&email='.$email.'&apt='.$row['apt'].'&unit='.$row['unit'].'&username='.urlencode($user_name).'&from_user=1">Show Comments</a></button></td>
+                                        <td tableHeadData="Comment" align="center"><button id="btn_showComment-"><a href="show_comment.php?id='.$row['id'].'&email='.$email.'&apt='.$row['apt'].'&unit='.$row['unit'].'&username='.urlencode($user_name).'&from_user=1">Show Comments</a></button></td>
                                         <td tableHeadData="Date" align="center">'.$row['date'].'</td>
                                     </tr>
                                 </tbody>

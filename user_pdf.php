@@ -85,9 +85,9 @@
 				$this->Cell(33, 6, $arr[$i][0],1,0,'C');
 				$this->Cell(23, 6, $arr[$i][1],1,0,'C');
 				$this->Cell(72, 6, $arr[$i][2],1,0,'C');
-				$this->Cell(23, 6, "$ ".number_format((float)$arr[$i][3], 2, '.', ''),1,0,'C');
-				$this->Cell(23, 6, "$ ".number_format((float)$arr[$i][4], 2, '.', ''),1,0,'C');
-				$this->Cell(23, 6, "$ ".number_format((float)($arr[$i][3] - $arr[$i][4]), 2, '.', ''),1,0,'C');
+				$this->Cell(23, 6, "$ ".number_format($arr[$i][3]),1,0,'C');
+				$this->Cell(23, 6, "$ ".number_format($arr[$i][4]),1,0,'C');
+				$this->Cell(23, 6, "$ ".number_format(($arr[$i][3] - $arr[$i][4])),1,0,'C');
 				$amount += $arr[$i][3];
 				$paid += $arr[$i][4];
 				$outstanding += $arr[$i][3] - $arr[$i][4];
@@ -96,9 +96,9 @@
 			$this->SetX(3);
 			$this->Cell(128, 6, "",0,0,'C');
 			$this->SetFont('Times','B',12);
-			$this->Cell(23, 6,'$ '.number_format((float)$amount, 2, '.', ''),1,0,'C');
-			$this->Cell(23, 6,'$ '.number_format((float)$paid, 2, '.', ''),1,0,'C');
-			$this->Cell(23, 6,'$ '.number_format((float)$outstanding, 2, '.', ''),1,0,'C');
+			$this->Cell(23, 6,'$ '.number_format($amount),1,0,'C');
+			$this->Cell(23, 6,'$ '.number_format($paid),1,0,'C');
+			$this->Cell(23, 6,'$ '.number_format($outstanding),1,0,'C');
 		}
 
 

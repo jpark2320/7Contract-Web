@@ -92,11 +92,13 @@
 								$order = $_GET['orderBy'];
 							}
 							$sql = 'SELECT * FROM Worksheet ';
-							if (isset($_POST['year']) && isset($_POST['month'])) {
-								if (strlen($_POST['year'])>0 && strlen($_POST['month'])>0) {
-									$sql .= "WHERE YEAR(date)=".$_POST['year']." AND MONTH(date)=".$_POST['month']." ";
-								} else if (strlen($_POST['year'])>0){
-									$sql .= "WHERE YEAR(date)=".$_POST['year']." ";
+							if (isset($_POST['date']) && isset($_POST['end_date'])) {
+								$start_date = $_POST['date'];
+								$end_date = $_POST['end_date'];
+								if (strlen($end_date) > 0) {
+									$sql .= "WHERE DATE(date) >= '$start_date' AND DATE(date) <= '$end_date' ";
+								} else {
+									$sql .= "WHERE DATE(date) >= '$start_date' ";
 								}
 							}
 
@@ -105,7 +107,6 @@
 								$sql = $sql.' DESC';
 							}
 							$result = mysqli_query($conn, $sql);
-
 							$isOdd = false;
 							while($row = mysqli_fetch_array($result))
 							{
@@ -129,8 +130,7 @@
                                 $temp_size = $row['size'];
                                 if ($temp_size == null) $temp_size = '-';
 
-                                $temp_price = $row['price'];
-                              	$temp_price = str_replace(".00", "", $temp_price);
+                                $temp_price = number_format($row['price']);
                                 if ($temp_price == null) $temp_price = '-';
 
                                 $temp_description = $row['description'];

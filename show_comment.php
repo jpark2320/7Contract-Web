@@ -112,10 +112,10 @@
                             $comment = $row['comment'];
                             if ($comment == null) $comment = '-';
 
-                            $salary = $row['salary'];
+                            $salary = number_format($row['salary']);
                             if ($salary == null) $salary = '-';
 
-                            $paid = $row['paid'];
+                            $paid = number_format($row['paid']);
                             if ($paid == null) $paid = '-';
 
                             $date = $row['date'];

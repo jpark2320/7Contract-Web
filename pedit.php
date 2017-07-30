@@ -36,11 +36,11 @@
                         </colgroup>
                             <tr>
                                 <td><label>Name</label></td>
-                                <td><?php echo $_GET['username']?></td>
+                                <td><?php echo isset($_GET['username'])?$_GET['username']:''?></td>
                             </tr>
                             <tr>
                                 <td><label>Comment</label></td>
-                                <td><?php echo $_GET['comment']?></td>
+                                <td><?php echo isset($_GET['comment'])?$_GET['comment']:''?></td>
                             </tr>
                             <tr>
                                 <td><label>Salary</label></td>

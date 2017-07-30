@@ -51,14 +51,14 @@
                     echo '<div align="left"><h><a href="?st=asc">Show Ascending Order</a></h></div>';
                 }
 
-				if (isset($_SESSION['unpaid'])) {
-					if ($_SESSION['unpaid']) {
-						echo '<div align="right"><a href="?unpaid=0">Show All</a></div>';
-					} else {
-						echo '<div align="right"><a href="?unpaid=1">Show Unpaid</a></div>';
-					}
-				}
-
+				echo '<div align="right" style="float: right;"><form action="" method="post">
+                            <select id="pay" name="pay">
+                                <option value="2">Show All</option>
+                                <option value="1">Show Paid</option>
+                                <option value="0">Show Unpaid</option>
+                            </select>
+                            <input type="submit" value="Go!"/>
+                    </form></div><br></br>';
                 if (isset($_GET['st'])) {
                     $_SESSION['sort'] = $_GET['st'];
                     echo '<script>window.location.href = "worksheet_apt.php";</script>';
@@ -90,20 +90,28 @@
                 if (isset($_GET['orderBy']) && in_array($_GET['orderBy'], $orderBy)) {
                     $order = $_GET['orderBy'];
                 }
-                $sql = "SELECT * FROM Worksheet WHERE apt=\"".$apt."\" AND company=\"".$company."\"";
-				if (isset($_SESSION['unpaid'])) {
-					if ($_SESSION['unpaid']) {
-						$sql .= 'AND ispaidoff=0 ';
-					}
-				}
+                $sql = "SELECT * FROM Worksheet WHERE apt=\"".$apt."\" AND company=\"".$company."\" ";
+                if (isset($_POST['pay'])) {
+                    if ($_POST['pay'] == 0) {
+                        $sql .= 'AND ispaidoff=0 ';
+                    } else if ($_POST['pay'] == 1) {
+                        $sql .= 'AND ispaidoff=1 ';
+                    } else {
+                        $sql .= 'AND ispaidoff<2 ';
+                    }
+                } else {
+                    $sql .= 'AND ispaidoff<2 ';
+                }
 
-				if (isset($_POST['year']) && isset($_POST['month'])) {
-					if (strlen($_POST['year'])>0 && strlen($_POST['month'])>0) {
-						$sql .= "AND YEAR(date)=".$_POST['year']." AND MONTH(date)=".$_POST['month']." ";
-					} else if (strlen($_POST['year'])>0){
-						$sql .= "AND YEAR(date)=".$_POST['year']." ";
-					}
-				}
+				if (isset($_POST['date']) && isset($_POST['end_date'])) {
+                    $start_date = $_POST['date'];
+                    $end_date = $_POST['end_date'];
+                    if (strlen($end_date) > 0) {
+                        $sql .= "AND DATE(date) >= '$start_date' AND DATE(date) <= '$end_date' ";
+                    } else {
+                        $sql .= "AND DATE(date) >= '$start_date' ";
+                    }
+                }
 
                 $sql .= 'ORDER BY '.$order;
                 if (isset($_GET['unpaid'])) {

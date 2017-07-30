@@ -75,13 +75,15 @@
                     $order = $_GET['orderBy'];
                 }
                 $sql = "SELECT * FROM Worksheet WHERE company=\"".$company."\" ";
-				if (isset($_POST['year']) && isset($_POST['month'])) {
-					if (strlen($_POST['year'])>0 && strlen($_POST['month'])>0) {
-						$sql .= "AND YEAR(date)=".$_POST['year']." AND MONTH(date)=".$_POST['month']." ";
-					} else if (strlen($_POST['year'])>0){
-						$sql .= "AND YEAR(date)=".$_POST['year']." ";
-					}
-				}
+				if (isset($_POST['date']) && isset($_POST['end_date'])) {
+                    $start_date = $_POST['date'];
+                    $end_date = $_POST['end_date'];
+                    if (strlen($end_date) > 0) {
+                        $sql .= "AND DATE(date) >= '$start_date' AND DATE(date) <= '$end_date' ";
+                    } else {
+                        $sql .= "AND DATE(date) >= '$start_date' ";
+                    }
+                }
                 
                 $sql .= 'ORDER BY '.$order;
                 if ($_SESSION['sort']=='desc') {

@@ -98,10 +98,10 @@
  			$this->SetXY($x, 76);
 			for ($i = 0; $i < count($arr); $i++) {
 				$y = $this->GetY();
-				$this->MultiCell(104, 6, " ".$arr[$i][0],0,'');
+				$this->MultiCell(104, 6, " ".$arr[$i][0],0,'L', false);
  				$this->SetXY($x + 104, $y);
  				$this->Cell(17, 6, $arr[$i][1], 0, 0, 'C');
- 				$this->Cell(35, 6, '$ '.(int)$arr[$i][2], 0, 0, 'C');
+ 				$this->Cell(35, 6, '$ '.number_format($arr[$i][2]), 0, 0, 'C');
 				$this->total = $arr[$i][2];
 				$this->SetXY($x, $y + 6);
 			}
@@ -124,7 +124,7 @@
 			$this->Ln();
 			$this->SetX(154);
  			$this->Cell(17, 6,'Total:',1,0,'C');
-			$this->Cell(35, 6,'$ '.number_format((float)$this->getTotal(), 2, '.', ''),1,0,'C');
+			$this->Cell(35, 6,'$ '.number_format($this->getTotal()),1,0,'C');
 
 
 		}
@@ -138,8 +138,8 @@
 
 	$pdf = new PDF();
 	$pdf->LayOut();
-	$filename = "Estimate_".$apt;
-	$pdf->Output('I', substr($filename, 0, -1).'.pdf');
+	$filename = $apt."_".$unit;
+	$pdf->Output('I', $filename.'.pdf');
 
 	unset($_SESSION['arr']);
 	$_SESSION['i'] = 0;

@@ -132,10 +132,10 @@
                             $message = $row['message'];
                             if ($message == null) $message = '-';
 
-                            $price = $row['price'];
+                            $price = number_format($row['price']);
                             if ($price == null) $price = '-';
 
-                            $paid = $row['paid'];
+                            $paid = number_format($row['paid']);
                             if ($paid == null) $paid = '-';
 
                             $date = $row['date'];

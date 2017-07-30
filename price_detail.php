@@ -31,20 +31,17 @@
                     } else {
                         echo '<div align="left"><h><a href="?st=asc">Show Ascending Order</a></h></div>';
                     }
-					if (isset($_SESSION['unpaid'])) {
-						if ($_SESSION['unpaid']) {
-							echo '<div align="right"><a href="?unpaid=0">Show All</a></div>';
-						} else {
-							echo '<div align="right"><a href="?unpaid=1">Show Unpaid</a></div>';
-						}
-					}
+					echo '<div align="right" style="float: right;"><form action="" method="post">
+                            <select id="pay" name="pay">
+                                <option value="2">Show All</option>
+                                <option value="1">Show Paid</option>
+                                <option value="0">Show Unpaid</option>
+                            </select>
+                            <input type="submit" value="Go!"/>
+                    </form></div><br></br>';
 
                     if (isset($_GET['st'])) {
                         $_SESSION['sort'] = $_GET['st'];
-                        echo '<script>window.location.href = "price_detail.php";</script>';
-                    }
-                    if (isset($_GET['unpaid'])) {
-                        $_SESSION['unpaid'] = $_GET['unpaid'];
                         echo '<script>window.location.href = "price_detail.php";</script>';
                     }
 
@@ -74,23 +71,26 @@
                         $order = $_GET['orderBy'];
                     }
                     $sql = 'SELECT * FROM Worksheet ';
-					if (isset($_SESSION['unpaid'])) {
-						if ($_SESSION['unpaid']) {
+					if (isset($_POST['pay'])) {
+						if ($_POST['pay'] == 0) {
 							$sql .= 'WHERE ispaidoff=0 ';
-							if (isset($_POST['year']) && isset($_POST['month'])) {
-								$sql .= "AND YEAR(date)=".$_POST['year']." AND MONTH(date)=".$_POST['month']." ";
-							} else if (isset($_POST['year'])){
-								$sql .= "AND YEAR(date)=".$_POST['year']." ";
-							}
-						} else {
-							if (isset($_POST['year']) && isset($_POST['month'])) {
-								$sql .= "WHERE YEAR(date)=".$_POST['year']." AND MONTH(date)=".$_POST['month']." ";
-							} else if (isset($_POST['year'])){
-								$sql .= "WHERE YEAR(date)=".$_POST['year']." ";
-							}
+						} else if ($_POST['pay'] == 1) {
+                            $sql .= 'WHERE ispaidoff=1 ';
+                        } else {
+                            $sql .= 'WHERE ispaidoff<2 ';
 						}
-					}
-
+					} else {
+                        $sql .= 'WHERE ispaidoff<2 ';
+                    }
+                    if (isset($_POST['date']) && isset($_POST['end_date'])) {
+                        $start_date = $_POST['date'];
+                        $end_date = $_POST['end_date'];
+                        if (strlen($end_date) > 0) {
+                            $sql .= "AND DATE(date) >= '$start_date' AND DATE(date) <= '$end_date' ";
+                        } else {
+                            $sql .= "AND DATE(date) >= '$start_date' ";
+                        }
+                    }
                     $sql .= 'ORDER BY '.$order;
                     if ($_SESSION['sort']=='desc') {
                         $sql = $sql.' DESC';
@@ -130,14 +130,14 @@
                         echo '
                                     <td tableHeadData="Invoice #" align="center"><a href="invoice_detail.php?invoice_num='.$invoice.'">'.$invoice.'</a></td>
                                     <td tableHeadData="P.O." align="center">'.$row['PO'].'</td>
-                                    <td tableHeadData="Apt" align="center"><a href="worksheet_apt.php?apt='.$apt.'">'.$apt.'</td>
+                                    <td tableHeadData="Apt" align="center"><a href="worksheet_apt.php?apt='.$apt.'&company='.$row['company'].'">'.$apt.'</td>
                                     <td tableHeadData="Unit #" align="center">'.$unit.'</td>
                                     <td tableHeadData="Size" align="center">'.$row['size'].'</td>
-                                    <td tableHeadData="Price" align="center">'.$row['price'].'</td>
-                                    <td tableHeadData="Received" align="center">'.$row['paid'].'</td>
-                                    <td tableHeadData="Salary" align="center">'.$row['salary'].'</td>
-                                    <td tableHeadData="Profit" align="center">'.$row['profit'].'</td>
-                                    <td tableHeadData="Date" align="center">'.$row['date'].'</td>
+                                    <td tableHeadData="Price" align="center">'.number_format($row['price']).'</td>
+                                    <td tableHeadData="Received" align="center">'.number_format($row['paid']).'</td>
+                                    <td tableHeadData="Salary" align="center">'.number_format($row['salary']).'</td>
+                                    <td tableHeadData="Profit" align="center">'.number_format($row['profit']).'</td>
+                                    <td tableHeadData="Date" align="center">'.substr($row['date'], 0, 11).'</td>
                                     <td tableHeadData="Receive" align="center"><button><a href="recieve.php?invoice='.$invoice.'&apt='.urlencode($apt).'&unit='.$row['unit'].'&price='.$row['price'].'&paid='.$row['paid'].'">Recieve</a></button></td>
                         ';
                         echo '
@@ -157,10 +157,10 @@
                                     <td align="center"></td>
                                     <td align="center"></td>
                                     <td align="center"></td>
-                                    <td tableHeadData="Total Price" align="center"><b>'.number_format($totalPrice, 2, '.', '').'</b></td>
-                                    <td tableHeadData="Total Received" align="center"><b>'.number_format($totalPaid, 2, '.', '').'</b></td>
-                                    <td tableHeadData="Total Salary" align="center"><b>'.number_format($totalSalary, 2, '.', '').'</b></td>
-                                    <td tableHeadData="Total Profit" align="center"><b>'.number_format($totalProfit, 2, '.', '').'</b></td>
+                                    <td tableHeadData="Total Price" align="center"><b>'.number_format($totalPrice).'</b></td>
+                                    <td tableHeadData="Total Received" align="center"><b>'.number_format($totalPaid).'</b></td>
+                                    <td tableHeadData="Total Salary" align="center"><b>'.number_format($totalSalary).'</b></td>
+                                    <td tableHeadData="Total Profit" align="center"><b>'.number_format($totalProfit).'</b></td>
                                     <td align="center"></td>
                                     <td align="center"></td>
                         ';

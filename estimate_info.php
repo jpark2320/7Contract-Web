@@ -88,7 +88,7 @@
 						}
 
 						if ($_SESSION['estm_arr'][$i][2] !== null) {
-							echo '<td tableHeadData="Price">'.$_SESSION['estm_arr'][$i][2].'</td>';
+							echo '<td tableHeadData="Price">'.number_format($_SESSION['estm_arr'][$i][2]).'</td>';
 						}
 						if ($_SESSION['estm_arr'][$i][0] !== null) {
 							echo '<td align="center"><button><a href="edit_estimate.php?description='.$_SESSION['estm_arr'][$i][0].'&qty='.$_SESSION['estm_arr'][$i][1].'&price='.$_SESSION['estm_arr'][$i][2].'&index='.$i.'">Edit</a></button></td>';
@@ -134,7 +134,11 @@
                 ';
             ?>
             <br>
-            <input type="submit" value="Create PDF"></input>
+            <?php if(isset($_SESSION['estm_arr'])): ?>
+                <input type="submit" value="Create PDF"></input>
+            <?php else: ?>
+                <input type="button" value="Create PDF" onclick="alert('You need to add more than 1 description');"></input>
+            <?php endif; ?>
             <input type="button" value="Back" onclick="location.href='worksheet.php'"></input>
             </form>
 

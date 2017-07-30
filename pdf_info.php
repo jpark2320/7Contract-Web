@@ -135,8 +135,8 @@
                     }
                     echo '
                                 <td tableHeadData="Comment" align="center">'.$comment.'</td>
-                                <td tableHeadData="Salary" align="center">'.$salary.'</td>
-                                <td tableHeadData="Paid" align="center">'.$paid.'</td>
+                                <td tableHeadData="Salary" align="center">'.number_format($salary).'</td>
+                                <td tableHeadData="Paid" align="center">'.number_format($paid).'</td>
                                 <td tableHeadData="Date" align="center">'.$date.'</td>
                             </tr>
                         </tbody>
@@ -203,7 +203,7 @@
                             echo '<td>'.$_SESSION['pdf_arr'][$i][1].'</td>';
                         }
                         if ($_SESSION['pdf_arr'][$i][2] !== null) {
-                            echo '<td>'.$_SESSION['pdf_arr'][$i][2].'</td>';
+                            echo '<td align="center">'.number_format($_SESSION['pdf_arr'][$i][2]).'</td>';
                         }
                         if ($_SESSION['pdf_arr'][$i][0] !== null) {
                             echo '<td align="center"><button><a href="edit_pdf.php?description='.$_SESSION['pdf_arr'][$i][0].' &qty='.$_SESSION['pdf_arr'][$i][1].' &price='.$_SESSION['pdf_arr'][$i][2].' &index='.$i.'">Edit</a></button></td>';
@@ -231,7 +231,11 @@
                 ';
             ?>
             <br>
-            <input type="submit" value="Create PDF"></input>
+            <?php if(isset($_SESSION['pdf_arr'])): ?>
+                <input type="submit" value="Create PDF"></input>
+            <?php else: ?>
+                <input type="button" value="Create PDF" onclick="alert('You need to add more than 1 description');"></input>
+            <?php endif; ?>
             <input type="button" value="Save Progress" onclick="location.href='save_progress.php'"></input>
             <input type="button" value="Back" onclick="location.href='invoice_detail.php'"></input>
             </form>
