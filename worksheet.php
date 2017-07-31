@@ -51,9 +51,9 @@
                                 $_SESSION['sort'] = 'asc';
                             }
                             if ($_SESSION['sort']=='asc') {
-                                echo '<a href="?st=desc">Show Descending Order</a>';
+                                echo '<button><a href="?st=desc">Show Descending Order</a></button>';
                             } else {
-                                echo '<a href="?st=asc">Show Ascending Order</a>';
+                                echo '<button><a href="?st=asc">Show Ascending Order</a></button>';
                             }
                             if (isset($_GET['st'])) {
                                 $_SESSION['sort'] = $_GET['st'];
@@ -61,7 +61,7 @@
                             }
 
 							if ($_SESSION['isadmin'] == 2) {
-								echo '<a style="float: right;"href="price_detail.php">Show Detail</a>';
+								echo '<a style="float: right;" href="price_detail.php">Show Detail</a>';
 							}
 
                             echo '</div>';
@@ -107,6 +107,7 @@
 								$sql = $sql.' DESC';
 							}
 							$result = mysqli_query($conn, $sql);
+
 							$isOdd = false;
 							while($row = mysqli_fetch_array($result))
 							{

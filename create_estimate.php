@@ -125,8 +125,6 @@
 			$this->SetX(154);
  			$this->Cell(17, 6,'Total:',1,0,'C');
 			$this->Cell(35, 6,'$ '.number_format($this->getTotal()),1,0,'C');
-
-
 		}
 
 		function LayOut() {
@@ -139,7 +137,7 @@
 	$pdf = new PDF();
 	$pdf->LayOut();
 	$filename = $apt."_".$unit;
-	$pdf->Output('I', $filename.'.pdf');
+ 	$pdf->Output('I', $filename.'.pdf');
 
 	unset($_SESSION['arr']);
 	$_SESSION['i'] = 0;

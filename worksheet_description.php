@@ -72,7 +72,9 @@
 
                             $price = $row['price'];
                             if ($price == null) $price = '-';
+
                             $total += $price;
+
                             $description = $row['description'];
                             if ($description == null) $description = '-';
 
@@ -87,20 +89,25 @@
                             if ($quantity == 0) {
                             	$quantity = '';
                             }
-                        	echo '<td tableHeadData="#" align="center">'.$i.'</td>
+                        	echo '
+                                        <td tableHeadData="#" align="center">'.$i.'</td>
                                         <td tableHeadData="Quantity" align="center">'.$quantity.'</td>
                                         <td tableHeadData="Price" align="center">'.number_format($price).'</td>
                                         <td tableHeadData="Description" align="center">'.$description.'</td>
                                     </tr>
                                 </tbody>
                             ';
+	
                         }
-                        echo '<tbody>
-                        <td tableHeadData="#" align="center"></td>
-                        <td tableHeadData="Quantity" align="center"><b>Total:</b></td>
-                        <td tableHeadData="Price" align="center"><b>'.number_format($total).'</b></td>
-                        <td tableHeadData="Description" align="center"></td>
-                        </tbody></table>';
+                        echo '
+                            <tbody>
+                                <td tableHeadData="#" align="center"></td>
+                                <td tableHeadData="Quantity" align="center"><b>Total:</b></td>
+                                <td tableHeadData="Price" align="center"><b>'.number_format($total).'</b></td>
+                                <td tableHeadData="Description" align="center"></td>
+                            </tbody>
+                            </table>
+                        ';
                     ?>
                 <br>
                 <?php if (isset($_GET['from_company'])): ?>

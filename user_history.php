@@ -51,26 +51,28 @@
 		        </select>
 				<input type="submit" value="Go!"/>
 		    </p>
+            <br>
 		</form>
                     <?php
 						include("./includes/connection.php");
 						$email = $_SESSION['user_email'];
 						$username = $_SESSION['user_name'];
-                        echo '<table width="250" align="center">
+                        echo '
+                            <table width="250" align="center">
                                 <colgroup>
                                     <col width="50%">
                                     <col width="50%">
                                 </colgroup> 
 	                            <tr>
-		                            <td><b>Username : </b></td>
-		                            <td>'.$username.'</td>
+		                            <td align="left"><b>Username : </b></td>
+		                            <td align="right">'.$username.'</td>
 	                        	</tr>
 	                        	<tr>
-                                    <td><b>Email : </b></td>
-                                    <td>'.$email.'</td>
+                                    <td align="left"><b>Email : </b></td>
+                                    <td align="right">'.$email.'</td>
                                 </tr>
                         	</table>
-                            <table border="3" width="100%">
+                            <table id="ResponsiveTable" border="3" width="100%">
 								<colgroup>
 									<col width="5%">
                                     <col width="5%">
@@ -80,9 +82,9 @@
                                     <col width="10%">
                                     <col width="20%">
                                 </colgroup>
-                                <thead>
+                                <thead id="HeadRow">
                                     <tr style="border: 2px double black;" bgcolor="#c9c9c9">
-                                    	<td align="center"><b></b></td>
+                                    	<td align="center"><b>Select</b></td>
                                         <td align="center"><b>#</b></td>
                                         <td align="center"><b>Paid Off</b></td>
                                         <td align="center"><b>Comment</b></td>
@@ -115,13 +117,26 @@
                         $result = mysqli_query($conn, $sql);
                         $isOdd = false;
                         $i = 0;
-                        // echo "<script>alert(\"".$sql."\");</script>";
                         while($row = mysqli_fetch_array($result))
                         {	
                         	$i++;
 
+                            $comment = $row['comment'];
+                            if ($comment == null) $comment = '-';
+
+                            $salary = $row['salary'];
+                            if ($salary == null) $salary = '-';
+
+                            $paid = $row['paid'];
+                            if ($paid == null) $paid = '-';
+
+                            $date = $row['date'];
+                            if ($date == null) $date = '-';
+
                             echo '
-                            <form action="user_pdf.php" method="post"><tbody>';
+                                <form action="user_pdf.php" method="post">
+                                    <tbody>
+                            ';
                             if ($isOdd) {
                                 $isOdd = false;
                                 echo '<tr bgcolor="#e8fff1">';
@@ -130,22 +145,21 @@
                                 echo '<tr>';
                             }
                         	echo '
-                    
-	                        		<td align="center">
+	                        		<td tableHeadData="Select" align="center">
 		                                <input type="checkbox" name="check[]" value="'.$row['id'].'">
 		                            </td>
-		                            <td align="center">'.$i.'</td>';
+		                            <td tableHeadData="#" align="center">'.$i.'</td>';
                             if ($row['ispaidoff'] == 1) {
-                                echo '<td align="center"><img src="./img/status_light_green" width="10px"></td>';
+                                echo '<td tableHeadData="Paid Off" align="center"><img src="./img/status_light_green" width="10px"></td>';
                             } else {
-                                echo '<td align="center"><img src="./img/status_light_red" width="10px"></td>';
+                                echo '<td tableHeadData="Paid Off" align="center"><img src="./img/status_light_red" width="10px"></td>';
                             }
                             echo '
 
-                                        <td align="center">'.$row['comment'].'</td>
-                                        <td align="center">'.$row['salary'].'</td>
-                                        <td align="center">'.$row['paid'].'</td>
-                                        <td align="center">'.$row['date'].'</td>
+                                        <td tableHeadData="Comment" align="center">'.$comment.'</td>
+                                        <td tableHeadData="Salary" align="center">'.$salary.'</td>
+                                        <td tableHeadData="Paid" align="center">'.$paid.'</td>
+                                        <td tableHeadData="Date" align="center">'.$date.'</td>
                                     </tr>
                                 </tbody>
                             ';

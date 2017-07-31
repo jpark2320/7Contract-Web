@@ -36,24 +36,30 @@
                                     <col width="50%">
                                 </colgroup>';
                         if ($_SESSION['isadmin'] > 0) {
-                        	echo ' <tr>
-	                            <td><b>Username : </b></td>
-	                            <td>'.$username.'</td>
-                        	</tr>';
-                        	echo ' <tr>
-                                    <td><b>Invoice # : </b></td>
-                                    <td>'."7C".$_SESSION['invoice'].'</td>
-                                </tr>';
-                        }
-                        echo ' <tr>
-                                    <td><b>Apartment : </b></td>
-                                    <td>'.$_GET['apt'].'</td>
-                                </tr>
+                        	echo ' 
                                 <tr>
-                                    <td><b>Unit # : </b></td>
-                                    <td>'.$_GET['unit'].'</td>
+    	                            <td align="left"><b>Username : </b></td>
+    	                            <td align="right">'.$username.'</td>
+                        	   </tr>
+                            ';
+                        	echo ' 
+                                <tr>
+                                    <td align="left"><b>Invoice # : </b></td>
+                                    <td align="right">'."7C".$_SESSION['invoice'].'</td>
                                 </tr>
-                            </table>';
+                            ';
+                        }
+                        echo ' 
+                            <tr>
+                                <td align="left"><b>Apartment : </b></td>
+                                <td align="right">'.$_GET['apt'].'</td>
+                            </tr>
+                            <tr>
+                                <td align="left"><b>Unit # : </b></td>
+                                <td align="right">'.$_GET['unit'].'</td>
+                            </tr>
+                            </table>
+                        ';
 
 
                         if ($_SESSION['isadmin'] == 2) {

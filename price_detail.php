@@ -31,14 +31,19 @@
                     } else {
                         echo '<div align="left"><h><a href="?st=asc">Show Ascending Order</a></h></div>';
                     }
-					echo '<div align="right" style="float: right;"><form action="" method="post">
-                            <select id="pay" name="pay">
-                                <option value="2">Show All</option>
-                                <option value="1">Show Paid</option>
-                                <option value="0">Show Unpaid</option>
-                            </select>
-                            <input type="submit" value="Go!"/>
-                    </form></div><br></br>';
+					echo '
+                        <div align="right" style="float: right;">
+                            <form action="" method="post">
+                                <select id="pay" name="pay">
+                                    <option value="2">Show All</option>
+                                    <option value="1">Show Paid</option>
+                                    <option value="0">Show Unpaid</option>
+                                </select>
+                                <input type="submit" value="Go!"/>
+                            </form>
+                        </div>
+                        <br></br>
+                    ';
 
                     if (isset($_GET['st'])) {
                         $_SESSION['sort'] = $_GET['st'];
@@ -71,17 +76,19 @@
                         $order = $_GET['orderBy'];
                     }
                     $sql = 'SELECT * FROM Worksheet ';
+
 					if (isset($_POST['pay'])) {
-						if ($_POST['pay'] == 0) {
+                        if ($_POST['pay'] == 0) {
 							$sql .= 'WHERE ispaidoff=0 ';
 						} else if ($_POST['pay'] == 1) {
                             $sql .= 'WHERE ispaidoff=1 ';
                         } else {
                             $sql .= 'WHERE ispaidoff<2 ';
-						}
+                        }
 					} else {
                         $sql .= 'WHERE ispaidoff<2 ';
                     }
+
                     if (isset($_POST['date']) && isset($_POST['end_date'])) {
                         $start_date = $_POST['date'];
                         $end_date = $_POST['end_date'];
@@ -91,6 +98,7 @@
                             $sql .= "AND DATE(date) >= '$start_date' ";
                         }
                     }
+
                     $sql .= 'ORDER BY '.$order;
                     if ($_SESSION['sort']=='desc') {
                         $sql = $sql.' DESC';
@@ -105,8 +113,35 @@
                     while($row = mysqli_fetch_array($result))
                     {
                         $invoice = '7C'.$row['invoice'];
+                        if ($invoice == null) $invoice = '-';
+
+                        $po = $row['PO']
+                        if ($po == null) $po = '-';
+
                         $apt = $row['apt'];
+                        if ($apt == null) $apt = '-';
+
                         $unit = $row['unit'];
+                        if ($unit == null) $unit = '-';
+
+                        $size = $row['size'];
+                        if ($size == null) $size = '-';
+
+                        $price = $row['price'];
+                        if ($price == null) $price = '-';
+
+                        $paid = $row['paid'];
+                        if ($paid == null) $paid = '-';
+
+                        $salary = $row['salary'];
+                        if ($salary == null) $salary = '-';
+
+                        $profit = $row['profit'];
+                        if ($profit == null) $profit = '-';
+
+                        $date = $row['date'];
+                        if ($date == null) $profit = '-';
+
                         $totalPrice += $row['price'];
                         $totalSalary += $row['salary'];
                         $totalProfit += $row['profit'];
@@ -129,16 +164,16 @@
 
                         echo '
                                     <td tableHeadData="Invoice #" align="center"><a href="invoice_detail.php?invoice_num='.$invoice.'">'.$invoice.'</a></td>
-                                    <td tableHeadData="P.O." align="center">'.$row['PO'].'</td>
+                                    <td tableHeadData="P.O." align="center">'.$po.'</td>
                                     <td tableHeadData="Apt" align="center"><a href="worksheet_apt.php?apt='.$apt.'&company='.$row['company'].'">'.$apt.'</td>
                                     <td tableHeadData="Unit #" align="center">'.$unit.'</td>
-                                    <td tableHeadData="Size" align="center">'.$row['size'].'</td>
-                                    <td tableHeadData="Price" align="center">'.number_format($row['price']).'</td>
-                                    <td tableHeadData="Received" align="center">'.number_format($row['paid']).'</td>
-                                    <td tableHeadData="Salary" align="center">'.number_format($row['salary']).'</td>
-                                    <td tableHeadData="Profit" align="center">'.number_format($row['profit']).'</td>
-                                    <td tableHeadData="Date" align="center">'.substr($row['date'], 0, 11).'</td>
-                                    <td tableHeadData="Receive" align="center"><button><a href="recieve.php?invoice='.$invoice.'&apt='.urlencode($apt).'&unit='.$row['unit'].'&price='.$row['price'].'&paid='.$row['paid'].'">Recieve</a></button></td>
+                                    <td tableHeadData="Size" align="center">'.$size.'</td>
+                                    <td tableHeadData="Price" align="center">'.number_format($price).'</td>
+                                    <td tableHeadData="Received" align="center">'.number_format($paid).'</td>
+                                    <td tableHeadData="Salary" align="center">'.number_format($salary).'</td>
+                                    <td tableHeadData="Profit" align="center">'.number_format($profit).'</td>
+                                    <td tableHeadData="Date" align="center">'.substr($date, 0, 11).'</td>
+                                    <td tableHeadData="Receive" align="center"><button><a href="recieve.php?invoice='.$invoice.'&apt='.urlencode($apt).'&unit='.$unit.'&price='.$price.'&paid='.$paid.'">Recieve</a></button></td>
                         ';
                         echo '
                                 </tr>

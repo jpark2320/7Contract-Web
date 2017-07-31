@@ -46,10 +46,10 @@
                                     <td align="center"><b><a href="?orderBy=size">Size</a></b></td>
                                     <td align="center"><b><a href="?orderBy=price">Price</a></b></td>
                                     <td align="center"><b>Description</b></td>
-                                    <td align="center"><b><a href="?orderBy=date">Date</a></b></td>';
+                                    <td align="center"><b><a href="?orderBy=date">Date</a></b></td>
+                    ';
                     if ($_SESSION['isadmin'] == 2) {                
-                        echo '<td align="center"><b>Option</b></td>
-                        ';
+                        echo '<td align="center"><b>Option</b></td>';
                     }
                     echo '
                                 </tr>
@@ -106,9 +106,11 @@
                                     <td tableHeadData="Size" align="center">'.$size.'</td>
                                     <td tableHeadData="Price" align="center">'.number_format($price).'</td>
                                     <td tableHeadData="Description" align="left"><a href="estimate_description.php?id='.$row['id'].'&company='.$company.'&apt='.$apt.'&unit='.$unit.'&size='.$size.'">'.$description.'</a></td>
-                                    <td tableHeadData="Date" align="center">'.substr($date, 0, 10).'</td>';
+                                    <td tableHeadData="Date" align="center">'.substr($date, 0, 10).'</td>
+                        ';
                         if ($_SESSION['isadmin']) {
-                            echo '<td align="center">
+                            echo '
+                                <td align="center">
                                     <button><a href="toWorksheet.php?id='.$row['id'].'&company='.$company.'&apt='.$apt.'&unit='.$unit.'&size='.$size.'&price='.$price.'&description='.$description.'">Convert</a></button>
                                     <button><a href="estimate_edit.php?id='.$row['id'].'">Edit</a></button>
                                     <button><a href="remove_estimate.php?id='.$row['id'].'" onclick="return confirm(\'Are you sure you want to remove this item?\');">Remove</a></button>

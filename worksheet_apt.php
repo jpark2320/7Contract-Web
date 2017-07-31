@@ -51,14 +51,20 @@
                     echo '<div align="left"><h><a href="?st=asc">Show Ascending Order</a></h></div>';
                 }
 
-				echo '<div align="right" style="float: right;"><form action="" method="post">
+				echo '
+                    <div align="right" style="float: right;">
+                        <form action="" method="post">
                             <select id="pay" name="pay">
                                 <option value="2">Show All</option>
                                 <option value="1">Show Paid</option>
                                 <option value="0">Show Unpaid</option>
                             </select>
                             <input type="submit" value="Go!"/>
-                    </form></div><br></br>';
+                        </form>
+                    </div>
+                    <br></br>
+                ';
+
                 if (isset($_GET['st'])) {
                     $_SESSION['sort'] = $_GET['st'];
                     echo '<script>window.location.href = "worksheet_apt.php";</script>';

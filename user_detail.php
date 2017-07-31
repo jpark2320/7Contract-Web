@@ -43,9 +43,9 @@
                         $_SESSION['sort'] = 'asc';
                     }
                     if ($_SESSION['sort']=='asc') {
-                        echo '<div align="left"><h><a href="?st=desc">Show Descending Order</a></h></div>';
+                        echo '<div align="left"><button><a href="?st=desc">Show Descending Order</a></button></div>';
                     } else {
-                        echo '<div align="left"><h><a href="?st=asc">Show Ascending Order</a></h></div>';
+                        echo '<div align="left"><button><a href="?st=asc">Show Ascending Order</a></button></div>';
                     }
                     if (isset($_GET['st'])) {
                         $_SESSION['sort'] = $_GET['st'];
@@ -98,6 +98,24 @@
                                 }
                             }
 
+                            $invoice = $row['invoice'];
+                            if ($invoice == null) $invoice = '-';
+
+                            $apt = $row['apt'];
+                            if ($apt == null) $apt = '-';
+
+                            $unit = $row['unit'];
+                            if ($unit == null) $unit = '-';
+
+                            $price = $row['price'];
+                            if ($price == null) $price = '-';
+
+                            $message = $row['message'];
+                            if ($message == null) $message = '-';
+
+                            $date = $row['date'];
+                            if ($date == null) $date = '-';
+
                             if ($row['isworkdone'] == 1) {
                                 echo '<td tableHeadData="Status" align="center"><img src="./img/status_light_green" width="10px"></td>';
                             } else {
@@ -109,13 +127,13 @@
                                 echo '<td tableHeadData="Paid Off" align="center"><img src="./img/status_light_red" width="10px"></td>';
                             }
                             echo '
-                                        <td tableHeadData="Invoice #" align="center"><a href="invoice_detail?invoice_num='.$row['invoice'].'">'."7C".$row['invoice'].'</a></td>
-                                        <td tableHeadData="Apt" align="center"><a href="invoice_detail?invoice_num='.$row['apt'].'">'.$row['apt'].'</a></td>
-                                        <td tableHeadData="Unit #" align="center">'.$row['unit'].'</td>
-                                        <td tableHeadData="Price" align="center">'.$row['price'].'</td>
-                                        <td tableHeadData="Message" align="center">'.$row['message'].'</td>
-                                        <td tableHeadData="Comment" align="center"><button id="btn_showComment-"><a href="show_comment.php?id='.$row['id'].'&email='.$email.'&apt='.$row['apt'].'&unit='.$row['unit'].'&username='.urlencode($user_name).'&from_user=1">Show Comments</a></button></td>
-                                        <td tableHeadData="Date" align="center">'.$row['date'].'</td>
+                                        <td tableHeadData="Invoice #" align="center"><a href="invoice_detail?invoice_num='.$invoice.'">'."7C".$invoice.'</a></td>
+                                        <td tableHeadData="Apt" align="center"><a href="invoice_detail?invoice_num='.$apt.'">'.$apt.'</a></td>
+                                        <td tableHeadData="Unit #" align="center">'.$unit.'</td>
+                                        <td tableHeadData="Price" align="center">'.$price.'</td>
+                                        <td tableHeadData="Message" align="center">'.$message.'</td>
+                                        <td tableHeadData="Comment" align="center"><button id="btn_showComment"><a href="show_comment.php?id='.$row['id'].'&email='.$email.'&apt='.$apt.'&unit='.$unit.'&username='.urlencode($user_name).'&from_user=1">Show Comments</a></button></td>
+                                        <td tableHeadData="Date" align="center">'.$date.'</td>
                                     </tr>
                                 </tbody>
                             ';

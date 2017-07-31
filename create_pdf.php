@@ -11,7 +11,7 @@
 	if (isset($_POST['date'])) {
 		$_SESSION['date_pdf'] = $_POST['date'];
 	}
-
+	
 	class PDF extends FPDF
 	{
 		function Header()

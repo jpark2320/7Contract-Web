@@ -149,7 +149,7 @@
             padding: 0;
             max-width: 100%;
         }
-        input {
+        input, button {
             border: 1px solid black;
             border-radius: 5px;
         }
@@ -159,7 +159,7 @@
         }
         .primary {
             margin-top: 10%;
-            margin-bottom: 30%;
+            margin-bottom: 50%;
         }
         .primary_contact {
             margin-top: 10%;
@@ -311,7 +311,10 @@
         }
         #name,
         #email,
-        #message {
+        #message,
+        #year,
+        #month,
+        #week {
             border: 1px solid gray;
         }
     }

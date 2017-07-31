@@ -53,16 +53,16 @@
                                     <col width="50%">
                                 </colgroup>
                                 <tr>
-                                    <td><b>Invoice # : </b></td>
-                                    <td>'."7C".$_SESSION['invoice'].'</td>
+                                    <td align="left"><b>Invoice # : </b></td>
+                                    <td align="right">'."7C".$_SESSION['invoice'].'</td>
                                 </tr>
                                 <tr>
-                                    <td><b>Apartment : </b></td>
-                                    <td>'.$_SESSION['apt_pdf'].'</td>
+                                    <td align="left"><b>Apartment : </b></td>
+                                    <td align="right">'.$_SESSION['apt_pdf'].'</td>
                                 </tr>
                                 <tr>
-                                    <td><b>Unit # : </b></td>
-                                    <td>'.$_SESSION['unit_pdf'].'</td>
+                                    <td align="left"><b>Unit # : </b></td>
+                                    <td align="right">'.$_SESSION['unit_pdf'].'</td>
                                 </tr>
                             </table>
 
@@ -72,9 +72,9 @@
                             $_SESSION['sort'] = 'asc';
                         }
                         if ($_SESSION['sort']=='asc') {
-                            echo '<div align="left"><h><a href="?st=desc">Show Descending Order</a></h></div>';
+                            echo '<div align="left"><button><a href="?st=desc">Show Descending Order</a></button></div>';
                         } else {
-                            echo '<div align="left"><h><a href="?st=asc">Show Ascending Order</a></h></div>';
+                            echo '<div align="left"><button><a href="?st=asc">Show Ascending Order</a></button></div>';
                         }
                         if (isset($_GET['st'])) {
                             $_SESSION['sort'] = $_GET['st'];

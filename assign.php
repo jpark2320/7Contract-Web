@@ -10,18 +10,14 @@
 
         <!-- Body -->
         <div class="primary" align="center">
-            <h3 class="text-center">Assign workers!</h3><br>
-
+            <h3 class="text-center">Assign Work</h3><br>
+            <form action="assign_process.php" method="POST">
             <?php
-                if (isset($_GET['invoice_num'])) {
-                    $_SESSION['i_num'] = $_GET['invoice_num'];
-                }
-                if (isset($_GET['apt'])) {
-                    $_SESSION['a_num'] = $_GET['apt'];
-                }
-                if (isset($_GET['unit_num'])) {
-                    $_SESSION['u_num'] = $_GET['unit_num'];
-                }
+                if (isset($_GET['invoice_num'])) $_SESSION['i_num'] = $_GET['invoice_num'];
+
+                if (isset($_GET['apt'])) $_SESSION['a_num'] = $_GET['apt'];
+
+                if (isset($_GET['unit_num'])) $_SESSION['u_num'] = $_GET['unit_num'];
 
                 echo '<b>Invoice # : '.$_SESSION['i_num'].'</b>';
 
@@ -32,54 +28,51 @@
                 $result = mysqli_query($conn, $sql);
 
                 echo '
-                    <table id="ResponsiveTable" border="2" width="500px">
+                    <table id="ResponsiveTable" border="2" width="50%">
                         <thead id="HeadRow">
                             <tr style="border: 2px double black;" bgcolor="#c9c9c9">
-                                <td align="center" width="200px"><b>Subcontractors</b></th>
-                                <td align="center" width="100px"></th>
-                                <td align="center" width="200px"><b>Added</b></th>
+                                <th>Select</th>
+                                <th>Name</th>
+                                <th>Email</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <form action="assign.php" method="post">
-                                    <td class="assignTd" align="center">
-                                        <select name="workers[]" multiple="multiple" size="10">';
-
-                    while($row = mysqli_fetch_array($result))
-                    {
-                        echo '<option value="'.$row['email'].''.'*'.$row['first'].' '.$row['last'].'">'.$row['first'].' '.$row['last'].' ('.$row['email'].')</option>';
-                    }
-                    echo '
-                                        </select>
-                                    </td>
-                                    <td class="assignTd" align="center">
-                                        <input type="submit" name="invoice_num" value="->"></input>
-                                    </td>
-                                    <td class="assignTd" align="center">
-                                        <select multiple="multiple" size="10">
-                    ';
-                    if (isset($_POST['workers'])) {
-                        $_SESSION['workersArray'] = $_POST['workers'];
-                        for ($i = 0; $i < sizeof($_SESSION['workersArray']); $i++) {
-                            $temp = explode("*" ,$_SESSION['workersArray'][$i]);
-                            echo '<option value="">'.$temp[1].' ('.$temp[0].')'.'</option>';
-                        }
-                        echo '
-                                        </select>
-                                    </td>
-                                </form>
-                            </tr>
-                        </tbody>';
-                    }
-                echo '</table>';
-                echo '
-                    <h5 class="text-center" font-color="red">When you need multiple choices, use "control" key for multiple selects.</h5>
-                    <br>
                 ';
+                
+                $idOdd = false;
+                while($row = mysqli_fetch_array($result)) {
+
+                    $email = $row['email'];
+                    if ($email == null) $email = '-';
+
+                    $first = $row['first'];
+                    if ($first == null) $first = '-';
+
+                    $last = $row['last'];
+                    if ($last == null) $last = '-';
+
+                    if ($isOdd) {
+                        $isOdd = false;
+                        echo '<tr bgcolor="#e8fff1">';
+                    } else {
+                        $isOdd = true;
+                        echo '<tr>';
+                    }
+
+                    echo '
+                            <td tableHeadData="Select" align="center">
+                                <input type="checkbox" name="workersArray[]" value="'.$email.'">
+                            </td>
+                            <td tableHeadData="Name" align="center">'.$first.' '.$last.'</td>
+                            <td tableHeadData="Email" align="center">'.$email.'</td>
+                        </tr>
+                    ';
+
+                }
+                echo '</tbody></table>';
                 mysqli_close($conn);
             ?>
-            <form action="assign_process.php" method="POST">
+            <br>
                 <textarea id="msg_assign" name="assign_message" placeholder="Leave a message here." rows="8" cols="100"></textarea>
                 <br>
                 <input type="submit" value="Confirm"></input>
