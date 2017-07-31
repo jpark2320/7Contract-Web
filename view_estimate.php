@@ -85,6 +85,9 @@
                         $price = str_replace(".00", "", $price);
                         $description = $row['description'];
                         if ($description == null) $description = "-";
+                        if (strlen($description) > 40) {
+                            $description = substr($description, 0, 40)." ...";
+                        }
 
                         $date = $row['date'];
                         if ($date == null) $date = "-";

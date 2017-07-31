@@ -59,6 +59,7 @@
                                 <td align="right">'.$_GET['unit'].'</td>
                             </tr>
                             </table>
+                            <br>
                         ';
 
 

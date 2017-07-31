@@ -9,7 +9,7 @@
     unset($_SESSION['arr']);
     unset($_SESSION['estm_arr']);
     unset($_SESSION['edit_arr']);
-    unset($_SESSION['pdf_arr']);
+	unset($_SESSION['pdf_arr']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,19 +22,20 @@
 
         <!-- Body -->
         <div class="primary" align="center">
-            <h3 class="text-center">Worksheet</h3>
 
             <?php
 				// connection with mysql database
                 include('./includes/connection.php');
-
-                include('./includes/data_range.html');
 
                 if (!isset($_SESSION['email'])) {
                     echo "<script>alert(\"You need to sign in first.\");</script>";
                     echo '<script>window.location.href = "signin.php";</script>';
                     exit();
                 } else {
+                	echo '<h3 class="text-center">Worksheet</h3>';
+
+                	include('./includes/data_range.html');
+
 					if (isset($_SESSION['isadmin'])) {
 						if ($_SESSION['isadmin'] > 0) {
 							echo '
@@ -61,7 +62,7 @@
                             }
 
 							if ($_SESSION['isadmin'] == 2) {
-								echo '<a style="float: right;" href="price_detail.php">Show Detail</a>';
+								echo '<button id="btn_showDetail"><a href="price_detail.php">Show Detail</a></button>';
 							}
 
                             echo '</div>';
@@ -136,8 +137,8 @@
 
                                 $temp_description = $row['description'];
                                 if ($temp_description == null) $temp_description = '-';
-                                if (strlen($temp_description) > 20) {
-                                	$temp_description = substr($temp_description, 0, 20)." ...";
+                                if (strlen($temp_description) > 25) {
+                                	$temp_description = substr($temp_description, 0, 25)." ...";
                                 }
 
                                 $temp_date = $row['date'];

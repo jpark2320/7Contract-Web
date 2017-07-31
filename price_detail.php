@@ -23,26 +23,31 @@
 
                 if ($_SESSION['isadmin']) {
 
+                    echo '
+                        <form action="" method="post">
+                            <div align="left" text-decoration:none; color:#ff0000;">
+                    ';
+
                     if (!isset($_SESSION['sort'])) {
                         $_SESSION['sort'] = 'asc';
                     }
                     if ($_SESSION['sort']=='asc') {
-                        echo '<div align="left"><h><a href="?st=desc">Show Descending Order</a></h></div>';
+                        echo '<button><a href="?st=desc">Show Descending Order</a></button>';
                     } else {
-                        echo '<div align="left"><h><a href="?st=asc">Show Ascending Order</a></h></div>';
+                        echo '<button><a href="?st=asc">Show Ascending Order</a></button>';
                     }
 					echo '
-                        <div align="right" style="float: right;">
-                            <form action="" method="post">
-                                <select id="pay" name="pay">
-                                    <option value="2">Show All</option>
-                                    <option value="1">Show Paid</option>
-                                    <option value="0">Show Unpaid</option>
-                                </select>
-                                <input type="submit" value="Go!"/>
-                            </form>
-                        </div>
-                        <br></br>
+                            <select id="pay" name="pay">
+                                <option value="2">Show All</option>
+                                <option value="1">Show Paid</option>
+                                <option value="0">Show Unpaid</option>
+                            </select>
+                            <input type="submit" value="Go!"/>
+                    ';
+
+                    echo '
+                            </div>
+                        </form>
                     ';
 
                     if (isset($_GET['st'])) {
@@ -115,7 +120,7 @@
                         $invoice = '7C'.$row['invoice'];
                         if ($invoice == null) $invoice = '-';
 
-                        $po = $row['PO']
+                        $po = $row['PO'];
                         if ($po == null) $po = '-';
 
                         $apt = $row['apt'];

@@ -48,15 +48,15 @@
                     </colgroup>
                     <tr>
                         <td><label>Description</label></td>
-                        <td><input type="text" name="desc_edited_estm" maxlength="36" size="30" value="<?php echo isset($description) ? rtrim($description," ") : '' ?>"></td>
+                        <td><input type="text" name="desc_edited_estm" size="30" value="<?php echo isset($description) ? rtrim($description," ") : '' ?>"></td>
                     </tr>
                     <tr>
                         <td><label>Qty</label></td>
-                        <td><input type="text" name="qty_edited_estm" maxlength="36" size="30" value="<?php echo isset($qty) ? rtrim($qty," ") : '' ?>"></td>
+                        <td><input type="text" name="qty_edited_estm" size="30" value="<?php echo isset($qty) ? rtrim($qty," ") : '' ?>"></td>
                     </tr>
                     <tr>
                         <td><label>Price</label></td>
-                        <td><input type="text" name="price_edited_estm" maxlength="36" size="30" value="<?php echo isset($price) ? rtrim($price," ") : '' ?>"></td>
+                        <td><input type="text" name="price_edited_estm" size="30" value="<?php echo isset($price) ? rtrim($price," ") : '' ?>"></td>
                     </tr>
                     <tr hidden>
                         <td><label>Index</label></td>

@@ -106,7 +106,6 @@
     #name, #email {
         height: 30px;
         font-size: 12px;
-        border: 1px solid gray;
     }
     #message {
         height: 100px;
@@ -137,6 +136,9 @@
     #btn_back {
         padding: 10px 0;
     }
+    .primary #btn_showDetail {
+        margin-left: 500px;
+    }
     /*Viewport*/
     @media screen and (max-width: 740px) {
         * {
@@ -149,7 +151,7 @@
             padding: 0;
             max-width: 100%;
         }
-        input, button {
+        input, button, select {
             border: 1px solid black;
             border-radius: 5px;
         }
@@ -306,16 +308,13 @@
         #data_range {
             padding: 10px 0;
         }
-        #data_range select {
-            border: 1px solid black;
-        }
-        #name,
-        #email,
-        #message,
         #year,
         #month,
         #week {
             border: 1px solid gray;
+        }
+        .primary #btn_showDetail {
+            margin-left: 50px;
         }
     }
 </style>

@@ -51,7 +51,6 @@
 		        </select>
 				<input type="submit" value="Go!"/>
 		    </p>
-            <br>
 		</form>
                     <?php
 						include("./includes/connection.php");
@@ -72,6 +71,7 @@
                                     <td align="right">'.$email.'</td>
                                 </tr>
                         	</table>
+                            <br>
                             <table id="ResponsiveTable" border="3" width="100%">
 								<colgroup>
 									<col width="5%">
