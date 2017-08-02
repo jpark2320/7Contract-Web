@@ -48,17 +48,17 @@
                     <tr>
                          <td align="right"><b>Description</b></td>
                          <td></td>
-                         <td><input class="editInput" type="text" name="desc_edited_pdf" value="<?php echo isset($description) ? $description : '' ?>"></td>
+                         <td><input class="editInput" type="text" name="desc_edited_pdf" value="<?php echo isset($description) ? rtrim($description, " ") : '' ?>"></td>
                      </tr>
                      <tr>
                          <td align="right"><b>Qty</b></td>
                          <td></td>
-                         <td><input class="editInput" type="text" name="qty_edited_pdf" value="<?php echo isset($qty) ? $qty : '' ?>"></td>
+                         <td><input class="editInput" type="text" name="qty_edited_pdf" value="<?php echo isset($qty) ? rtrim($qty, " ") : '' ?>"></td>
                      </tr>
                      <tr>
                          <td align="right"><b>Price</b></td>
                          <td></td>
-                         <td><input class="editInput" type="text" name="price_edited_pdf" value="<?php echo isset($price) ? $price : '' ?>"></td>
+                         <td><input class="editInput" type="text" name="price_edited_pdf" value="<?php echo isset($price) ? rtrim($price, " ") : '' ?>"></td>
                      </tr>
                      <tr hidden>
                          <td><b>Index</b></td>

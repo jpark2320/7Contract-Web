@@ -10,7 +10,7 @@
 
         <!-- Body -->
         <div class="primary" align="center">
-            <h3 class="text-center">Comment</h3><br>
+            <h3 class="text-center">Comment</h3>
                     <?php
                         // connection with mysql database
                         include('./includes/connection.php');
@@ -30,7 +30,7 @@
 							$invoice = $_SESSION['invoice'];
 						}
 
-                        echo '<table width="200" align="center">
+                        echo '<table width="25%" align="center">
                                 <colgroup>
                                     <col width="50%">
                                     <col width="50%">
@@ -144,7 +144,7 @@
 	                                echo '<td tableHeadData="Status" align="center"><img src="./img/status_light_red" width="10px"></td>';
 	                            }
 	                            echo '
-	                                        <td tableHeadData="Comment" align="center">'.$comment.'</td>
+	                                        <td tableHeadData="Comment" align="left"><div class="lineBreak_desc">'.$comment.'</div></td>
 	                                        <td tableHeadData="Salary" align="center">'.$salary.'</td>
 	                                        <td tableHeadData="Paid" align="center">'.$paid.'</td>
 	                                        <td tableHeadData="Date" align="center">'.$date.'</td>
@@ -160,7 +160,7 @@
 	                        } else {
 	                            echo '
 	                            			<td tableHeadData="#" align="center">'.$i.'</td>
-	                                        <td tableHeadData="Comment" align="center">'.$comment.'</td>
+	                                        <td tableHeadData="Comment" align="center"><div class="lineBreak_desc">'.$comment.'</div></td>
 	                                        <td tableHeadData="Date" align="center">'.$date.'</td>
 	                                    </tr>
 	                                </tbody>
@@ -171,9 +171,9 @@
                     ?>
                 <br>
                 <?php if($_SESSION['isadmin'] > 0): ?>
-                    <input type="button" value="Back" onclick="location.href='invoice_detail.php'"></input>
+                    <button type="button" onclick="location.href='invoice_detail.php'">Back</button>
                 <?php else: ?>
-                	<input type="button" value="Back" onclick="location.href='worksheet.php'"></input>
+                    <button type="button" onclick="location.href='worksheet.php'">Back</button>
                 <?php endif ?>
         </div>
         <br><br><br><br><br>

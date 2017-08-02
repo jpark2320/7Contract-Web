@@ -189,7 +189,17 @@
 							if (isset($_GET['orderBy']) && in_array($_GET['orderBy'], $orderBy)) {
 								$order = $_GET['orderBy'];
 							}
-							$sql = 'SELECT * FROM SubWorksheet WHERE email =\''.$_SESSION['email'].'\' ORDER BY '.$order;
+							$sql = 'SELECT * FROM SubWorksheet ';
+							if (isset($_POST['date']) && isset($_POST['end_date'])) {
+								$start_date = $_POST['date'];
+								$end_date = $_POST['end_date'];
+								if (strlen($end_date) > 0) {
+									$sql .= "WHERE email =\"".$_SESSION['email']."\" AND DATE(date) >= '$start_date' AND DATE(date) <= '$end_date' ORDER BY ".$order;
+								} else {
+									$sql .= "WHERE email =\"".$_SESSION['email']."\" AND DATE(date) >= '$start_date' ORDER BY".$order;
+								}
+							}
+
 							if ($_SESSION['sort']=='desc') {
 								$sql = $sql.' DESC';
 							}
