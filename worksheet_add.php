@@ -68,10 +68,10 @@
                             </thead>
                             <tbody id="pdf_table">
                                 <tr>
-                                    <td tableHeadData="Description"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="description" size="10"></td>
-                                    <td tableHeadData="Qty"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="qty" size="10"></td>
-                                    <td tableHeadData="Price"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="price" size="10"></td>
-                                    <td colspan="2" align="center"><input type="submit" name="submit" value="Add"></td>
+                                    <td tableHeadData="Description"><input class="textInput" type="text" name="description" size="10"></td>
+                                    <td tableHeadData="Qty"><input class="textInput" type="text" name="qty" size="10"></td>
+                                    <td tableHeadData="Price"><input class="textInput" type="text" name="price" size="10"></td>
+                                    <td colspan="2" align="center"><button type="submit" name="submit">Add</button></td>
                                 </tr>
                 ';
 
@@ -87,10 +87,10 @@
 							echo '<td tableHeadData="Price">'.$_SESSION['arr'][$i][2].'</td>';
 						}
 						if ($_SESSION['arr'][$i][0] !== null) {
-                            echo '<td align="center"><button><a href="edit_worksheet.php?description='.$_SESSION['arr'][$i][0].' &qty='.$_SESSION['arr'][$i][1].' &price='.$_SESSION['arr'][$i][2].' &index='.$i.'">Edit</a></button></td>';
+                            echo '<td align="center"><button type="button" onclick="location.href=\'edit_worksheet.php?description='.$_SESSION['arr'][$i][0].' &qty='.$_SESSION['arr'][$i][1].' &price='.$_SESSION['arr'][$i][2].' &index='.$i.'\'">Edit</button></td>';
 						}
 						if ($_SESSION['arr'][$i][0] !== null) {
-                            echo '<td align="center"><button><a href="edit_worksheet.php?index_deleted='.$i.'">Delete</a></button></td></tr>';
+                            echo '<td align="center"><button type="button" onclick="location.href=\'edit_worksheet.php?index_deleted='.$i.'\'">Delete</button></td></tr>';
 						}
 					}
 				}
@@ -124,23 +124,22 @@
                             </thead>
                             <tbody>
                                 <tr align="center">
-                                    <td tableHeadData="P.O."><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="po" value="" size="10"></td>
-                                    <td tableHeadData="Company"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="company" value="" size="20"></td>
-                                    <td tableHeadData="Apt"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="apt" value="" size="20"></td>
-                                    <td tableHeadData="Unit #"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="unit" value="" size="10"></td>
-                                    <td tableHeadData="Size"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="size" value="" size="10"></td>
-                                    <td tableHeadData="Manager"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="manager" value="" size="20"></td>
-                                    <td tableHeadData="Date"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="date" name="date" id="theDate" value="" size="8"></td>
+                                    <td tableHeadData="P.O."><input class="textInput" type="text" name="po" value="" size="10"></td>
+                                    <td tableHeadData="Company"><input class="textInput" type="text" name="company" value="" size="20"></td>
+                                    <td tableHeadData="Apt"><input class="textInput" type="text" name="apt" value="" size="20"></td>
+                                    <td tableHeadData="Unit #"><input class="textInput" type="text" name="unit" value="" size="10"></td>
+                                    <td tableHeadData="Size"><input class="textInput" type="text" name="size" value="" size="10"></td>
+                                    <td tableHeadData="Manager"><input class="textInput" type="text" name="manager" value="" size="20"></td>
+                                    <td tableHeadData="Date"><input class="textInput" type="date" name="date" id="theDate" value="" size="8"></td>
                                 </tr>
                             </tbody>
                         </table>
                 ';
             ?>
             <br>
-            <input type="submit" value="Add Worksheet"></input>
-            <input type="button" value="Back" onclick="location.href='worksheet.php'"></input>
+            <button type="submit">Add Worksheet</button>
+            <button type="button" onclick="location.href='worksheet.php'">Back</button>
             </form>
-
         </div>
 
         <!-- Footer -->

@@ -87,7 +87,7 @@
                             <table id="ResponsiveTable" border="3" width="100%">
                                 <thead id="HeadRow">
                                     <tr style="border: 2px double black;" bgcolor="#c9c9c9">
-                                        <td align="center"><b><a href="?orderBy=isworkdone">Work Status</a></b></td>
+                                        <td align="center"><b><a href="?orderBy=isworkdone">Status</a></b></td>
                                         <td align="center"><b><a href="?orderBy=ispaidoff">Paid Off</a></b></td>
                                         <td align="center"><b><a href="?orderBy=A.first">Name</a></b></td>
                                         <td align="center"><b>Message</b></td>
@@ -163,7 +163,7 @@
                             echo '
                                         <td tableHeadData="Name" align="center"><a href="user_detail.php?invoice='.urlencode($i_detail).' &email='.urlencode($row['email']).' &user_name='.urlencode($user_name).'">'.$user_name.'</a></td>
                                         <td tableHeadData="Message"><div class="lineBreak_msg">'.$row['message'].'</div></td>
-                                        <td tableHeadData="Comment" align="center"><button id="btn_showComment"><a href="show_comment.php?id='.$id.'&email='.$row['email'].'&apt='.$_SESSION['apt_pdf'].'&unit='.$_SESSION['unit_pdf'].'&username='.urlencode($user_name).'">Show Comments</a></button></td>
+                                        <td tableHeadData="Comment" align="center"><button id="btn_showComment" onclick="location.href=\'show_comment.php?id='.$id.'&email='.$row['email'].'&apt='.$_SESSION['apt_pdf'].'&unit='.$_SESSION['unit_pdf'].'&username='.urlencode($user_name).'\'">Show Comments</button></td>
                             ';
                             if ($_SESSION['isadmin'] == 2) {
                                 echo '
@@ -185,10 +185,10 @@
                 <div id="btn_invoiceDetail">
                     <?php
                         if (isset($_SESSION['po_pdf']) && isset($_SESSION['company_pdf']) && isset($_SESSION['apt_pdf']) && isset($_SESSION['unit_pdf']) && isset($_SESSION['size_pdf'])) {
-                            echo '<button id="btn_makePDF"><a href="pdf_info.php?invoice='.urlencode($i_detail).' &po='.$_SESSION['po_pdf'].' &company='.$_SESSION['company_pdf'].' &apt='.$_SESSION['apt_pdf'].' &unit='.$_SESSION['unit_pdf']. ' &size='.$_SESSION['size_pdf'].'">Make PDF</a></button>';
+                            echo '<button id="btn_makePDF" onclick="location.href=\'pdf_info.php?invoice='.urlencode($i_detail).' &po='.$_SESSION['po_pdf'].' &company='.$_SESSION['company_pdf'].' &apt='.$_SESSION['apt_pdf'].' &unit='.$_SESSION['unit_pdf']. ' &size='.$_SESSION['size_pdf'].'\'">Make PDF</button>';
                         }
                     ?>
-                    <input type="button" value="Back" onclick="location.href='worksheet.php'"></input>
+                    <button type="button" onclick="location.href='worksheet.php'">Back</button>
                 </div>
         </div>
 

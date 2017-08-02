@@ -71,8 +71,8 @@
                     </tr>
                 </table>
                 <br>
-                <input type="submit" value="Edit">
-                <input type="button" value="Back" onclick="location.href='estimate_info.php'">
+                <button type="submit">Edit</button>
+                <button type="button" onclick="location.href='estimate_info.php'">Back</button>
             </form>
         </div>
 

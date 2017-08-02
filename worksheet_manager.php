@@ -10,7 +10,7 @@
 
         <!-- Body -->
         <div class="primary" align="center">
-            <h3 class="text-center">Worksheet!</h3><br>
+            <h3 class="text-center">Worksheet!</h3>
 
             <?php
                 include('./includes/data_range.html');
@@ -31,16 +31,8 @@
 
                 echo '<div align="center"><b>Manager : '.$manager.'</b></div>';
 
-                if (!isset($_SESSION['sort'])) {
-                    $_SESSION['sort'] = 'asc';
-                }
-                if ($_SESSION['sort']=='asc') {
-                    echo '<div align="left"><h><a href="?st=desc">Show Descending Order</a></h></div>';
-                } else {
-                    echo '<div align="left"><h><a href="?st=asc">Show Ascending Order</a></h></div>';
-                }
+                include('./includes/sort.php');
                 if (isset($_GET['st'])) {
-                    $_SESSION['sort'] = $_GET['st'];
                     echo '<script>window.location.href = "worksheet_manager.php";</script>';
                 }
 
@@ -168,7 +160,7 @@
                 mysqli_close($conn);
             ?>
             <br>
-            <input type="button" value="Back" onclick="location.href='worksheet.php'"></input>
+            <button type="button" onclick="location.href='worksheet.php'">Back</button>
         </div>
 
         <!-- Footer -->

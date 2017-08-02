@@ -19,6 +19,9 @@
         border-radius: 5px;
         font-family: "Times New Roman";
     }
+    tr:hover {
+        background: #ffedc4 !important;
+    }
     h3 {
         font-size: 30px;
     }
@@ -173,7 +176,7 @@
     .blueberry .pager li a:link {
         background: none;
     }
-    #btn_back {
+    button#btn_back {
         padding: 10px 0;
     }
     .primary #btn_showDetail {

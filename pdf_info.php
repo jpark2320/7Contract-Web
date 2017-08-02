@@ -39,7 +39,7 @@
                 $unit = $_SESSION['unit_pdf'];
                 $size = $_SESSION['size_pdf'];
                 echo '
-                    <table width="800">
+                    <table width="50%">
                         <colgroup>
                             <col width="25%">
                             <col width="25%">
@@ -188,10 +188,10 @@
                             </thead>
                             <tbody id="pdf_table">
                                 <tr>
-                                    <td tableHeadData="Description"><input class="textInput" type="text" name="description" size="50"></td>
-                                    <td tableHeadData="Qty"><input class="textInput" type="text" name="qty" size="44"></td>
-                                    <td tableHeadData="Price"><input class="textInput" type="text" name="price" size="44"></td>
-                                    <td colspan="2" align="center"><input type="submit" name="submit" value="Add"></td>
+                                    <td tableHeadData="Description"><input class="textInput" type="text" name="description"></td>
+                                    <td tableHeadData="Qty"><input class="textInput" type="text" name="qty"></td>
+                                    <td tableHeadData="Price"><input class="textInput" type="text" name="price"></td>
+                                    <td colspan="2" align="center"><button type="submit" name="submit">Add</button></td>
                                 </tr>
                 ';
                 if (isset($_SESSION['pdf_arr'])) {
@@ -232,12 +232,12 @@
             ?>
             <br>
             <?php if(isset($_SESSION['pdf_arr'])): ?>
-                <input type="submit" value="Create PDF"></input>
+                <button type="submit">Create Invoice PDF</button>
             <?php else: ?>
-                <input type="button" value="Create PDF" onclick="alert('You need to add more than 1 description');"></input>
+                <button type="button" onclick="alert('You need to add more than 1 description');">Create Invoice PDF</button>
             <?php endif; ?>
-            <input type="button" value="Save Progress" onclick="location.href='save_progress.php'"></input>
-            <input type="button" value="Back" onclick="location.href='invoice_detail.php'"></input>
+            <button type="button" onclick="location.href='save_progress.php'">Save Progress</button>
+            <button type="button" onclick="location.href='invoice_detail.php'">Back</button>
             </form>
         </div>
         <br><br><br><br>

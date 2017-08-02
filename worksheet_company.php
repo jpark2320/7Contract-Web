@@ -10,7 +10,7 @@
 
         <!-- Body -->
         <div class="primary" align="center">
-            <h3 class="text-center">Worksheet!</h3><br>
+            <h3 class="text-center">Worksheet by Company</h3>
 
             <?php
                 if (!isset($_SESSION['email'])) {
@@ -20,6 +20,8 @@
                 }
                 include('./includes/connection.php');
 
+                include('./includes/data_range.html');
+
                 if (isset($_GET['company'])) {
                     $company = $_GET['company'];
                     $_SESSION['company'] = $company;
@@ -28,11 +30,8 @@
                 }
                 echo '<div align="center"><b>Company : '.$company.'</b></div>';
 
-                include('./includes/data_range.html');
-
                 include('./includes/sort.php');
                 if (isset($_GET['st'])) {
-                    $_SESSION['sort'] = $_GET['st'];
                     echo '<script>window.location.href = "worksheet_company.php";</script>';
                 }
 
@@ -55,10 +54,10 @@
                     ';
                 }
                 echo '
-                                <td align="center"><b>Description</b></td>
-                                <td align="center"><b><a href="?orderBy=date">Date</a></b></td>
-                            </tr>
-                        </thead>
+                            <td align="center"><b>Description</b></td>
+                            <td align="center"><b><a href="?orderBy=date">Date</a></b></td>
+                        </tr>
+                    </thead>
                 ';
 
                 $orderBy = array('invoice', 'po', 'apt', 'unit', 'size', 'price', 'salary','date', 'isworkdone');
@@ -157,7 +156,7 @@
                 mysqli_close($conn);
             ?>
             <br>
-            <input type="button" value="Back" onclick="location.href='worksheet.php'"></input>
+            <button type="button" onclick="location.href='worksheet.php'">Back</button>
         </div>
 
         <!-- Footer -->

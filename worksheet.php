@@ -124,9 +124,6 @@
 
                                 $temp_description = $row['description'];
                                 if ($temp_description == null) $temp_description = '-';
-                                // if (strlen($temp_description) > 25) {
-                                // 	$temp_description = substr($temp_description, 0, 25)." ...";
-                                // }
 
                                 $temp_date = $row['date'];
                                 $temp_date = substr($temp_date, 0, 11);
@@ -173,7 +170,7 @@
 							include('./includes/sort.php');
 
 							echo '
-								<table id="ResponsiveTable" border="2" width="100%">
+								<table id="ResponsiveTable" border="3" width="100%">
 									<thead id="HeadRow">
 										<tr style="border: 2px double black;" bgcolor="#c9c9c9">
 											<td align="center"><b><a href="?orderBy=isworkdone">Status</a></b></td>
@@ -235,10 +232,10 @@
 								echo '
 											<td tableHeadData="Apt" align="center">'.$temp2_apt.'</td>
 											<td tableHeadData="Unit #" align="center">'.$temp2_unit.'</td>
-											<td tableHeadData="Message" align="center">'.$temp2_message.'</td>
+											<td tableHeadData="Message" align="center"><div class="lineBreak_msg">'.$temp2_message.'</div></td>
 											<td tableHeadData="Date" align="center">'.$temp2_date.'</td>
-											<td tableHeadData="Comment" align="center"><button><a href="show_comment.php?id='.$temp2_id.'&apt='.$temp2_apt.'&unit='.$temp2_unit.'">Show</a></button><button><a href="edit_user.php?id='.$temp2_id.'&invoice='.$temp2_invoice.'">Add</a></button></td>
-											<td tableHeadData="Process" align="center"><button id="btn_workdone"><a href="workdone_process.php?invoice_num='.urlencode($temp2_invoice).' &email_user='.urlencode($temp2_email).' &id='.urlencode($temp2_id).'">Work Done</a></button></td>
+											<td tableHeadData="Comment" align="center"><button onclick="location.href=\'show_comment.php?id='.$temp2_id.'&apt='.$temp2_apt.'&unit='.$temp2_unit.'\'">Show</button><button onclick="location.href=\'edit_user.php?id='.$temp2_id.'&invoice='.$temp2_invoice.'\'">Add</button></td>
+											<td tableHeadData="Process" align="center"><button id="btn_workdone" onclick="location.href=\'workdone_process.php?invoice_num='.urlencode($temp2_invoice).' &email_user='.urlencode($temp2_email).' &id='.urlencode($temp2_id).'\'">Work Done</button></td>
 										</tr>
 									</tbody>';
 							}

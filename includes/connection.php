@@ -3,7 +3,7 @@
     {
         session_start();
     }
-    $servername = "localhost";
+    $servername = "localhost:3307";
     $username = "root";
     $password = "";
     $db = "7contract";

@@ -14,7 +14,7 @@
 
         <!-- Body -->
         <div class="primary" align="center">
-            <h3 class="text-center">Worksheet!</h3><br>
+            <h3 class="text-center">Worksheet by Apartment</h3>
 
             <?php
                 if (!isset($_SESSION['email'])) {
@@ -22,7 +22,9 @@
                     echo '<script>window.location.href = "signin.php";</script>';
                     exit();
                 }
-                include('./includes/connection.php');
+                include('./includes/connection.php');                
+
+                include('./includes/data_range.html');
 
                 if (isset($_GET['apt'])) {
                     $apt = $_GET['apt'];
@@ -31,21 +33,17 @@
                     $apt = $_SESSION['apt'];
                     $_SESSION['apt'] = $apt;
                 }
-
                 if (isset($_GET['company'])) {
                     $company = $_GET['company'];
                 } else {
                     $company = $_SESSION['company'];
                 }
-                echo '<div align="center"><b>Apt : '.$apt.'</b></div>';
+                echo '<div align="center"><b>Apt : '.$apt.'</b></div><br>';
 
-                include('./includes/data_range.html');
-
-				include('./includes/sort_pay.html');
+                include('./includes/sort_pay.html');
 
                 include('./includes/sort.php');
                 if (isset($_GET['st'])) {
-                    $_SESSION['sort'] = $_GET['st'];
                     echo '<script>window.location.href = "worksheet_apt.php";</script>';
                 }
 
@@ -191,8 +189,8 @@
                 echo '
                         </table>
                         <br>
-                        <input type="submit" name="sub" value="Make PDF"></input>
-                        <input type="button" value="Back" onclick="location.href=\'worksheet.php\'"></input>
+                        <button type="submit" name="sub">Make PDF</button>
+                        <button type="button" onclick="location.href=\'worksheet.php\'">Back</button>
                     </form>
                 ';
                 mysqli_close($conn);

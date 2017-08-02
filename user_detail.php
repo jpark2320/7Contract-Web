@@ -10,7 +10,7 @@
 
         <!-- Body -->
         <div class="primary" align="center">
-            <h3 class="text-center">User Detail</h3><br>
+            <h3 class="text-center">User Detail</h3>
 
             <form action="pedit.php" method="post">
                 <?php
@@ -23,7 +23,7 @@
                     $user_name = $_GET['user_name'];
                     $_SESSION['user_name'] = $user_name;
                     echo '
-                        <table width="300">
+                        <table width="25%">
                             <colgroup>
                                 <col width="50%">
                                 <col width="50%">
@@ -39,16 +39,8 @@
                         </table>
                     ';
 
-                    if (!isset($_SESSION['sort'])) {
-                        $_SESSION['sort'] = 'asc';
-                    }
-                    if ($_SESSION['sort']=='asc') {
-                        echo '<div align="left"><button><a href="?st=desc">Show Descending Order</a></button></div>';
-                    } else {
-                        echo '<div align="left"><button><a href="?st=asc">Show Ascending Order</a></button></div>';
-                    }
+                    include('./includes/sort.php');
                     if (isset($_GET['st'])) {
-                        $_SESSION['sort'] = $_GET['st'];
                         echo '<script>window.location.href = "invoice_detail.php";</script>';
                     }
 
@@ -132,7 +124,7 @@
                                         <td tableHeadData="Unit #" align="center">'.$unit.'</td>
                                         <td tableHeadData="Price" align="center">'.$price.'</td>
                                         <td tableHeadData="Message" align="center">'.$message.'</td>
-                                        <td tableHeadData="Comment" align="center"><button id="btn_showComment"><a href="show_comment.php?id='.$row['id'].'&email='.$email.'&apt='.$apt.'&unit='.$unit.'&username='.urlencode($user_name).'&from_user=1">Show Comments</a></button></td>
+                                        <td tableHeadData="Comment" align="center"><button id="btn_showComment" onclick="location.href=\'show_comment.php?id='.$row['id'].'&email='.$email.'&apt='.$apt.'&unit='.$unit.'&username='.urlencode($user_name).'&from_user=1\'">Show Comments</button></td>
                                         <td tableHeadData="Date" align="center">'.$date.'</td>
                                     </tr>
                                 </tbody>
@@ -143,8 +135,8 @@
                 ?>
             </form>
             <br>
-            <input type="button" value="Show All History" onclick="location.href='user_history.php'"></input>
-            <input type="button" value="Back" onclick="location.href='invoice_detail.php'"></input>
+            <button type="button" onclick="location.href='user_history.php'">Show All History</button>
+            <button type="button" onclick="location.href='invoice_detail.php'">Back</button>
         </div>
         <br><br><br><br><br>
 

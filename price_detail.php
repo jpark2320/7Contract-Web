@@ -143,50 +143,47 @@
                         }
 
                         echo '
-                                    <td tableHeadData="Invoice #" align="center"><a href="invoice_detail.php?invoice_num='.$invoice.'">'.$invoice.'</a></td>
-                                    <td tableHeadData="P.O." align="center">'.$po.'</td>
-                                    <td tableHeadData="Apt" align="center"><a href="worksheet_apt.php?apt='.$apt.'&company='.$row['company'].'">'.$apt.'</td>
-                                    <td tableHeadData="Unit #" align="center">'.$unit.'</td>
-                                    <td tableHeadData="Size" align="center">'.$size.'</td>
-                                    <td tableHeadData="Price" align="center">'.number_format($price).'</td>
-                                    <td tableHeadData="Received" align="center">'.number_format($paid).'</td>
-                                    <td tableHeadData="Salary" align="center">'.number_format($salary).'</td>
-                                    <td tableHeadData="Profit" align="center">'.number_format($profit).'</td>
-                                    <td tableHeadData="Date" align="center">'.substr($date, 0, 11).'</td>
-                                    <td tableHeadData="Receive" align="center"><button><a href="recieve.php?invoice='.$invoice.'&apt='.urlencode($apt).'&unit='.$unit.'&price='.$price.'&paid='.$paid.'">Recieve</a></button></td>
+                            <td tableHeadData="Invoice #" align="center"><a href="invoice_detail.php?invoice_num='.$invoice.'">'.$invoice.'</a></td>
+                            <td tableHeadData="P.O." align="center">'.$po.'</td>
+                            <td tableHeadData="Apt" align="center"><a href="worksheet_apt.php?apt='.$apt.'&company='.$row['company'].'">'.$apt.'</td>
+                            <td tableHeadData="Unit #" align="center">'.$unit.'</td>
+                            <td tableHeadData="Size" align="center">'.$size.'</td>
+                            <td tableHeadData="Price" align="center">'.number_format($price).'</td>
+                            <td tableHeadData="Received" align="center">'.number_format($paid).'</td>
+                            <td tableHeadData="Salary" align="center">'.number_format($salary).'</td>
+                            <td tableHeadData="Profit" align="center">'.number_format($profit).'</td>
+                            <td tableHeadData="Date" align="center">'.substr($date, 0, 11).'</td>
+                            <td tableHeadData="Receive" align="center"><button><a href="recieve.php?invoice='.$invoice.'&apt='.urlencode($apt).'&unit='.$unit.'&price='.$price.'&paid='.$paid.'">Recieve</a></button></td>
                         ';
                         echo '
-                                </tr>
-                            </tbody>
+                            </tr></tbody>
                         ';
                     }
                     echo '
-                            <tbody>
-                                <tr>
-                        ';
+                        <tbody><tr>
+                    ';
 
-                        echo '
-                                    <td align="center" colspan="6"></td>
-                                    <td tableHeadData="Total Price" align="center"><b>'.number_format($totalPrice).'</b></td>
-                                    <td tableHeadData="Total Received" align="center"><b>'.number_format($totalPaid).'</b></td>
-                                    <td tableHeadData="Total Salary" align="center"><b>'.number_format($totalSalary).'</b></td>
-                                    <td tableHeadData="Total Profit" align="center"><b>'.number_format($totalProfit).'</b></td>
-                                    <td align="center" colspan="2"></td>
-                        ';
-                        echo '
+                    echo '
+                                <td align="center" colspan="6"></td>
+                                <td tableHeadData="Total Price" align="center"><b>'.number_format($totalPrice).'</b></td>
+                                <td tableHeadData="Total Received" align="center"><b>'.number_format($totalPaid).'</b></td>
+                                <td tableHeadData="Total Salary" align="center"><b>'.number_format($totalSalary).'</b></td>
+                                <td tableHeadData="Total Profit" align="center"><b>'.number_format($totalProfit).'</b></td>
+                                <td align="center" colspan="2"></td>
+                    ';
+                    echo '
 
-                                </tr>
-                            </tbody>
-                        ';
-                    echo '</table>';
+                            </tr>
+                        </tbody>
+                        </table>
+                    ';
                 } else {
                     echo '<script>alert("You must log in with admin account.");</script>';
                     echo '<script>window.location.href="signin.php";</script>';
                 }
                 mysqli_close($conn);
             ?>
-            <input id="btn_back" type="button" value="Back" onclick="location.href='worksheet.php'"></input>
-            <br><br><br><br>
+            <button id="btn_back" type="button" onclick="location.href='worksheet.php'">Back</button>
         </div>
 
         <!-- Footer -->

@@ -43,40 +43,46 @@
             <div class="row" align="center">
                 <form action="recieve_process.php" method="POST">
 
-                    <table width="400">
+                    <table width="30%">
                         <colgroup>
-                            <col width="50%">
+                            <col width="40%">
+                            <col width="10%">
                             <col width="50%">
                         </colgroup>
-                            <!-- <?php echo isset($_SESSION['echeck']) ? $_SESSION['echeck'] : '' ?> -->
                             <tr>
-                                <td><label>Invoice #</label></td>
+                                <td align="right"><b>Invoice #</b></td>
+                                <td></td>
                                 <td><?php echo isset($_SESSION['invoice']) ? "7C".$_SESSION['invoice'] : '-' ?></td>
                             </tr>
                             <tr>
-                                <td><label>Apt</label></td>
+                                <td align="right"><b>Apt</b></td>
+                                <td></td>
                                 <td><?php echo isset($_SESSION['apt']) ? $_SESSION['apt'] : '-' ?></td>
                             </tr>
                             <tr>
-                                <td><label>Unit</label></td>
+                                <td align="right"><b>Unit</b></td>
+                                <td></td>
                                 <td><?php echo isset($_SESSION['unit']) ? $_SESSION['unit'] : '-' ?></td>
                             </tr>
                             <tr>
-                                <td><label>Price</label></td>
+                                <td align="right"><b>Price</b></td>
+                                <td></td>
                                 <td><?php echo isset($_SESSION['price']) ? "$ ".$_SESSION['price']  : '-' ?></td>
                             </tr>
                             <tr>
-                                <td><label>Remaining Balance</label></td>
+                                <td align="right"><b>Remaining Balance</b></td>
+                                <td></td>
                                 <td><?php echo isset($_SESSION['remaining']) ? "$ ".number_format((float)$_SESSION['remaining'], 2, '.', '') : '-' ?></td>
                             </tr>
                             <tr>
-                                <td><label>Recieved Amount</label></td>
-                                <td><input type="text" name="recieve" maxlength="36" size="30"></td>
+                                <td align="right"><b>Recieved Amount</b></td>
+                                <td></td>
+                                <td><input class="editInput" type="text" name="recieve" maxlength="36" size="30"></td>
                             </tr>
                     </table>
                     <br>
-                    <input type="submit" value="Recieved">
-                    <input type="button" value="Back" onclick="location.href='price_detail.php'">
+                    <button type="submit">Recieved</button>
+                    <button type="button" onclick="location.href='price_detail.php'">Back</button>
                 </form>
             </div>
         </div>

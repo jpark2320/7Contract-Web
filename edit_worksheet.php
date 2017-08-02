@@ -41,22 +41,26 @@
 
             <form action="worksheet_add.php" method="GET">
 
-                <table width="400">
+                <table width="30%">
                     <colgroup>
-                        <col width="50%">
-                        <col width="50%">
+                        <col width="18%">
+                        <col width="2%">
+                        <col width="80%">
                     </colgroup>
                     <tr>
-                        <td><label>Description</label></td>
-                        <td><input type="text" name="desc_edited_estm" maxlength="36" size="30" value="<?php echo isset($description) ? rtrim($description," ") : '' ?>"></td>
+                        <td align="right"><b>Description</b></td>
+                        <td></td>
+                        <td><input class="editInput" type="text" name="desc_edited_estm" maxlength="36" size="30" value="<?php echo isset($description) ? rtrim($description," ") : '' ?>"></td>
                     </tr>
                     <tr>
-                        <td><label>Qty</label></td>
-                        <td><input type="text" name="qty_edited_estm" maxlength="36" size="30" value="<?php echo isset($qty) ? rtrim($qty," ") : '' ?>"></td>
+                        <td align="right"><b>Qty</b></td>
+                        <td></td>
+                        <td><input class="editInput" type="text" name="qty_edited_estm" maxlength="36" size="30" value="<?php echo isset($qty) ? rtrim($qty," ") : '' ?>"></td>
                     </tr>
                     <tr>
-                        <td><label>Price</label></td>
-                        <td><input type="text" name="price_edited_estm" maxlength="36" size="30" value="<?php echo isset($price) ? rtrim($price," ") : '' ?>"></td>
+                        <td align="right"><b>Price</b></td>
+                        <td></td>
+                        <td><input class="editInput" type="text" name="price_edited_estm" maxlength="36" size="30" value="<?php echo isset($price) ? rtrim($price," ") : '' ?>"></td>
                     </tr>
                     <tr hidden>
                         <td><label>Index</label></td>
@@ -64,8 +68,8 @@
                     </tr>
                 </table>
                 <br>
-                <input type="submit" value="Edit">
-                <input type="button" value="Back" onclick="location.href='worksheet_add.php'">
+                <button type="submit">Edit</button>
+                <button type="button" onclick="location.href='worksheet_add.php'">Back</button>
             </form>
         </div>
 

@@ -10,52 +10,57 @@
 
         <!-- Body -->
         <div class="primary" align="center">
-            <h3 class="text-center">Description</h3><br>
+            <h3 class="text-center">Description</h3>
                     <?php
                         // connection with mysql database
                         include('./includes/connection.php');
                         if (isset($_GET['invoice'])) {
                         	$invoice = $_GET['invoice'];
                             $invoice = str_replace("7C", "", $invoice);
-                        }  
-                        echo '<table width="250" align="center">
+                        }
+                        echo '
+                            <table width="25%" align="center">
                                 <colgroup>
                                     <col width="50%">
                                     <col width="50%">
-                                </colgroup>';
-                    	echo ' <tr>
-                            <td><b>Invoice # : </b></td>
-                            	<td>'.$_GET['invoice'].'</td>
-                    		</tr>
-                            <tr>
-                                <td><b>Apartment : </b></td>
-                                <td>'.$_GET['apt'].'</td>
-                            </tr>
-                            <tr>
-                                <td><b>Unit # : </b></td>
-                                <td>'.$_GET['unit'].'</td>
-                            </tr>
-                            <td><b>Size : </b></td>
-                            	<td>'.$_GET['size'].'</td>
-                    		</tr>
-                        </table>
-                        <table id="ResponsiveTable" border="3" width="100%">
-							<colgroup>
-								<col width="5%">
-                                <col width="10%">
-                                <col width="10%">
-                                <col width="75%">
-
-                            </colgroup>
-                            <thead id="HeadRow">
-                                <tr style="border: 2px double black;" bgcolor="#c9c9c9">
-                                    <td align="center"><b>#</b></td>
-                                    <td align="center"><b>Quantity</b></td>
-                                    <td align="center"><b>Price</b></td>
-                                    <td align="center"><b>Description</b></td>
+                                </colgroup>
+                                <tr>
+                                    <td align="left"><b>Invoice # : </b></td>
+                                	<td align="right">'.$_GET['invoice'].'</td>
+                        		</tr>
+                                <tr>
+                                    <td align="left"><b>Apartment : </b></td>
+                                    <td align="right">'.$_GET['apt'].'</td>
                                 </tr>
-                            </thead>
-	                        ';
+                                <tr>
+                                    <td align="left"><b>Unit # : </b></td>
+                                    <td align="right">'.$_GET['unit'].'</td>
+                                </tr>
+                                    <td align="left"><b>Size : </b></td>
+                                	<td align="right">'.$_GET['size'].'</td>
+                        		</tr>
+                            </table>
+                            <br>
+                        ';
+
+                        echo '
+                            <table id="ResponsiveTable" border="3" width="100%">
+    							<colgroup>
+    								<col width="5%">
+                                    <col width="10%">
+                                    <col width="10%">
+                                    <col width="75%">
+
+                                </colgroup>
+                                <thead id="HeadRow">
+                                    <tr style="border: 2px double black;" bgcolor="#c9c9c9">
+                                        <td align="center"><b>#</b></td>
+                                        <td align="center"><b>Quantity</b></td>
+                                        <td align="center"><b>Price</b></td>
+                                        <td align="center"><b>Description</b></td>
+                                    </tr>
+                                </thead>
+                        ';
                         
                         $sql = "SELECT * FROM worksheet_description WHERE invoice='$invoice'";
                         
@@ -93,7 +98,7 @@
                                         <td tableHeadData="#" align="center">'.$i.'</td>
                                         <td tableHeadData="Quantity" align="center">'.$quantity.'</td>
                                         <td tableHeadData="Price" align="center">'.number_format($price).'</td>
-                                        <td tableHeadData="Description" align="center"><div class="lineBreak_desc">'.$description.'</div></td>
+                                        <td tableHeadData="Description" align="left"><div class="lineBreak_desc">'.$description.'</div></td>
                                     </tr>
                                 </tbody>
                             ';
