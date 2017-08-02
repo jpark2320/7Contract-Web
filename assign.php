@@ -51,12 +51,14 @@
                     $last = $row['last'];
                     if ($last == null) $last = '-';
 
-                    if ($isOdd) {
-                        $isOdd = false;
-                        echo '<tr bgcolor="#e8fff1">';
-                    } else {
-                        $isOdd = true;
-                        echo '<tr>';
+                    if (isset($isOdd)) {
+                        if ($isOdd) {
+                            $isOdd = false;
+                            echo '<tr bgcolor="#e8fff1">';
+                        } else {
+                            $isOdd = true;
+                            echo '<tr>';
+                        }
                     }
 
                     echo '

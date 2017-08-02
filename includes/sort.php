@@ -1,14 +1,15 @@
 <?php
+    echo '<div align="left">';
     if (!isset($_SESSION['sort'])) {
         $_SESSION['sort'] = 'asc';
     }
     if ($_SESSION['sort']=='asc') {
-        echo '<div align="left" text-decoration:none; color:#ff0000;"><a href="?st=desc">Show descending order</a></div>';
+        echo '<button onClick="location.href=\'?st=desc\'">Show Descending Order</button>';
     } else {
-        echo '<div align="left" text-decoration:none; color:#ff0000;"><a href="?st=asc">Show ascending order</a></div>';
+        echo '<button onClick="location.href=\'?st=asc\'">Show Ascending Order</button>';
     }
     if (isset($_GET['st'])) {
         $_SESSION['sort'] = $_GET['st'];
-        echo '<script>window.location.href = "worksheet.php";</script>';
     }
+    echo '</div>';
 ?>

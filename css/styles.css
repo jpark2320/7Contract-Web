@@ -16,6 +16,7 @@
         color: #333;
         border-collapse: collapse;
         border-spacing: 0;
+        border-radius: 5px;
         font-family: "Times New Roman";
     }
     h3 {
@@ -23,6 +24,41 @@
     }
     a {
         text-decoration: none;
+    }
+    button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+        cursor: pointer;
+
+        background-color: white;
+        color: black;
+        border: 2px solid #555555;
+        border-radius: 5px;
+    }
+    button:hover {
+        background-color: #555555;
+        color: white;
+    }
+    input.textInput {
+        border: none;
+        width: 100%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    input.editInput {
+        width: 100%;
+        border: 1px solid gray;
+        border-radius: 5px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
     }
     .header {
         background-color: #3a3a3a;
@@ -103,14 +139,18 @@
         position: fixed;
         text-align: center;
     }
-    #name, #email {
+    input#name, 
+    input#email {
         height: 30px;
         font-size: 12px;
+        border: 1px solid gray;
+        border-radius: 5px;
     }
-    #message {
+    input#message {
         height: 100px;
         font-size: 12px;
         border: 1px solid gray;
+        border-radius: 5px;
     }
     #doc {
         margin-top: 60px;
@@ -139,6 +179,41 @@
     .primary #btn_showDetail {
         margin-left: 500px;
     }
+    a.lineBreak {
+        display: inline-block;
+        width: 100px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    div.lineBreak_desc {
+        display: inline-block; 
+        width: 900px; 
+        white-space: nowrap; 
+        overflow: hidden; 
+        text-overflow: ellipsis;
+
+        white-space: normal; 
+        line-height: 1.2;
+        word-wrap: break-word; 
+        display: -webkit-box; 
+        -webkit-line-clamp: 20; 
+        -webkit-box-orient: vertical;
+    }
+    div.lineBreak_msg {
+        display: inline-block; 
+        width: 500px; 
+        white-space: nowrap; 
+        overflow: hidden; 
+        text-overflow: ellipsis;
+
+        white-space: normal;
+        line-height: 1.2;
+        word-wrap: break-word; 
+        display: -webkit-box; 
+        -webkit-line-clamp: 20; 
+        -webkit-box-orient: vertical;   
+    }
     /*Viewport*/
     @media screen and (max-width: 740px) {
         * {
@@ -151,7 +226,7 @@
             padding: 0;
             max-width: 100%;
         }
-        input, button, select {
+        input, button, select, textarea {
             border: 1px solid black;
             border-radius: 5px;
         }
@@ -288,7 +363,7 @@
         #ResponsiveTable #btn_showComment {
             width: 120px;
         }
-        #btn_worksheet {
+        #btn_worksheet button {
             width: 100px;
             border-radius: 5px;
             border: 1px solid black;
@@ -308,6 +383,8 @@
         #data_range {
             padding: 10px 0;
         }
+        #name,
+        #email,
         #year,
         #month,
         #week {
@@ -315,6 +392,9 @@
         }
         .primary #btn_showDetail {
             margin-left: 50px;
+        }
+        div.lineBreak_msg {
+            width: 50px;
         }
     }
 </style>

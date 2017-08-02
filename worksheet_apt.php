@@ -17,13 +17,11 @@
             <h3 class="text-center">Worksheet!</h3><br>
 
             <?php
-                include('./includes/data_range.html');
                 if (!isset($_SESSION['email'])) {
                     echo "<script>alert(\"You need to sign in first.\");</script>";
                     echo '<script>window.location.href = "signin.php";</script>';
                     exit();
                 }
-                // connection with mysql database
                 include('./includes/connection.php');
 
                 if (isset($_GET['apt'])) {
@@ -39,32 +37,13 @@
                 } else {
                     $company = $_SESSION['company'];
                 }
-
                 echo '<div align="center"><b>Apt : '.$apt.'</b></div>';
 
-                if (!isset($_SESSION['sort'])) {
-                    $_SESSION['sort'] = 'asc';
-                }
-                if ($_SESSION['sort']=='asc') {
-                    echo '<div align="left"><h><a href="?st=desc">Show Descending Order</a></h></div>';
-                } else {
-                    echo '<div align="left"><h><a href="?st=asc">Show Ascending Order</a></h></div>';
-                }
+                include('./includes/data_range.html');
 
-				echo '
-                    <div align="right" style="float: right;">
-                        <form action="" method="post">
-                            <select id="pay" name="pay">
-                                <option value="2">Show All</option>
-                                <option value="1">Show Paid</option>
-                                <option value="0">Show Unpaid</option>
-                            </select>
-                            <input type="submit" value="Go!"/>
-                        </form>
-                    </div>
-                    <br></br>
-                ';
+				include('./includes/sort_pay.html');
 
+                include('./includes/sort.php');
                 if (isset($_GET['st'])) {
                     $_SESSION['sort'] = $_GET['st'];
                     echo '<script>window.location.href = "worksheet_apt.php";</script>';
@@ -203,7 +182,7 @@
                                     <td tableHeadData="Price" align="center">'.$temp_price.'</td>
                                     <td tableHeadData="Salary" align="center">'.$temp_salary.'</td>
                                     <td tableHeadData="Profit" align="center">'.$temp_profit.'</td>
-                                    <td tableHeadData="Description" align="center"><a href="worksheet_description.php?invoice='.$temp_invoice.'&apt='.$row['apt'].'&unit='.$temp_unit.'&size='.$temp_size.'&from_apt=1">'.$temp_description.'</a></td>
+                                    <td tableHeadData="Description" align="center"><a class="lineBreak" href="worksheet_description.php?invoice='.$temp_invoice.'&apt='.$row['apt'].'&unit='.$temp_unit.'&size='.$temp_size.'&from_apt=1">'.$temp_description.'</a></td>
                                     <td tableHeadData="Date" align="center">'.$temp_date.'</td>
                                 </tr>
                             </tbody>

@@ -39,33 +39,21 @@
 					if (isset($_SESSION['isadmin'])) {
 						if ($_SESSION['isadmin'] > 0) {
 							echo '
-								<div align="center">
-									<button id="btn_worksheet"><a href="view_estimate.php">View Estimate</a></button>
-									<button id="btn_worksheet"><a href="estimate_info.php">Make Estimate</a></button>
-									<button id="btn_worksheet"><a href="worksheet_add.php">Add Worksheet</a></button
-								</div>
+								<div align="center" id="btn_worksheet">
+									<button onclick="location.href=\'view_estimate.php\'">View Estimate</button>
+									<button onclick="location.href=\'estimate_info.php\'">Make Estimate</button>
+									<button onclick="location.href=\'worksheet_add.php\'">Add Worksheet</button>
 							';
-
-                            echo '<div align="left" text-decoration:none; color:#ff0000;">';
-
-                            if (!isset($_SESSION['sort'])) {
-                                $_SESSION['sort'] = 'asc';
-                            }
-                            if ($_SESSION['sort']=='asc') {
-                                echo '<button><a href="?st=desc">Show Descending Order</a></button>';
-                            } else {
-                                echo '<button><a href="?st=asc">Show Ascending Order</a></button>';
-                            }
-                            if (isset($_GET['st'])) {
-                                $_SESSION['sort'] = $_GET['st'];
-                                echo '<script>window.location.href = "worksheet.php";</script>';
-                            }
-
 							if ($_SESSION['isadmin'] == 2) {
-								echo '<button id="btn_showDetail"><a href="price_detail.php">Show Detail</a></button>';
+								echo '<button onclick="location.href=\'price_detail.php\'">Show Detail</button>';
 							}
+							echo '</div>';
 
-                            echo '</div>';
+                            include('./includes/sort.php');
+                            if (isset($_GET['st'])) {
+						        $_SESSION['sort'] = $_GET['st'];
+						        echo '<script>window.location.href = "worksheet.php";</script>';
+						    }
 
 							echo '
 								<table id="ResponsiveTable" border="3" width="100%">
@@ -77,8 +65,7 @@
 											<td align="center"><b><a href="?orderBy=company">Company</a></b></td>
 											<td align="center"><b><a href="?orderBy=apt">Apt</a></b></td>
 											<td align="center"><b><a href="?orderBy=manager">Manager</a></b></td>
-											<td align="center"><b><a href="?orderBy=unit">Unit #</a></b></td>
-											
+											<td align="center"><b><a href="?orderBy=unit">Unit #</a></b></td>			
 											<td align="center"><b><a href="?orderBy=price">Price</a></b></td>
 											<td align="center"><b>Description</b></td>
 											<td align="center"><b><a href="?orderBy=date">Date</a></b></td>
@@ -137,9 +124,9 @@
 
                                 $temp_description = $row['description'];
                                 if ($temp_description == null) $temp_description = '-';
-                                if (strlen($temp_description) > 25) {
-                                	$temp_description = substr($temp_description, 0, 25)." ...";
-                                }
+                                // if (strlen($temp_description) > 25) {
+                                // 	$temp_description = substr($temp_description, 0, 25)." ...";
+                                // }
 
                                 $temp_date = $row['date'];
                                 $temp_date = substr($temp_date, 0, 11);
@@ -170,12 +157,12 @@
 											<td tableHeadData="Manager" align="center"><a href="worksheet_manager.php?manager='.$temp_manager.'">'.$temp_manager.'</a></td>
 											<td tableHeadData="Unit" align="center">'.$temp_unit.'</td>
 											<td tableHeadData="Price" align="center">'.$temp_price.'</td>
-											<td tableHeadData="Description" align="left"><a href="worksheet_description.php?invoice='.$temp_invoice.'&apt='.$temp_apt.'&unit='.$temp_unit.'&size='.$temp_size.'">'.$temp_description.'</a></td>
+											<td tableHeadData="Description" align="left"><a class="lineBreak" href="worksheet_description.php?invoice='.$temp_invoice.'&apt='.$temp_apt.'&unit='.$temp_unit.'&size='.$temp_size.'">'.$temp_description.'</a></td>
 											<td tableHeadData="Date" align="center">'.$temp_date.'</td>
 											<td tableHeadData="Assign" align="center">
-												<button><a href="assign.php?invoice_num='.$temp_invoice.' &apt='.$temp_apt.' &unit_num='.$temp_unit.'">Send</a></button>
+												<button onclick="location.href=\'assign.php?invoice_num='.$temp_invoice.' &apt='.$temp_apt.' &unit_num='.$temp_unit.'\'">Send</button>
 											</td>
-											<td tableHeadData="Edit" align="center"><button><a href="edit_admin.php?invoice_num='.$temp_invoice.'">Edit</a></button></td>
+											<td tableHeadData="Edit" align="center"><button onclick="location.href=\'edit_admin.php?invoice_num='.$temp_invoice.'\'">Edit</button></td>
 										</tr>
 									</tbody>
 								';

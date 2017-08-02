@@ -13,13 +13,11 @@
             <h3 class="text-center">Worksheet!</h3><br>
 
             <?php
-                include('./includes/data_range.html');
                 if (!isset($_SESSION['email'])) {
                     echo "<script>alert(\"You need to sign in first.\");</script>";
                     echo '<script>window.location.href = "signin.php";</script>';
                     exit();
                 }
-                // connection with mysql database
                 include('./includes/connection.php');
 
                 if (isset($_GET['company'])) {
@@ -28,17 +26,11 @@
                 } else {
                     $company = $_SESSION['company'];
                 }
-
                 echo '<div align="center"><b>Company : '.$company.'</b></div>';
 
-                if (!isset($_SESSION['sort'])) {
-                    $_SESSION['sort'] = 'asc';
-                }
-                if ($_SESSION['sort']=='asc') {
-                    echo '<div align="left"><h><a href="?st=desc">Show Descending Order</a></h></div>';
-                } else {
-                    echo '<div align="left"><h><a href="?st=asc">Show Ascending Order</a></h></div>';
-                }
+                include('./includes/data_range.html');
+
+                include('./includes/sort.php');
                 if (isset($_GET['st'])) {
                     $_SESSION['sort'] = $_GET['st'];
                     echo '<script>window.location.href = "worksheet_company.php";</script>';
@@ -155,7 +147,7 @@
                         ';
                     }
                     echo '
-                                <td tableHeadData="Description" align="center"><a href="worksheet_description.php?invoice='.$temp_invoice.'&apt='.$temp_apt.'&unit='.$temp_unit.'&size='.$temp_size.'&from_company=1">'.$temp_description.'</a></td>
+                                <td tableHeadData="Description" align="center"><a class="lineBreak" href="worksheet_description.php?invoice='.$temp_invoice.'&apt='.$temp_apt.'&unit='.$temp_unit.'&size='.$temp_size.'&from_company=1">'.$temp_description.'</a></td>
                                 <td tableHeadData="Date" align="center">'.$temp_date.'</td>
                             </tr>
                         </tbody>

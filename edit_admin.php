@@ -107,7 +107,7 @@
 				if (isset($_SESSION['arr'])) {
 					for ($i = 0; $i < sizeof($_SESSION['arr']); $i++) {
 						if ($_SESSION['arr'][$i][0] !== null) {
-							echo '<tr bgcolor="#c4daff"><td tableHeadData="Description">'.$_SESSION['arr'][$i][0].'</td>';
+							echo '<tr bgcolor="#c4daff"><td tableHeadData="Description"><div class="lineBreak_desc">'.$_SESSION['arr'][$i][0].'</div></td>';
 						}
 						if ($_SESSION['arr'][$i][1] !== null) {
 							echo '<td tableHeadData="Qty">'.$_SESSION['arr'][$i][1].'</td>';

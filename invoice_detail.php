@@ -100,8 +100,7 @@
                             ';
                         }
                         echo '
-
-                                        <td align="center"><b><a href="?orderBy=B.date">Date</a></b></td>
+                            <td align="center"><b><a href="?orderBy=B.date">Date</a></b></td>
                         ';
                         echo '
                                     </tr>
@@ -163,7 +162,7 @@
 
                             echo '
                                         <td tableHeadData="Name" align="center"><a href="user_detail.php?invoice='.urlencode($i_detail).' &email='.urlencode($row['email']).' &user_name='.urlencode($user_name).'">'.$user_name.'</a></td>
-                                        <td tableHeadData="Message" align="center">'.$row['message'].'</td>
+                                        <td tableHeadData="Message"><div class="lineBreak_msg">'.$row['message'].'</div></td>
                                         <td tableHeadData="Comment" align="center"><button id="btn_showComment"><a href="show_comment.php?id='.$id.'&email='.$row['email'].'&apt='.$_SESSION['apt_pdf'].'&unit='.$_SESSION['unit_pdf'].'&username='.urlencode($user_name).'">Show Comments</a></button></td>
                             ';
                             if ($_SESSION['isadmin'] == 2) {

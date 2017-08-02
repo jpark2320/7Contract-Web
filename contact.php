@@ -18,9 +18,9 @@
                 <p><img src="./img/email.png" style="width:10px;height:10px;"> Email: sevencontract@gmail.com</p>
                 <br>
                 <p><em>Ask us if you have any questions</em></p>
-                <p><input id="name" name="name" maxlength="50" placeholder="Type name" type="text" size="35" required></p>
-                <p><input id="email" name="email" maxlength="50" placeholder="Type email" type="email" size="35" required></p>
-                <p><textarea id="message" name="message" placeholder="Type message" row="5" cols="70"></textarea></p>
+                <p><input id="name" name="name" maxlength="30" placeholder="Type name" type="text" size="35" required></p>
+                <p><input id="email" name="email" maxlength="30" placeholder="Type email" type="email" size="35" required></p>
+                <p><textarea id="message" name="message" placeholder="Type message" row="30" cols="70"></textarea></p>
                 <input type="submit" value="Send"></input>
             </form>
         </div>

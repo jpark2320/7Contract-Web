@@ -26,14 +26,18 @@
     $mail->addReplyTo('7contractor@gmail.com', '7 Contract');
 
     for ($i = 0; $i < sizeof($arr); $i++) {
-        $worker = split("\*", $arr[$i]);
+        $worker = explode("\*", $arr[$i]);
         $sql = "INSERT INTO subworksheet VALUES (null, '$worker[0]', '$i_num', '$a_num', '$u_num', 0, 0, '$message', '', NOW(), 0, 0)";
         if ($conn->query($sql) === FALSE) {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
-        $mail->addAddress($worker[0], $worker[1]);
-
-        echo $worker[0]." AND ". $worker[1];
+        if (isset($worker[0]) && isset($worker[1])) {
+            $mail->addAddress($worker[0], $worker[1]);
+        } else if (isset($worker[0])) {
+            $mail->addAddress($worker[0]);
+        } else if (isset($worker[1])) {
+            $mail->addAddress($worker[1]);
+        }
     }
     $sql = "UPDATE worksheet SET isworkdone=1 WHERE invoice=".$i_num.";";
     $conn->query($sql);
@@ -46,8 +50,6 @@
     $mail->Body = $message;
     if (!$mail->send()) {
         echo "Mailer Error: " . $mail->ErrorInfo;
-    } else {
-        echo "Message sent!";
     }
     $conn->close();
     echo "<script>alert(\"Successfully assigned.\");</script>";

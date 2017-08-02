@@ -12,44 +12,19 @@
         <div class="primary" align="center">
             <h3 class="text-center">Work History Details</h3><br>
             <?php
-                include('./includes/data_range.html');
                 if (!isset($_SESSION['email'])) {
                     echo "<script>alert(\"You need to sign in first.\");</script>";
                     echo '<script>window.location.href = "signin.php";</script>';
                     exit();
                 }
-                // connection with mysql database
                 include('./includes/connection.php');
 
-                if ($_SESSION['isadmin']) {
+                if ($_SESSION['isadmin'] == 2) {
+                    include('./includes/data_range.html');
+                    
+                    include('./includes/sort_pay.html');
 
-                    echo '
-                        <form action="" method="post">
-                            <div align="left" text-decoration:none; color:#ff0000;">
-                    ';
-
-                    if (!isset($_SESSION['sort'])) {
-                        $_SESSION['sort'] = 'asc';
-                    }
-                    if ($_SESSION['sort']=='asc') {
-                        echo '<button><a href="?st=desc">Show Descending Order</a></button>';
-                    } else {
-                        echo '<button><a href="?st=asc">Show Ascending Order</a></button>';
-                    }
-					echo '
-                            <select id="pay" name="pay">
-                                <option value="2">Show All</option>
-                                <option value="1">Show Paid</option>
-                                <option value="0">Show Unpaid</option>
-                            </select>
-                            <input type="submit" value="Go!"/>
-                    ';
-
-                    echo '
-                            </div>
-                        </form>
-                    ';
-
+                    include('./includes/sort.php');
                     if (isset($_GET['st'])) {
                         $_SESSION['sort'] = $_GET['st'];
                         echo '<script>window.location.href = "price_detail.php";</script>';
@@ -191,18 +166,12 @@
                         ';
 
                         echo '
-                                    <td align="center"></td>
-                                    <td align="center"></td>
-                                    <td align="center"></td>
-                                    <td align="center"></td>
-                                    <td align="center"></td>
-                                    <td align="center"></td>
+                                    <td align="center" colspan="6"></td>
                                     <td tableHeadData="Total Price" align="center"><b>'.number_format($totalPrice).'</b></td>
                                     <td tableHeadData="Total Received" align="center"><b>'.number_format($totalPaid).'</b></td>
                                     <td tableHeadData="Total Salary" align="center"><b>'.number_format($totalSalary).'</b></td>
                                     <td tableHeadData="Total Profit" align="center"><b>'.number_format($totalProfit).'</b></td>
-                                    <td align="center"></td>
-                                    <td align="center"></td>
+                                    <td align="center" colspan="2"></td>
                         ';
                         echo '
 
@@ -210,6 +179,9 @@
                             </tbody>
                         ';
                     echo '</table>';
+                } else {
+                    echo '<script>alert("You must log in with admin account.");</script>';
+                    echo '<script>window.location.href="signin.php";</script>';
                 }
                 mysqli_close($conn);
             ?>

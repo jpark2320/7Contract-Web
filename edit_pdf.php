@@ -39,27 +39,30 @@
             <h3 class="text-center">Edit PDF Information</h3><br>
 
             <form action="pdf_info.php" method="GET">
-
-                <table width="400">
+                <table width="30%">
                     <colgroup>
-                        <col width="50%">
-                        <col width="50%">
+                        <col width="18%">
+                        <col width="2%">
+                        <col width="80%">
                     </colgroup>
                     <tr>
-                         <td><label>Description</label></td>
-                         <td><input type="text" name="desc_edited_pdf" maxlength="36" size="30" value="<?php echo isset($description) ? $description : '' ?>"></td>
+                         <td align="right"><b>Description</b></td>
+                         <td></td>
+                         <td><input class="editInput" type="text" name="desc_edited_pdf" value="<?php echo isset($description) ? $description : '' ?>"></td>
                      </tr>
                      <tr>
-                         <td><label>Qty</label></td>
-                         <td><input type="text" name="qty_edited_pdf" maxlength="36" size="30" value="<?php echo isset($qty) ? $qty : '' ?>"></td>
+                         <td align="right"><b>Qty</b></td>
+                         <td></td>
+                         <td><input class="editInput" type="text" name="qty_edited_pdf" value="<?php echo isset($qty) ? $qty : '' ?>"></td>
                      </tr>
                      <tr>
-                         <td><label>Price</label></td>
-                         <td><input type="text" name="price_edited_pdf" maxlength="36" size="30" value="<?php echo isset($price) ? $price : '' ?>"></td>
+                         <td align="right"><b>Price</b></td>
+                         <td></td>
+                         <td><input class="editInput" type="text" name="price_edited_pdf" value="<?php echo isset($price) ? $price : '' ?>"></td>
                      </tr>
                      <tr hidden>
-                         <td><label>Index</label></td>
-                         <td><input type="text" name="index_edited_pdf" value="<?php echo $index ?>"></td>
+                         <td><b>Index</b></td>
+                         <td><input class="editInput" type="text" name="index_edited_pdf" value="<?php echo $index ?>"></td>
                      </tr>
                 </table>
                 <br>

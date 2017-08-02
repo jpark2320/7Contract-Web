@@ -47,21 +47,21 @@
                             <col width="25%">
                         </colgroup>
                         <tr>
-                            <td><label>Invoice # : </label></td>
+                            <td><label><b>Invoice # : </label></b></td>
                             <td>'.'7C'.$_SESSION['invoice'].'</td>
-                            <td><label>Apt : </label></td>
+                            <td><label><b>Apt : </label></b></td>
                             <td>'.$apt.'</td>
                         </tr>
                         <tr>
-                            <td><label>P.O. : </label></td>
+                            <td><b><label>P.O. : </label></b></td>
                             <td>'.$po.'</td>
-                            <td><label>Unit # : </label></td>
+                            <td><b><label>Unit # : </label></b></td>
                             <td>'.$unit.'</td>
                         </tr>
                         <tr>
-                            <td><label>Company : </label></td>
+                            <td><b><label>Company : </label></b></td>
                             <td>'.$company.'</td>
-                            <td><label>Size : </label></td>
+                            <td><b><label>Size : </label></b></td>
                             <td>'.$size.'</td>
                         </tr>
                     </table>
@@ -188,9 +188,9 @@
                             </thead>
                             <tbody id="pdf_table">
                                 <tr>
-                                    <td tableHeadData="Description"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="description" size="50"></td>
-                                    <td tableHeadData="Qty"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="qty" size="44"></td>
-                                    <td tableHeadData="Price"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="price" size="44"></td>
+                                    <td tableHeadData="Description"><input class="textInput" type="text" name="description" size="50"></td>
+                                    <td tableHeadData="Qty"><input class="textInput" type="text" name="qty" size="44"></td>
+                                    <td tableHeadData="Price"><input class="textInput" type="text" name="price" size="44"></td>
                                     <td colspan="2" align="center"><input type="submit" name="submit" value="Add"></td>
                                 </tr>
                 ';
@@ -203,7 +203,7 @@
                             echo '<td>'.$_SESSION['pdf_arr'][$i][1].'</td>';
                         }
                         if ($_SESSION['pdf_arr'][$i][2] !== null) {
-                            echo '<td align="center">'.number_format($_SESSION['pdf_arr'][$i][2]).'</td>';
+                            echo '<td align="center">'.$_SESSION['pdf_arr'][$i][2].'</td>';
                         }
                         if ($_SESSION['pdf_arr'][$i][0] !== null) {
                             echo '<td align="center"><button><a href="edit_pdf.php?description='.$_SESSION['pdf_arr'][$i][0].' &qty='.$_SESSION['pdf_arr'][$i][1].' &price='.$_SESSION['pdf_arr'][$i][2].' &index='.$i.'">Edit</a></button></td>';
@@ -225,7 +225,7 @@
                                 <td><label><b>Date</b></label></td>
                             </tr>
                             <tr align="center">
-                                <td tableHeadData="Date"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="date" name="date" id="theDate" value="" size="8"></td>
+                                <td tableHeadData="Date"><input class="textInput" type="date" name="date" id="theDate" value="" size="8"></td>
                             </tr>
                         </table>
                 ';

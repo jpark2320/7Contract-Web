@@ -93,7 +93,7 @@
                                         <td tableHeadData="#" align="center">'.$i.'</td>
                                         <td tableHeadData="Quantity" align="center">'.$quantity.'</td>
                                         <td tableHeadData="Price" align="center">'.number_format($price).'</td>
-                                        <td tableHeadData="Description" align="center">'.$description.'</td>
+                                        <td tableHeadData="Description" align="center"><div class="lineBreak_desc">'.$description.'</div></td>
                                     </tr>
                                 </tbody>
                             ';

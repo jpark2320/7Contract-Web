@@ -72,23 +72,23 @@
                             </thead>
                             <tbody id="pdf_table">
                                 <tr>
-                                    <td tableHeadData="Description"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="description" size="10"></td>
-                                    <td tableHeadData="Qty"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="qty" size="10"></td>
-                                    <td tableHeadData="Price"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="price" size="10"></td>
+                                    <td tableHeadData="Description"><input class="textInput" type="text" name="description"></td>
+                                    <td tableHeadData="Qty"><input class="textInput" type="text" name="qty"></td>
+                                    <td tableHeadData="Price"><input class="textInput" type="text" name="price"></td>
                                     <td colspan="2" align="center"><input type="submit" name="submit" value="Add"></td>
                                 </tr>
                 ';
 				if (isset($_SESSION['estm_arr'])) {
 					for ($i = 0; $i < sizeof($_SESSION['estm_arr']); $i++) {
 						if ($_SESSION['estm_arr'][$i][0] !== null) {
-							echo '<tr bgcolor="#c4daff"><td tableHeadData="Description">'.$_SESSION['estm_arr'][$i][0].'</td>';
+							echo '<tr bgcolor="#c4daff"><td tableHeadData="Description"><div class="lineBreak_desc">'.$_SESSION['estm_arr'][$i][0].'</div></td>';
 						}
 						if ($_SESSION['estm_arr'][$i][1] !== null) {
 							echo '<td tableHeadData="Qty">'.$_SESSION['estm_arr'][$i][1].'</td>';
 						}
 
 						if ($_SESSION['estm_arr'][$i][2] !== null) {
-							echo '<td tableHeadData="Price">'.number_format($_SESSION['estm_arr'][$i][2]).'</td>';
+							echo '<td tableHeadData="Price">'.$_SESSION['estm_arr'][$i][2].'</td>';
 						}
 						if ($_SESSION['estm_arr'][$i][0] !== null) {
 							echo '<td align="center"><button><a href="edit_estimate.php?description='.$_SESSION['estm_arr'][$i][0].'&qty='.$_SESSION['estm_arr'][$i][1].'&price='.$_SESSION['estm_arr'][$i][2].'&index='.$i.'">Edit</a></button></td>';
@@ -123,11 +123,11 @@
 							</thead>
 							<tbody>
 	                            <tr align="center">
-	                                <td tableHeadData="Company"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="company" value="" size="20"></td>
-	                                <td tableHeadData="Apt"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="apt" value="" size="20"></td>
-	                                <td tableHeadData="Unit #"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="unit" value="" size="10"></td>
-	                                <td tableHeadData="Size"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="size" value="" size="10"></td>
-	                                <td tableHeadData="Date"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="date" name="date" id="theDate" value="" size="8"></td>
+	                                <td tableHeadData="Company"><input class="textInput" type="text" name="company" value="" size="20"></td>
+	                                <td tableHeadData="Apt"><input class="textInput" type="text" name="apt" value="" size="20"></td>
+	                                <td tableHeadData="Unit #"><input class="textInput" type="text" name="unit" value="" size="10"></td>
+	                                <td tableHeadData="Size"><input class="textInput" type="text" name="size" value="" size="10"></td>
+	                                <td tableHeadData="Date"><input class="textInput" type="date" name="date" id="theDate" value="" size="8"></td>
 	                            </tr>
 							</tbody>
                         </table>

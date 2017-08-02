@@ -158,7 +158,7 @@
                         ';
                     }
                     echo '
-                                <td tableHeadData="Description" align="center"><a href="worksheet_description.php?invoice='.$temp_invoice.'&apt='.$temp_apt.'&unit='.$temp_unit.'&size='.$temp_size.'&from_manager=1">'.$temp_description.'</a></td>
+                                <td tableHeadData="Description" align="center"><a class="lineBreak" href="worksheet_description.php?invoice='.$temp_invoice.'&apt='.$temp_apt.'&unit='.$temp_unit.'&size='.$temp_size.'&from_manager=1">'.$temp_description.'</a></td>
                                 <td tableHeadData="Date" align="center">'.$temp_date.'</td>
                             </tr>
                         </tbody>
