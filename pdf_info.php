@@ -188,7 +188,7 @@
                             </thead>
                             <tbody id="pdf_table">
                                 <tr>
-                                    <td tableHeadData="Description"><input class="textInput" type="text" name="description"></td>
+                                    <td tableHeadData="Description"><input class="textInput" type="text" name="description" required></td>
                                     <td tableHeadData="Qty"><input class="textInput" type="text" name="qty"></td>
                                     <td tableHeadData="Price"><input class="textInput" type="text" name="price"></td>
                                     <td colspan="2" align="center"><button type="submit" name="submit">Add</button></td>
@@ -203,7 +203,7 @@
                             echo '<td>'.$_SESSION['pdf_arr'][$i][1].'</td>';
                         }
                         if ($_SESSION['pdf_arr'][$i][2] !== null) {
-                            echo '<td align="center">'.$_SESSION['pdf_arr'][$i][2].'</td>';
+                            echo '<td align="center">'.number_format($_SESSION['pdf_arr'][$i][2]).'</td>';
                         }
                         if ($_SESSION['pdf_arr'][$i][0] !== null) {
                             echo '<td align="center"><button><a href="edit_pdf.php?description='.$_SESSION['pdf_arr'][$i][0].' &qty='.$_SESSION['pdf_arr'][$i][1].' &price='.$_SESSION['pdf_arr'][$i][2].' &index='.$i.'">Edit</a></button></td>';

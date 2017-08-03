@@ -163,7 +163,7 @@
                             echo '
                                         <td tableHeadData="Name" align="center"><a href="user_detail.php?invoice='.urlencode($i_detail).' &email='.urlencode($row['email']).' &user_name='.urlencode($user_name).'">'.$user_name.'</a></td>
                                         <td tableHeadData="Message"><div class="lineBreak_msg">'.$row['message'].'</div></td>
-                                        <td tableHeadData="Comment" align="center"><button id="btn_showComment" onclick="location.href=\'show_comment.php?id='.$id.'&email='.$row['email'].'&apt='.$_SESSION['apt_pdf'].'&unit='.$_SESSION['unit_pdf'].'&username='.urlencode($user_name).'\'">Show Comments</button></td>
+                                        <td tableHeadData="Comment" align="center"><button id="btn_showComment" type="button" onclick="location.href=\'show_comment.php?id='.$id.'&email='.$row['email'].'&apt='.$_SESSION['apt_pdf'].'&unit='.$_SESSION['unit_pdf'].'&username='.urlencode($user_name).'\'">Show Comments</button></td>
                             ';
                             if ($_SESSION['isadmin'] == 2) {
                                 echo '

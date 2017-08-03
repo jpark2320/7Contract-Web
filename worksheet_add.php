@@ -68,7 +68,7 @@
                             </thead>
                             <tbody id="pdf_table">
                                 <tr>
-                                    <td tableHeadData="Description"><input class="textInput" type="text" name="description" size="10"></td>
+                                    <td tableHeadData="Description"><input class="textInput" type="text" name="description" size="10" required></td>
                                     <td tableHeadData="Qty"><input class="textInput" type="text" name="qty" size="10"></td>
                                     <td tableHeadData="Price"><input class="textInput" type="text" name="price" size="10"></td>
                                     <td colspan="2" align="center"><button type="submit" name="submit">Add</button></td>

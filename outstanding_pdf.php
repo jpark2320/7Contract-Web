@@ -3,7 +3,7 @@
 	date_default_timezone_set('EST');
 	require('./FPDF/fpdf.php');
 
-	if ($_POST['sub']) {
+	if (isset($_POST['sub'])) {
 		$invoices = $_POST['check'];
 		if (!isset($_POST['check'])) {
 			echo '<script>alert("You must select at least one checkbox to issue an invoice.")</script>';
@@ -29,9 +29,9 @@
 			}
 			$i++;
 		}
+		$conn->close();
  	}
-	// print_r($arr);
-	mysqli_close($conn);
+
 
 	class PDF extends FPDF
 	{

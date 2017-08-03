@@ -90,12 +90,12 @@
 			global $unit;
 			global $size;
 			global $arr;
-			$this->SetXY(3,76);
+			$this->SetXY(3,91);
 			$this->SetFont('Times','',12);
 			$this->Cell(22, 6, $unit,0,0,'C');
  			$this->MultiCell(25, 6, $size,0,'C');
  			$x = 50;
- 			$this->SetXY($x, 76);
+ 			$this->SetXY($x, 91);
 			for ($i = 0; $i < count($arr); $i++) {
 				$y = $this->GetY();
 				$this->MultiCell(104, 6, " ".$arr[$i][0],0,'L', false);
@@ -107,7 +107,12 @@
 			}
 		}
 		function DrawTable() {
-			$this->SetXY(3,70);
+			$this->SetXY(14, 68);
+			$this->SetFont('Times','',11);
+			$this->MultiCell(180, 8,'SEVEN CONTRACT, LLC. Process to finish all the labor, equpiments, materials, insurance, all supervision.'
+				."\n".'need in order to complete the job list following proposal.',1,'C');
+			$this->Ln();
+			$this->SetXY(3,85);
 			$this->SetFont('Times','B',12);
 			$this->Cell(22, 6,'Unit #',1,0,'C');
 			$this->Cell(25, 6,'Size',1,0,'C');
@@ -125,6 +130,23 @@
 			$this->SetX(154);
  			$this->Cell(17, 6,'Total:',1,0,'C');
 			$this->Cell(35, 6,'$ '.number_format($this->getTotal()),1,0,'C');
+			$this->Ln();
+			$this->Ln();
+			$this->SetX(14);
+			$this->SetFont('Times','',12);
+			$this->MultiCell(180, 8,'The above price, specification, and conditions are satisfactory and herby accepted.'."\n".
+				'SEVEN CONTRACT, LLC is authorized to do work specified.'
+				."\n".'Payment will be made as outline above.',1,'C');
+			$this->Ln();
+			$this->SetFont('Times','U', 12);
+			$this->SetX(30);
+			$this->Cell(80, 5,'                                                              ',0,0,'C');
+			$this->Cell(80, 5,'                                 ',0,0,'C');
+			$this->Ln();
+			$this->SetX(30);
+			$this->SetFont('Times','', 12);
+			$this->Cell(80, 5,'Authorized Signature',0,0,'C');
+			$this->Cell(80, 5,'Date',0,0,'C');
 		}
 
 		function LayOut() {
