@@ -118,20 +118,60 @@
         document.getElementById("new_price").value="";
     }
 
-    function pass_data(path)
+    function pass_data(num, path)
     {
+        var oForm = document.forms["info"];
+        var s = "";
+        if (num == 7) {
+            if (oForm.elements["po"].value.length > 0) {
+                s += oForm.elements["po"].value + "\\";
+            } else {
+                s += "-\\";
+            }
+        }
+        if (oForm.elements["company"].value.length > 0) {
+            s += oForm.elements["company"].value + "\\";
+        } else {
+            s += "-\\";
+        }
+        if (oForm.elements["apt"].value.length > 0) {
+            s += oForm.elements["apt"].value + "\\";
+        } else {
+            s += "-\\";
+        }
+        if (oForm.elements["unit"].value.length > 0) {
+            s += oForm.elements["unit"].value + "\\";
+        } else {
+            s += "-\\";
+        }
+        if (oForm.elements["size"].value.length > 0) {
+            s += oForm.elements["size"].value + "\\";
+        } else {
+            s += "-\\";
+        }
+        if (num == 7) {
+            if (oForm.elements["manager"].value.length > 0) {
+                s += oForm.elements["manager"].value + "\\";
+            } else {
+                s += "-\\";
+            }
+        }
+        s += oForm.elements["date"].value + "\\";
         var table = document.getElementById('data_table');
         var rowLength = table.rows.length;
-        s = "";
         for (i = 1; i < rowLength - 1; i++){
            var oCells = table.rows.item(i).cells;
 
            //loops through each cell in current row
-           for(var j = 0; j < 3; j++){
-               var cellVal = oCells.item(j).innerHTML; 
-               s += cellVal;
-               s += "\\";
-           }
+            for(var j = 0; j < 3; j++) {
+                var cellVal = oCells.item(j).innerHTML; 
+                if (cellVal.length > 0) {
+                    s += cellVal;
+                } else {
+                    s += "-";
+                }
+                s += "\\";
+            }
         }
         window.location.href= path + "?json="+s;
     }

@@ -3,20 +3,41 @@
 	date_default_timezone_set('Etc/UTC');
 	include('./includes/connection.php');
 	require('./FPDF/fpdf.php');
-	$company = $_POST['company'];
-	$apt = $_POST['apt'];
-	$unit = $_POST['unit'];
-	$size = $_POST['size'];
-	$date = $_POST['date'];
-	if (isset($_SESSION['estm_arr'])) {
-		$arr = $_SESSION['estm_arr'];
+	if (isset($_GET['json'])) {
+		$ar = explode("\\", $_GET['json']);
+		$company = $ar[0];
+		$apt = $ar[1];
+		$unit = $ar[2];
+		$size = $ar[3];
+		$date = $ar[4];
+		$n = (int)((count($ar) - 5) / 3);
+		$j = 5;
+		for ($i = 0; $i < $n; $i++) {
+			$arr[$i][0] = $ar[$j];
+            $j++;
+            if ($ar[$j] != '-') {
+                $arr[$i][1] = $ar[$j];
+            } else {
+                $arr[$i][1] = 0;
+            }
+            $j++;
+            if ($ar[$j] != '-') {
+                $arr[$i][2] = $ar[$j];
+            } else {
+                $arr[$i][2] = 0;
+            }
+            $j++;
+		}
+		$sql = "INSERT INTO estimate VALUES (null, '$company', '$apt', '$unit', '$size', 0, null, '$date')";
+	    $conn->query($sql);
+	    $sql = "SELECT MAX(id) FROM estimate";
+	    $result = mysqli_query($conn, $sql);
+	    $row = mysqli_fetch_array($result);
+	    $maxid = $row['MAX(id)'];
+	} else {
+		echo "<script>alert('somethings wrong');</script>;";
+		echo '<script>window.location.href = "worksheet.php";</script>';
 	}
-	$sql = "INSERT INTO estimate VALUES (null, '$company', '$apt', '$unit', '$size', 0, null, '$date')";
-    $conn->query($sql);
-    $sql = "SELECT MAX(id) FROM estimate";
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_array($result);
-    $maxid = $row['MAX(id)'];
     // echo "<script>alert(\"".$maxid."\");</script>;";
     $total = 0;
     // print_r($arr);

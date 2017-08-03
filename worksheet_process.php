@@ -1,14 +1,38 @@
 <?php
     // connection with mysql database
     include('./includes/connection.php');
+    if (isset($_GET['json'])) {
+        $ar = explode("\\", $_GET['json']);
+        $po = $ar[0];
+        $company = $ar[1];
+        $apt = $ar[2];
+        $unit = $ar[3];
+        $size = $ar[4];
+        $manager = $ar[5];
+        $date = $ar[6];
+        $n = (int)((count($ar) - 7) / 3);
+        $j = 7;
+        for ($i = 0; $i < $n; $i++) {
+            $arr[$i][0] = $ar[$j];
+            $j++;
+            if ($ar[$j] != '-') {
+                $arr[$i][1] = $ar[$j];
+            } else {
+                $arr[$i][1] = 0;
+            }
+            $j++;
+            if ($ar[$j] != '-') {
+                $arr[$i][2] = $ar[$j];
+            } else {
+                $arr[$i][2] = 0;
+            }
+            $j++;
+        }
+    } else {
+        echo "<script>alert('somethings wrong');</script>;";
+        echo '<script>window.location.href = "worksheet.php";</script>';
+    }
 
-    $po = $_POST['po'];
-    $company = $_POST['company'];
-    $apt = $_POST['apt'];
-    $manager = $_POST['manager'];
-    $unit = $_POST['unit'];
-    $size = $_POST['size'];
-    $date = $_POST['date'];
     if (isset($_SESSION['arr'])) {
         $arr = $_SESSION['arr'];
     }
