@@ -144,14 +144,15 @@
 	                                echo '<td tableHeadData="Status" align="center"><img src="./img/status_light_red" width="10px"></td>';
 	                            }
 	                            echo '
-	                                        <td tableHeadData="Comment" align="left"><div class="lineBreak_desc">'.$comment.'</div></td>
+	                                        <td tableHeadData="Comment" align="left"><div class="lineBreak_cmt">'.$comment.'</div></td>
 	                                        <td tableHeadData="Salary" align="center">'.$salary.'</td>
 	                                        <td tableHeadData="Paid" align="center">'.$paid.'</td>
 	                                        <td tableHeadData="Date" align="center">'.$date.'</td>
-			                                <td tableHeadData="Edit" align="center"><button><a href="pedit.php?id='.$row['id'].' &comment='.urlencode($comment).'&username='.$username.'">Edit</a></button></td>
+			                                <td tableHeadData="Edit" align="center"><button onclick="location.href=\'pedit.php?id='.$row['id'].' &comment='.urlencode($comment).'&username='.$username.'\'">Edit</button></td>
                                 ';
                                 
-								echo '<td tableHeadData="Pay" align="center"><button><a href="pay.php?id='.$row['id'].'&salary='.$salary.' &comment='.urlencode($comment).'&username='.urlencode($username).'&paid='.$paid.'">Pay</a></button></td>';
+								echo '<td tableHeadData="Pay" align="center"><button onclick="location.href=\'pay.php?id='.$row['id'].'&salary='.$salary.' &comment='.urlencode($comment).'&username='.urlencode($username).'&paid='.$paid.'\'">Pay</button></td>
+                                ';
 
 								echo '
 	                                    </tr>

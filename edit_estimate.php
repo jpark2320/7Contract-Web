@@ -46,8 +46,8 @@
             <form action="estimate_info.php" method="GET">
                 <table width="30%">
                     <colgroup>
-                        <col width="18%">
-                        <col width="2%">
+                        <col width="15%">
+                        <col width="5%">
                         <col width="80%">
                     </colgroup>
                     <tr>

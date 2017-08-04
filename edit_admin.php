@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php 
+    if (!$_SESSION == null) {
+        session_start(); 
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <!-- Header Tag -->
@@ -42,7 +46,7 @@
 
         <!-- Body -->
         <div class="primary" align="center">
-            <h3 class="text-center">Edit Worksheet</h3><br>
+            <h3 class="text-center">Edit Worksheet</h3>
             <?php
                 if (isset($_GET['desc_edited_estm'])) {
                     $_SESSION['arr'][$_GET['index_edited_estm']][0] = $_GET['desc_edited_estm'];
@@ -98,10 +102,10 @@
                             </thead>
                             <tbody id="pdf_table">
                                 <tr>
-                                    <td tableHeadData="Description"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="description" size="10"></td>
-                                    <td tableHeadData="Qty"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="qty" size="10"></td>
-                                    <td tableHeadData="Price"><input style="border: none; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" type="text" name="price" size="10"></td>
-                                    <td colspan="2" align="center"><input type="submit" name="submit" value="Add"></td>
+                                    <td tableHeadData="Description"><input class="textInput" type="text" name="description" size="10"></td>
+                                    <td tableHeadData="Qty"><input class="textInput" type="text" name="qty" size="10"></td>
+                                    <td tableHeadData="Price"><input class="textInput" type="text" name="price" size="10"></td>
+                                    <td colspan="2" align="center"><button type="submit" name="submit">Add</button></td>
                                 </tr>
                 ';
 				if (isset($_SESSION['arr'])) {
@@ -117,10 +121,10 @@
 							echo '<td tableHeadData="Price">'.$_SESSION['arr'][$i][2].'</td>';
 						}
 						if ($_SESSION['arr'][$i][0] !== null) {
-							echo '<td align="center"><button><a href="edit_invoice_detail.php?description='.$_SESSION['arr'][$i][0].' &qty='.$_SESSION['arr'][$i][1].' &price='.$_SESSION['arr'][$i][2].' &index='.$i.'">Edit</a></button></td>';
+							echo '<td align="center"><button type="button" onclick="location.href=\'edit_invoice_detail.php?description='.$_SESSION['arr'][$i][0].' &qty='.$_SESSION['arr'][$i][1].' &price='.$_SESSION['arr'][$i][2].' &index='.$i.'\'">Edit</button></td>';
 						}
 						if ($_SESSION['arr'][$i][0] !== null) {
-							echo '<td align="center"><button><a href="edit_invoice_detail.php?index_deleted='.$i.'">Delete</a></button></td></tr>';
+							echo '<td align="center"><button type="button" onclick="\'edit_invoice_detail.php?index_deleted='.$i.'\'">Delete</button></td></tr>';
 						}
 					}
 				}
@@ -129,43 +133,52 @@
                             </tbody>
                         </table>
                         <br>
-                    </form>';
+                    </form>
+                ';
+                unset($_POST);
             ?>
             <form action="edit_process.php" method="POST">
 
-                <table width="400">
+                <table width="30%">
                     <colgroup>
-                        <col width="50%">
-                        <col width="50%">
+                        <col width="25%">
+                        <col width="5%">
+                        <col width="70%">
                     </colgroup>
                         <tr>
-                            <td><label>P.O.</label></td>
-                            <td><input type="text" name="po" maxlength="36" size="30" value="<?php echo isset($_SESSION['po']) ? $_SESSION['po'] : '' ?>"></td>
+                            <td align="right"><b>P.O.</b></td>
+                            <td></td>
+                            <td><input class="editInput" type="text" name="po" value="<?php echo isset($_SESSION['po']) ? $_SESSION['po'] : '' ?>"></td>
                         </tr>
                         <tr>
-                            <td><label>Company</label></td>
-                            <td><input type="text" name="company" maxlength="36" size="30" value="<?php echo isset($_SESSION['company']) ? $_SESSION['company'] : '' ?>"></td>
+                            <td align="right"><b>Company</b></td>
+                            <td></td>
+                            <td><input class="editInput" type="text" name="company" value="<?php echo isset($_SESSION['company']) ? $_SESSION['company'] : '' ?>"></td>
                         </tr>
                         <tr>
-                            <td><label>Apt</label></td>
-                            <td><input type="text" name="apt" maxlength="36" size="30" value="<?php echo isset($_SESSION['apt']) ? $_SESSION['apt'] : '' ?>"></td>
+                            <td align="right"><b>Apt</b></td>
+                            <td></td>
+                            <td><input class="editInput" type="text" name="apt" value="<?php echo isset($_SESSION['apt']) ? $_SESSION['apt'] : '' ?>"></td>
                         </tr>
                         <tr>
-                            <td><label>Manager</label></td>
-                            <td><input type="text" name="manager" maxlength="36" size="30" value="<?php echo isset($_SESSION['manager']) ? $_SESSION['manager'] : '' ?>"></td>
+                            <td align="right"><b>Manager</b></td>
+                            <td></td>
+                            <td><input class="editInput" type="text" name="manager" value="<?php echo isset($_SESSION['manager']) ? $_SESSION['manager'] : '' ?>"></td>
                         </tr>
                         <tr>
-                            <td><label>Unit #</label></td>
-                            <td><input type="text" name="unit" maxlength="36" size="30" value="<?php echo isset($_SESSION['unit']) ? $_SESSION['unit'] : '' ?>"></td>
+                            <td align="right"><b>Unit #</b></td>
+                            <td></td>
+                            <td><input class="editInput" type="text" name="unit" value="<?php echo isset($_SESSION['unit']) ? $_SESSION['unit'] : '' ?>"></td>
                         </tr>
                         <tr>
-                            <td><label>Size</label></td>
-                            <td><input type="text" name="size" maxlength="36" size="30" value="<?php echo isset($_SESSION['size']) ? $_SESSION['size'] : '' ?>"></td>
+                            <td align="right"><b>Size</b></td>
+                            <td></td>
+                            <td><input class="editInput" type="text" name="size" value="<?php echo isset($_SESSION['size']) ? $_SESSION['size'] : '' ?>"></td>
                         </tr>
                 </table>
                 <br>
-                <input type="submit" value="Edit">
-                <input type="button" value="Back" onclick="location.href='worksheet.php'">
+                <button type="submit">Edit</button>
+                <button type="button" onclick="location.href='worksheet.php'">Back</button>
             </form>
         </div>
 

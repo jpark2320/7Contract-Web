@@ -25,40 +25,48 @@
 
         <!-- Body -->
         <div class="primary" align="center">
-            <h3 class="text-center">Pay</h3><br>
+            <h3 class="text-center">Pay</h3>
 
             <div class="row" align="center">
                 <form action="pay_process.php" method="POST">
 
-                    <table width="400">
+                    <table width="30%">
                         <colgroup>
-                            <col width="50%">
-                            <col width="50%">
+                            <col width="40%">
+                            <col width="5%">
+                            <col width="55%">
                         </colgroup>
+                        <tbody>
                             <tr>
-                                <td><label>Name</label></td>
+                                <td align="right"><b>Name</b></td>
+                                <td></td>
                                 <td><?php echo $_GET['username']?></td>
                             </tr>
                             <tr>
-                                <td><label>Comment</label></td>
-                                <td><?php echo $_GET['comment']?></td>
+                                <td align="right"><b>Comment</b></td>
+                                <td></td>
+                                <td><div class="lineBreak_cmt_AtPay"><?php echo $_GET['comment']?></div></td>
                             </tr>
                             <tr>
-                                <td><label>Salary</label></td>
+                                <td align="right"><b>Salary</b></td>
+                                <td></td>
                                 <td><?php echo "$ ".$_GET['salary']?></td>
                             </tr>
                             <tr>
-                                <td><label>Remaining Balance</label></td>
+                                <td align="right"><b>Remaining Balance</b></td>
+                                <td></td>
                                 <td><?php echo "$ ".number_format((float)$remaining, 2, '.', '')?></td>
                             </tr>
                             <tr>
-                                <td><label>Pay Amount</label></td>
-                                <td><input type="text" name="pay" maxlength="36" size="30"></td>
+                                <td align="right"><b>Pay Amount</b></td>
+                                <td></td>
+                                <td><input class="editInput" type="text" name="pay"></td>
                             </tr>
+                        </tbody>
                     </table>
                     <br>
-                    <input type="submit" value="Pay">
-                    <input type="button" value="Back" onclick="location.href='invoice_detail.php'">
+                    <button type="submit">Pay</button>
+                    <button type="button" onclick="location.href='invoice_detail.php'">Back</button>
                 </form>
             </div>
         </div>

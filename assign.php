@@ -62,9 +62,7 @@
                     }
 
                     echo '
-                            <td tableHeadData="Select" align="center">
-                                <input type="checkbox" name="workersArray[]" value="'.$email.'">
-                            </td>
+                            <td tableHeadData="Select" align="center"><input type="checkbox" name="workersArray[]" value="'.$email.'"></td>
                             <td tableHeadData="Name" align="center">'.$first.' '.$last.'</td>
                             <td tableHeadData="Email" align="center">'.$email.'</td>
                         </tr>
@@ -77,8 +75,8 @@
             <br>
                 <textarea id="msg_assign" name="assign_message" placeholder="Leave a message here." rows="8" cols="100"></textarea>
                 <br>
-                <input type="submit" value="Confirm"></input>
-                <input type="button" value="Back" onclick="location.href='worksheet.php'"></input>
+                <button type="submit">Confirm</button>
+                <button type="button" onclick="location.href='worksheet.php'">Back</button>
             </form>
         </div>
 

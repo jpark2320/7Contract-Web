@@ -37,35 +37,39 @@
 
         <!-- Body -->
         <div class="primary" align="center">
-            <h3 class="text-center">Edit Estimate Information</h3><br>
+            <h3 class="text-center">Edit Estimate Information</h3>
 
             <form action="estimate_edit.php" method="GET">
 
-                <table width="400">
+                <table width="30%">
                     <colgroup>
-                        <col width="50%">
-                        <col width="50%">
+                        <col width="20%">
+                        <col width="5%">
+                        <col width="75%">
                     </colgroup>
                     <tr>
-                        <td><label>Description</label></td>
-                        <td><input type="text" name="desc_edited_estm" maxlength="36" size="30" value="<?php echo isset($description) ? rtrim($description," ") : '' ?>"></td>
+                        <td align="right"><b>Description</b></td>
+                        <td></td>
+                        <td><input class="editInput" type="text" name="desc_edited_estm" value="<?php echo isset($description) ? rtrim($description," ") : '' ?>"></td>
                     </tr>
                     <tr>
-                        <td><label>Qty</label></td>
-                        <td><input type="text" name="qty_edited_estm" maxlength="36" size="30" value="<?php echo isset($qty) ? rtrim($qty," ") : '' ?>"></td>
+                        <td align="right"><b>Qty</b></td>
+                        <td></td>
+                        <td><input class="editInput" type="text" name="qty_edited_estm" value="<?php echo isset($qty) ? rtrim($qty," ") : '' ?>"></td>
                     </tr>
                     <tr>
-                        <td><label>Price</label></td>
-                        <td><input type="text" name="price_edited_estm" maxlength="36" size="30" value="<?php echo isset($price) ? rtrim($price," ") : '' ?>"></td>
+                        <td align="right"><b>Price</b></td>
+                        <td></td>
+                        <td><input class="editInput" type="text" name="price_edited_estm" value="<?php echo isset($price) ? rtrim($price," ") : '' ?>"></td>
                     </tr>
                     <tr hidden>
-                        <td><label>Index</label></td>
+                        <td><b>Index</b></td>
                         <td><input type="text" name="index_edited_estm" value="<?php echo $index ?>"></td>
                     </tr>
                 </table>
                 <br>
-                <input type="submit" value="Edit">
-                <input type="button" value="Back" onclick="location.href='estimate_edit.php'">
+                <button type="submit">Edit</button>
+                <button type="button" onclick="location.href='estimate_edit.php'">Back</button>
             </form>
         </div>
 

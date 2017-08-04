@@ -14,7 +14,7 @@
 
         <!-- Body -->
         <div class="primary" align="center">
-            <h3 class="text-center">View Estimate</h3><br>
+            <h3 class="text-center">View Estimate</h3>
                 <?php
                     // connection with mysql database
                     include('./includes/connection.php');
@@ -35,7 +35,7 @@
                                 <tr style="border: 2px double black;" bgcolor="#c9c9c9">
                                     <td align="center"><b><a href="?orderBy=id">ID</a></b></td>
                                     <td align="center"><b><a href="?orderBy=apt">Apartment</a></b></td>
-                                    <td align="center"><b><a href="?orderBy=unit">Unit</a></b></td>
+                                    <td align="center"><b><a href="?orderBy=unit">Unit #</a></b></td>
                                     <td align="center"><b><a href="?orderBy=size">Size</a></b></td>
                                     <td align="center"><b><a href="?orderBy=price">Price</a></b></td>
                                     <td align="center"><b>Description</b></td>
@@ -96,7 +96,6 @@
 
                         echo '
                                     <td tableHeadData="ID" align="center">'.$row['id'].'</td>
-                                    
                                     <td tableHeadData="Apartment" align="center"><a href="worksheet_apt.php?apt='.$apt.'">'.$apt.'</a></td>
                                     <td tableHeadData="Unit" align="center">'.$unit.'</td>
                                     <td tableHeadData="Size" align="center">'.$size.'</td>
@@ -107,9 +106,9 @@
                         if ($_SESSION['isadmin']) {
                             echo '
                                 <td align="center">
-                                    <button><a href="toWorksheet.php?id='.$row['id'].'&company='.$company.'&apt='.$apt.'&unit='.$unit.'&size='.$size.'&price='.$price.'&description='.$description.'">Convert</a></button>
-                                    <button><a href="estimate_edit.php?id='.$row['id'].'">Edit</a></button>
-                                    <button><a href="remove_estimate.php?id='.$row['id'].'" onclick="return confirm(\'Are you sure you want to remove this item?\');">Remove</a></button>
+                                    <button onclick="location.href=\'toWorksheet.php?id='.$row['id'].'&company='.$company.'&apt='.$apt.'&unit='.$unit.'&size='.$size.'&price='.$price.'&description='.$description.'\'">Convert</button>
+                                    <button onclick="location.href=\'estimate_edit.php?id='.$row['id'].'\'">Edit</button>
+                                    <button onclick="deleteBtn('.$row['id'].')">Remove</button>
                                 </td>
                             ';
                         }
@@ -118,7 +117,7 @@
                     mysqli_close($conn);
                 ?>
                 <br>
-                <input type="button" value="Back" onclick="location.href='worksheet.php'"></input>
+                <button type="button" onclick="location.href='worksheet.php'">Back</button>
         </div>
         <br><br><br><br><br>
 
