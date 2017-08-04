@@ -16,7 +16,7 @@
             <h3 class="text-center">Make Estimate</h3>
 
             <form name="info" action="#">
-                <table id="main_data" border="2" width="50%">
+                <table id="main_data" border="3" width="50%">
                     <colgroup>
                         <col width="40%">
                         <col width="20%">
@@ -25,11 +25,11 @@
                     </colgroup>
                   <thead id="HeadRow">
                         <tr style="border: 2px double black;" align="center" bgcolor="#c9c9c9">
-                            <td><label><b>Company</b></label></td>
-                            <td><label><b>Apt</b></label></td>
-                            <td><label><b>Unit #</b></label></td>
-                            <td><label><b>Size</b></label></td>
-                            <td><label><b>Date</b></label></td>
+                            <th>Company</th>
+                            <th>Apt</th>
+                            <th>Unit #</th>
+                            <th>Size</th>
+                            <th>Date</th>
                         </tr>
                   </thead>
                   <tbody>
@@ -43,7 +43,7 @@
                   </tbody>
                 </table>
                 <br>
-                <table id="data_table" border="2" width="100%">
+                <table id="data_table" border="3" width="100%">
                     <colgroup>
                         <col width="70%">
                         <col width="7%">
@@ -52,10 +52,10 @@
                     </colgroup>
                     <thead id="HeadRow">
                         <tr style="border: 2px double black;" bgcolor="#c9c9c9">
-                            <td align="center"><b>Description</b></td>
-                            <td align="center"><b>Qty</b></td>
-                            <td align="center"><b>Price</b></td>
-                            <td colspan="2"></td>
+                            <th>Description</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                            <th colspan="2"></th>
                         </tr>
                     </thead>
                     <tbody id="pdf_table">
@@ -68,7 +68,7 @@
                     </tbody>
                 </table>
                 <br>
-                <button type="submit" name="submit" onclick="pass_data(5, 'create_estimate.php')">Create PDF</button>
+                <button type="button" name="submit" onclick="pass_data(5, 'create_estimate.php')" formtarget="_blank">Create PDF</button>
                 <button type="button" onclick="location.href='worksheet.php'">Back</button>
             </form>
 
