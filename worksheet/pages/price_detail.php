@@ -1,0 +1,219 @@
+<?php session_start(); ?>
+<!DOCTYPE html>
+<html lang="en">
+
+    <?php include('./includes/head_tag.html'); ?>
+
+    <body>
+
+        <div id="wrapper">
+
+            <?php include("./includes/nav_bar.php"); ?>
+
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Price Detail</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                DataTables Advanced Tables
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+
+                                <?php
+                                    if (!isset($_SESSION['email'])) {
+                                        echo "<script>alert(\"You need to sign in first.\");</script>";
+                                        echo '<script>window.location.href = "signin.php";</script>';
+                                        exit();
+                                    }
+                                    include('./includes/connection.php');
+
+                                    if ($_SESSION['isadmin'] == 2) {
+                                        include('./includes/data_range.html');
+                                        
+                                        include('./includes/sort_pay.html');
+
+                                        echo '
+                                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Paid Off</th>
+                                                        <th>Invoice #</th>
+                                                        <th>P.O.</th>
+                                                        <th>Apt</th>
+                                                        <th>Unit #</th>
+                                                        <th>Size</th>
+                                                        <th>Price</th>
+                                                        <th>Recieved</th>
+                                                        <th>Salary</th>
+                                                        <th>Profit</th>
+                                                        <th>Date</th>
+                                                        <th>Recieve</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                        ';
+
+                                        $sql = 'SELECT * FROM Worksheet ';
+
+                                        if (isset($_POST['pay'])) {
+                                            if ($_POST['pay'] == 0) {
+                                                $sql .= 'WHERE ispaidoff=0 ';
+                                            } else if ($_POST['pay'] == 1) {
+                                                $sql .= 'WHERE ispaidoff=1 ';
+                                            } else {
+                                                $sql .= 'WHERE ispaidoff<2 ';
+                                            }
+                                        } else {
+                                            $sql .= 'WHERE ispaidoff<2 ';
+                                        }
+
+                                        if (isset($_POST['date']) && isset($_POST['end_date'])) {
+                                            $start_date = $_POST['date'];
+                                            $end_date = $_POST['end_date'];
+                                            if (strlen($end_date) > 0) {
+                                                $sql .= "AND DATE(date) >= '$start_date' AND DATE(date) <= '$end_date' ";
+                                            } else {
+                                                $sql .= "AND DATE(date) >= '$start_date' ";
+                                            }
+                                        }
+
+                                        $result = mysqli_query($conn, $sql);
+                                        $totalPrice = 0;
+                                        $totalPaid = 0;
+                                        $totalSalary = 0;
+                                        $totalProfit = 0;
+
+                                        $isOdd = false;
+                                        while($row = mysqli_fetch_array($result))
+                                        {
+                                            $invoice = '7C'.$row['invoice'];
+
+                                            $size = $row['size'];
+                                            if ($size == null) $size = '-';
+
+                                            $price = $row['price'];
+                                            if ($price == null) $price = '-';
+
+                                            $paid = $row['paid'];
+                                            if ($paid == null) $paid = '-';
+
+                                            $salary = $row['salary'];
+                                            if ($salary == null) $salary = '-';
+
+                                            $profit = $row['profit'];
+                                            if ($profit == null) $profit = '-';
+
+                                            $date = $row['date'];
+                                            if ($date == null) $profit = '-';
+
+                                            $totalPrice += $row['price'];
+                                            $totalSalary += $row['salary'];
+                                            $totalProfit += $row['profit'];
+                                            $totalPaid += $row['paid'];
+
+                                            if ($isOdd) {
+                                                $isOdd = false;
+                                                echo '<tr class="odd gradeX" align="center">';
+                                            } else {
+                                                $isOdd = true;
+                                                echo '<tr class="even gradeX" align="center">';
+                                            }
+
+                                            if ($row['ispaidoff'] == 1) {
+                                                echo '<td><img src="./img/status_light_green" width="15px"><span hidden>3</span></td>';
+                                            } else {
+                                                echo '<td><img src="./img/status_light_red" width="15px"><span hidden>1</span></td>';
+                                            }
+
+                                            echo '
+                                                    <td><a href="invoice_detail.php?invoice_num='.$invoice.'">'.$invoice.'</a></td>
+                                                    <td>'.$row['PO'].'</td>
+                                                    <td><a href="worksheet_apt.php?apt='.$row['apt'].'&company='.$row['company'].'">'.$row['apt'].'</td>
+                                                    <td>'.$row['unit'].'</td>
+                                                    <td>'.$size.'</td>
+                                                    <td>'.number_format($price).'</td>
+                                                    <td>'.number_format($paid).'</td>
+                                                    <td>'.number_format($salary).'</td>
+                                                    <td>'.number_format($profit).'</td>
+                                                    <td>'.substr($date, 0, 11).'</td>
+                                                    <td><button><a href="recieve.php?invoice='.$invoice.'&apt='.urlencode($row['apt']).'&unit='.$row['unit'].'&price='.$price.'&paid='.$paid.'">Recieve</a></button></td>
+                                                </tr>
+                                            ';
+                                        }
+                                        echo '
+                                            </tbody><tbody><tr>
+                                        ';
+
+                                        echo '
+                                                    <td align="center" colspan="6"></td>
+                                                    <td tableHeadData="Total Price" align="center"><b>'.number_format($totalPrice).'</b></td>
+                                                    <td tableHeadData="Total Received" align="center"><b>'.number_format($totalPaid).'</b></td>
+                                                    <td tableHeadData="Total Salary" align="center"><b>'.number_format($totalSalary).'</b></td>
+                                                    <td tableHeadData="Total Profit" align="center"><b>'.number_format($totalProfit).'</b></td>
+                                                    <td align="center" colspan="2"></td>
+                                        ';
+                                        echo '
+
+                                                </tr>
+                                            </tbody>
+                                            </table>
+                                        ';
+                                    } else {
+                                        echo '<script>alert("You must log in with admin account.");</script>';
+                                        echo '<script>window.location.href="signin.php";</script>';
+                                    }
+                                    mysqli_close($conn);
+                                ?>
+                                
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+
+        </div>
+        <!-- /#wrapper -->
+
+        <!-- jQuery -->
+        <script src="../vendor/jquery/jquery.min.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+        <!-- DataTables JavaScript -->
+        <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
+        <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+        <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="../dist/js/sb-admin-2.js"></script>
+
+        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+        <script>
+            $(document).ready(function() {
+                $('#dataTables-example').DataTable({
+                    responsive: true
+                });
+            });
+        </script>
+
+        <!-- Functions -->
+        <?php include('./includes/functions.html'); ?>
+
+    </body>
+
+</html>
