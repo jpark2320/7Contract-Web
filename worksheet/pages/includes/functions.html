@@ -88,9 +88,9 @@
         var quantity_data=quantity.innerHTML;
         var price_data=price.innerHTML;
 
-        description.innerHTML="<input type='text' id='description_text"+no+"' value='"+description_data+"'>";
-        quantity.innerHTML="<input type='text' id='quantity_text"+no+"' value='"+quantity_data+"'>";
-        price.innerHTML="<input type='text' id='price_text"+no+"' value='"+price_data+"'>";
+        description.innerHTML="<input class='form-control' type='text' id='description_text"+no+"' value='"+description_data+"'>";
+        quantity.innerHTML="<input class='form-control' type='text' id='quantity_text"+no+"' value='"+quantity_data+"'>";
+        price.innerHTML="<input class='form-control' type='text' id='price_text"+no+"' value='"+price_data+"'>";
     }
 
     function save_row(no) {
@@ -111,13 +111,13 @@
     }
 
     function add_row() {
-        var new_description=document.getElementById("new_description").value;
-        var new_quantity=document.getElementById("new_quantity").value;
-        var new_price=document.getElementById("new_price").value;
+        var new_description = document.getElementById("new_description").value;
+        var new_quantity = document.getElementById("new_quantity").value;
+        var new_price = document.getElementById("new_price").value;
 
-        var table=document.getElementById("data_table");
-        var table_len=(table.rows.length)-1;
-        var row = table.insertRow(table_len).outerHTML="<tr id='row"+table_len+"' bgcolor='#c4daff'><td id='description_row"+table_len+"'><div class='lineBreak_desc'>"+new_description+"</td><td id='quantity_row"+table_len+"'>"+new_quantity+"</td><td id='price_row"+table_len+"'>"+new_price+"</td><td><input type='button' id='edit_button"+table_len+"' value='Edit' class='edit' onclick='edit_row("+table_len+")'> <input type='button' id='save_button"+table_len+"' value='Save' class='save' onclick='save_row("+table_len+")'> <input type='button' value='Delete' class='delete' onclick='delete_row("+table_len+")'></td></tr>";
+        var table = document.getElementById("data_table");
+        var table_len = (table.rows.length) - 1;
+        var row = table.insertRow(table_len).outerHTML = "<tr id='row"+table_len+"' bgcolor='#c4daff'><td id='description_row"+table_len+"'><div class='lineBreak_desc'>"+new_description+"</div></td><td id='quantity_row"+table_len+"'>"+new_quantity+"</td><td id='price_row"+table_len+"'>"+new_price+"</td><td><div class='btn-group'><button type='button' class='btn btn-primary btn-xs dropdown-toggle' data-toggle='dropdown'><span class='caret'></span></button><ul class='dropdown-menu' role='menu'><li><a id='edit_button"+table_len+"' class='edit' onclick='edit_row("+table_len+")'>Edit</a></li><li><a id='save_button"+table_len+"' class='save' onclick='save_row("+table_len+")'>Save</a></li><li><a class='delete' onclick='delete_row("+table_len+")'>Delete</a></li></ul></div></td></tr>";        
 
         document.getElementById("new_description").value="";
         document.getElementById("new_quantity").value="";
@@ -178,6 +178,7 @@
                 s += "\\";
             }   
         }
-        window.location.href= path + "?json="+s;
+        // window.location.href= path + "?json="+s;
+        window.open(path + "?json="+s, '_blank');
     }
 </script>

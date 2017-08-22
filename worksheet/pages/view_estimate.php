@@ -9,11 +9,8 @@
     <?php include('./includes/head_tag.html'); ?>
 
     <body>
-
         <div id="wrapper">
-
             <?php include("./includes/nav_bar.php"); ?>
-
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
@@ -30,7 +27,6 @@
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
-
                                 <?php
                                     // connection with mysql database
                                     include('./includes/connection.php');
@@ -39,97 +35,72 @@
                                     $result = mysqli_query($conn, $sql);
                                     $row = mysqli_fetch_array($result);
 
-                                    
-                                    if (isset($_GET['st'])) {
-                                        $_SESSION['sort'] = $_GET['st'];
-                                        echo '<script>window.location.href = "view_estimate.php";</script>';
-                                    }
-
                                     echo '
                                         <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                             <thead>
                                                 <tr>
-                                                    <td align="center"><b><a href="?orderBy=id">ID</a></b></td>
-                                                    <td align="center"><b><a href="?orderBy=apt">Apartment</a></b></td>
-                                                    <td align="center"><b><a href="?orderBy=unit">Unit #</a></b></td>
-                                                    <td align="center"><b><a href="?orderBy=size">Size</a></b></td>
-                                                    <td align="center"><b><a href="?orderBy=price">Price</a></b></td>
-                                                    <td align="center"><b>Description</b></td>
-                                                    <td align="center"><b><a href="?orderBy=date">Date</a></b></td>
+                                                    <th>ID</th>
+                                                    <th>Apartment</th>
+                                                    <th>Unit #</th>
+                                                    <th>Size</th>
+                                                    <th>Price</th>
+                                                    <th>Description</th>
+                                                    <th>Date</th>
                                     ';
                                     if ($_SESSION['isadmin'] == 2) {                
-                                        echo '<td align="center"><b>Option</b></td>';
+                                        echo '<th>Option</th>';
                                     }
                                     echo '
                                                 </tr>
                                             </thead>
+                                            <tbody>
                                     ';
-                                    $orderBy = array('id', 'company', 'apt', 'unit', 'size', 'price', 'date');
-                                    $order = 'id';
-                                    if (isset($_GET['orderBy']) && in_array($_GET['orderBy'], $orderBy)) {
-                                        $order = $_GET['orderBy'];
-                                    }
-                                    $sql = "SELECT * FROM estimate ORDER BY ".$order;
-                                    if ($_SESSION['sort']=='desc') {
-                                        $sql = $sql.' DESC';
-                                    }
+                                    
+                                    $sql = "SELECT * FROM estimate ";
+
                                     $result = mysqli_query($conn, $sql);
                                     $isOdd = false;
-                                    while($row = mysqli_fetch_array($result))
-                                    {
-                                        $company = $row['company'];
-                                        if ($company == null) $company = "-";
-
-                                        $apt = $row['apt'];
-                                        if ($apt == null) $apt = "-";
-
-                                        $unit = $row['unit'];
-                                        if ($unit == null) $unit = "-";
-
-                                        $size = $row['size'];
-                                        if ($size == null) $size = "-";
+                                    while($row = mysqli_fetch_array($result)) {
 
                                         $price = $row['price'];
-                                        if ($price == null) $price = "-";
                                         $price = str_replace(".00", "", $price);
-                                        $description = $row['description'];
-                                        if ($description == null) $description = "-";
-                                        if (strlen($description) > 40) {
-                                            $description = substr($description, 0, 40)." ...";
-                                        }
 
-                                        $date = $row['date'];
-                                        if ($date == null) $date = "-";
-
-                                        echo '<tbody>';
                                         if ($isOdd) {
                                             $isOdd = false;
-                                            echo '<tr bgcolor="#e8fff1">';
+                                            echo '<tr class="odd gradeX" align="center">';
                                         } else {
                                             $isOdd = true;
-                                            echo '<tr>';
+                                            echo '<tr class="even gradeX" align="center">';
                                         }
 
                                         echo '
-                                                    <td tableHeadData="ID" align="center">'.$row['id'].'</td>
-                                                    <td tableHeadData="Apartment" align="center"><a href="worksheet_apt.php?apt='.$apt.'">'.$apt.'</a></td>
-                                                    <td tableHeadData="Unit" align="center">'.$unit.'</td>
-                                                    <td tableHeadData="Size" align="center">'.$size.'</td>
-                                                    <td tableHeadData="Price" align="center">'.number_format($price).'</td>
-                                                    <td tableHeadData="Description" align="left"><a href="estimate_description.php?id='.$row['id'].'&company='.$company.'&apt='.$apt.'&unit='.$unit.'&size='.$size.'">'.$description.'</a></td>
-                                                    <td tableHeadData="Date" align="center">'.substr($date, 0, 10).'</td>
+                                            <td>'.$row['id'].'</td>
+                                            <td><a href="worksheet_apt.php?apt='.$row['apt'].'">'.$row['apt'].'</a></td>
+                                            <td>'.$row['unit'].'</td>
+                                            <td>'.$row['size'].'</td>
+                                            <td>'.number_format($price).'</td>
+                                            <td><div class="lineBreak_desc"><a href="estimate_description.php?id='.$row['id'].'&company='.$row['company'].'&apt='.$row['apt'].'&unit='.$row['unit'].'&size='.$row['size'].'">'.$row['description'].'</a></div></td>
+                                            <td>'.substr($row['date'], 0, 10).'</td>
                                         ';
                                         if ($_SESSION['isadmin']) {
                                             echo '
-                                                <td align="center">
-                                                    <button onclick="location.href=\'toWorksheet.php?id='.$row['id'].'&company='.$company.'&apt='.$apt.'&unit='.$unit.'&size='.$size.'&price='.$price.'&description='.$description.'\'">Convert</button>
-                                                    <button onclick="location.href=\'estimate_edit.php?id='.$row['id'].'\'">Edit</button>
-                                                    <button onclick="deleteBtn('.$row['id'].')">Remove</button>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">
+                                                        <span class="caret"></span>
+                                                        </button>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <li><a onclick="location.href=\'toWorksheet.php?id='.$row['id'].'&company='.$row['company'].'&apt='.$row['apt'].'&unit='.$row['unit'].'&size='.$row['size'].'&price='.$price.'&description='.$row['description'].'\'">Convert</a></li>
+                                                            <li><a onclick="location.href=\'estimate_edit.php?id='.$row['id'].'\'">Edit</a></li>
+                                                            <li><a onclick="deleteBtn('.$row['id'].')">Remove</a></li>
+                                                        </ul>
+                                                    </div>
                                                 </td>
                                             ';
                                         }
+                                        echo '</tr>';
                                     }
-                                    echo '</table>';
+                                    echo '</tbody></table>';
                                     mysqli_close($conn);
                                 ?>
                                 
@@ -141,7 +112,8 @@
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
-
+            </div>
+            <!-- /#page-wrapper -->
         </div>
         <!-- /#wrapper -->
 
@@ -171,6 +143,6 @@
             });
         </script>
 
+        <?php include('./includes/functions.html'); ?>
     </body>
-
 </html>

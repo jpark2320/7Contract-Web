@@ -1,22 +1,25 @@
 <div class="data_range">
-	<form action="" method="post">
- 		<table width="100%" class="table table-condensed">
- 			<thead>
- 				<tr align="center">
- 					<td><b>Start Date</b></td>
-	 				<td><b>End Date</b></td>
- 				</tr>
- 			</thead>
- 			<tbody align="center">
- 				<tr>
-		 	    	<td><input type="date" name="date" id="theDate"></td>
-		 	    	<td><input type="date" name="end_date" id="theDate"></td>
-		 	    </tr>
-		 	    <tr>
-		 	    	<td colspan="2"><input type="submit" value="Go!"></td>
-		 	    </tr>
- 			</tbody>
-	 	</table>
+	<form role="form" method="post">
+		<div class="row">
+			<div class="col-xs-12">
+		 		<table width="100%" class="table table-condensed">
+		 			<thead>
+		 				<tr align="center">
+		 					<td><b>Start Date</b></td>
+			 				<td><b>End Date</b></td>
+		 				</tr>
+		 			</thead>
+		 			<tbody align="center">
+		 				<tr>
+	 						<td><input class="form-control input-sm" type="date" name="date" id="theDate"></td>
+			 	    		<td><input class="form-control input-sm" type="date" name="end_date" id="theDate"></td>
+				 	    </tr>
+				 	    <tr>
+				 	    	<td colspan="2"><input class="btn btn-primary btn-block btn-sm" type="submit" value="Go!"></td>
+				 	    </tr>
+		 			</tbody>
+			 	</table>
+			</div>
+		</div>
  	</form>
 </div>
-

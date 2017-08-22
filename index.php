@@ -1,3 +1,7 @@
+<?php 
+	session_start(); 
+	unset($_SESSION);
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -6,7 +10,8 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 
-		<title>Agency - Start Bootstrap Theme</title>
+		<title>Seven Contract LLC.</title>
+    	<link rel="icon" href="worksheet/pages/img/7C_Logo.png">
 
 		<!-- Bootstrap core CSS -->
 		<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -49,7 +54,7 @@
 						<a class="nav-link" href="#contact">Contact</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="./worksheet/">Worksheet</a>
+						<a class="nav-link" href="worksheet/pages/worksheet.php">Worksheet</a>
 					</li>
 			  	</ul>
 			</div>

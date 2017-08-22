@@ -2,4 +2,75 @@
     td a {
         text-decoration: none;
     }
+    .dropdown-menu {
+        min-width: 60px !important;
+    }
+    .navbar {
+    	color: white !important;
+    }
+    table a {
+        color: black;
+    }
+    div.lineBreak_desc_admin {
+        display: inline-block !important; 
+        width: 300px !important; 
+        white-space: nowrap !important; 
+
+        white-space: normal !important; 
+        line-height: 1.2 !important;
+        word-wrap: break-word !important; 
+        display: -webkit-box !important; 
+        -webkit-line-clamp: 20 !important; 
+        -webkit-box-orient: vertical !important;
+    }
+    div.lineBreak_desc_user {
+        display: inline-block !important; 
+        width: 500px !important; 
+        white-space: nowrap !important; 
+
+        white-space: normal !important; 
+        line-height: 1.2 !important;
+        word-wrap: break-word !important; 
+        display: -webkit-box !important; 
+        -webkit-line-clamp: 20 !important; 
+        -webkit-box-orient: vertical !important;
+    }
+    div.lineBreak_desc {
+        display: inline-block !important; 
+        width: 500px !important; 
+        white-space: nowrap !important; 
+
+        white-space: normal !important; 
+        line-height: 1.2 !important;
+        word-wrap: break-word !important; 
+        display: -webkit-box !important; 
+        -webkit-line-clamp: 20 !important; 
+        -webkit-box-orient: vertical !important;
+    }
+    div.lineBreak_msg {
+        display: inline-block; 
+        width: 500px; 
+        white-space: nowrap; 
+        overflow: hidden; 
+        text-overflow: ellipsis;
+
+        white-space: normal;
+        line-height: 1.2;
+        word-wrap: break-word; 
+        display: -webkit-box; 
+        -webkit-line-clamp: 20; 
+        -webkit-box-orient: vertical;   
+    }
+    div.lineBreak_cmt_AtPay {
+        display: inline-block; 
+        width: 55%; 
+        white-space: normal;
+
+        white-space: normal; 
+        line-height: 1.2;
+        word-wrap: break-word; 
+        display: -webkit-box; 
+        -webkit-line-clamp: 20; 
+        -webkit-box-orient: vertical;
+    }
 </style>

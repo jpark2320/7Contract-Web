@@ -4,19 +4,14 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
     <?php include('./includes/head_tag.html'); ?>
-
     <body>
-
         <div id="wrapper">
-
             <?php include("./includes/nav_bar.php"); ?>
-
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Add Worksheet</h1>
+                        <h1 class="page-header">Add New Worksheet</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -29,57 +24,60 @@
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
-
                                 <?php include('./includes/connection.php'); ?>
                                 <form name="info" action="#">
-                                    <table class="table table-bordered table-hover table-striped">
-                                        <thead>
+                                    <table width="100%" class="table table-bordered table-hover table-striped table-condensed">
+                                        <thead align="center">
                                             <tr>
-                                                <th>PO</b></th>
-                                                <th>Company</b></th>
-                                                <th>Apt</b></th>
-                                                <th>Unit #</b></th>
-                                                <th>Size</b></th>
-                                                <th>Manager</b></th>
-                                                <th>Date</b></th>
+                                                <td><b>PO</b></td>
+                                                <td><b>Company</b></td>
+                                                <td><b>Apt</b></td>
+                                                <td><b>Unit #</b></td>
+                                                <td><b>Size</b></td>
+                                                <td><b>Manager</b></td>
+                                                <td><b>Date</b></td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr align="center">
-                                                <td tableHeadData="PO"><input class="textInput" type="text" name="po" id="po" value="" size="20"></td>
-                                                <td tableHeadData="Company"><input class="textInput" type="text" name="company" id="company" value="" size="20"></td>
-                                                <td tableHeadData="Apt"><input class="textInput" type="text" name="apt" id="apt" value="" size="20"></td>
-                                                <td tableHeadData="Unit #"><input class="textInput" type="text" name="unit" id="unit" value="" size="10"></td>
-                                                <td tableHeadData="Size"><input class="textInput" type="text" name="size" id="size" value="" size="10"></td>
-                                                <td tableHeadData="Size"><input class="textInput" type="text" name="manager" id="manager" value="" size="10"></td>
-                                                <td tableHeadData="Date"><input class="textInput" type="date" name="date" id="theDate" value="" size="8"></td>
+                                                <td><input class="form-control" type="text" name="po" id="po" size="20"></td>
+                                                <td><input class="form-control" type="text" name="company" id="company" size="20"></td>
+                                                <td><input class="form-control" type="text" name="apt" id="apt" size="20"></td>
+                                                <td><input class="form-control" type="text" name="unit" id="unit" size="10"></td>
+                                                <td><input class="form-control" type="text" name="size" id="size" size="10"></td>
+                                                <td><input class="form-control" type="text" name="manager" id="manager" size="10"></td>
+                                                <td><input class="form-control" type="date" name="date" id="theDate" size="8"></td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <br>
-                                    <table id="data_table" class="table table-bordered table-hover table-striped">
-                                        <thead>
+                                    <table width="100%" id="data_table" class="table table-bordered table-hover table-striped table-condensed">
+                                        <thead align="center">
                                             <tr>
-                                                <th>Description</th>
-                                                <th>Qty</th>
-                                                <th>Price</th>
-                                                <th colspan="2"></th>
+                                                <td><b>Description</b></td>
+                                                <td><b>Qty</b></td>
+                                                <td><b>Price</b></td>
+                                                <td colspan="2"><b></b></td>
                                             </tr>
                                         </thead>
                                         <tbody id="pdf_table">
                                             <tr>
-                                                <td tableHeadData="Description"><input class="textInput" type="text" name="description" id="new_description"></td>
-                                                <td tableHeadData="Qty"><input class="textInput" type="text" name="qty" id="new_quantity"></td>
-                                                <td tableHeadData="Price"><input class="textInput" type="text" name="price" id="new_price"></td>
-                                                <td colspan="2" align="center"><input type="button" class="add" onclick="add_row()" value="Add"></td>
+                                                <td><input class="form-control" type="text" name="description" id="new_description"></td>
+                                                <td><input class="form-control" type="text" name="qty" id="new_quantity"></td>
+                                                <td><input class="form-control" type="text" name="price" id="new_price"></td>
+                                                <td colspan="2"><button class="btn btn-primary btn-block" type="button" onclick="add_row()">Add</button></td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <br>
-                                    <input type="button" name="submit" value="Add to Worksheet" onclick="pass_data(7, 'worksheet_process.php')"></input>
-                                    <input type="button" value="Back" onclick="location.href='worksheet.php'"></input>
+                                    <div class="row">
+                                        <div class="col-sm-offset-5 col-sm-11 text-center">
+                                            <div class="text-center btn-group">
+                                                <button class="btn btn-primary" type="submit" name="submit" onclick="pass_data(7, 'worksheet_process.php')">Add to Worksheet</button>
+                                                <button class="btn btn-primary" type="button" onclick="location.href='worksheet.php'">Back</button>
+                                            </div>  
+                                        </div>
+                                    </div>
                                 </form>
-                                
                             </div>
                             <!-- /.panel-body -->
                         </div>
@@ -88,7 +86,8 @@
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
-
+            </div>
+            <!-- /#page-wrapper -->
         </div>
         <!-- /#wrapper -->
 

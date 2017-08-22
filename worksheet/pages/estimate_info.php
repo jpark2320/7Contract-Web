@@ -1,81 +1,126 @@
 <?php
-	session_start();
-	date_default_timezone_set('Etc/UTC');
+    session_start();
+    date_default_timezone_set('Etc/UTC');
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    <!-- Header Tag -->
     <?php include('./includes/head_tag.html'); ?>
-    <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+    <body>
+        <div id="wrapper">
+            <?php include("./includes/nav_bar.php"); ?>
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Make Estimate</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                DataTables Advanced Tables
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
 
-        <!-- Header -->
-        <?php include('./includes/nav_bar.php'); ?>
-
-        <!-- Body -->
-        <div class="primary" align="center">
-            <h3 class="text-center">Make Estimate</h3>
-
-            <form name="info" action="#">
-                <table id="main_data" border="3" width="50%">
-                    <colgroup>
-                        <col width="40%">
-                        <col width="20%">
-                        <col width="30%">
-                        <col width="10%">
-                    </colgroup>
-                  <thead id="HeadRow">
-                        <tr style="border: 2px double black;" align="center" bgcolor="#c9c9c9">
-                            <th>Company</th>
-                            <th>Apt</th>
-                            <th>Unit #</th>
-                            <th>Size</th>
-                            <th>Date</th>
-                        </tr>
-                  </thead>
-                  <tbody>
-                        <tr align="center">
-                            <td tableHeadData="Company"><input class="textInput" type="text" name="company" id="company" value="" size="20"></td>
-                            <td tableHeadData="Apt"><input class="textInput" type="text" name="apt" id="apt" value="" size="20"></td>
-                            <td tableHeadData="Unit #"><input class="textInput" type="text" name="unit" id="unit" value="" size="10"></td>
-                            <td tableHeadData="Size"><input class="textInput" type="text" name="size" id="size" value="" size="10"></td>
-                            <td tableHeadData="Date"><input class="textInput" type="date" name="date" id="theDate" value="" size="8"></td>
-                        </tr>
-                  </tbody>
-                </table>
-                <br>
-                <table id="data_table" border="3" width="100%">
-                    <colgroup>
-                        <col width="70%">
-                        <col width="7%">
-                        <col width="7%">
-                        <col width="16%">
-                    </colgroup>
-                    <thead id="HeadRow">
-                        <tr style="border: 2px double black;" bgcolor="#c9c9c9">
-                            <th>Description</th>
-                            <th>Qty</th>
-                            <th>Price</th>
-                            <th colspan="2"></th>
-                        </tr>
-                    </thead>
-                    <tbody id="pdf_table">
-                        <tr>
-                            <td tableHeadData="Description"><input class="textInput" type="text" name="description" id="new_description"></td>
-                            <td tableHeadData="Qty"><input class="textInput" type="text" name="qty" id="new_quantity"></td>
-                            <td tableHeadData="Price"><input class="textInput" type="text" name="price" id="new_price"></td>
-                            <td colspan="2" align="center"><input type="button" class="add" onclick="add_row()" value="Add"></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br>
-                <button type="button" name="submit" onclick="pass_data(5, 'create_estimate.php')" formtarget="_blank">Create PDF</button>
-                <button type="button" onclick="location.href='worksheet.php'">Back</button>
-            </form>
-
+                                <form name="info" action="#">
+                                    <table width="100%" class="table table-bordered table-hover table-striped table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <th>Company</th>
+                                                <th>Apt</th>
+                                                <th>Unit #</th>
+                                                <th>Size</th>
+                                                <th>Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr align="center">
+                                                <td><input class="form-control" type="text" name="company" id="company" size="20"></td>
+                                                <td><input class="form-control" type="text" name="apt" id="apt" size="20"></td>
+                                                <td><input class="form-control" type="text" name="unit" id="unit" size="10"></td>
+                                                <td><input class="form-control" type="text" name="size" id="size" size="10"></td>
+                                                <td><input class="form-control" type="date" name="date" id="theDate" size="8"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <br>
+                                    <table width="100%" id="data_table" class="table table-bordered table-hover table-striped table-condensed">
+                                        <thead>
+                                            <colgroup>
+                                                <col width="60%">
+                                                <col width="15%">
+                                                <col width="15%">
+                                                <col width="10%">
+                                            </colgroup>
+                                            <tr>
+                                                <th>Description</th>
+                                                <th>Qty</th>
+                                                <th>Price</th>
+                                                <th colspan="2"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="pdf_table">
+                                            <tr>
+                                                <td><input class="form-control" type="text" name="description" id="new_description"></td>
+                                                <td><input class="form-control" type="text" name="qty" id="new_quantity"></td>
+                                                <td><input class="form-control" type="text" name="price" id="new_price"></td>
+                                                <td colspan="2"><input class="btn btn-primary btn-block" type="button" class="add" onclick="add_row()" value="Add"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="row">
+                                        <div class="col-sm-offset-5 col-sm-2 text-center">
+                                            <div class="text-center btn-group">
+                                                <button class="btn btn-primary" type="button" name="submit" onclick="pass_data(5, 'create_estimate.php')">Create PDF</button>
+                                                <button class="btn btn-primary" type="button" onclick="location.href='worksheet.php'">Back</button>
+                                            </div>  
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                </form>
+                                
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /#page-wrapper -->
         </div>
+        <!-- /#wrapper -->
 
-        <!-- Footer -->
-        <?php include('./includes/footer.html'); ?>
+        <!-- jQuery -->
+        <script src="../vendor/jquery/jquery.min.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+        <!-- DataTables JavaScript -->
+        <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
+        <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+        <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="../dist/js/sb-admin-2.js"></script>
+
+        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+        <script>
+            $(document).ready(function() {
+                $('#dataTables-example').DataTable({
+                    responsive: true
+                });
+            });
+        </script>
 
         <!-- Functions -->
         <?php include('./includes/functions.html'); ?>

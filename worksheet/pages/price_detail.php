@@ -5,11 +5,8 @@
     <?php include('./includes/head_tag.html'); ?>
 
     <body>
-
         <div id="wrapper">
-
             <?php include("./includes/nav_bar.php"); ?>
-
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
@@ -26,7 +23,6 @@
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
-
                                 <?php
                                     if (!isset($_SESSION['email'])) {
                                         echo "<script>alert(\"You need to sign in first.\");</script>";
@@ -92,27 +88,9 @@
                                         $totalProfit = 0;
 
                                         $isOdd = false;
-                                        while($row = mysqli_fetch_array($result))
-                                        {
+                                        while($row = mysqli_fetch_array($result)) {
+                                            
                                             $invoice = '7C'.$row['invoice'];
-
-                                            $size = $row['size'];
-                                            if ($size == null) $size = '-';
-
-                                            $price = $row['price'];
-                                            if ($price == null) $price = '-';
-
-                                            $paid = $row['paid'];
-                                            if ($paid == null) $paid = '-';
-
-                                            $salary = $row['salary'];
-                                            if ($salary == null) $salary = '-';
-
-                                            $profit = $row['profit'];
-                                            if ($profit == null) $profit = '-';
-
-                                            $date = $row['date'];
-                                            if ($date == null) $profit = '-';
 
                                             $totalPrice += $row['price'];
                                             $totalSalary += $row['salary'];
@@ -138,32 +116,28 @@
                                                     <td>'.$row['PO'].'</td>
                                                     <td><a href="worksheet_apt.php?apt='.$row['apt'].'&company='.$row['company'].'">'.$row['apt'].'</td>
                                                     <td>'.$row['unit'].'</td>
-                                                    <td>'.$size.'</td>
-                                                    <td>'.number_format($price).'</td>
-                                                    <td>'.number_format($paid).'</td>
-                                                    <td>'.number_format($salary).'</td>
-                                                    <td>'.number_format($profit).'</td>
-                                                    <td>'.substr($date, 0, 11).'</td>
-                                                    <td><button><a href="recieve.php?invoice='.$invoice.'&apt='.urlencode($row['apt']).'&unit='.$row['unit'].'&price='.$price.'&paid='.$paid.'">Recieve</a></button></td>
+                                                    <td>'.$row['size'].'</td>
+                                                    <td>'.number_format($row['price']).'</td>
+                                                    <td>'.number_format($row['paid']).'</td>
+                                                    <td>'.number_format($row['salary']).'</td>
+                                                    <td>'.number_format($row['profit']).'</td>
+                                                    <td>'.substr($row['date'], 0, 11).'</td>
+                                                    <td><button class="btn btn-primary btn-sm" onclick="location.href=\'recieve.php?invoice='.$invoice.'&apt='.urlencode($row['apt']).'&unit='.$row['unit'].'&price='.$row['price'].'&paid='.$row['paid'].'\'">Recieve</button></td>
                                                 </tr>
                                             ';
                                         }
                                         echo '
-                                            </tbody><tbody><tr>
-                                        ';
-
-                                        echo '
-                                                    <td align="center" colspan="6"></td>
-                                                    <td tableHeadData="Total Price" align="center"><b>'.number_format($totalPrice).'</b></td>
-                                                    <td tableHeadData="Total Received" align="center"><b>'.number_format($totalPaid).'</b></td>
-                                                    <td tableHeadData="Total Salary" align="center"><b>'.number_format($totalSalary).'</b></td>
-                                                    <td tableHeadData="Total Profit" align="center"><b>'.number_format($totalProfit).'</b></td>
-                                                    <td align="center" colspan="2"></td>
-                                        ';
-                                        echo '
-
-                                                </tr>
-                                            </tbody>
+                                                </tbody>
+                                                <tbody>
+                                                    <tr>
+                                                        <td align="center" colspan="6"></td>
+                                                        <td tableHeadData="Total Price" align="center"><b>'.number_format($totalPrice).'</b></td>
+                                                        <td tableHeadData="Total Received" align="center"><b>'.number_format($totalPaid).'</b></td>
+                                                        <td tableHeadData="Total Salary" align="center"><b>'.number_format($totalSalary).'</b></td>
+                                                        <td tableHeadData="Total Profit" align="center"><b>'.number_format($totalProfit).'</b></td>
+                                                        <td align="center" colspan="2"></td>
+                                                    </tr>
+                                                </tbody>
                                             </table>
                                         ';
                                     } else {
@@ -181,7 +155,6 @@
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
-
         </div>
         <!-- /#wrapper -->
 
