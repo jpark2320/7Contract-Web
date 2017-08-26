@@ -52,19 +52,33 @@
 
                                             echo '
                                                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                                    <colgroup>
+                                                        <col width="5%">
+                                                        <col width="5%">
+                                                        <col width="10%">
+                                                        <col width="5%">
+                                                        <col width="30%">
+                                                        <col width="10%">
+                                                        <col width="5%">
+                                                        <col width="10%">
+                                                        <col width="10%">
+                                                        <col width="5%">
+                                                        <col width="5%">
+                                                    </colgroup>
                                                     <thead>
                                                         <tr align="center">
                                                             <td><b>Status</b></td>
-                                                            <td><b>Invoice #</b></td>
+                                                            <td><b>Invoice</b></td>
                                                             <td><b>Apt</b></td>
-                                                            <td><b>Unit #</b></td>
+                                                            <td><b>Unit</b></td>
                                                             <td><b>Description</b></td>
                                                             <td><b>Date</b></td>
                                                             <td><b>P.O.</b></td>
                                                             <td><b>Company</b></td>
                                                             <td><b>Manager</b></td>
+                                                            <td><b>Size</b></td>
                                                             <td><b>Price</b></td>
-                                                            <td><b></td>
+                                                            <td></td>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -108,11 +122,12 @@
                                                         <td><a href="invoice_detail.php?invoice_num='.$temp_invoice.'">'.$temp_invoice.'</a></td>
                                                         <td><a href="worksheet_apt.php?apt='.$row['apt'].'&company='.$row['company'].'">'.$row['apt'].'</a></td>
                                                         <td>'.$row['unit'].'</td>
-                                                        <td><a href="worksheet_description.php?invoice='.$temp_invoice.'&apt='.$row['apt'].'&unit='.$row['unit'].'&size='.$row['size'].'"><div class="lineBreak_desc_admin">'.$row['description'].'</div></a></td>
+                                                        <td align="left"><a href="worksheet_description.php?invoice='.$temp_invoice.'&apt='.$row['apt'].'&unit='.$row['unit'].'&size='.$row['size'].'"><div class="lineBreak">'.$row['description'].'</div></a></td>
                                                         <td>'.substr($row['date'], 0, 11).'</td>
                                                         <td>'.$row['PO'].'</td>
                                                         <td><a href="worksheet_company.php?company='.$row['company'].'">'.$row['company'].'</a></td>
                                                         <td><a href="worksheet_manager.php?manager='.$row['manager'].'">'.$row['manager'].'</a></td>
+                                                        <td>'.$row['size'].'</td>
                                                         <td>'.number_format($row['price']).'</td>
                                                         <td>
                                                             <div class="btn-group">
@@ -130,17 +145,24 @@
                                             }
                                             echo '</tbody></table>';
                                         } else {
-
                                             echo '
                                                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                                    <colgroup>
+                                                        <col width="5%">
+                                                        <col width="10%">
+                                                        <col width="5%">
+                                                        <col width="65%">
+                                                        <col width="10%">
+                                                        <col width="5%">
+                                                    </colgroup>
                                                     <thead>
                                                         <tr align="center">
-                                                            <th>Status</th>
-                                                            <th>Apt</th>
-                                                            <th>Unit #</th>
-                                                            <th>Message</th>
-                                                            <th>Date</th>
-                                                            <th></th>
+                                                            <td><b>Status</b></td>
+                                                            <td><b>Apt</b></td>
+                                                            <td><b>Unit #</b></td>
+                                                            <td><b>Message</b></td>
+                                                            <td><b>Date</b></d>
+                                                            <td></td>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -181,7 +203,7 @@
                                                 echo '
                                                         <td>'.$row['apt'].'</td>
                                                         <td>'.$row['unit'].'</td>
-                                                        <td><div class="lineBreak_desc_user">'.$row['message'].'</div></td>
+                                                        <td align="left"><div class="lineBreak">'.$row['message'].'</div></td>
                                                         <td>'.substr($row['date'], 0, 11).'</td>
                                                         <td>
                                                             <div class="btn-group">
@@ -242,6 +264,6 @@
             });
         </script>
 
+        <?php include('./includes/functions.html'); ?>
     </body>
-
 </html>

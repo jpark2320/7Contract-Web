@@ -37,24 +37,27 @@
 
                                     echo '
                                         <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                            <colgroup>
+                                                <col width="5%">
+                                                <col width="10%">
+                                                <col width="5%">
+                                                <col width="5%">
+                                                <col width="10%">
+                                                <col width="55%">
+                                                <col width="10%">
+                                            </colgroup>
                                             <thead>
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Apartment</th>
-                                                    <th>Unit #</th>
-                                                    <th>Size</th>
-                                                    <th>Price</th>
-                                                    <th>Description</th>
-                                                    <th>Date</th>
+                                                <tr align="center">
+                                                    <td><b>ID</b></td>
+                                                    <td><b>Apt</b></td>
+                                                    <td><b>Unit</b></td>
+                                                    <td><b>Size</b></td>
+                                                    <td><b>Price</b></td>
+                                                    <td><b>Description</b></td>
+                                                    <td><b>Date</b></td>
                                     ';
-                                    if ($_SESSION['isadmin'] == 2) {                
-                                        echo '<th>Option</th>';
-                                    }
-                                    echo '
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                    ';
+                                    if ($_SESSION['isadmin'] == 2) echo '<td></td>';
+                                    echo '</tr></thead><tbody>';
                                     
                                     $sql = "SELECT * FROM estimate ";
 
@@ -62,8 +65,7 @@
                                     $isOdd = false;
                                     while($row = mysqli_fetch_array($result)) {
 
-                                        $price = $row['price'];
-                                        $price = str_replace(".00", "", $price);
+                                        $price = str_replace(".00", "", $row['price']);
 
                                         if ($isOdd) {
                                             $isOdd = false;
@@ -79,10 +81,10 @@
                                             <td>'.$row['unit'].'</td>
                                             <td>'.$row['size'].'</td>
                                             <td>'.number_format($price).'</td>
-                                            <td><div class="lineBreak_desc"><a href="estimate_description.php?id='.$row['id'].'&company='.$row['company'].'&apt='.$row['apt'].'&unit='.$row['unit'].'&size='.$row['size'].'">'.$row['description'].'</a></div></td>
+                                            <td align="left"><div class="lineBreak"><a href="estimate_description.php?id='.$row['id'].'&company='.$row['company'].'&apt='.$row['apt'].'&unit='.$row['unit'].'&size='.$row['size'].'">'.$row['description'].'</a></div></td>
                                             <td>'.substr($row['date'], 0, 10).'</td>
                                         ';
-                                        if ($_SESSION['isadmin']) {
+                                        if ($_SESSION['isadmin'] == 2) {
                                             echo '
                                                 <td>
                                                     <div class="btn-group">

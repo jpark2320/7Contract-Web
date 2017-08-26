@@ -10,7 +10,7 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Price Edit</h1>
+                        <h1 class="page-header">Edit Salary</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -36,18 +36,24 @@
                                     }
                                 ?>
                                 <form action="pedit_process.php" method="POST">
-                                    <div class="form-group">
-                                        <label for="usr">Name:</label>
-                                        <input type="text" class="form-control" name="po" value="<?php echo isset($_GET['username']) ? $_GET['username'] : '' ?>" readonly="readonly">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="usr">Comment:</label>
-                                        <input type="text" class="form-control" name="po" value="<?php echo isset($_GET['comment']) ? $_GET['comment'] : '' ?>" readonly="readonly">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="usr">Salary:</label>
-                                        <input class="form-control" type="text" name="salary">
-                                    </div>
+                                    <table width="100%" class="table table-striped table-bordered table-hover">
+                                        <colgroup>
+                                            <col width="20%">
+                                            <col width="80%">
+                                        </colgroup>
+                                        <tr>
+                                            <td align="right"><b><h5>Name</h5></b></td>
+                                            <td align="left"><h5 style="font-weight:normal"><?php echo isset($_GET['username']) ? $_GET['username'] : '' ?></h5></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><b><h5>Comment</h5></b></td>
+                                            <td align="left"><h5 style="font-weight:normal"><div class="lineBreak"><?php echo isset($_GET['comment']) ? $_GET['comment'] : '' ?></div></h5></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><b><h5>Salary</h5></b></td>
+                                            <td align="left"><input class="form-control" type="text" name="salary"></td>
+                                        </tr>
+                                    </table>
                                     <div class="row">
                                         <div class="col-sm-offset-5 col-sm-2 text-center">
                                             <div class="text-center btn-group">

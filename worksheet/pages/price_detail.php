@@ -38,20 +38,33 @@
 
                                         echo '
                                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                                <colgroup>
+                                                    <col width="7%">
+                                                    <col width="10%">
+                                                    <col width="8%">
+                                                    <col width="10%">
+                                                    <col width="5%">
+                                                    <col width="10%">
+                                                    <col width="10%">
+                                                    <col width="10%">
+                                                    <col width="10%">
+                                                    <col width="10%">
+                                                    <col width="10%">
+                                                </colgroup>
                                                 <thead>
-                                                    <tr>
-                                                        <th>Paid Off</th>
-                                                        <th>Invoice #</th>
-                                                        <th>P.O.</th>
-                                                        <th>Apt</th>
-                                                        <th>Unit #</th>
-                                                        <th>Size</th>
-                                                        <th>Price</th>
-                                                        <th>Recieved</th>
-                                                        <th>Salary</th>
-                                                        <th>Profit</th>
-                                                        <th>Date</th>
-                                                        <th>Recieve</th>
+                                                    <tr align="center">
+                                                        <td><b>Paid</b></td>
+                                                        <td><b>Invoice</b></td>
+                                                        <td><b>P.O.</b></td>
+                                                        <td><b>Apt</b></td>
+                                                        <td><b>Unit</b></td>
+                                                        <td><b>Size</b></td>
+                                                        <td><b>Price</b></td>
+                                                        <td><b>Recieved</b></td>
+                                                        <td><b>Salary</b></td>
+                                                        <td><b>Profit</b></td>
+                                                        <td><b>Date</b></td>
+                                                        <td></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -184,9 +197,6 @@
             });
         </script>
 
-        <!-- Functions -->
         <?php include('./includes/functions.html'); ?>
-
     </body>
-
 </html>

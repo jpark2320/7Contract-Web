@@ -70,7 +70,7 @@
                                         </tbody>
                                     </table>
                                     <div class="row">
-                                        <div class="col-sm-offset-5 col-sm-11 text-center">
+                                        <div class="col-sm-offset-4 col-sm-4 text-center">
                                             <div class="text-center btn-group">
                                                 <button class="btn btn-primary" type="submit" name="submit" onclick="pass_data(7, 'worksheet_process.php')">Add to Worksheet</button>
                                                 <button class="btn btn-primary" type="button" onclick="location.href='worksheet.php'">Back</button>

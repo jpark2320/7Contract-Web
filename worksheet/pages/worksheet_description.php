@@ -36,18 +36,18 @@
                                                 <col width="50%">
                                             </colgroup>
                                             <tr>
-                                                <td align="right"><b>Invoice # : </b></td>
+                                                <td align="right"><b>Invoice</b></td>
                                                 <td align="left">'.$_GET['invoice'].'</td>
                                             </tr>
                                             <tr>
-                                                <td align="right"><b>Apartment : </b></td>
+                                                <td align="right"><b>Apt</b></td>
                                                 <td align="left">'.$_GET['apt'].'</td>
                                             </tr>
                                             <tr>
-                                                <td align="right"><b>Unit # : </b></td>
+                                                <td align="right"><b>Unit</b></td>
                                                 <td align="left">'.$_GET['unit'].'</td>
                                             </tr>
-                                                <td align="right"><b>Size : </b></td>
+                                                <td align="right"><b>Size</b></td>
                                                 <td align="left">'.$_GET['size'].'</td>
                                             </tr>
                                         </table>
@@ -61,15 +61,15 @@
                                                 <col width="10%">
                                                 <col width="75%">
                                             </colgroup>
-                                            <thead align="center">
-                                                <tr>
+                                            <thead>
+                                                <tr align="center">
                                                     <td><b>#</b></td>
                                                     <td><b>Quantity</b></td>
                                                     <td><b>Price</b></td>
                                                     <td><b>Description</b></td>
                                                 </tr>
                                             </thead>
-                                            <tbody align="center">
+                                            <tbody>
                                     ';
                                     
                                     $sql = "SELECT * FROM worksheet_description WHERE invoice='$invoice'";
@@ -89,17 +89,17 @@
 
                                         if ($isOdd) {
                                             $isOdd = false;
-                                            echo '<tr class="odd gradeX">';
+                                            echo '<tr class="odd gradeX" align="center">';
                                         } else {
                                             $isOdd = true;
-                                            echo '<tr class="even gradeX">';
+                                            echo '<tr class="even gradeX" align="center">';
                                         }
                                         
                                         echo '
-                                                <td align="center">'.$i.'</td>
-                                                <td align="center">'.$quantity.'</td>
-                                                <td align="center">'.number_format($row['price']).'</td>
-                                                <td align="left"><div class="lineBreak_worksheet_description">'.$row['description'].'</div></td>
+                                                <td>'.$i.'</td>
+                                                <td>'.$quantity.'</td>
+                                                <td>'.number_format($row['price']).'</td>
+                                                <td align="left"><div class="lineBreak">'.$row['description'].'</div></td>
                                             </tr>
                                         ';
                 
@@ -107,10 +107,12 @@
                                     echo '
                                         </tbody>
                                         <tbody>
-                                            <td align="center"></td>
-                                            <td align="center"><b>Total:</b></td>
-                                            <td align="center"><b>'.number_format($total).'</b></td>
-                                            <td align="center"></td>
+                                            <tr align="center">
+                                                <td></td>
+                                                <td><b>Total :</b></td>
+                                                <td><b>'.number_format($total).'</b></td>
+                                                <td></td>
+                                            </tr>
                                         </tbody>
                                         </table>
                                     ';

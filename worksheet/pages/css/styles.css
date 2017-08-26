@@ -11,6 +11,19 @@
     table a {
         color: black;
     }
+    div.lineBreak {
+        display: inline-block !important; 
+        box-sizing: border-box !important;
+        width: 100% !important; 
+        white-space: nowrap !important; 
+        word-wrap: break-word;
+        word-break: break-all;
+
+        white-space: normal !important; 
+        line-height: 1.2 !important;
+        display: -webkit-box !important; 
+        -webkit-box-orient: vertical !important;   
+    }
     div.lineBreak_desc_admin {
         display: inline-block !important; 
         width: 100% !important; 

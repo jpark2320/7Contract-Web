@@ -39,28 +39,31 @@
                                         <br>
                                         <div align="center"><b>Company : '.$company.'</b></div>
                                         <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                            <colgroup>
+                                                <col width="10%">
+                                                <col width="10%">
+                                                <col width="5%">
+                                                <col width="40%">
+                                                <col width="10%">
+                                                <col width="5%">
+                                                <col width="10%">
+                                                <col width="5%">
+                                                <col width="5%">
+                                            </colgroup>
                                             <thead>
                                                 <tr align="center">
-                                                    <td><b>Invoice #</b></td>
-                                                    <td><b>P.O.</b></td>
+                                                    <td><b>Invoice</b></td>
                                                     <td><b>Apt</b></td>
+                                                    <td><b>Unit</b></td>
+                                                    <td><b>Description</b></td>
+                                                    <td><b>Date</b></td>
+                                                    <td><b>P.O.</b></td>
                                                     <td><b>Manager</b></td>
-                                                    <td><b>Unit #</b></td>
                                                     <td><b>Size</b></td>
                                                     <td><b>Price</b></td>
-                                    ';
-                                    if ($_SESSION['isadmin'] == 2) {
-                                        echo '
-                                            <td><b><a>Salary</a></b></td>
-                                            <td><b><a>Profit</a></b></td>
-                                        ';
-                                    }
-                                    echo '
-                                                <td><b>Description</b></td>
-                                                <td><b><a href="?orderBy=date">Date</a></b></td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
                                     ';
 
                                     $sql = "SELECT * FROM Worksheet WHERE company=\"".$company."\" ";
@@ -93,23 +96,15 @@
                                         }
 
                                         echo '
-                                            <td><a href="invoice_detail.php?invoice_num='.$temp_invoice.'">'.$temp_invoice.'</a></td>
-                                            <td>'.$row['PO'].'</td>
-                                            <td><a href="worksheet_apt.php?apt='.$row['apt'].'&company='.$row['company'].'">'.$row['apt'].'</a></td>
-                                            <td><a href="worksheet_manager.php?manager='.$row['manager'].'">'.$row['manager'].'</a></td>
-                                            <td>'.$row['unit'].'</td>
-                                            <td>'.$row['size'].'</td>
-                                            <td>'.$row['price'].'</td>
-                                        ';
-                                        if ($_SESSION['isadmin'] == 2) {
-                                            echo '
-                                                <td>'.$row['salary'].'</td>
-                                                <td>'.$row['profit'].'</td>
-                                            ';
-                                        }
-                                        echo '
-                                                <td><a href="worksheet_description.php?invoice='.$temp_invoice.'&apt='.$row['apt'].'&unit='.$row['unit'].'&size='.$row['size'].'&from_company=1"><div class="lineBreak_desc_admin">'.$row['description'].'</div></a></td>
+                                                <td><a href="invoice_detail.php?invoice_num='.$temp_invoice.'">'.$temp_invoice.'</a></td>
+                                                <td><a href="worksheet_apt.php?apt='.$row['apt'].'&company='.$row['company'].'">'.$row['apt'].'</a></td>
+                                                <td>'.$row['unit'].'</td>
+                                                <td align="left"><a href="worksheet_description.php?invoice='.$temp_invoice.'&apt='.$row['apt'].'&unit='.$row['unit'].'&size='.$row['size'].'&from_company=1"><div class="lineBreak">'.$row['description'].'</div></a></td>
                                                 <td>'.substr($row['date'], 0, 11).'</td>
+                                                <td>'.$row['PO'].'</td>
+                                                <td><a href="worksheet_manager.php?manager='.$row['manager'].'">'.$row['manager'].'</a></td>
+                                                <td>'.$row['size'].'</td>
+                                                <td>'.$row['price'].'</td>
                                             </tr>
                                         ';
                                     }
@@ -161,5 +156,7 @@
                 });
             });
         </script>
+
+        <?php include('./includes/functions.html'); ?>
     </body>
 </html>

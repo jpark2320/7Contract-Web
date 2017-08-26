@@ -44,70 +44,79 @@
                             <!-- /.panel-heading -->
                             <div class="panel-body">
                                 <?php
+                                    echo '
+                                        <table width="100%" class="table table-striped table-bordered table-hover">
+                                            <colgroup>
+                                                <col width="50%">
+                                                <col width="50%">
+                                            </colgroup>
+                                    ';
                                     if ($_SESSION['isadmin'] > 0) {
                                         echo '
-                                            <div class="form-group">
-                                                <label for="usr">Username:</label>
-                                                <input type="text" class="form-control" value="'.$username.'" readonly="readonly">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="usr">Invoice #:</label>
-                                                <input type="text" class="form-control" value="'.$_SESSION['invoice'].'" readonly="readonly">
-                                            </div>
+                                            <tr>
+                                                <td align="right"><b>Username</b></td>
+                                                <td align="left">'.$username.'</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><b>Invoice</b></td>
+                                                <td align="left">'.$_SESSION['invoice'].'</td>
+                                            </tr>
                                         ';    
                                     }
                                     echo '
-                                        <div class="form-group">
-                                            <label for="usr">Apt:</label>
-                                            <input type="text" class="form-control" value="'.$_GET['apt'].'" readonly="readonly">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="usr">Unit #:</label>
-                                            <input type="text" class="form-control" value="'.$_GET['unit'].'" readonly="readonly">
-                                        </div>
+                                            <tr>
+                                                <td align="right"><b>Apt</b></td>
+                                                <td align="left">'.$_GET['apt'].'</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><b>Unit</b></td>
+                                                <td align="left">'.$_GET['unit'].'</td>
+                                            </tr>
+                                        </table>
                                     ';
 
+                                    echo '
+                                        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    ';
                                     if ($_SESSION['isadmin'] == 2) {
                                         echo '
-                                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                                <colgroup>
-                                                    <col width="5%">
-                                                    <col width="10%">
-                                                    <col width="45%">
-                                                    <col width="10%">
-                                                    <col width="10%">
-                                                    <col width="20%">
-                                                    <col width="10%">
-                                                    <col width="10%">
-                                                </colgroup>
-                                                <thead align="center">
-                                                    <tr>
-                                                        <td><b>#</b></td>
-                                                        <td><b>Paid Off</b></td>
-                                                        <td><b>Comment</b></td>
-                                                        <td><b>Salary</b></td>
-                                                        <td><b>Paid</b></td>
-                                                        <td><b>Date</b></td>
-                                                        <td></td>
-                                                    </tr>
-                                                </thead>
+                                            <colgroup>
+                                                <col width="5%">
+                                                <col width="7%">
+                                                <col width="59%">
+                                                <col width="7%">
+                                                <col width="7%">
+                                                <col width="10%">
+                                                <col width="5%">
+                                            </colgroup>
+                                            <thead align="center">
+                                                <tr>
+                                                    <td><b>#</b></td>
+                                                    <td><b>Paid</b></td>
+                                                    <td><b>Comment</b></td>
+                                                    <td><b>Salary</b></td>
+                                                    <td><b>Paid</b></td>
+                                                    <td><b>Date</b></td>
+                                                    <td></td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
                                         ';
                                     } else {
                                         echo '
-                                            <table width="100%" class="table table-striped table-bordered table-hover">
-                                                <colgroup>
-                                                    <col width="10%">
-                                                    <col width="70%">
-                                                    <col width="20%">
-                                                </colgroup>
-                                                <thead align="center">
-                                                    <tr>
-                                                        <td><b>#</b></td>
-                                                        <td><b>Comment</b></td>
-                                                        <td><b>Date</b></td>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
+                                            <colgroup>
+                                                <col width="50%">
+                                                <col width="85%">
+                                                <col width="10%">
+                                            </colgroup>
+                                            <thead>
+                                                <tr align="center">
+                                                    <td><b>#</b></td>
+                                                    <td><b>Comment</b></td>
+                                                    <td><b>Date</b></td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
                                         ';
                                     }
 
@@ -116,6 +125,7 @@
 
                                     $isOdd = false;
                                     $i = 0;
+
                                     while($row = mysqli_fetch_array($result)) {
 
                                         $i++;
@@ -135,7 +145,7 @@
                                                 echo '<td><img src="./img/status_light_red" width="15px"><span hidden>1</span></td>';
                                             }
                                             echo '
-                                                <td><div class="lineBreak_cmt">'.$row['comment'].'</div></td>
+                                                <td align="left"><div class="lineBreak">'.$row['comment'].'</div></td>
                                                 <td>'.number_format($row['salary']).'</td>
                                                 <td>'.number_format($row['paid']).'</td>
                                                 <td>'.substr($row['date'], 0, 11).'</td>
@@ -154,9 +164,9 @@
                                             ';
                                         } else {
                                             echo '
-                                                    <td tableHeadData="#" align="center">'.$i.'</td>
-                                                    <td tableHeadData="Comment" align="center"><div class="lineBreak_desc">'.$row['comment'].'</div></td>
-                                                    <td tableHeadData="Date" align="center">'.substr($row['date'], 0, 11).'</td>
+                                                    <td>'.$i.'</td>
+                                                    <td><div class="lineBreak">'.$row['comment'].'</div></td>
+                                                    <td>'.substr($row['date'], 0, 11).'</td>
                                                 </tr>
                                             ';
                                         }

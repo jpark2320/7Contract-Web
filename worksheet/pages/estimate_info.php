@@ -28,12 +28,12 @@
                                 <form name="info" action="#">
                                     <table width="100%" class="table table-bordered table-hover table-striped table-condensed">
                                         <thead>
-                                            <tr>
-                                                <th>Company</th>
-                                                <th>Apt</th>
-                                                <th>Unit #</th>
-                                                <th>Size</th>
-                                                <th>Date</th>
+                                            <tr align="center">
+                                                <td><b>Company</b></td>
+                                                <td><b>Apt</b></td>
+                                                <td><b>Unit</b></td>
+                                                <td><b>Size</b></td>
+                                                <td><b>Date</b></td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -55,11 +55,11 @@
                                                 <col width="15%">
                                                 <col width="10%">
                                             </colgroup>
-                                            <tr>
-                                                <th>Description</th>
-                                                <th>Qty</th>
-                                                <th>Price</th>
-                                                <th colspan="2"></th>
+                                            <tr align="center">
+                                                <td><b>Description</b></td>
+                                                <td><b>Qty</b></td>
+                                                <td><b>Price</b></td>
+                                                <td colspan="2"></td>
                                             </tr>
                                         </thead>
                                         <tbody id="pdf_table">
@@ -72,7 +72,7 @@
                                         </tbody>
                                     </table>
                                     <div class="row">
-                                        <div class="col-sm-offset-5 col-sm-2 text-center">
+                                        <div class="col-sm-offset-4 col-sm-4 text-center">
                                             <div class="text-center btn-group">
                                                 <button class="btn btn-primary" type="button" name="submit" onclick="pass_data(5, 'create_estimate.php')">Create PDF</button>
                                                 <button class="btn btn-primary" type="button" onclick="location.href='worksheet.php'">Back</button>

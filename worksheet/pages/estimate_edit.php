@@ -111,7 +111,7 @@
                                     if (isset($_SESSION['edit_arr'])) {
                                         for ($i = 0; $i < sizeof($_SESSION['edit_arr']); $i++) {
                                             if ($_SESSION['edit_arr'][$i][0] !== null) {
-                                                echo '<tr bgcolor="#c4daff"><td><div class="lineBreak_desc">'.$_SESSION['edit_arr'][$i][0].'</div></td>';
+                                                echo '<tr bgcolor="#c4daff"><td><div class="lineBreak">'.$_SESSION['edit_arr'][$i][0].'</div></td>';
                                             }
                                             if ($_SESSION['edit_arr'][$i][1] !== null) {
                                                 echo '<td>'.$_SESSION['edit_arr'][$i][1].'</td>';
@@ -136,22 +136,28 @@
                                     ';
                                 ?>
                                 <form action="estimate_edit_process.php" method="POST">
-                                    <div class="form-group">
-                                        <label for="usr">Company:</label>
-                                        <input type="text" class="form-control" name="company" value="<?php echo isset($_SESSION['company']) ? $_SESSION['company'] : '' ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="usr">Apt:</label>
-                                        <input type="text" class="form-control" name="apt" value="<?php echo isset($_SESSION['apt']) ? $_SESSION['apt'] : '' ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="usr">Unit #:</label>
-                                        <input type="text" class="form-control" name="unit" value="<?php echo isset($_SESSION['unit']) ? $_SESSION['unit'] : '' ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="usr">Size:</label>
-                                        <input type="text" class="form-control" name="size" value="<?php echo isset($_SESSION['size']) ? $_SESSION['size'] : '' ?>">
-                                    </div>
+                                    <table width="100%" class="table table-striped table-bordered table-hover">
+                                        <colgroup>
+                                            <col width="20%">
+                                            <col width="80%">
+                                        </colgroup>
+                                        <tr>
+                                            <td align="right"><b><h5>Company</h5></b></td>
+                                            <td align="left"><input type="text" class="form-control" name="company" value="<?php echo isset($_SESSION['company']) ? $_SESSION['company'] : '' ?>"></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><b><h5>Apt</h5></b></td>
+                                            <td align="left"><input type="text" class="form-control" name="apt" value="<?php echo isset($_SESSION['apt']) ? $_SESSION['apt'] : '' ?>"></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><b><h5>Unit</h5></b></td>
+                                            <td align="left"><input type="text" class="form-control" name="unit" value="<?php echo isset($_SESSION['unit']) ? $_SESSION['unit'] : '' ?>"></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><b><h5>Size</h5></b></td>
+                                            <td align="left"><input type="text" class="form-control" name="size" value="<?php echo isset($_SESSION['size']) ? $_SESSION['size'] : '' ?>"></td>
+                                        </tr>
+                                    </table>
                                     <div class="row">
                                         <div class="col-sm-offset-5 col-sm-2 text-center">
                                             <div class="text-center btn-group">

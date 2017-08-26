@@ -96,6 +96,12 @@
                                     echo '
                                         <form action="edit_admin.php" method="post">
                                             <table width="100%" class="table table-striped table-bordered table-hover">
+                                                <colgroup>
+                                                    <col width="70%">
+                                                    <col width="10%">
+                                                    <col width="10%">
+                                                    <col width="10%">
+                                                </colgroup>
                                                 <thead>
                                                     <tr>
                                                         <th>Description</b></th>
@@ -115,14 +121,14 @@
                                     if (isset($_SESSION['arr'])) {
                                         for ($i = 0; $i < sizeof($_SESSION['arr']); $i++) {
                                             if ($_SESSION['arr'][$i][0] !== null) {
-                                                echo '<tr bgcolor="#c4daff"><td><div class="lineBreak_desc">'.$_SESSION['arr'][$i][0].'</div></td>';
+                                                echo '<tr align="center"><td align="left"><div class="lineBreak">'.$_SESSION['arr'][$i][0].'</div></td>';
                                             }
                                             if ($_SESSION['arr'][$i][1] !== null) {
-                                                echo '<td tableHeadData="Qty">'.$_SESSION['arr'][$i][1].'</td>';
+                                                echo '<td>'.$_SESSION['arr'][$i][1].'</td>';
                                             }
 
                                             if ($_SESSION['arr'][$i][2] !== null) {
-                                                echo '<td tableHeadData="Price">'.$_SESSION['arr'][$i][2].'</td>';
+                                                echo '<td>'.$_SESSION['arr'][$i][2].'</td>';
                                             }
                                             if ($_SESSION['arr'][$i][0] !== null) {
                                                 echo '<td align="center"><button type="button" onclick="location.href=\'edit_invoice_detail.php?description='.$_SESSION['arr'][$i][0].' &qty='.$_SESSION['arr'][$i][1].' &price='.$_SESSION['arr'][$i][2].' &index='.$i.'\'">Edit</button></td>';
@@ -142,30 +148,36 @@
                                     unset($_POST);
                                 ?>
                                 <form action="edit_process.php" method="POST">
-                                    <div class="form-group">
-                                        <label for="usr">P.O.:</label>
-                                        <input type="text" class="form-control" name="po" value="<?php echo isset($_SESSION['po']) ? $_SESSION['po'] : '' ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="usr">Company:</label>
-                                        <input type="text" class="form-control" name="company" value="<?php echo isset($_SESSION['company']) ? $_SESSION['company'] : '' ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="usr">Apt:</label>
-                                        <input type="text" class="form-control" name="apt" value="<?php echo isset($_SESSION['apt']) ? $_SESSION['apt'] : '' ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="usr">Manager:</label>
-                                        <input type="text" class="form-control" name="manager" value="<?php echo isset($_SESSION['manager']) ? $_SESSION['manager'] : '' ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="usr">Unit #:</label>
-                                        <input type="text" class="form-control" name="unit" value="<?php echo isset($_SESSION['unit']) ? $_SESSION['unit'] : '' ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="usr">Size:</label>
-                                        <input type="text" class="form-control" name="size" value="<?php echo isset($_SESSION['size']) ? $_SESSION['size'] : '' ?>">
-                                    </div>
+                                    <table width="100%" class="table table-striped table-bordered table-hover">
+                                        <colgroup>
+                                            <col width="20%">
+                                            <col width="80%">
+                                        </colgroup>
+                                        <tr>
+                                            <td align="right"><b><h5>Apt</h5></b></td>
+                                            <td align="left"><input type="text" class="form-control" name="apt" value="<?php echo isset($_SESSION['apt']) ? $_SESSION['apt'] : '' ?>"></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><b><h5>Unit</h5></b></td>
+                                            <td align="left"><input type="text" class="form-control" name="unit" value="<?php echo isset($_SESSION['unit']) ? $_SESSION['unit'] : '' ?>"></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><b><h5>P.O.</h5></b></td>
+                                            <td align="left"><input type="text" class="form-control" name="po" value="<?php echo isset($_SESSION['po']) ? $_SESSION['po'] : '' ?>"></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><b><h5>Company</h5></b></td>
+                                            <td align="left"><input type="text" class="form-control" name="company" value="<?php echo isset($_SESSION['company']) ? $_SESSION['company'] : '' ?>"></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><b><h5>Manager</h5></b></td>
+                                            <td align="left"><input type="text" class="form-control" name="manager" value="<?php echo isset($_SESSION['manager']) ? $_SESSION['manager'] : '' ?>"></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><b><h5>Size</h5></b></td>
+                                            <td align="left"><input type="text" class="form-control" name="size" value="<?php echo isset($_SESSION['size']) ? $_SESSION['size'] : '' ?>"></td>
+                                        </tr>
+                                    </table>
                                     <div class="row">
                                         <div class="col-sm-offset-5 col-sm-2 text-center">
                                             <div class="text-center btn-group">

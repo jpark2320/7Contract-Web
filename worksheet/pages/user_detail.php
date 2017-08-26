@@ -36,35 +36,46 @@
                                         echo '
                                             <table width="100%" class="table table-striped table-bordered table-hover">
                                                 <colgroup>
-                                                    <col width="40%">
-                                                    <col width="60%">
+                                                    <col width="50%">
+                                                    <col width="50%">
                                                 </colgroup>
                                                 <tbody>
                                                     <tr>
-                                                        <td align="right"><b>User Name : </b></td>
+                                                        <td align="right"><b>Username</b></td>
                                                         <td align="left">'.$user_name.'</td>
                                                     </tr>
                                                     <tr>
-                                                        <td align="right"><b>Email : </b></td>
+                                                        <td align="right"><b>Email</b></td>
                                                         <td align="left">'.$email.'</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                                <thead align="center">
-                                                    <tr>
+                                                <colgroup>
+                                                    <col width="7%">
+                                                    <col width="5%">
+                                                    <col width="10%">
+                                                    <col width="10%">
+                                                    <col width="5%">
+                                                    <col width="7%">
+                                                    <col width="36%">
+                                                    <col width="10%">
+                                                    <col width="10%">
+                                                </colgroup>
+                                                <thead>
+                                                    <tr align="center">
                                                         <td><b>Status</b></td>
-                                                        <td><b>Paid off</b></td>
-                                                        <td><b>Invoice #</b></td>
+                                                        <td><b>Paid</b></td>
+                                                        <td><b>Invoice</b></td>
                                                         <td><b>Apt</b></td>
-                                                        <td><b>Unit #</b></td>
+                                                        <td><b>Unit</b></td>
                                                         <td><b>Price</b></td>
                                                         <td><b>Message</b></td>
                                                         <td><b>Comment</b></td>
                                                         <td><b>Date</b></td>
                                                     </tr>
                                                 </thead>
-                                                <tbody align="center">
+                                                <tbody>
                                         ';
                                         if (isset($i_detail))
                                             $i_detail = substr($i_detail, 2);
@@ -79,14 +90,12 @@
                                         $idOdd = false;
                                         while($row = mysqli_fetch_array($result)) {
 
-                                            if (isset($isOdd)) {
-                                                if ($isOdd) {
-                                                    $isOdd = false;
-                                                    echo '<tr class="odd gradeX">';
-                                                } else {
-                                                    $isOdd = true;
-                                                    echo '<tr class="even gradeX">';
-                                                }
+                                            if ($isOdd) {
+                                                $isOdd = false;
+                                                echo '<tr class="odd gradeX" align="center">';
+                                            } else {
+                                                $isOdd = true;
+                                                echo '<tr class="even gradeX" align="center">';
                                             }
 
                                             $invoice = "7C".$row['invoice'];
@@ -106,9 +115,9 @@
                                                     <td><a href="invoice_detail?invoice_num='.$row['apt'].'">'.$row['apt'].'</a></td>
                                                     <td>'.$row['unit'].'</td>
                                                     <td>'.$row['price'].'</td>
-                                                    <td>'.$row['message'].'</td>
-                                                    <td><button class="btn btn-primary btn-block btn-xs" onclick="location.href=\'show_comment.php?id='.$row['id'].'&email='.$email.'&apt='.$row['apt'].'&unit='.$row['unit'].'&username='.urlencode($user_name).'&from_user=1\'">Show</button></td>
-                                                    <td align="center">'.$row['date'].'</td>
+                                                    <td align="left"><div class="lineBreak">'.$row['message'].'</div></td>
+                                                    <td><button class="btn btn-primary btn-block btn-xs" type="button" onclick="location.href=\'show_comment.php?id='.$row['id'].'&email='.$email.'&apt='.$row['apt'].'&unit='.$row['unit'].'&username='.urlencode($user_name).'&from_user=1\'">Show</button></td>
+                                                    <td>'.substr($row['date'], 0, 11).'</td>
                                                 </tr>
                                             ';
                                         }

@@ -41,11 +41,16 @@
 
                                         echo '
                                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                                <colgroup>
+                                                    <col width="5%">
+                                                    <col width="40%">
+                                                    <col width="55%">
+                                                </colgroup>
                                                 <thead>
-                                                    <tr>
-                                                        <th></th>
-                                                        <th>Name</th>
-                                                        <th>Email</th>
+                                                    <tr align="center">
+                                                        <td></td>
+                                                        <td><b>Name</b></td>
+                                                        <td><b>Email</b></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -54,14 +59,12 @@
                                         $idOdd = false;
                                         while($row = mysqli_fetch_array($result)) {
 
-                                            if (isset($isOdd)) {
-                                                if ($isOdd) {
-                                                    $isOdd = false;
-                                                    echo '<tr class="odd gradeX" align="center">';
-                                                } else {
-                                                    $isOdd = true;
-                                                    echo '<tr class="even gradeX" align="center">';
-                                                }
+                                            if ($isOdd) {
+                                                $isOdd = false;
+                                                echo '<tr class="odd gradeX" align="center">';
+                                            } else {
+                                                $isOdd = true;
+                                                echo '<tr class="even gradeX" align="center">';
                                             }
 
                                             echo '

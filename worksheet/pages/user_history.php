@@ -40,11 +40,11 @@
                                                 </colgroup> 
                                                 <tbody>
                                                     <tr>
-                                                        <td align="right"><b>Username : </b></td>
+                                                        <td align="right"><b>Username</b></td>
                                                         <td align="left">'.$username.'</td>
                                                     </tr>
                                                     <tr>
-                                                        <td align="right"><b>Email : </b></td>
+                                                        <td align="right"><b>Email</b></td>
                                                         <td align="left">'.$email.'</td>
                                                     </tr>
                                                 </tbody>
@@ -53,21 +53,21 @@
                                                 <colgroup>
                                                     <col width="5%">
                                                     <col width="5%">
+                                                    <col width="5%">
+                                                    <col width="61%">
+                                                    <col width="7%">
+                                                    <col width="7%">
                                                     <col width="10%">
-                                                    <col width="40%">
-                                                    <col width="10%">
-                                                    <col width="10%">
-                                                    <col width="20%">
                                                 </colgroup>
                                                 <thead>
-                                                    <tr>
-                                                        <td align="center"><b>Select</b></td>
-                                                        <td align="center"><b>#</b></td>
-                                                        <td align="center"><b>Paid Off</b></td>
-                                                        <td align="center"><b>Comment</b></td>
-                                                        <td align="center"><b>Salary</b></td>
-                                                        <td align="center"><b>Paid</b></td>
-                                                        <td align="center"><b>Date</b></td>
+                                                    <tr align="center">
+                                                        <td></td>
+                                                        <td><b>#</b></td>
+                                                        <td><b>Paid</b></td>
+                                                        <td><b>Comment</b></td>
+                                                        <td><b>Salary</b></td>
+                                                        <td><b>Paid</b></td>
+                                                        <td><b>Date</b></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -116,10 +116,10 @@
                                             echo '<td><img src="./img/status_light_red" width="15px"><span hidden>1</span></td>';
                                         }
                                         echo '
-                                                <td align="center">'.$row['comment'].'</td>
-                                                <td align="center">'.$row['salary'].'</td>
-                                                <td align="center">'.$row['paid'].'</td>
-                                                <td align="center">'.$row['date'].'</td>
+                                                <td><div class="lineBreak">'.$row['comment'].'</div></td>
+                                                <td>'.$row['salary'].'</td>
+                                                <td>'.$row['paid'].'</td>
+                                                <td>'.substr($row['date'], 0, 11).'</td>
                                             </tr>
                                         ';
                                     }
@@ -172,5 +172,7 @@
                 });
             });
         </script>
+
+        <?php include('./includes/functions.html'); ?>
     </body>
 </html>

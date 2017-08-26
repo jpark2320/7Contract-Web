@@ -51,30 +51,35 @@
                             <!-- /.panel-heading -->
                             <div class="panel-body">
                                 <form action="recieve_process.php" method="POST">
-                                    <div class="form-group">
-                                        <label for="usr">Invoice #:</label>
-                                        <input type="text" class="form-control" value="<?php echo isset($_SESSION['invoice']) ? "7C".$_SESSION['invoice'] : '-' ?>" readonly="readonly">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="pwd">Apt:</label>
-                                        <input type="text" class="form-control" value="<?php echo isset($_SESSION['apt']) ? $_SESSION['apt'] : '-' ?>" readonly="readonly">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="pwd">Unit:</label>
-                                        <input type="text" class="form-control" value="<?php echo isset($_SESSION['unit']) ? $_SESSION['unit'] : '-' ?>" readonly="readonly">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="pwd">Price:</label>
-                                        <input type="text" class="form-control" value="<?php echo isset($_SESSION['price']) ? "$ ".$_SESSION['price']  : '-' ?>" readonly="readonly">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="pwd">Remaining Balance:</label>
-                                        <input type="text" class="form-control" value="<?php echo isset($_SESSION['remaining']) ? "$ ".number_format((float)$_SESSION['remaining'], 2, '.', '') : '-' ?>" readonly="readonly">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="pwd">Recieved Amount:</label>
-                                        <input class="form-control" type="text" name="recieve">
-                                    </div>
+                                    <table width="100%" class="table table-striped table-bordered table-hover">
+                                        <colgroup>
+                                            <col width="20%">
+                                            <col width="80%">
+                                        </colgroup>
+                                        <tr>
+                                            <td align="right"><b><h5>Invoice</h5></b></td>
+                                            <td align="left"><h5 style="font-weight: normal"><?php echo isset($_SESSION['invoice']) ? "7C".$_SESSION['invoice'] : '-' ?></h5></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><b><h5>Apt</h5></b></td>
+                                            <td align="left"><h5 style="font-weight: normal"><?php echo isset($_SESSION['apt']) ? $_SESSION['apt'] : '-' ?></h5></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><b><h5>Unit</h5></b></td>
+                                            <td align="left"><h5 style="font-weight: normal"><?php echo isset($_SESSION['unit']) ? $_SESSION['unit'] : '-' ?></h5></td>
+                                        </tr>
+                                            <td align="right"><b><h5>Price</h5></b></td>
+                                            <td align="left"><h5 style="font-weight: normal"><?php echo isset($_SESSION['price']) ? "$ ".$_SESSION['price']  : '-' ?></h5></td>
+                                        </tr>
+                                        </tr>
+                                            <td align="right"><b><h5>Remaining Balance</h5></b></td>
+                                            <td align="left"><h5 style="font-weight: normal"><?php echo isset($_SESSION['remaining']) ? "$ ".number_format((float)$_SESSION['remaining'], 2, '.', '') : '-' ?></h5></td>
+                                        </tr>
+                                        </tr>
+                                            <td align="right"><b><h5>Recieved Amount</h5></b></td>
+                                            <td align="left"><input class="form-control" type="text" name="recieve"></td>
+                                        </tr>
+                                    </table>
                                     <div class="row">
                                         <div class="col-sm-offset-5 col-sm-2 text-center">
                                             <div class="text-center btn-group">

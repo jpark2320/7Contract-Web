@@ -48,24 +48,35 @@
                                             <br>
                                             <div align="center"><b>Apt : '.$apt.'</b></div><br>
                                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                                <thead align="center">
-                                                    <tr>
-                                                        <td><b>Check</b></td>
-                                                        <td><b>Paid off</b></td>
-                                                        <td><b>Invoice #</b></td>
+                                                <colgroup>
+                                                    <col width="4%">
+                                                    <col width="6%">
+                                                    <col width="10%">
+                                                    <col width="5%">
+                                                    <col width="30%">
+                                                    <col width="10%">
+                                                    <col width="5%">
+                                                    <col width="10%">
+                                                    <col width="10%">
+                                                    <col width="5%">
+                                                    <col width="5%">
+                                                </colgroup>
+                                                <thead>
+                                                    <tr align="center">
+                                                        <td></td>
+                                                        <td><b>Paid</b></td>
+                                                        <td><b>Invoice</b></td>
+                                                        <td><b>Unit</b></td>
+                                                        <td><b>Description</b></td>
+                                                        <td><b>Date</b></td>
                                                         <td><b>P.O.</b></td>
                                                         <td><b>Company</b></td>
                                                         <td><b>Manager</b></td>
-                                                        <td><b>Unit #</b></td>
                                                         <td><b>Size</b></td>
                                                         <td><b>Price</b></td>
-                                                        <td><b>Salary</b></td>
-                                                        <td><b>Profit</b></td>
-                                                        <td><b>Description</b></td>
-                                                        <td><b>Date</b></td>
                                                     </tr>
                                                 </thead>
-                                                <tbody align="center">
+                                                <tbody>
                                     ';
 
                                     $sql = "SELECT * FROM Worksheet WHERE apt=\"".$apt."\" AND company=\"".$company."\" ";
@@ -129,16 +140,14 @@
 
                                         echo '
                                                 <td><a href="invoice_detail.php?invoice_num='.$temp_invoice.'">'.$temp_invoice.'</a></td>
+                                                <td>'.$row['unit'].'</td>
+                                                <td align="left"><a href="worksheet_description.php?invoice='.$temp_invoice.'&apt='.$row['apt'].'&unit='.$row['unit'].'&size='.$row['size'].'&from_apt=1"><div class="lineBreak">'.$row['description'].'</div></a></td>
+                                                <td>'.substr($row['date'], 0, 11).'</td>
                                                 <td>'.$row['PO'].'</td>
                                                 <td><a href="worksheet_company.php?company='.$row['company'].'">'.$row['company'].'</a></td>
                                                 <td><a href="worksheet_manager.php?manager='.$row['manager'].'">'.$row['manager'].'</a></td>
-                                                <td>'.$row['unit'].'</td>
                                                 <td>'.$row['size'].'</td>
                                                 <td>'.$row['price'].'</td>
-                                                <td>'.$row['salary'].'</td>
-                                                <td>'.$row['profit'].'</td>
-                                                <td><a class="lineBreak" href="worksheet_description.php?invoice='.$temp_invoice.'&apt='.$row['apt'].'&unit='.$row['unit'].'&size='.$row['size'].'&from_apt=1">'.$row['description'].'</a></td>
-                                                <td>'.substr($row['date'], 0, 11).'</td>
                                             </tr>
                                         ';
                                     }
@@ -195,5 +204,7 @@
                 });
             });
         </script>
+
+        <?php include('./includes/functions.html'); ?>
     </body>
 </html>

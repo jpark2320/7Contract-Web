@@ -63,42 +63,51 @@
                                                     <col width="50%">
                                                 </colgroup>
                                                 <tr>
-                                                    <td align="right"><b>Invoice # : </b></td>
+                                                    <td align="right"><b>Invoice</b></td>
                                                     <td align="left">'."7C".$_SESSION['invoice'].'</td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="right"><b>Apartment : </b></td>
+                                                    <td align="right"><b>Apt</b></td>
                                                     <td align="left">'.$_SESSION['apt_pdf'].'</td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="right"><b>Unit # : </b></td>
+                                                    <td align="right"><b>Unit</b></td>
                                                     <td align="left">'.$_SESSION['unit_pdf'].'</td>
                                                 </tr>
                                             </table>
-
                                         ';
 
                                         $i_detail = str_replace('7C', '', $i_detail);
                                         $_SESSION['invoice'] = $i_detail;
 
                                         echo '
-                                            <table width="100%" class="table table-striped table-bordered table-hover">
+                                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                                <colgroup>
+                                                    <col width="7%">
+                                                    <col width="6%">
+                                                    <col width="10%">
+                                                    <col width="43%">
+                                                    <col width="10%">
+                                                    <col width="7%">
+                                                    <col width="7%">
+                                                    <col width="10%">
+                                                </colgroup>
                                                 <thead>
-                                                    <tr>
-                                                        <td align="center"><b>Status</b></td>
-                                                        <td align="center"><b>Paid Off</b></td>
-                                                        <td align="center"><b>Name</b></td>
-                                                        <td align="center"><b>Message</b></td>
-                                                        <td align="center"><b>Comment</b></td>
+                                                    <tr align="center">
+                                                        <td><b>Status</b></td>
+                                                        <td><b>Paid</b></td>
+                                                        <td><b>Name</b></td>
+                                                        <td><b>Message</b></td>
+                                                        <td><b>Comment</b></td>
                                         ';
                                         if ($_SESSION['isadmin'] == 2) {
                                             echo '
-                                                <td align="center"><b>Salary</b></td>
-                                                <td align="center"><b>Paid</b></td>
+                                                <td><b>Salary</b></td>
+                                                <td><b>Paid</b></td>
                                             ';
                                         }
                                         echo '
-                                                <td align="center"><b>Date</b></td>
+                                                    <td><b>Date</b></td>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -136,23 +145,22 @@
                                             }
 
                                             echo '
-                                                <td align="center"><a href="user_detail.php?invoice='.urlencode($i_detail).' &email='.urlencode($row['email']).' &user_name='.urlencode($row['first'].' '.$row['last']).'">'.$row['first'].' '.$row['last'].'</a></td>
-                                                <td><div class="lineBreak_msg">'.$row['message'].'</div></td>
-                                                <td align="center"><button class="btn btn-primary btn-block" type="button" onclick="location.href=\'show_comment.php?id='.$id.'&email='.$row['email'].'&apt='.$_SESSION['apt_pdf'].'&unit='.$_SESSION['unit_pdf'].'&username='.urlencode($row['first'].' '.$row['last']).'\'">Show Comment</button></td>
+                                                <td><a href="user_detail.php?invoice='.urlencode($i_detail).' &email='.urlencode($row['email']).' &user_name='.urlencode($row['first'].' '.$row['last']).'">'.$row['first'].' '.$row['last'].'</a></td>
+                                                <td align="left"><div class="lineBreak">'.$row['message'].'</div></td>
+                                                <td><button class="btn btn-primary btn-xs btn-block" type="button" onclick="location.href=\'show_comment.php?id='.$id.'&email='.$row['email'].'&apt='.$_SESSION['apt_pdf'].'&unit='.$_SESSION['unit_pdf'].'&username='.urlencode($row['first'].' '.$row['last']).'\'">Show Comment</button></td>
                                             ';
                                             if ($_SESSION['isadmin'] == 2) {
                                                 echo '
-                                                    <td align="center">'.number_format($row['price']).'</td>
-                                                    <td align="center">'.number_format($row['paid']).'</td>
+                                                    <td>'.number_format($row['price']).'</td>
+                                                    <td>'.number_format($row['paid']).'</td>
                                                 ';
                                             }
                                             echo '
-                                                        <td align="center">'.$row['date'].'</td>
-                                                    </tr>
-                                                </tbody>
+                                                    <td>'.substr($row['date'], 0, 11).'</td>
+                                                </tr>
                                             ';
                                         }
-                                        echo '</table>';
+                                        echo '</tbody></table>';
                                         mysqli_close($conn);
                                     ?>
                                 </form>
