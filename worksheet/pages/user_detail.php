@@ -36,8 +36,8 @@
                                         echo '
                                             <table width="100%" class="table table-striped table-bordered table-hover">
                                                 <colgroup>
-                                                    <col width="50%">
-                                                    <col width="50%">
+                                                    <col width="40%">
+                                                    <col width="60%">
                                                 </colgroup>
                                                 <tbody>
                                                     <tr>
@@ -51,20 +51,20 @@
                                                 </tbody>
                                             </table>
                                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                                <thead>
+                                                <thead align="center">
                                                     <tr>
-                                                        <td align="center"><b>Status</b></td>
-                                                        <td align="center"><b>Paid off</b></td>
-                                                        <td align="center"><b>Invoice #</b></td>
-                                                        <td align="center"><b>Apt</b></td>
-                                                        <td align="center"><b>Unit #</b></td>
-                                                        <td align="center"><b>Price</b></td>
-                                                        <td align="center"><b>Message</b></td>
-                                                        <td align="center"><b>Comment</b></td>
-                                                        <td align="center"><b>Date</b></td>
+                                                        <td><b>Status</b></td>
+                                                        <td><b>Paid off</b></td>
+                                                        <td><b>Invoice #</b></td>
+                                                        <td><b>Apt</b></td>
+                                                        <td><b>Unit #</b></td>
+                                                        <td><b>Price</b></td>
+                                                        <td><b>Message</b></td>
+                                                        <td><b>Comment</b></td>
+                                                        <td><b>Date</b></td>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody align="center">
                                         ';
                                         if (isset($i_detail))
                                             $i_detail = substr($i_detail, 2);
@@ -82,10 +82,10 @@
                                             if (isset($isOdd)) {
                                                 if ($isOdd) {
                                                     $isOdd = false;
-                                                    echo '<tr class="odd gradeX" align="center">';
+                                                    echo '<tr class="odd gradeX">';
                                                 } else {
                                                     $isOdd = true;
-                                                    echo '<tr class="even gradeX" align="center">';
+                                                    echo '<tr class="even gradeX">';
                                                 }
                                             }
 
@@ -102,12 +102,12 @@
                                                 echo '<td><img src="./img/status_light_red" width="15px"><span hidden>1</span></td>';
                                             }
                                             echo '
-                                                    <td align="center"><a href="invoice_detail?invoice_num='.$invoice.'">'.$invoice.'</a></td>
-                                                    <td align="center"><a href="invoice_detail?invoice_num='.$row['apt'].'">'.$row['apt'].'</a></td>
-                                                    <td align="center">'.$row['unit'].'</td>
-                                                    <td align="center">'.$row['price'].'</td>
-                                                    <td align="center">'.$row['message'].'</td>
-                                                    <td align="center"><button id="btn_showComment" onclick="location.href=\'show_comment.php?id='.$row['id'].'&email='.$email.'&apt='.$row['apt'].'&unit='.$row['unit'].'&username='.urlencode($user_name).'&from_user=1\'">Show Comments</button></td>
+                                                    <td><a href="invoice_detail?invoice_num='.$invoice.'">'.$invoice.'</a></td>
+                                                    <td><a href="invoice_detail?invoice_num='.$row['apt'].'">'.$row['apt'].'</a></td>
+                                                    <td>'.$row['unit'].'</td>
+                                                    <td>'.$row['price'].'</td>
+                                                    <td>'.$row['message'].'</td>
+                                                    <td><button class="btn btn-primary btn-block btn-xs" onclick="location.href=\'show_comment.php?id='.$row['id'].'&email='.$email.'&apt='.$row['apt'].'&unit='.$row['unit'].'&username='.urlencode($user_name).'&from_user=1\'">Show</button></td>
                                                     <td align="center">'.$row['date'].'</td>
                                                 </tr>
                                             ';
@@ -117,7 +117,7 @@
                                     ?>
                                 </form>
                                 <div class="row">
-                                    <div class="col-sm-offset-5 col-sm-2 text-center">
+                                    <div class="col-sm-offset-4 col-sm-4 text-center">
                                         <div class="text-center btn-group">
                                             <button class="btn btn-primary" type="button" onclick="location.href='user_history.php'">Show All History</button>
                                             <button class="btn btn-primary" type="button" onclick="location.href='invoice_detail.php'">Back</button>

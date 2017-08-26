@@ -61,15 +61,15 @@
                                                 <col width="10%">
                                                 <col width="75%">
                                             </colgroup>
-                                            <thead>
+                                            <thead align="center">
                                                 <tr>
-                                                    <td align="center"><b>#</b></td>
-                                                    <td align="center"><b>Quantity</b></td>
-                                                    <td align="center"><b>Price</b></td>
-                                                    <td align="center"><b>Description</b></td>
+                                                    <td><b>#</b></td>
+                                                    <td><b>Quantity</b></td>
+                                                    <td><b>Price</b></td>
+                                                    <td><b>Description</b></td>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody align="center">
                                     ';
                                     
                                     $sql = "SELECT * FROM worksheet_description WHERE invoice='$invoice'";
@@ -89,17 +89,17 @@
 
                                         if ($isOdd) {
                                             $isOdd = false;
-                                            echo '<tr class="odd gradeX" align="center">';
+                                            echo '<tr class="odd gradeX">';
                                         } else {
                                             $isOdd = true;
-                                            echo '<tr class="even gradeX" align="center">';
+                                            echo '<tr class="even gradeX">';
                                         }
                                         
                                         echo '
                                                 <td align="center">'.$i.'</td>
                                                 <td align="center">'.$quantity.'</td>
                                                 <td align="center">'.number_format($row['price']).'</td>
-                                                <td align="left"><div class="lineBreak_desc">'.$row['description'].'</div></td>
+                                                <td align="left"><div class="lineBreak_worksheet_description">'.$row['description'].'</div></td>
                                             </tr>
                                         ';
                 
@@ -168,42 +168,5 @@
                 });
             });
         </script>
-
-    </body>
-
-</html>
-
-
-
-
-
-
-
-
-
-
-<?php session_start(); ?>
-<!DOCTYPE html>
-<html lang="en">
-    <!-- Header Tag -->
-    <?php include('./includes/head_tag.html'); ?>
-    <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
-
-        <!-- Header -->
-        <?php include('./includes/nav_bar.php'); ?>
-
-        <!-- Body -->
-        <div class="primary" align="center">
-            <h3 class="text-center">Description</h3>
-                    
-
-        </div>
-        <br><br><br><br><br>
-
-        <!-- Footer -->
-        <?php include('./includes/footer.html'); ?>
-
-        <!-- Functions -->
-        <?php include('./includes/functions.html'); ?>
     </body>
 </html>

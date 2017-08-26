@@ -39,28 +39,28 @@
                                         <br>
                                         <div align="center"><b>Manager : '.$manager.'</b></div>
                                         <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                            <thead>
+                                            <thead align="center">
                                                 <tr>
-                                                    <td align="center"><b>Invoice #</b></td>
-                                                    <td align="center"><b>P.O.</b></td>
-                                                    <td align="center"><b>Company</b></td>
-                                                    <td align="center"><b>Apt</b></td>
-                                                    <td align="center"><b>Unit #</b></td>
-                                                    <td align="center"><b>Size</b></td>
-                                                    <td align="center"><b>Price</b></td>
+                                                    <td><b>Invoice #</b></td>
+                                                    <td><b>P.O.</b></td>
+                                                    <td><b>Company</b></td>
+                                                    <td><b>Apt</b></td>
+                                                    <td><b>Unit #</b></td>
+                                                    <td><b>Size</b></td>
+                                                    <td><b>Price</b></td>
                                     ';
                                     if ($_SESSION['isadmin'] == 2) {
                                         echo '
-                                            <td align="center"><b>Salary</b></td>
-                                            <td align="center"><b>Profit</b></td>
+                                            <td><b>Salary</b></td>
+                                            <td><b>Profit</b></td>
                                         ';
                                     }
                                     echo '
-                                                <td align="center"><b>Description</b></td>
-                                                <td align="center"><b>Date</b></td>
+                                                <td><b>Description</b></td>
+                                                <td><b>Date</b></td>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody align="center">
                                     ';
 
                                     $sql = "SELECT * FROM Worksheet WHERE manager=\"".$manager."\" ";
@@ -88,31 +88,31 @@
                                         if (isset($isOdd)) {
                                             if ($isOdd) {
                                                 $isOdd = false;
-                                                echo '<tr class="odd gradeX" align="center">';
+                                                echo '<tr class="odd gradeX">';
                                             } else {
                                                 $isOdd = true;
-                                                echo '<tr class="even gradeX" align="center">';
+                                                echo '<tr class="even gradeX">';
                                             }
                                         }
 
                                         echo '
-                                                    <td align="center"><a href="invoice_detail.php?invoice_num='.$temp_invoice.'">'.$temp_invoice.'</a></td>
-                                                    <td align="center">'.$row['PO'].'</td>
-                                                    <td align="center"><a href="worksheet_company.php?company='.$row['company'].'">'.$row['company'].'</a></td>
-                                                    <td align="center"><a href="worksheet_apt.php?apt='.$row['apt'].'&company='.$row['company'].'">'.$row['apt'].'</a></td>
-                                                    <td align="center">'.$row['unit'].'</td>
-                                                    <td align="center">'.$row['size'].'</td>
-                                                    <td align="center">'.$row['price'].'</td>
+                                            <td><a href="invoice_detail.php?invoice_num='.$temp_invoice.'">'.$temp_invoice.'</a></td>
+                                            <td>'.$row['PO'].'</td>
+                                            <td><a href="worksheet_company.php?company='.$row['company'].'">'.$row['company'].'</a></td>
+                                            <td><a href="worksheet_apt.php?apt='.$row['apt'].'&company='.$row['company'].'">'.$row['apt'].'</a></td>
+                                            <td>'.$row['unit'].'</td>
+                                            <td>'.$row['size'].'</td>
+                                            <td>'.$row['price'].'</td>
                                         ';
                                         if ($_SESSION['isadmin'] == 2) {
                                             echo '
-                                                <td align="center">'.$row['salary'].'</td>
-                                                <td align="center">'.$row['profit'].'</td>
+                                                <td>'.$row['salary'].'</td>
+                                                <td>'.$row['profit'].'</td>
                                             ';
                                         }
                                         echo '
-                                                <td align="center"><a class="lineBreak" href="worksheet_description.php?invoice='.$temp_invoice.'&apt='.$row['apt'].'&unit='.$row['unit'].'&size='.$row['size'].'&from_manager=1">'.$row['description'].'</a></td>
-                                                <td align="center">'.$row['date'].'</td>
+                                                <td><a href="worksheet_description.php?invoice='.$temp_invoice.'&apt='.$row['apt'].'&unit='.$row['unit'].'&size='.$row['size'].'&from_manager=1"><div class="lineBreak_desc_admin">'.$row['description'].'</div></a></td>
+                                                <td>'.substr($row['date'], 0, 11).'</td>
                                             </tr>
                                         ';
                                     }

@@ -13,7 +13,7 @@
     }
     div.lineBreak_desc_admin {
         display: inline-block !important; 
-        width: 300px !important; 
+        width: 100% !important; 
         white-space: nowrap !important; 
 
         white-space: normal !important; 
@@ -36,6 +36,18 @@
         -webkit-box-orient: vertical !important;
     }
     div.lineBreak_desc {
+        display: inline-block !important; 
+        width: 500px !important; 
+        white-space: nowrap !important; 
+
+        white-space: normal !important; 
+        line-height: 1.2 !important;
+        word-wrap: break-word !important; 
+        display: -webkit-box !important; 
+        -webkit-line-clamp: 20 !important; 
+        -webkit-box-orient: vertical !important;
+    }
+    div.lineBreak_worksheet_description {
         display: inline-block !important; 
         width: 500px !important; 
         white-space: nowrap !important; 
@@ -72,5 +84,19 @@
         display: -webkit-box; 
         -webkit-line-clamp: 20; 
         -webkit-box-orient: vertical;
+    }
+    @media screen and (max-width: 450px) {
+        div.lineBreak_worksheet_description {
+            display: inline-block !important; 
+            width: 200px !important; 
+            white-space: nowrap !important; 
+
+            white-space: normal !important; 
+            line-height: 1.2 !important;
+            word-wrap: break-word !important; 
+            display: -webkit-box !important; 
+            -webkit-line-clamp: 20 !important; 
+            -webkit-box-orient: vertical !important;
+        }
     }
 </style>

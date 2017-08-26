@@ -80,16 +80,15 @@
                                                     <col width="10%">
                                                     <col width="10%">
                                                 </colgroup>
-                                                <thead>
+                                                <thead align="center">
                                                     <tr>
-                                                        <th><b>#</b></th>
-                                                        <th><b>Paid Off</b></th>
-                                                        <th><b>Comment</b></th>
-                                                        <th><b>Salary</b></th>
-                                                        <th><b>Paid</b></th>
-                                                        <th><b>Date</b></th>
-                                                        <th><b>Edit</b></th>
-                                                        <th><b>Pay</b></th>
+                                                        <td><b>#</b></td>
+                                                        <td><b>Paid Off</b></td>
+                                                        <td><b>Comment</b></td>
+                                                        <td><b>Salary</b></td>
+                                                        <td><b>Paid</b></td>
+                                                        <td><b>Date</b></td>
+                                                        <td></td>
                                                     </tr>
                                                 </thead>
                                         ';
@@ -101,11 +100,11 @@
                                                     <col width="70%">
                                                     <col width="20%">
                                                 </colgroup>
-                                                <thead>
+                                                <thead align="center">
                                                     <tr>
-                                                        <th><b>#</b></th>
-                                                        <th><b>Comment</b></th>
-                                                        <th><b>Date</b></th>
+                                                        <td><b>#</b></td>
+                                                        <td><b>Comment</b></td>
+                                                        <td><b>Date</b></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -140,11 +139,17 @@
                                                 <td>'.number_format($row['salary']).'</td>
                                                 <td>'.number_format($row['paid']).'</td>
                                                 <td>'.substr($row['date'], 0, 11).'</td>
-                                                <td><button onclick="location.href=\'pedit.php?id='.$row['id'].' &comment='.urlencode($row['comment']).'&username='.$username.'\'">Edit</button></td>
-                                            ';
-                                            
-                                            echo '
-                                                    <td><button onclick="location.href=\'pay.php?id='.$row['id'].'&salary='.number_format($row['salary']).' &comment='.urlencode($row['comment']).'&username='.urlencode($username).'&paid='.number_format($row['paid']).'\'">Pay</button></td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">
+                                                        <span class="caret"></span>
+                                                        </button>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <li><a onclick="location.href=\'pedit.php?id='.$row['id'].' &comment='.urlencode($row['comment']).'&username='.$username.'\'">Edit</a></li>
+                                                            <li><a onclick="location.href=\'pay.php?id='.$row['id'].'&salary='.number_format($row['salary']).' &comment='.urlencode($row['comment']).'&username='.urlencode($username).'&paid='.number_format($row['paid']).'\'">Pay</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
                                                 </tr>
                                             ';
                                         } else {

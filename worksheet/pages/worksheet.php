@@ -53,18 +53,18 @@
                                             echo '
                                                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                     <thead>
-                                                        <tr>
-                                                            <th>Status</th>
-                                                            <th>Invoice #</th>
-                                                            <th>Apt</th>
-                                                            <th>Unit #</th>
-                                                            <th>Description</th>
-                                                            <th>Date</th>
-                                                            <th>P.O.</th>
-                                                            <th>Company</th>
-                                                            <th>Manager</th>
-                                                            <th>Price</th>
-                                                            <th></th>
+                                                        <tr align="center">
+                                                            <td><b>Status</b></td>
+                                                            <td><b>Invoice #</b></td>
+                                                            <td><b>Apt</b></td>
+                                                            <td><b>Unit #</b></td>
+                                                            <td><b>Description</b></td>
+                                                            <td><b>Date</b></td>
+                                                            <td><b>P.O.</b></td>
+                                                            <td><b>Company</b></td>
+                                                            <td><b>Manager</b></td>
+                                                            <td><b>Price</b></td>
+                                                            <td><b></td>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -108,7 +108,7 @@
                                                         <td><a href="invoice_detail.php?invoice_num='.$temp_invoice.'">'.$temp_invoice.'</a></td>
                                                         <td><a href="worksheet_apt.php?apt='.$row['apt'].'&company='.$row['company'].'">'.$row['apt'].'</a></td>
                                                         <td>'.$row['unit'].'</td>
-                                                        <td><a class="lineBreak" href="worksheet_description.php?invoice='.$temp_invoice.'&apt='.$row['apt'].'&unit='.$row['unit'].'&size='.$row['size'].'"><div class="lineBreak_desc_admin">'.$row['description'].'</div></a></td>
+                                                        <td><a href="worksheet_description.php?invoice='.$temp_invoice.'&apt='.$row['apt'].'&unit='.$row['unit'].'&size='.$row['size'].'"><div class="lineBreak_desc_admin">'.$row['description'].'</div></a></td>
                                                         <td>'.substr($row['date'], 0, 11).'</td>
                                                         <td>'.$row['PO'].'</td>
                                                         <td><a href="worksheet_company.php?company='.$row['company'].'">'.$row['company'].'</a></td>
@@ -120,7 +120,7 @@
                                                                 <span class="caret"></span>
                                                                 </button>
                                                                 <ul class="dropdown-menu" role="menu">
-                                                                    <li><a onclick="location.href=\'assign.php?invoice_num='.$temp_invoice.' &apt='.$temp_apt.' &unit_num='.$temp_unit.'\'">Send</a></li>
+                                                                    <li><a onclick="location.href=\'assign.php?invoice_num='.$temp_invoice.' &apt='.$row['apt'].' &unit_num='.$row['unit'].'\'">Send</a></li>
                                                                     <li><a onclick="location.href=\'edit_admin.php?invoice_num='.$temp_invoice.'\'">Edit</a></li>
                                                                 </ul>
                                                             </div>
@@ -134,7 +134,7 @@
                                             echo '
                                                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                     <thead>
-                                                        <tr>
+                                                        <tr align="center">
                                                             <th>Status</th>
                                                             <th>Apt</th>
                                                             <th>Unit #</th>
