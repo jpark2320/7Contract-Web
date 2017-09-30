@@ -44,6 +44,7 @@
 		for ($i = 0; $i < count($arr); $i++) {
 			// $s = str_replace("\"", "'", $arr[$i][0]);
 			$desc = str_replace("\"", "'", $arr[$i][0]);
+			// $arr[$i][0] = substr($arr[$i][0], 28, -6);
 			if (!empty($arr[$i][1])) {
 				$qty = $arr[$i][1];
 			} else {
@@ -121,7 +122,7 @@
 				$this->MultiCell(104, 6, " ".$arr[$i][0],0,'L', false);
  				$this->SetXY($x + 104, $y);
  				$this->Cell(17, 6, $arr[$i][1], 0, 0, 'C');
- 				$this->Cell(35, 6, '$ '.number_format($arr[$i][2]), 0, 0, 'C');
+ 				$this->Cell(35, 6, '$ '.$arr[$i][2], 0, 0, 'C');
 				$this->total = $arr[$i][2];
 				$this->SetXY($x, $y + 6);
 			}

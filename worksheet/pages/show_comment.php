@@ -47,8 +47,8 @@
                                     echo '
                                         <table width="100%" class="table table-striped table-bordered table-hover">
                                             <colgroup>
-                                                <col width="50%">
-                                                <col width="50%">
+                                                <col width="30%">
+                                                <col width="70%">
                                             </colgroup>
                                     ';
                                     if ($_SESSION['isadmin'] > 0) {
@@ -105,7 +105,7 @@
                                     } else {
                                         echo '
                                             <colgroup>
-                                                <col width="50%">
+                                                <col width="5%">
                                                 <col width="85%">
                                                 <col width="10%">
                                             </colgroup>

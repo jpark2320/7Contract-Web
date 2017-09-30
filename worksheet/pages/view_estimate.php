@@ -40,16 +40,20 @@
                                             <colgroup>
                                                 <col width="5%">
                                                 <col width="10%">
+                                                <col width="10%">
+                                                <col width="7%">
                                                 <col width="5%">
                                                 <col width="5%">
                                                 <col width="10%">
-                                                <col width="55%">
+                                                <col width="38%">
                                                 <col width="10%">
                                             </colgroup>
                                             <thead>
                                                 <tr align="center">
                                                     <td><b>ID</b></td>
+                                                    <td><b>Company</b></td>
                                                     <td><b>Apt</b></td>
+                                                    <td><b>P.O</b></td>
                                                     <td><b>Unit</b></td>
                                                     <td><b>Size</b></td>
                                                     <td><b>Price</b></td>
@@ -77,7 +81,9 @@
 
                                         echo '
                                             <td>'.$row['id'].'</td>
+                                            <td>'.$row['company'].'</td>
                                             <td><a href="worksheet_apt.php?apt='.$row['apt'].'">'.$row['apt'].'</a></td>
+                                            <td>'.$row['PO'].'</td>
                                             <td>'.$row['unit'].'</td>
                                             <td>'.$row['size'].'</td>
                                             <td>'.number_format($price).'</td>

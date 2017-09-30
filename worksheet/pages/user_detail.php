@@ -87,7 +87,7 @@
                                             ON A.email=B.email";
                                         $result = mysqli_query($conn, $sql);
 
-                                        $idOdd = false;
+                                        $isOdd = false;
                                         while($row = mysqli_fetch_array($result)) {
 
                                             if ($isOdd) {
@@ -111,8 +111,8 @@
                                                 echo '<td><img src="./img/status_light_red" width="15px"><span hidden>1</span></td>';
                                             }
                                             echo '
-                                                    <td><a href="invoice_detail?invoice_num='.$invoice.'">'.$invoice.'</a></td>
-                                                    <td><a href="invoice_detail?invoice_num='.$row['apt'].'">'.$row['apt'].'</a></td>
+                                                    <td><a href="invoice_detail.php?invoice_num='.$invoice.'">'.$invoice.'</a></td>
+                                                    <td><a href="worksheet_apt.php?apt='.$row['apt'].'&invoice='.$row['invoice'].'">'.$row['apt'].'</a></td>
                                                     <td>'.$row['unit'].'</td>
                                                     <td>'.$row['price'].'</td>
                                                     <td align="left"><div class="lineBreak">'.$row['message'].'</div></td>

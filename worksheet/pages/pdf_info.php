@@ -155,12 +155,16 @@
                                     if (isset($_POST['qty'])) {
                                         if ($_POST['qty'] !== null) {
                                             $_SESSION['qty_pdf'] = $_POST['qty'];
+                                            if (empty($_SESSION['qty_pdf']))
+                                                $_SESSION['qty_pdf'] = 0;
                                             $_SESSION['pdf_arr'][$_SESSION['i_pdf']][1] = $_SESSION['qty_pdf'];
                                         }
                                     }
                                     if (isset($_POST['price'])) {
                                         if ($_POST['price'] !== null) {
                                             $_SESSION['price_pdf'] = $_POST['price'];
+                                            if (empty($_SESSION['price_pdf']))
+                                                $_SESSION['price_pdf'] = 0;
                                             $_SESSION['pdf_arr'][$_SESSION['i_pdf']][2] = $_SESSION['price_pdf'];
                                         }
                                     }

@@ -56,7 +56,7 @@
                                                 <tbody>
                                         ';
                                         
-                                        $idOdd = false;
+                                        $isOdd = false;
                                         while($row = mysqli_fetch_array($result)) {
 
                                             if ($isOdd) {
@@ -66,7 +66,7 @@
                                                 $isOdd = true;
                                                 echo '<tr class="even gradeX" align="center">';
                                             }
-
+                                            
                                             echo '
                                                     <td><input type="checkbox" name="workersArray[]" value="'.$row['email'].'"></td>
                                                     <td>'.$row['first'].' '.$row['last'].'</td>

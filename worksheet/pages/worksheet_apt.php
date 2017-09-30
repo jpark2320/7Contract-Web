@@ -37,7 +37,14 @@
                                     }
                                     if (isset($_GET['company'])) {
                                         $company = $_GET['company'];
-                                    } else {
+                                    } else if (isset($_GET['invoice'])) {
+                                        $inv = $_GET['invoice'];
+                                        $sql = "SELECT * FROM Worksheet WHERE invoice = '$inv'";
+                                        $result = mysqli_query($conn, $sql);
+                                        $row = mysqli_fetch_array($result);
+                                        $company = $row['company'];
+                                    }
+                                    else{
                                         $company = $_SESSION['company'];
                                     }
 

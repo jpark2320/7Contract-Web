@@ -2,11 +2,12 @@
 	session_start();
 	date_default_timezone_set('EST');
 	require('./FPDF/fpdf.php');
-	if ($_POST['sub']) {
-		$ids = $_POST['check'];
+	if (isset($_POST['submit'])) {
 		if (!isset($_POST['check'])) {
 			echo '<script>alert("You must select at least one checkbox to issue an invoice.")</script>';
-			echo '<script>window.location.href = "worksheet_apt.php";</script>';
+			echo '<script>window.location.href = "user_history.php";</script>';
+		} else {
+			$ids = $_POST['check'];
 		}
 
 		$i = 0;
@@ -30,9 +31,10 @@
     		$arr[$i][1] = $row['unit'];
 			$i++;
 		}
+		$conn->close();
  	}
  	$username = $_SESSION['user_name'];
-	mysqli_close($conn);
+
 
 	class PDF extends FPDF
 	{

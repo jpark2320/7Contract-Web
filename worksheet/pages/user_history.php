@@ -1,4 +1,5 @@
-<?php if (!isset($_SESSION)) session_start(); ?>
+<?php if (!isset($_SESSION)) session_start();
+sleep(10); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -128,7 +129,7 @@
                                 <div class="row">
                                     <div class="col-sm-offset-5 col-sm-2 text-center">
                                         <div class="text-center btn-group">
-                                            <button class="btn btn-primary" type="submit" name="sub">Make PDF</button>
+                                            <button class="btn btn-primary" type="submit" name="submit">Make PDF</button>
                                             <button class="btn btn-primary" type="button" onclick="location.href='invoice_detail.php'">Back</button>
                                         </div>  
                                     </div>

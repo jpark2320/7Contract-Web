@@ -242,11 +242,12 @@
                             <a href="worksheet.php"><i class="fa fa-table fa-fw"></i> Worksheet</a>
                         </li>
                         <?php
+                            if (isset($_SESSION['isadmin']))
                             if ($_SESSION['isadmin'] > 0) {
                                 if ($_SESSION['isadmin'] == 2) {
                                     echo '
                                         <li>
-                                            <a href="price_detail.php"><i class="fa fa-table fa-fw"></i> Price Detail</a>
+                                            <a href="price_detail.php"><i class="fa fa-table fa-fw"></i> Payment Record</a>
                                         </li>
                                     ';        
                                 }

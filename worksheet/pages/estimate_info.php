@@ -31,6 +31,7 @@
                                             <tr align="center">
                                                 <td><b>Company</b></td>
                                                 <td><b>Apt</b></td>
+                                                <td><b>P.O</b></td>
                                                 <td><b>Unit</b></td>
                                                 <td><b>Size</b></td>
                                                 <td><b>Date</b></td>
@@ -38,8 +39,9 @@
                                         </thead>
                                         <tbody>
                                             <tr align="center">
-                                                <td><input class="form-control" type="text" name="company" id="company" size="20"></td>
-                                                <td><input class="form-control" type="text" name="apt" id="apt" size="20"></td>
+                                                <td><input class="form-control" type="text" name="company" id="company" size="15"></td>
+                                                <td><input class="form-control" type="text" name="apt" id="apt" size="15"></td>
+                                                <td><input class="form-control" type="text" name="po" id="po" size="15"></td>
                                                 <td><input class="form-control" type="text" name="unit" id="unit" size="10"></td>
                                                 <td><input class="form-control" type="text" name="size" id="size" size="10"></td>
                                                 <td><input class="form-control" type="date" name="date" id="theDate" size="8"></td>
@@ -67,7 +69,7 @@
                                                 <td><input class="form-control" type="text" name="description" id="new_description"></td>
                                                 <td><input class="form-control" type="text" name="qty" id="new_quantity"></td>
                                                 <td><input class="form-control" type="text" name="price" id="new_price"></td>
-                                                <td colspan="2"><input class="btn btn-primary btn-block" type="button" class="add" onclick="add_row()" value="Add"></td>
+                                                <td colspan="2"><input id="estimate_addBtn" class="btn btn-primary btn-block" type="button" class="add" onclick="add_row()" value="Add"></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -118,6 +120,15 @@
             $(document).ready(function() {
                 $('#dataTables-example').DataTable({
                     responsive: true
+                });
+            });
+
+            $(document).ready(function(){
+                $('#new_price, #new_description, #new_quantity').keypress(function(e){
+                    if(e.keyCode == 13) {
+                        $('#new_description').focus();
+                        $('#estimate_addBtn').click();
+                    }
                 });
             });
         </script>

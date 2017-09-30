@@ -5,7 +5,7 @@
         session_start();
 
     if (isset($_GET['invoice_num'])) {
-        $invoice = $_GET['invoice_num'];
+        $invoice = str_replace("7C", "", $_GET['invoice_num']);
     }
     if (isset($_GET['email_user'])) {
         $email = $_GET['email_user'];
