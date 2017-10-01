@@ -128,7 +128,7 @@
                                                         <td><a href="worksheet_company.php?company='.$row['company'].'">'.$row['company'].'</a></td>
                                                         <td><a href="worksheet_manager.php?manager='.$row['manager'].'">'.$row['manager'].'</a></td>
                                                         <td>'.$row['size'].'</td>
-                                                        <td>'.number_format($row['price']).'</td>
+                                                        <td>'.number_format($row['price'], 2).'</td>
                                                         <td>
                                                             <div class="btn-group">
                                                                 <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">

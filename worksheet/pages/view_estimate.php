@@ -63,7 +63,7 @@
                                     if ($_SESSION['isadmin'] == 2) echo '<td></td>';
                                     echo '</tr></thead><tbody>';
                                     
-                                    $sql = "SELECT * FROM estimate ";
+                                    $sql = "SELECT * FROM estimate";
 
                                     $result = mysqli_query($conn, $sql);
                                     $isOdd = false;
@@ -86,8 +86,8 @@
                                             <td>'.$row['PO'].'</td>
                                             <td>'.$row['unit'].'</td>
                                             <td>'.$row['size'].'</td>
-                                            <td>'.number_format($price).'</td>
-                                            <td align="left"><div class="lineBreak"><a href="estimate_description.php?id='.$row['id'].'&company='.$row['company'].'&apt='.$row['apt'].'&unit='.$row['unit'].'&size='.$row['size'].'">'.$row['description'].'</a></div></td>
+                                            <td>'.number_format($price, 2).'</td>
+                                            <td align="left"><div class="lineBreak"><a href="estimate_description.php?id='.$row['id'].'&company='.$row['company'].'&apt='.$row['apt'].'&unit='.$row['unit'].'&size='.$row['size'].'&po='.$row['PO'].'">'.$row['description'].'</a></div></td>
                                             <td>'.substr($row['date'], 0, 10).'</td>
                                         ';
                                         if ($_SESSION['isadmin'] == 2) {
@@ -98,7 +98,7 @@
                                                         <span class="caret"></span>
                                                         </button>
                                                         <ul class="dropdown-menu" role="menu">
-                                                            <li><a onclick="location.href=\'toWorksheet.php?id='.$row['id'].'&company='.$row['company'].'&apt='.$row['apt'].'&unit='.$row['unit'].'&size='.$row['size'].'&price='.$price.'&description='.$row['description'].'\'">Convert</a></li>
+                                                            <li><a onclick="location.href=\'toWorksheet.php?id='.$row['id'].'&company='.$row['company'].'&apt='.$row['apt'].'&unit='.$row['unit'].'&size='.$row['size'].'&price='.$price.'&description='.$row['description'].'&po='.$row['PO'].'\'">Convert</a></li>
                                                             <li><a onclick="location.href=\'estimate_edit.php?id='.$row['id'].'\'">Edit</a></li>
                                                             <li><a onclick="deleteBtn('.$row['id'].')">Remove</a></li>
                                                         </ul>

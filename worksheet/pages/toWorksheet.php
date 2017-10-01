@@ -9,8 +9,9 @@
     $unit = $_GET['unit'];
     $size = $_GET['size'];
     $price = $_GET['price'];
+    $po = $_GET['po'];
     $description = $_GET['description'];
-    $sql = "INSERT INTO worksheet VALUES (null, '', '$company', '$apt', null, '$unit', '$size', $price, 0, 0, 0, '$description', NOW(), 0, 0)";
+    $sql = "INSERT INTO worksheet VALUES (null, '$po', '$company', '$apt', null, '$unit', '$size', $price, 0, 0, 0, '$description', NOW(), 0, 0)";
     $conn->query($sql);
 
     $sql = "SELECT MAX(invoice) FROM worksheet";

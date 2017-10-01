@@ -36,6 +36,7 @@
                                         $_SESSION['size'] = $row['size'];
                                         $_SESSION['unit'] = $row['unit'];
                                         $_SESSION['price'] = $row['price'];
+                                        $_SESSION['po'] = $row['PO'];
                                         $sql = "SELECT * FROM estimate_description WHERE estimate_id ='$id';";
                                         $result = $conn->query($sql);
                                         if ($result->num_rows > 0) {
@@ -154,6 +155,10 @@
                                             <td align="left"><input type="text" class="form-control" name="unit" value="<?php echo isset($_SESSION['unit']) ? $_SESSION['unit'] : '' ?>"></td>
                                         </tr>
                                         <tr>
+                                            <td align="right"><b><h5>P.O</h5></b></td>
+                                            <td align="left"><input type="text" class="form-control" name="po" value="<?php echo isset($_SESSION['po']) ? $_SESSION['po'] : '' ?>"></td>
+                                        </tr>
+                                        <tr>
                                             <td align="right"><b><h5>Size</h5></b></td>
                                             <td align="left"><input type="text" class="form-control" name="size" value="<?php echo isset($_SESSION['size']) ? $_SESSION['size'] : '' ?>"></td>
                                         </tr>
@@ -161,7 +166,7 @@
                                     <div class="row">
                                         <div class="col-sm-offset-5 col-sm-2 text-center">
                                             <div class="text-center btn-group">
-                                                <button class="btn btn-primary" type="submit">Edit</button>
+                                                <button class="btn btn-primary" type="submit">Save</button>
                                                 <button class="btn btn-primary" type="button" onclick="location.href='view_estimate.php'">Back</button>
                                             </div>  
                                         </div>

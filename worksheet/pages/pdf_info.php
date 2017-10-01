@@ -52,6 +52,7 @@
                             <div class="panel-body">
                                 <?php
                                     echo '
+                                    <form name="info" action="#">
                                         <table width="100%" class="table table-striped table-bordered table-hover">
                                             <colgroup>
                                                 <col width="25%">
@@ -64,33 +65,31 @@
                                                     <td align="right"><label><b>Invoice # : </label></b></td>
                                                     <td align="left">'.'7C'.$_SESSION['invoice'].'</td>
                                                     <td align="right"><label><b>Apt : </label></b></td>
-                                                    <td>'.$apt.'</td>
+                                                    <td><input class="form-control" type="text" name="apt" id="apt" size="15" value="'.$apt.'" readonly></td>
                                                 </tr>
                                                 <tr>
                                                     <td align="right"><b><label>P.O. : </label></b></td>
-                                                    <td align="left">'.$po.'</td>
+                                                    <td align="left"><input class="form-control" type="text" name="po" id="po" size="15" value="'.$po.'" readonly></td>
                                                     <td align="right"><b><label>Unit # : </label></b></td>
-                                                    <td align="left">'.$unit.'</td>
+                                                    <td align="left"><input class="form-control" type="text" name="unit" id="unit" size="15" value="'.$unit.'" readonly></td>
                                                 </tr>
                                                 <tr>
                                                     <td align="right"><b><label>Company : </label></b></td>
-                                                    <td align="left">'.$company.'</td>
+                                                    <td align="left"><input class="form-control" type="text" name="company" id="company" size="15"value="'.$company.'" readonly></td>
                                                     <td align="right"><b><label>Size : </label></b></td>
-                                                    <td align="left">'.$size.'</td>
+                                                    <td align="left"><input class="form-control" type="text" name="size" id="size" size="15" value="'.$size.'" readonly></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="right"><b><label>Date : </label></b></td>
+                                                    <td align="left"><input class="form-control" type="date" name="date" id="theDate" size="8"></td>
+                                                    <td align="right"><b></b></td>
+                                                    <td align="left"></td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                         <br>
                                     ';
-                                    if (isset($_GET['desc_edited_pdf'])) {
-                                        $_SESSION['pdf_arr'][$_GET['index_edited_pdf']][0] = $_GET['desc_edited_pdf'];
-                                    }
-                                    if (isset($_GET['qty_edited_pdf'])) {
-                                        $_SESSION['pdf_arr'][$_GET['index_edited_pdf']][1] = $_GET['qty_edited_pdf'];
-                                    }
-                                    if (isset($_GET['price_edited_pdf'])) {
-                                        $_SESSION['pdf_arr'][$_GET['index_edited_pdf']][2] = $_GET['price_edited_pdf'];
-                                    }
+
                                     $sql = "SELECT * FROM user_comment WHERE invoice=".$_SESSION['invoice'];
                                     $result = mysqli_query($conn, $sql);
                                     $isOdd = false;
@@ -146,112 +145,45 @@
                                     }
                                     echo '</tbody></table>';
 
-                                    if (isset($_POST['description'])) {
-                                        if ($_POST['description'] !== null) {
-                                            $_SESSION['description_pdf'] = $_POST['description'];
-                                            $_SESSION['pdf_arr'][$_SESSION['i_pdf']][0] = $_SESSION['description_pdf'];
-                                        }
-                                    }
-                                    if (isset($_POST['qty'])) {
-                                        if ($_POST['qty'] !== null) {
-                                            $_SESSION['qty_pdf'] = $_POST['qty'];
-                                            if (empty($_SESSION['qty_pdf']))
-                                                $_SESSION['qty_pdf'] = 0;
-                                            $_SESSION['pdf_arr'][$_SESSION['i_pdf']][1] = $_SESSION['qty_pdf'];
-                                        }
-                                    }
-                                    if (isset($_POST['price'])) {
-                                        if ($_POST['price'] !== null) {
-                                            $_SESSION['price_pdf'] = $_POST['price'];
-                                            if (empty($_SESSION['price_pdf']))
-                                                $_SESSION['price_pdf'] = 0;
-                                            $_SESSION['pdf_arr'][$_SESSION['i_pdf']][2] = $_SESSION['price_pdf'];
-                                        }
-                                    }
-                                    if (isset($_POST['submit'])) {
-                                        $_SESSION['i_pdf']++;
-                                    }
 
                                     echo '
-                                        <form action="pdf_info.php" method="post">
-                                            <table width="100%" class="table table-striped table-bordered table-hover">
-                                                <colgroup>
-                                                    <col width="70%">
-                                                    <col width="10%">
-                                                    <col width="10%">
-                                                    <col width="5%">
-                                                    <col width="5%">
-                                                </colgroup>
-                                                <thead>
-                                                    <tr>
-                                                        <td align="center"><b>Description</b></td>
-                                                        <td align="center"><b>Qty</b></td>
-                                                        <td align="center"><b>Price</b></td>
-                                                        <td colspan="2"></td>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="pdf_table">
-                                                    <tr>
-                                                        <td><input class="form-control" type="text" name="description" required></td>
-                                                        <td><input class="form-control" type="text" name="qty"></td>
-                                                        <td><input class="form-control" type="text" name="price"></td>
-                                                        <td colspan="2" align="center"><button class="btn btn-primary btn-block" type="submit" name="submit">Add</button></td>
-                                                    </tr>
-                                    ';
-                                    if (isset($_SESSION['pdf_arr'])) {
-                                        for ($i = 0; $i < sizeof($_SESSION['pdf_arr']); $i++) {
-                                            if ($_SESSION['pdf_arr'][$i][0] !== null) {
-                                                echo '<tr bgcolor="#c4daff"><td><div class="lineBreak_desc">'.$_SESSION['pdf_arr'][$i][0].'</div></td>';
-                                            }
-                                            if ($_SESSION['pdf_arr'][$i][1] !== null) {
-                                                echo '<td>'.$_SESSION['pdf_arr'][$i][1].'</td>';
-                                            }
-                                            if ($_SESSION['pdf_arr'][$i][2] !== null) {
-                                                echo '<td align="center">'.number_format($_SESSION['pdf_arr'][$i][2]).'</td>';
-                                            }
-                                            if ($_SESSION['pdf_arr'][$i][0] !== null) {
-                                                echo '<td align="center"><button onclick="location.href=\'edit_pdf.php?description='.$_SESSION['pdf_arr'][$i][0].' &qty='.$_SESSION['pdf_arr'][$i][1].' &price='.$_SESSION['pdf_arr'][$i][2].' &index='.$i.'\'">Edit</button></td>';
-                                            }
-                                            if ($_SESSION['pdf_arr'][$i][0] !== null) {
-                                                echo '<td align="center"><button onclick="location.href=\'edit_pdf.php?index_deleted='.$i.'\'">Delete</button></td></tr>';
-                                            }
-                                        }
-                                    }
-
-                                    echo '
-                                                </tbody>
-                                            </table>
-                                            <br>
-                                        </form>
-                                        <form action="create_pdf.php" method="post">
-                                            <table width="100%" class="table table-striped table-bordered table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <td align="center"><b>Date</b></td>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr align="center">
-                                                        <td><input class="form-control" type="date" name="date" id="theDate" value="" size="8"></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                       <table width="100%" id="data_table" class="table table-bordered table-hover table-striped table-condensed">
+                                        <thead>
+                                            <colgroup>
+                                                <col width="60%">
+                                                <col width="15%">
+                                                <col width="15%">
+                                                <col width="10%">
+                                            </colgroup>
+                                            <tr align="center">
+                                                <td><b>Description</b></td>
+                                                <td><b>Qty</b></td>
+                                                <td><b>Price</b></td>
+                                                <td colspan="2"></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="pdf_table">
+                                            <tr>
+                                                <td><input class="form-control" type="text" name="description" id="new_description"></td>
+                                                <td><input class="form-control" type="text" name="qty" id="new_quantity"></td>
+                                                <td><input class="form-control" type="text" name="price" id="new_price"></td>
+                                                <td colspan="2"><input id="estimate_addBtn" class="btn btn-primary btn-block" type="button" class="add" onclick="add_row()" value="Add"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                             
                                     ';
                                 ?>
                                 <div class="row">
-                                    <div class="col-sm-offset-5 col-sm-10 text-center">
-                                        <div class="text-center btn-group">
-                                            <?php if(isset($_SESSION['pdf_arr'])): ?>
-                                                <button class="btn btn-primary" type="submit" formtarget="_blank">Create Invoice PDF</button>
-                                            <?php else: ?>
-                                                <button class="btn btn-primary" type="button" onclick="alert('You need to add more than 1 description');" formtarget="_blank">Create Invoice PDF</button>
-                                            <?php endif; ?>
-                                            <button class="btn btn-primary" type="button" onclick="location.href='save_progress.php'">Save Progress</button>
-                                            <button class="btn btn-primary" type="button" onclick="location.href='invoice_detail.php'">Back</button>
-                                        </div>  
+                                        <div class="col-sm-offset-4 col-sm-4 text-center">
+                                            <div class="text-center btn-group">
+                                                <button class="btn btn-primary" type="button" name="submit" onclick="pass_data(6, 'create_pdf.php')">Create PDF</button>
+                                                <button class="btn btn-primary" type="button" onclick="location.href='save_progress.php'">Save Progress</button>
+                                                <button class="btn btn-primary" type="button" onclick="location.href='worksheet.php'">Back</button>
+                                            </div>  
+                                        </div>
                                     </div>
-                                </div>
-                                </form>
+                                    </form>
                             </div>
                             <!-- /.panel-body -->
                         </div>
@@ -287,6 +219,14 @@
             $(document).ready(function() {
                 $('#dataTables-example').DataTable({
                     responsive: true
+                });
+            });
+            $(document).ready(function(){
+                $('#new_price, #new_description, #new_quantity').keypress(function(e){
+                    if(e.keyCode == 13) {
+                        $('#new_description').focus();
+                        $('#estimate_addBtn').click();
+                    }
                 });
             });
         </script>

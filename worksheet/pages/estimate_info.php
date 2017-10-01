@@ -76,7 +76,7 @@
                                     <div class="row">
                                         <div class="col-sm-offset-4 col-sm-4 text-center">
                                             <div class="text-center btn-group">
-                                                <button class="btn btn-primary" type="button" name="submit" onclick="pass_data(5, 'create_estimate.php')">Create PDF</button>
+                                                <button class="btn btn-primary" type="button" name="submit" onclick="pass_data(6, 'create_estimate.php')">Create PDF</button>
                                                 <button class="btn btn-primary" type="button" onclick="location.href='worksheet.php'">Back</button>
                                             </div>  
                                         </div>
@@ -132,6 +132,7 @@
                 });
             });
         </script>
+        
 
         <!-- Functions -->
         <?php include('./includes/functions.html'); ?>

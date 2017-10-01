@@ -4,12 +4,13 @@
     $apt = $_POST['apt'];
     $unit = $_POST['unit'];
     $size = $_POST['size'];
+    $po = $_POST['po'];
     if (isset($_POST['price'])) {
         $price = $_POST['price'];
     }
     $id = $_SESSION['id'];
     $arr = $_SESSION['edit_arr'];
-    $sql = "UPDATE estimate SET company=\"".$company."\", apt=\"".$apt."\",
+    $sql = "UPDATE estimate SET company=\"".$company."\", apt=\"".$apt."\", PO=\"".$po."\",
         unit=\"".$unit."\", size=\"".$size."\", description=\"".$arr[0][0]."\" WHERE id='$id';";
     $conn->query($sql);
     $sql = "DELETE FROM estimate_description WHERE estimate_id='$id'";

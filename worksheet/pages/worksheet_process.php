@@ -1,15 +1,38 @@
 <?php
     // connection with mysql database
     include('./includes/connection.php');
-
     if (isset($_GET['json'])) {
         $ar = explode("\\", $_GET['json']);
-        $po = $ar[0];
-        $company = $ar[1];
-        $apt = $ar[2];
-        $unit = $ar[3];
-        $size = $ar[4];
-        $manager = $ar[5];
+        if ($ar[0] != '-') {
+            $po = $ar[0];
+        } else {
+            $po = null;
+        }
+        if ($ar[1] != '-') {
+            $company = $ar[1];
+        } else {
+            $company = null;
+        }
+        if ($ar[2] != '-') {
+            $apt = $ar[2];
+        } else {
+            $apt = null;
+        }
+        if ($ar[3] != '-') {
+            $unit = $ar[3];
+        } else {
+            $unit = null;
+        }
+        if ($ar[4] != '-') {
+            $size = $ar[4];
+        } else {
+            $size = null;
+        }
+        if ($ar[5] != '-') {
+            $manager = $ar[5];
+        } else {
+            $manager = null;
+        }
         $date = $ar[6];
         $n = (int)((count($ar) - 7) / 3);
         $j = 7;
