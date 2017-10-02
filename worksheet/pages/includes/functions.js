@@ -66,11 +66,26 @@
         return date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2);
     }
 
+
+
+
+
+    // Make it possible add a new row for description, qty, and price by pushing enter button 
+    // Give focus at the description section after adding.
+    $(document).ready(function(){
+        $('#new_price, #new_description, #new_quantity').keypress(function(e){
+            if(e.keyCode == 13) {
+                $('#new_description').focus();
+                $('#new_add').click();
+            }
+        });
+    });
+
     // It's used when removing a row which is already added, asking if the decision is final
     function deleteBtn(val) {
         var result = confirm("Are you sure you want to remove it?");
         if (result == true) {
-            location.href="remove_estimate.php?id=" + val;
+            location.href = "remove_estimate.php?id=" + val;
         }
     }
 
@@ -106,7 +121,10 @@
     }
 
     function delete_row(no) {
-        document.getElementById('row' + no).outerHTML = "";
+        var result = confirm("Are you sure you want to remove it?");
+        if (result == true) {
+            document.getElementById('row' + no).outerHTML = "";
+        }
     }
 
     function add_row() {
@@ -125,7 +143,7 @@
         document.getElementById('save_button' + no).style.display = 'block';
     }
 
-    function pass_data(num, path) {
+    function pass_data(num, path, typeBtn) {
         var oForm = document.forms["info"];
         var s = "";
         if (oForm.elements["po"].value.length > 0) {
@@ -160,12 +178,19 @@
                 s += "-\\";
             }
         }
-        s += oForm.elements["date"].value + "\\";
+        if (typeBtn != 3) {
+            s += oForm.elements["date"].value + "\\";
+        }
         var table = document.getElementById('data_table');
+        console.log(table);
         var rowLength = table.rows.length;
-        for (i = 1; i < rowLength - 1; i++) {
-            var oCells = table.rows.item(i).cells;
+        console.log(rowLength);
 
+        // console.log(table.rows.item(2).cells.item(0).getElementsByClassName('lineBreak')[0].innerHTML);
+        // console.log(table.rows.item(0).cells.item(1));
+        for (i = 2; i < rowLength - 1; i++) {
+            var oCells = table.rows.item(i).cells;
+            // console.log(table.rows.item(i).cells);
             //loops through each cell in current row
             for(var j = 0; j < 3; j++) {
                 var cellVal = oCells.item(j).getElementsByClassName('lineBreak')[0].innerHTML; 
@@ -177,9 +202,20 @@
                 s += "\\";
             }   
         }
-        // alert(path + "?json=" + s);
-        // window.location.href= path + "?json="+s;
-        window.open(path + "?json="+s, '_blank');
+        
+        // From worksheet_add.php, edit_admin.php
+        if (typeBtn == 1) {
+            window.location.href = path + "?json=" + s;
+        }
 
+        // From estimate_info.php
+        if (typeBtn == 2) {
+            window.open(path + "?json=" + s, '_blank');   
+        }
+
+        // From worksheet_add.php, edit_admin.php
+        if (typeBtn == 3) {
+            window.location.href = path + "?json=" + s;
+        }
     }
 </script>

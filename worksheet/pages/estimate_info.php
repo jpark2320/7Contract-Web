@@ -50,13 +50,13 @@
                                     </table>
                                     <br>
                                     <table width="100%" id="data_table" class="table table-bordered table-hover table-striped table-condensed">
+                                        <colgroup>
+                                            <col width="60%">
+                                            <col width="15%">
+                                            <col width="15%">
+                                            <col width="10%">
+                                        </colgroup>
                                         <thead>
-                                            <colgroup>
-                                                <col width="60%">
-                                                <col width="15%">
-                                                <col width="15%">
-                                                <col width="10%">
-                                            </colgroup>
                                             <tr align="center">
                                                 <td><b>Description</b></td>
                                                 <td><b>Qty</b></td>
@@ -69,20 +69,18 @@
                                                 <td><input class="form-control" type="text" name="description" id="new_description"></td>
                                                 <td><input class="form-control" type="text" name="qty" id="new_quantity"></td>
                                                 <td><input class="form-control" type="text" name="price" id="new_price"></td>
-                                                <td colspan="2"><input id="estimate_addBtn" class="btn btn-primary btn-block" type="button" class="add" onclick="add_row()" value="Add"></td>
+                                                <td colspan="2"><input id="new_add" class="btn btn-primary btn-block add" type="button" onclick="add_row()" value="Add"></td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <div class="row">
                                         <div class="col-sm-offset-4 col-sm-4 text-center">
                                             <div class="text-center btn-group">
-                                                <button class="btn btn-primary" type="button" name="submit" onclick="pass_data(6, 'create_estimate.php')">Create PDF</button>
+                                                <button class="btn btn-primary" type="button" onclick="pass_data(6, 'create_estimate.php', 2)">Create PDF</button>
                                                 <button class="btn btn-primary" type="button" onclick="location.href='worksheet.php'">Back</button>
                                             </div>  
                                         </div>
                                     </div>
-                                    
-                                    
                                 </form>
                                 
                             </div>
@@ -122,19 +120,9 @@
                     responsive: true
                 });
             });
-
-            $(document).ready(function(){
-                $('#new_price, #new_description, #new_quantity').keypress(function(e){
-                    if(e.keyCode == 13) {
-                        $('#new_description').focus();
-                        $('#estimate_addBtn').click();
-                    }
-                });
-            });
         </script>
-        
 
         <!-- Functions -->
-        <?php include('./includes/functions.html'); ?>
+        <?php include('includes/functions.js'); ?>
     </body>
 </html>

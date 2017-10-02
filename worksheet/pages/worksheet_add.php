@@ -52,6 +52,12 @@
                                     </table>
                                     <br>
                                     <table width="100%" id="data_table" class="table table-bordered table-hover table-striped table-condensed">
+                                        <colgroup>
+                                            <col width="60%">
+                                            <col width="15%">
+                                            <col width="15%">
+                                            <col width="10%">
+                                        </colgroup>
                                         <thead align="center">
                                             <tr>
                                                 <td><b>Description</b></td>
@@ -65,14 +71,14 @@
                                                 <td><input class="form-control" type="text" name="description" id="new_description"></td>
                                                 <td><input class="form-control" type="text" name="qty" id="new_quantity"></td>
                                                 <td><input class="form-control" type="text" name="price" id="new_price"></td>
-                                                <td colspan="2"><button class="btn btn-primary btn-block" type="button" onclick="add_row()">Add</button></td>
+                                                <td colspan="2"><input id="new_add" class="btn btn-primary btn-block" type="button" onclick="add_row()" value="Add"></td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <div class="row">
                                         <div class="col-sm-offset-4 col-sm-4 text-center">
                                             <div class="text-center btn-group">
-                                                <button class="btn btn-primary" type="submit" name="submit" onclick="pass_data(7, 'worksheet_process.php')">Add to Worksheet</button>
+                                                <button class="btn btn-primary" type="button" onclick="pass_data(7, 'worksheet_process.php', 1)">Add Worksheet</button>
                                                 <button class="btn btn-primary" type="button" onclick="location.href='worksheet.php'">Back</button>
                                             </div>  
                                         </div>
@@ -118,8 +124,6 @@
         </script>
 
         <!-- Functions -->
-        <?php include('./includes/functions.html'); ?>
-
+        <?php include('includes/functions.js'); ?>
     </body>
-
 </html>
