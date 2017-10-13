@@ -167,7 +167,7 @@
                                                 <td><input class="form-control" type="text" name="description" id="new_description"></td>
                                                 <td><input class="form-control" type="text" name="qty" id="new_quantity"></td>
                                                 <td><input class="form-control" type="text" name="price" id="new_price"></td>
-                                                <td colspan="2"><input id="estimate_addBtn" class="btn btn-primary btn-block" type="button" class="add" onclick="add_row()" value="Add"></td>
+                                                <td colspan="2"><input id="new_add" class="btn btn-primary btn-block" type="button" class="add" onclick="add_row()" value="Add"></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -177,7 +177,7 @@
                                 <div class="row">
                                         <div class="col-sm-offset-4 col-sm-4 text-center">
                                             <div class="text-center btn-group">
-                                                <button class="btn btn-primary" type="button" name="submit" onclick="pass_data(6, 'create_pdf.php')">Create PDF</button>
+                                                <button class="btn btn-primary" type="button" name="submit" onclick="pass_data(6, 'create_pdf.php', 2)">Create PDF</button>
                                                 <button class="btn btn-primary" type="button" onclick="location.href='save_progress.php'">Save Progress</button>
                                                 <button class="btn btn-primary" type="button" onclick="location.href='worksheet.php'">Back</button>
                                             </div>  
@@ -221,16 +221,9 @@
                     responsive: true
                 });
             });
-            $(document).ready(function(){
-                $('#new_price, #new_description, #new_quantity').keypress(function(e){
-                    if(e.keyCode == 13) {
-                        $('#new_description').focus();
-                        $('#estimate_addBtn').click();
-                    }
-                });
-            });
         </script>
         
-        <?php include('./includes/functions.html'); ?>
+        <!-- Functions -->
+        <?php include('./includes/functions.js'); ?>
     </body>
 </html>

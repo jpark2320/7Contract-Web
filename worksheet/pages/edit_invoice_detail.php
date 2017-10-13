@@ -77,6 +77,6 @@
         <?php include('./includes/footer.html'); ?>
 
         <!-- Functions -->
-        <?php include('./includes/functions.html'); ?>
+        <?php include('./includes/functions.js'); ?>
     </body>
 </html>

@@ -174,6 +174,6 @@ sleep(10); ?>
             });
         </script>
 
-        <?php include('./includes/functions.html'); ?>
+        <?php include('./includes/functions.js'); ?>
     </body>
 </html>

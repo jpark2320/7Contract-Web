@@ -188,7 +188,7 @@
 
         // console.log(table.rows.item(2).cells.item(0).getElementsByClassName('lineBreak')[0].innerHTML);
         // console.log(table.rows.item(0).cells.item(1));
-        for (i = 2; i < rowLength - 1; i++) {
+        for (i = 1; i < rowLength - 1; i++) {
             var oCells = table.rows.item(i).cells;
             // console.log(table.rows.item(i).cells);
             //loops through each cell in current row
@@ -213,6 +213,7 @@
             window.open(path + "?json=" + s, '_blank');   
         }
 
+        // It's currently on testing
         // From worksheet_add.php, edit_admin.php
         if (typeBtn == 3) {
             window.location.href = path + "?json=" + s;
