@@ -1,6 +1,3 @@
-<?php 
-    if (!isset($_SESSION)) { session_start(); }
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +13,7 @@
             $sql = "SELECT * FROM Worksheet WHERE invoice ='".$invoice."';";
             $result = mysqli_query($conn, $sql);
             $row = mysqli_fetch_array($result);
-            $po = $row['po'];
+            $po = $row['PO'];
             $company = $row['company'];
             $apt = $row['apt'];
             $manager = $row['manager'];

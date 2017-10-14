@@ -38,6 +38,7 @@
                                     echo '
                                         <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                             <colgroup>
+                                                <col width="0%">
                                                 <col width="5%">
                                                 <col width="10%">
                                                 <col width="10%">
@@ -50,6 +51,7 @@
                                             </colgroup>
                                             <thead>
                                                 <tr align="center">
+                                                    <td style="display:none;">Sort</td>
                                                     <td><b>ID</b></td>
                                                     <td><b>Company</b></td>
                                                     <td><b>Apt</b></td>
@@ -68,7 +70,6 @@
                                     $result = mysqli_query($conn, $sql);
                                     $isOdd = false;
                                     while($row = mysqli_fetch_array($result)) {
-
                                         $price = str_replace(".00", "", $row['price']);
 
                                         if ($isOdd) {
@@ -80,6 +81,7 @@
                                         }
 
                                         echo '
+                                            <td style="display:none;">'.$row['sort'].'</td>
                                             <td>'.$row['id'].'</td>
                                             <td>'.$row['company'].'</td>
                                             <td><a href="worksheet_apt.php?apt='.$row['apt'].'">'.$row['apt'].'</a></td>

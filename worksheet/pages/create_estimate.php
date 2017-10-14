@@ -51,12 +51,15 @@
             }
             $j++;
 		}
-		$sql = "INSERT INTO estimate VALUES (null, '$company', '$apt', '$po', '$unit', '$size', 0, null, '$date')";
+		$sql = "INSERT INTO estimate VALUES (0, null, '$company', '$apt', '$po', '$unit', '$size', 0, null, '$date')";
 	    $conn->query($sql);
 	    $sql = "SELECT MAX(id) FROM estimate";
 	    $result = mysqli_query($conn, $sql);
 	    $row = mysqli_fetch_array($result);
 	    $maxid = $row['MAX(id)'];
+	    $sort = $maxid * -1;
+	    $sql = "UPDATE estimate SET sort = '$sort' WHERE id = '$maxid'";
+	    $conn->query($sql);
 	} else {
 		echo "<script>alert('somethings wrong');</script>;";
 		echo '<script>window.location.href = "worksheet.php";</script>';

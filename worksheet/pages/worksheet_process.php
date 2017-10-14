@@ -60,12 +60,15 @@
     if (isset($_SESSION['arr'])) {
         $arr = $_SESSION['arr'];
     }
-    $sql = "INSERT INTO worksheet VALUES (null, '$po', '$company', '$apt', '$manager', '$unit', '$size', 0, 0, 0, 0, '', NOW(), 0, 0)";
+    $sql = "INSERT INTO worksheet VALUES (0, null, '$po', '$company', '$apt', '$manager', '$unit', '$size', 0, 0, 0, 0, '', NOW(), 0, 0)";
     $conn->query($sql);
     $sql = "SELECT MAX(invoice) FROM worksheet";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($result);
     $maxid = $row['MAX(invoice)'];
+    $sort = $maxid * -1;
+    $sql = "UPDATE worksheet SET sort = '$sort' WHERE invoice = '$maxid'";
+    $conn->query($sql);
     // echo "<script>alert(\"".$maxid."\");</script>;";
     $total = 0;
     // print_r($arr);

@@ -39,20 +39,23 @@
                                         echo '
                                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                 <colgroup>
+                                                    <col width="0%">
                                                     <col width="7%">
                                                     <col width="10%">
                                                     <col width="8%">
                                                     <col width="10%">
                                                     <col width="5%">
-                                                    <col width="10%">
-                                                    <col width="10%">
-                                                    <col width="10%">
-                                                    <col width="10%">
-                                                    <col width="10%">
-                                                    <col width="10%">
+                                                    <col width="8%">
+                                                    <col width="8%">
+                                                    <col width="8%">
+                                                    <col width="8%">
+                                                    <col width="8%">
+                                                    <col width="8%">
+                                                    <col width="8%">
                                                 </colgroup>
                                                 <thead>
                                                     <tr align="center">
+                                                        <td style="display:none;">Sort</td>
                                                         <td><b>Paid</b></td>
                                                         <td><b>Invoice</b></td>
                                                         <td><b>P.O.</b></td>
@@ -61,6 +64,7 @@
                                                         <td><b>Size</b></td>
                                                         <td><b>Price</b></td>
                                                         <td><b>Recieved</b></td>
+                                                        <td><b>Remaining</b></td>
                                                         <td><b>Salary</b></td>
                                                         <td><b>Profit</b></td>
                                                         <td><b>Date</b></td>
@@ -109,7 +113,7 @@
                                             $totalSalary += $row['salary'];
                                             $totalProfit += $row['profit'];
                                             $totalPaid += $row['paid'];
-
+                                            $remaining = $row['price'] - $row['paid'];
                                             if ($isOdd) {
                                                 $isOdd = false;
                                                 echo '<tr class="odd gradeX" align="center">';
@@ -117,7 +121,7 @@
                                                 $isOdd = true;
                                                 echo '<tr class="even gradeX" align="center">';
                                             }
-
+                                            echo '<td style="display:none;">'.$row['sort'].'</td>';
                                             if ($row['ispaidoff'] == 1) {
                                                 echo '<td><img src="./img/status_light_green" width="15px"><span hidden>3</span></td>';
                                             } else {
@@ -130,10 +134,11 @@
                                                     <td><a href="worksheet_apt.php?apt='.$row['apt'].'&company='.$row['company'].'">'.$row['apt'].'</td>
                                                     <td>'.$row['unit'].'</td>
                                                     <td>'.$row['size'].'</td>
-                                                    <td>'.number_format($row['price']).'</td>
-                                                    <td>'.number_format($row['paid']).'</td>
-                                                    <td>'.number_format($row['salary']).'</td>
-                                                    <td>'.number_format($row['profit']).'</td>
+                                                    <td>'.number_format($row['price'], 2).'</td>
+                                                    <td>'.number_format($row['paid'], 2).'</td>
+                                                    <td>'.number_format($remaining, 2).'</td>
+                                                    <td>'.number_format($row['salary'], 2).'</td>
+                                                    <td>'.number_format($row['profit'], 2).'</td>
                                                     <td>'.substr($row['date'], 0, 11).'</td>
                                                     <td><button class="btn btn-primary btn-sm" onclick="location.href=\'recieve.php?invoice='.$invoice.'&apt='.urlencode($row['apt']).'&unit='.$row['unit'].'&price='.$row['price'].'&paid='.$row['paid'].'\'">Recieve</button></td>
                                                 </tr>
@@ -144,10 +149,10 @@
                                                 <tbody>
                                                     <tr>
                                                         <td align="center" colspan="6"></td>
-                                                        <td tableHeadData="Total Price" align="center"><b>'.number_format($totalPrice).'</b></td>
-                                                        <td tableHeadData="Total Received" align="center"><b>'.number_format($totalPaid).'</b></td>
-                                                        <td tableHeadData="Total Salary" align="center"><b>'.number_format($totalSalary).'</b></td>
-                                                        <td tableHeadData="Total Profit" align="center"><b>'.number_format($totalProfit).'</b></td>
+                                                        <td tableHeadData="Total Price" align="center"><b>'.number_format($totalPrice, 2).'</b></td>
+                                                        <td tableHeadData="Total Received" align="center"><b>'.number_format($totalPaid, 2).'</b></td>
+                                                        <td tableHeadData="Total Salary" align="center"><b>'.number_format($totalSalary, 2).'</b></td>
+                                                        <td tableHeadData="Total Profit" align="center"><b>'.number_format($totalProfit, 2).'</b></td>
                                                         <td align="center" colspan="2"></td>
                                                     </tr>
                                                 </tbody>

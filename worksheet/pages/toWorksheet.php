@@ -11,14 +11,16 @@
     $price = $_GET['price'];
     $po = $_GET['po'];
     $description = $_GET['description'];
-    $sql = "INSERT INTO worksheet VALUES (null, '$po', '$company', '$apt', null, '$unit', '$size', $price, 0, 0, 0, '$description', NOW(), 0, 0)";
+    $sql = "INSERT INTO worksheet VALUES (0, null, '$po', '$company', '$apt', '', '$unit', '$size', $price, 0, 0, 0, '$description', NOW(), 0, 0)";
     $conn->query($sql);
 
     $sql = "SELECT MAX(invoice) FROM worksheet";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($result);
     $maxid = $row['MAX(invoice)'];
-
+    $sort = $maxid * -1;
+    $sql = "UPDATE worksheet SET sort = '$sort' WHERE invoice = '$maxid'";
+    $conn->query($sql);
     $sql = "SELECT * FROM estimate_description WHERE estimate_id = '$id'";
     $result = mysqli_query($conn, $sql);
     while($row = mysqli_fetch_array($result)) {
@@ -26,8 +28,7 @@
     	$conn->query($sql);
     }
 
-    $sql = "DELETE FROM estimate_description WHERE estimate_id = '$id'";
-    $conn->query($sql);
+    
     echo "<script>
             alert(\"Successfully Added to Worksheet.\");
             </script>";

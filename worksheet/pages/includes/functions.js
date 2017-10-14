@@ -146,40 +146,43 @@
     function pass_data(num, path, typeBtn) {
         var oForm = document.forms["info"];
         var s = "";
-        if (oForm.elements["po"].value.length > 0) {
-            s += oForm.elements["po"].value + "\\";
-        } else {
-            s += "-\\";
-        }
-        if (oForm.elements["company"].value.length > 0) {
-            s += oForm.elements["company"].value + "\\";
-        } else {
-            s += "-\\";
-        }
-        if (oForm.elements["apt"].value.length > 0) {
-            s += oForm.elements["apt"].value + "\\";
-        } else {
-            s += "-\\";
-        }
-        if (oForm.elements["unit"].value.length > 0) {
-            s += oForm.elements["unit"].value + "\\";
-        } else {
-            s += "-\\";
-        }
-        if (oForm.elements["size"].value.length > 0) {
-            s += oForm.elements["size"].value + "\\";
-        } else {
-            s += "-\\";
-        }
-        if (num == 7) {
-            if (oForm.elements["manager"].value.length > 0) {
-                s += oForm.elements["manager"].value + "\\";
+        // alert("HELLO");
+        if (num > 1) {
+            if (oForm.elements["po"].value.length > 0) {
+                s += oForm.elements["po"].value + "\\";
             } else {
                 s += "-\\";
             }
-        }
-        if (typeBtn != 3) {
-            s += oForm.elements["date"].value + "\\";
+            if (oForm.elements["company"].value.length > 0) {
+                s += oForm.elements["company"].value + "\\";
+            } else {
+                s += "-\\";
+            }
+            if (oForm.elements["apt"].value.length > 0) {
+                s += oForm.elements["apt"].value + "\\";
+            } else {
+                s += "-\\";
+            }
+            if (oForm.elements["unit"].value.length > 0) {
+                s += oForm.elements["unit"].value + "\\";
+            } else {
+                s += "-\\";
+            }
+            if (oForm.elements["size"].value.length > 0) {
+                s += oForm.elements["size"].value + "\\";
+            } else {
+                s += "-\\";
+            }
+            if (num == 7) {
+                if (oForm.elements["manager"].value.length > 0) {
+                    s += oForm.elements["manager"].value + "\\";
+                } else {
+                    s += "-\\";
+                }
+            }
+            if (typeBtn != 3) {
+                s += oForm.elements["date"].value + "\\";
+            }
         }
         var table = document.getElementById('data_table');
         console.log(table);
@@ -202,7 +205,7 @@
                 s += "\\";
             }   
         }
-        
+        alert(s);
         // From worksheet_add.php, edit_admin.php
         if (typeBtn == 1) {
             window.location.href = path + "?json=" + s;

@@ -53,6 +53,7 @@
                                             echo '
                                                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                     <colgroup>
+                                                        <col width="0%">
                                                         <col width="5%">
                                                         <col width="5%">
                                                         <col width="10%">
@@ -67,6 +68,7 @@
                                                     </colgroup>
                                                     <thead>
                                                         <tr align="center">
+                                                            <td style="display:none;">Sort</td>
                                                             <td><b>Status</b></td>
                                                             <td><b>Invoice</b></td>
                                                             <td><b>Apt</b></td>
@@ -109,7 +111,7 @@
                                                     $isOdd = true;
                                                     echo '<tr class="even gradeX" align="center">';
                                                 }
-
+                                                echo '<td style="display:none;">'.$row['sort'].'</td>';
                                                 if ($row['isworkdone'] == 2) {
                                                     echo '<td><img src="./img/status_light_green" width="15px"><span hidden>3</span></td>';
                                                 } else if ($row['isworkdone'] == 1) {

@@ -12,16 +12,7 @@
                 $i_detail = $_GET['invoice'];
                 $_SESSION['invoice'] = str_replace('7C', '', $i_detail);
                 $invoice = $_SESSION['invoice'];
-                $sql = "SELECT * FROM save_progress WHERE invoice ='$invoice';";
-                $result = $conn->query($sql);
-                if ($result->num_rows > 0) {
-                    while($row = $result->fetch_assoc()) {
-                        $_SESSION['pdf_arr'][$_SESSION['i_pdf']][0] = $row['description'];
-                        $_SESSION['pdf_arr'][$_SESSION['i_pdf']][1] = $row['quantity'];
-                        $_SESSION['pdf_arr'][$_SESSION['i_pdf']][2] = $row['price'];
-                        $_SESSION['i_pdf']++;
-                    }
-                }
+                
             } else {
                 $i_detail = '7C'.$_SESSION['invoice'];
             }
@@ -136,8 +127,8 @@
                                         }
                                         echo '
                                                 <td align="center"><div class="lineBreak_desc">'.$row['comment'].'</div></td>
-                                                <td align="center">'.number_format($row['salary']).'</td>
-                                                <td align="center">'.number_format($row['paid']).'</td>
+                                                <td align="center">'.number_format($row['salary'], 2).'</td>
+                                                <td align="center">'.number_format($row['paid'], 2).'</td>
                                                 <td align="center">'.$row['date'].'</td>
                                             </tr>
                                         ';
@@ -163,12 +154,31 @@
                                             </tr>
                                         </thead>
                                         <tbody id="pdf_table">
-                                            <tr>
-                                                <td><input class="form-control" type="text" name="description" id="new_description"></td>
+                                            <tr>';
+                                        $sql = "SELECT * FROM save_progress WHERE invoice ='$invoice';";
+                                        $result = $conn->query($sql);
+
+                                        echo       '<td><input class="form-control" type="text" name="description" id="new_description"></td>
                                                 <td><input class="form-control" type="text" name="qty" id="new_quantity"></td>
                                                 <td><input class="form-control" type="text" name="price" id="new_price"></td>
                                                 <td colspan="2"><input id="new_add" class="btn btn-primary btn-block" type="button" class="add" onclick="add_row()" value="Add"></td>
-                                            </tr>
+                                            </tr>';
+                                        if ($result->num_rows > 0) {
+                                            $num = $result->num_rows;
+
+                                           while ($row = $result->fetch_assoc()) {
+                                                    echo '<tr id="row'.$num.'"><td id="description_row'.$num.'"><div class="lineBreak">'.$row['description'].'</div></td>';
+                                                    echo '<td id="quantity_row'.$num.'"><div class="lineBreak">'.$row['quantity'].'</div></td>';
+
+                                                    echo '<td id="price_row'.$num.'"><div class="lineBreak">'.$row['price'].'</div></td>';
+                                                    echo '
+                                                        <td><div class="btn-group"><button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li><a id="edit_button'.$num.'" class="edit" onclick="edit_row('.$num.')">Edit</a></li><li><a id="save_button'.$num.'" class="save" onclick="save_row('.$num.')">Save</a></li><li><a class="delete" onclick="delete_row('.$num.')">Delete</a></li></ul></div></td></tr>
+                                                    ';
+                                            
+                                                $num++;
+                                            }
+                                        }
+                                        echo '
                                         </tbody>
                                     </table>
                              
@@ -178,7 +188,7 @@
                                         <div class="col-sm-offset-4 col-sm-4 text-center">
                                             <div class="text-center btn-group">
                                                 <button class="btn btn-primary" type="button" name="submit" onclick="pass_data(6, 'create_pdf.php', 2)">Create PDF</button>
-                                                <button class="btn btn-primary" type="button" onclick="location.href='save_progress.php'">Save Progress</button>
+                                                <button class="btn btn-primary" type="button" onclick="pass_data(1, 'save_progress.php', 3)">Save Progress</button>
                                                 <button class="btn btn-primary" type="button" onclick="location.href='worksheet.php'">Back</button>
                                             </div>  
                                         </div>

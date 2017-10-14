@@ -151,8 +151,8 @@
                                             ';
                                             if ($_SESSION['isadmin'] == 2) {
                                                 echo '
-                                                    <td>'.number_format($row['price']).'</td>
-                                                    <td>'.number_format($row['paid']).'</td>
+                                                    <td>'.number_format($row['price'], 2).'</td>
+                                                    <td>'.number_format($row['paid'], 2).'</td>
                                                 ';
                                             }
                                             echo '
