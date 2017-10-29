@@ -1,52 +1,15 @@
 <?php
     include('./includes/connection.php');
-    if (isset($_GET['json'])) {
-        $ar = explode("\\", $_GET['json']);
-        if ($ar[0] != '-') {
-            $po = $ar[0];
-        } else {
-            $po = null;
-        }
-        if ($ar[1] != '-') {
-            $company = $ar[1];
-        } else {
-            $company = null;
-        }
-        if ($ar[2] != '-') {
-            $apt = $ar[2];
-        } else {
-            $apt = null;
-        }
-        if ($ar[3] != '-') {
-            $unit = $ar[3];
-        } else {
-            $unit = null;
-        }
-        if ($ar[4] != '-') {
-            $size = $ar[4];
-        } else {
-            $size = null;
-        }
-        $n = (int)((count($ar) - 5) / 3);
-        $j = 5;
-        for ($i = 0; $i < $n; $i++) {
-            $arr[$i][0] = $ar[$j];
-            $j++;
-            if ($ar[$j] != '-') {
-                $arr[$i][1] = $ar[$j];
-            } else {
-                $arr[$i][1] = 0;
-            }
-            $j++;
-            if ($ar[$j] != '-') {
-                $arr[$i][2] = $ar[$j];
-            } else {
-                $arr[$i][2] = 0;
-            }
-            $j++;
-        }
+    $company = $_POST['company'];
+    $apt = $_POST['apt'];
+    $unit = $_POST['unit'];
+    $size = $_POST['size'];
+    $po = $_POST['po'];
+    if (isset($_POST['price'])) {
+        $price = $_POST['price'];
     }
     $id = $_SESSION['id'];
+    $arr = $_SESSION['edit_arr'];
     $sql = "UPDATE estimate SET company=\"".$company."\", apt=\"".$apt."\", PO=\"".$po."\",
         unit=\"".$unit."\", size=\"".$size."\", description=\"".$arr[0][0]."\" WHERE id='$id';";
     $conn->query($sql);
@@ -72,6 +35,7 @@
     $sql = "UPDATE estimate SET price='$total' WHERE id='$id'";
     $conn->query($sql);
     $conn->close();
-
+    unset($_SESSION['edit_arr']);
+    $_SESSION['i'] = 0;
     echo '<script>window.location.href="view_estimate.php";</script>';
 ?>

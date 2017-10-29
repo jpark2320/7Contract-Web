@@ -14,6 +14,15 @@
         });
     });
 
+    // Manage which column to be a criterian for sorting table
+    // Make tables to be responsive in any screen size
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            "order": [[ 12, "asc" ]],
+            responsive: true
+        });
+    });
+
     // On mobile screen, it helpes show navigation bar when the button is clicked
     $(document).ready(function() {
         $('#menu_icon').on('click', function() {
@@ -127,20 +136,14 @@
         }
     }
 
-    function add_row(no) {
-        if (no == null)
-            no = 0;
+    function add_row() {
         var new_description = document.getElementById('new_description').value;
         var new_quantity = document.getElementById('new_quantity').value;
         var new_price = document.getElementById('new_price').value;
 
         var table = document.getElementById('data_table');
-        var table_len = (table.rows.length) - 1 + no;
-        var row = table.insertRow(table_len).outerHTML = 
-        "<tr id='row"+table_len+"'><td id='description_row"+table_len+"'><div class='lineBreak'>"
-        +new_description+"</div></td><td id='quantity_row"+table_len+"'><div class='lineBreak'>"
-        +new_quantity+"</div></td><td id='price_row"+table_len+"'><div class='lineBreak'>"
-        +new_price+"</div></td><td><div class='btn-group'><button type='button' class='btn btn-primary btn-xs dropdown-toggle' data-toggle='dropdown'><span class='caret'></span></button><ul class='dropdown-menu' role='menu'><li><a id='edit_button"+table_len+"' class='edit' onclick='edit_row("+table_len+")'>Edit</a></li><li><a id='save_button"+table_len+"' class='save' onclick='save_row("+table_len+")'>Save</a></li><li><a class='delete' onclick='delete_row("+table_len+")'>Delete</a></li></ul></div></td></tr>";
+        var table_len = (table.rows.length) - 1;
+        var row = table.insertRow(table_len).outerHTML = "<tr id='row"+table_len+"'><td id='description_row"+table_len+"'><div class='lineBreak'>"+new_description+"</div></td><td id='quantity_row"+table_len+"'><div class='lineBreak'>"+new_quantity+"</div></td><td id='price_row"+table_len+"'><div class='lineBreak'>"+new_price+"</div></td><td><div class='btn-group'><button type='button' class='btn btn-primary btn-xs dropdown-toggle' data-toggle='dropdown'><span class='caret'></span></button><ul class='dropdown-menu' role='menu'><li><a id='edit_button"+table_len+"' class='edit' onclick='edit_row("+table_len+")'>Edit</a></li><li><a id='save_button"+table_len+"' class='save' onclick='save_row("+table_len+")'>Save</a></li><li><a class='delete' onclick='delete_row("+table_len+")'>Delete</a></li></ul></div></td></tr>";
 
         document.getElementById("new_description").value="";
         document.getElementById("new_quantity").value="";
@@ -194,13 +197,10 @@
         console.log(table);
         var rowLength = table.rows.length;
         console.log(rowLength);
-        $p = 0;
-        if (typeBtn == 3) {
-            $p = 1;
-        }
+
         // console.log(table.rows.item(2).cells.item(0).getElementsByClassName('lineBreak')[0].innerHTML);
         // console.log(table.rows.item(0).cells.item(1));
-        for (i = 1 + $p; i < rowLength - 1 + $p; i++) {
+        for (i = 1; i < rowLength - 1; i++) {
             var oCells = table.rows.item(i).cells;
             // console.log(table.rows.item(i).cells);
             //loops through each cell in current row
