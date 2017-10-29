@@ -31,112 +31,16 @@
                                         $result = mysqli_query($conn, $sql);
                                         $row = mysqli_fetch_array($result);
                                         $_SESSION['id'] = $row['id'];
-                                        $_SESSION['company'] = $row['company'];
-                                        $_SESSION['apt'] = $row['apt'];
-                                        $_SESSION['size'] = $row['size'];
-                                        $_SESSION['unit'] = $row['unit'];
-                                        $_SESSION['price'] = $row['price'];
-                                        $_SESSION['po'] = $row['PO'];
-                                        $sql = "SELECT * FROM estimate_description WHERE estimate_id ='$id';";
-                                        $result = $conn->query($sql);
-                                        if ($result->num_rows > 0) {
-                                            while($row = $result->fetch_assoc()) {
-                                                $_SESSION['edit_arr'][$_SESSION['i']][0] = $row['description'];
-                                                $_SESSION['edit_arr'][$_SESSION['i']][1] = $row['quantity'];
-                                                $_SESSION['edit_arr'][$_SESSION['i']][2] = $row['price'];
-                                                $_SESSION['i']++;
-                                            }
-                                        }
+                                        $company = $row['company'];
+                                        $apt = $row['apt'];
+                                        $size = $row['size'];
+                                        $unit = $row['unit'];
+                                        $price = $row['price'];
+                                        $po = $row['PO'];
                                     }
-
-                                    if (isset($_GET['desc_edited_estm'])) {
-                                        $_SESSION['edit_arr'][$_GET['index_edited_estm']][0] = $_GET['desc_edited_estm'];
-                                    }
-                                    if (isset($_GET['qty_edited_estm'])) {
-                                        $_SESSION['edit_arr'][$_GET['index_edited_estm']][1] = $_GET['qty_edited_estm'];
-                                    }
-                                    if (isset($_GET['price_edited_estm'])) {
-                                        $_SESSION['edit_arr'][$_GET['index_edited_estm']][2] = $_GET['price_edited_estm'];
-                                    }
-
-                                    if (isset($_POST['description'])) {
-                                        if (strlen($_POST['description']) > 0) {
-                                            $_SESSION['edit_arr'][$_SESSION['i']][0] = $_POST['description'];
-                                        } else {
-                                            echo '<script>alert("Description is required");</script>';
-                                            echo '<script>window.location.href="estimate_edit.php";</script>';
-                                            exit();
-                                        }
-                                    }
-                                    if (isset($_POST['price'])) {
-                                        if ($_POST['price'] !== null) {
-                                            $_SESSION['edit_arr'][$_SESSION['i']][1] = $_POST['qty'];
-                                        }
-                                    }
-                                    if (isset($_POST['qty'])) {
-                                        if ($_POST['qty'] !== null) {
-                                            $_SESSION['edit_arr'][$_SESSION['i']][2] = $_POST['price'];
-                                        }
-                                    }
-
-                                    if (isset($_POST['submit'])) {
-                                        $_SESSION['i']++;
-                                    }
-
-                                    echo '
-                                        <form action="estimate_edit.php" method="post">
-                                            <table width="100%" class="table table-striped table-bordered table-hover">
-                                                <colgroup>
-                                                    <col width="70%">
-                                                    <col width="10%">
-                                                    <col width="10%">
-                                                    <col width="5%">
-                                                    <col width="5%">
-                                                </colgroup>
-                                                <thead>
-                                                    <tr>
-                                                        <td align="center"><b>Description</b></td>
-                                                        <td align="center"><b>Qty</b></td>
-                                                        <td align="center"><b>Price</b></td>
-                                                        <td colspan="2"></td>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="pdf_table">
-                                                    <tr>
-                                                        <td><input class="form-control" type="text" name="description"></td>
-                                                        <td><input class="form-control" type="text" name="qty"></td>
-                                                        <td><input class="form-control" type="text" name="price"></td>
-                                                        <td colspan="2" align="center"><button type="submit" name="submit">Add</button></td>
-                                                    </tr>
-                                    ';
-                                    if (isset($_SESSION['edit_arr'])) {
-                                        for ($i = 0; $i < sizeof($_SESSION['edit_arr']); $i++) {
-                                            if ($_SESSION['edit_arr'][$i][0] !== null) {
-                                                echo '<tr bgcolor="#c4daff"><td><div class="lineBreak">'.$_SESSION['edit_arr'][$i][0].'</div></td>';
-                                            }
-                                            if ($_SESSION['edit_arr'][$i][1] !== null) {
-                                                echo '<td>'.$_SESSION['edit_arr'][$i][1].'</td>';
-                                            }
-
-                                            if ($_SESSION['edit_arr'][$i][2] !== null) {
-                                                echo '<td>'.$_SESSION['edit_arr'][$i][2].'</td>';
-                                            }
-                                            if ($_SESSION['edit_arr'][$i][0] !== null) {
-                                                echo '<td align="center"><button type="button" onclick="location.href=\'edit_estimate_detail.php?description='.$_SESSION['edit_arr'][$i][0].' &qty='.$_SESSION['edit_arr'][$i][1].' &price='.$_SESSION['edit_arr'][$i][2].' &index='.$i.'\'">Edit</button></td>';
-                                            }
-                                            if ($_SESSION['edit_arr'][$i][0] !== null) {
-                                                echo '<td align="center"><button type="button" onclick="location.href=\'edit_estimate_detail.php?index_deleted='.$i.'\'">Delete</button></td></tr>';
-                                            }
-                                        }
-                                    }
-
-                                    echo '
-                                                </tbody>
-                                            </table>
-                                        </form>
-                                    ';
                                 ?>
-                                <form action="estimate_edit_process.php" method="POST">
+
+                                <form name="info" action="#">
                                     <table width="100%" class="table table-striped table-bordered table-hover">
                                         <colgroup>
                                             <col width="20%">
@@ -163,10 +67,60 @@
                                             <td align="left"><input type="text" class="form-control" name="size" value="<?php echo isset($_SESSION['size']) ? $_SESSION['size'] : '' ?>"></td>
                                         </tr>
                                     </table>
+                                    <?php
+                                    echo '
+                                            <table width="100%" id="data_table" class="table table-striped table-bordered table-hover">
+                                                <colgroup>
+                                                    <col width="70%">
+                                                    <col width="10%">
+                                                    <col width="10%">
+                                                    <col width="10%">
+                                                </colgroup>
+                                                <thead>
+                                                    <tr align="center">
+                                                        <td><b>Description</b></td>
+                                                        <td><b>Qty</b></td>
+                                                        <td><b>Price</b></td>
+                                                        <td colspan="2"></td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="pdf_table">
+                                                    <tr>
+                                                        <td><input class="form-control" type="text" name="description" id="new_description"></td>
+                                                        <td><input class="form-control" type="text" name="qty" id="new_quantity"></td>
+                                                        <td><input class="form-control" type="text" name="price" id="new_price"></td>
+                                                        <td colspan="2"><input id="new_add" class="btn btn-primary btn-block add" type="button" onclick="add_row(1)" value="Add"></td>
+                                                    </tr>
+                                        ';
+
+                                        $sql = "SELECT * FROM estimate_description WHERE estimate_id =".$_SESSION['id'].";";
+                                        $result = $conn->query($sql);
+                                        if ($result->num_rows > 0) {
+                                            $i = 0;
+                                            while($row = $result->fetch_assoc()) {
+                                                echo '<tr id="row'.$i.'"><td id="description_row'.$i.'"><div class="lineBreak">'.$row['description'].'</div></td>';
+                                                echo '<td id="quantity_row'.$i.'"><div class="lineBreak">'.$row['quantity'].'</div></td>';
+
+                                                echo '<td id="price_row'.$i.'"><div class="lineBreak">'.$row['price'].'</div></td>';
+                                                echo '
+                                                    <td><div class="btn-group"><button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li><a id="edit_button'.$i.'" class="edit" onclick="edit_row('.$i.')">Edit</a></li><li><a id="save_button'.$i.'" class="save" onclick="save_row('.$i.')">Save</a></li><li><a class="delete" onclick="delete_row('.$i.')">Delete</a></li></ul></div></td></tr>
+                                                ';
+                                                $i++;
+                                            }
+                                        }
+                                                    
+
+
+                                        echo '
+                                                </tbody>
+                                            </table>
+                                            <br>
+                                        ';
+                                ?>
                                     <div class="row">
                                         <div class="col-sm-offset-5 col-sm-2 text-center">
                                             <div class="text-center btn-group">
-                                                <button class="btn btn-primary" type="submit">Save</button>
+                                                <button class="btn btn-primary" type="button" onclick="pass_data(5, 'estimate_edit_process.php', 3)">Save</button>
                                                 <button class="btn btn-primary" type="button" onclick="location.href='view_estimate.php'">Back</button>
                                             </div>  
                                         </div>
@@ -210,5 +164,6 @@
                 });
             });
         </script>
+        <?php include('includes/functions.js'); ?>
     </body>
 </html>

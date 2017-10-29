@@ -114,7 +114,6 @@
                                             $totalProfit += $row['profit'];
                                             $totalPaid += $row['paid'];
                                             $remaining = $row['price'] - $row['paid'];
-                                            $total_remaining += $remaining;
                                             if ($isOdd) {
                                                 $isOdd = false;
                                                 echo '<tr class="odd gradeX" align="center">';
@@ -152,9 +151,9 @@
                                                         <td align="center" colspan="6"></td>
                                                         <td tableHeadData="Total Price" align="center"><b>'.number_format($totalPrice, 2).'</b></td>
                                                         <td tableHeadData="Total Received" align="center"><b>'.number_format($totalPaid, 2).'</b></td>
-                                                        <td tableHeadData="Total Salary" align="center"><b>'.number_format($total_remaining, 2).'</b></td>
+                                                        <td tableHeadData="Total Salary" align="center"><b>'.number_format($totalSalary, 2).'</b></td>
                                                         <td tableHeadData="Total Profit" align="center"><b>'.number_format($totalProfit, 2).'</b></td>
-                                                        <td align="center" colspan="3"></td>
+                                                        <td align="center" colspan="2"></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -193,6 +192,15 @@
 
         <!-- Custom Theme JavaScript -->
         <script src="../dist/js/sb-admin-2.js"></script>
+
+        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+        <script>
+            $(document).ready(function() {
+                $('#dataTables-example').DataTable({
+                    responsive: true
+                });
+            });
+        </script>
 
         <?php include('./includes/functions.js'); ?>
     </body>
