@@ -53,8 +53,8 @@
                                             echo '
                                                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                     <colgroup>
-                                                        <col width="0%">
                                                         <col width="5%">
+                                                        <col width="0%">
                                                         <col width="5%">
                                                         <col width="10%">
                                                         <col width="5%">
@@ -68,7 +68,6 @@
                                                     </colgroup>
                                                     <thead>
                                                         <tr align="center">
-                                                            <td style="display:none;">Sort</td>
                                                             <td><b>Status</b></td>
                                                             <td><b>Invoice</b></td>
                                                             <td><b>Apt</b></td>
@@ -81,6 +80,7 @@
                                                             <td><b>Size</b></td>
                                                             <td><b>Price</b></td>
                                                             <td></td>
+                                                            <td style="display: none;"></td>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -111,7 +111,7 @@
                                                     $isOdd = true;
                                                     echo '<tr class="even gradeX" align="center">';
                                                 }
-                                                echo '<td style="display:none;">'.$row['sort'].'</td>';
+
                                                 if ($row['isworkdone'] == 2) {
                                                     echo '<td><img src="./img/status_light_green" width="15px"><span hidden>3</span></td>';
                                                 } else if ($row['isworkdone'] == 1) {
@@ -142,6 +142,7 @@
                                                                 </ul>
                                                             </div>
                                                         </td>
+                                                        <td style="display: none;">'.$row['sort'].'</td>
                                                     </tr>
                                                 ';
                                             }
@@ -256,15 +257,6 @@
 
         <!-- Custom Theme JavaScript -->
         <script src="../dist/js/sb-admin-2.js"></script>
-
-        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-        <script>
-            $(document).ready(function() {
-                $('#dataTables-example').DataTable({
-                    responsive: true
-                });
-            });
-        </script>
 
         <?php include('includes/functions.js'); ?>
     </body>

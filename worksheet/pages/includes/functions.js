@@ -14,6 +14,15 @@
         });
     });
 
+    // Manage which column to be a criterian for sorting table
+    // Make tables to be responsive in any screen size
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            "order": [[ 12, "asc" ]],
+            responsive: true
+        });
+    });
+
     // On mobile screen, it helpes show navigation bar when the button is clicked
     $(document).ready(function() {
         $('#menu_icon').on('click', function() {

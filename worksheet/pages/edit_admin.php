@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <?php 
-        unset($_SESSION);
+        // unset($_SESSION);
         include('./includes/head_tag.html'); 
 
         include('./includes/connection.php');
@@ -21,7 +20,13 @@
             $unit = $row['unit'];
             $price = $row['price'];
             $description = $row['description'];
-            $sql = "SELECT * FROM worksheet_description WHERE invoice ='$invoice';";
+        }
+    ?>
+
+
+    <script type="text/javascript">
+        <?php 
+            $sql = "SELECT * FROM worksheet_description WHERE invoice = '$invoice';";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
@@ -31,8 +36,15 @@
                     $_SESSION['i']++;
                 }
             }
-        }
-    ?>
+
+            echo '<script>
+                var a = 3;
+                alert(a);
+
+            </script>';
+        ?>
+
+    </script>
 
     <body>
         <div id="wrapper">
@@ -63,21 +75,21 @@
                                         </colgroup>
                                         <tr>
                                             <td align="right"><b><h5>Apt</h5></b></td>
-                                            <td align="left"><input type="text" class="form-control" name="apt" value="<?php echo isset($_SESSION['apt']) ? $_SESSION['apt'] : '' ?>"></td>
+                                            <td align="left"><input type="text" class="form-control" name="apt" value="<?php echo isset($apt) ? $apt : '' ?>"></td>
                                             <td align="right"><b><h5>Unit</h5></b></td>
-                                            <td align="left"><input type="text" class="form-control" name="unit" value="<?php echo isset($_SESSION['unit']) ? $_SESSION['unit'] : '' ?>"></td>
+                                            <td align="left"><input type="text" class="form-control" name="unit" value="<?php echo isset($unit) ? $unit : '' ?>"></td>
                                         </tr>
                                         <tr>
                                             <td align="right"><b><h5>P.O.</h5></b></td>
-                                            <td align="left"><input type="text" class="form-control" name="po" value="<?php echo isset($_SESSION['po']) ? $_SESSION['po'] : '' ?>"></td>
+                                            <td align="left"><input type="text" class="form-control" name="po" value="<?php echo isset($po) ? $po : '' ?>"></td>
                                             <td align="right"><b><h5>Co</h5></b></td>
-                                            <td align="left"><input type="text" class="form-control" id="company" name="company" value="<?php echo isset($_SESSION['company']) ? $_SESSION['company'] : '' ?>"></td>
+                                            <td align="left"><input type="text" class="form-control" id="company" name="company" value="<?php echo isset($company) ? $company : '' ?>"></td>
                                         </tr>
                                         <tr>
                                             <td align="right"><b><h5>Mgr</h5></b></td>
-                                            <td align="left"><input type="text" class="form-control" name="manager" value="<?php echo isset($_SESSION['manager']) ? $_SESSION['manager'] : '' ?>"></td>
+                                            <td align="left"><input type="text" class="form-control" name="manager" value="<?php echo isset($manager) ? $manager : '' ?>"></td>
                                             <td align="right"><b><h5>Size</h5></b></td>
-                                            <td align="left"><input type="text" class="form-control" name="size" value="<?php echo isset($_SESSION['size']) ? $_SESSION['size'] : '' ?>"></td>
+                                            <td align="left"><input type="text" class="form-control" name="size" value="<?php echo isset($size) ? $size : '' ?>"></td>
                                         </tr>
                                     </table>
                                     <?php
