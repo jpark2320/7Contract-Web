@@ -54,21 +54,21 @@
                                         </colgroup>
                                         <tr>
                                             <td align="right"><b><h5>Apt</h5></b></td>
-                                            <td align="left"><input type="text" class="form-control" name="apt" value="<?php echo isset($_SESSION['apt']) ? $_SESSION['apt'] : '' ?>"></td>
+                                            <td align="left"><input type="text" class="form-control" name="apt" value="<?php echo isset($apt) ? $apt : '' ?>"></td>
                                             <td align="right"><b><h5>Unit</h5></b></td>
-                                            <td align="left"><input type="text" class="form-control" name="unit" value="<?php echo isset($_SESSION['unit']) ? $_SESSION['unit'] : '' ?>"></td>
+                                            <td align="left"><input type="text" class="form-control" name="unit" value="<?php echo isset($unit) ? $unit : '' ?>"></td>
                                         </tr>
                                         <tr>
                                             <td align="right"><b><h5>P.O.</h5></b></td>
-                                            <td align="left"><input type="text" class="form-control" name="po" value="<?php echo isset($_SESSION['po']) ? $_SESSION['po'] : '' ?>"></td>
+                                            <td align="left"><input type="text" class="form-control" name="po" value="<?php echo isset($po) ? $po : '' ?>"></td>
                                             <td align="right"><b><h5>Co</h5></b></td>
-                                            <td align="left"><input type="text" class="form-control" id="company" name="company" value="<?php echo isset($_SESSION['company']) ? $_SESSION['company'] : '' ?>"></td>
+                                            <td align="left"><input type="text" class="form-control" id="company" name="company" value="<?php echo isset($company) ? $company : '' ?>"></td>
                                         </tr>
                                         <tr>
                                             <td align="right"><b><h5>Mgr</h5></b></td>
-                                            <td align="left"><input type="text" class="form-control" name="manager" value="<?php echo isset($_SESSION['manager']) ? $_SESSION['manager'] : '' ?>"></td>
+                                            <td align="left"><input type="text" class="form-control" name="manager" value="<?php echo isset($manager) ? $manager : '' ?>"></td>
                                             <td align="right"><b><h5>Size</h5></b></td>
-                                            <td align="left"><input type="text" class="form-control" name="size" value="<?php echo isset($_SESSION['size']) ? $_SESSION['size'] : '' ?>"></td>
+                                            <td align="left"><input type="text" class="form-control" name="size" value="<?php echo isset($size) ? $size : '' ?>"></td>
                                         </tr>
                                     </table>
                                     <?php

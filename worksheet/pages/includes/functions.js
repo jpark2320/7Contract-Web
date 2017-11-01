@@ -14,6 +14,15 @@
         });
     });
 
+    // Manage which column to be a criterian for sorting table
+    // Make tables to be responsive in any screen size
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            "order": [[ 12, "asc" ]],
+            responsive: true
+        });
+    });
+
     // On mobile screen, it helpes show navigation bar when the button is clicked
     $(document).ready(function() {
         $('#menu_icon').on('click', function() {
@@ -152,7 +161,6 @@
     function pass_data(num, path, typeBtn) {
         var oForm = document.forms["info"];
         var s = "";
-        // alert("HELLO");
         if (num > 1) {
             if (oForm.elements["po"].value.length > 0) {
                 s += oForm.elements["po"].value + "\\";
@@ -191,9 +199,9 @@
             }
         }
         var table = document.getElementById('data_table');
-        console.log(table);
+        // console.log(table);
         var rowLength = table.rows.length;
-        console.log(rowLength);
+        // console.log(rowLength);
         $p = 0;
         if (typeBtn == 3) {
             $p = 1;
@@ -214,7 +222,7 @@
                 s += "\\";
             }   
         }
-        alert(s);
+
         // From worksheet_add.php, edit_admin.php
         if (typeBtn == 1) {
             window.location.href = path + "?json=" + s;
