@@ -54,7 +54,6 @@
                                                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                     <colgroup>
                                                         <col width="5%">
-                                                        <col width="0%">
                                                         <col width="5%">
                                                         <col width="10%">
                                                         <col width="5%">
@@ -80,7 +79,7 @@
                                                             <td><b>Size</b></td>
                                                             <td><b>Price</b></td>
                                                             <td></td>
-                                                            <td style="display: none;"></td>
+                                                            <td style="display: none">Sort</td>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -142,7 +141,7 @@
                                                                 </ul>
                                                             </div>
                                                         </td>
-                                                        <td style="display: none;">'.$row['sort'].'</td>
+                                                        <td style="display: none">'.$row['sort'].'</td>
                                                     </tr>
                                                 ';
                                             }
