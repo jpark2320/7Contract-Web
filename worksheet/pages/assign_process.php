@@ -1,33 +1,41 @@
 <?php
     // connection with mysql database
     include('./includes/connection.php');
-
     $message = $_POST['assign_message'];
     $arr = $_POST['workersArray'];
-
     $i_num = $_SESSION['i_num'];
     $i_num = substr($i_num, 2);
     $a_num = $_SESSION['a_num'];
     $u_num = $_SESSION['u_num'];
-
     date_default_timezone_set('Etc/UTC');
     require 'PHPMailer/PHPMailerAutoload.php';
     $mail = new PHPMailer;
     $mail->isSMTP();
-    $mail->SMTPDebug = 0;
+    $mail->SMTPDebug = 1;
+    $mail->SMTPOptions = array(
+        'ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+        )
+    );
     $mail->Debugoutput = 'html';
     $mail->Host = 'smtp.gmail.com';
     $mail->Port = 587;
     $mail->SMTPSecure = 'tls';
     $mail->SMTPAuth = true;
+    $mail->SMTPAutoTLS = false;
     $mail->Username = "7contractor@gmail.com";
     $mail->Password = "7contract.com";
     $mail->setFrom('7contractor@gmail.com', '7 Contract');
     $mail->addReplyTo('7contractor@gmail.com', '7 Contract');
-
     for ($i = 0; $i < sizeof($arr); $i++) {
+        $max = mysqli_query($conn, "SELECT max(id) FROM subworksheet");
+        $row =  mysqli_fetch_array($max);
+        $max = $row['max(id)'];
+        $max = ($max + 1) * (-1);
         $worker = explode("\*", $arr[$i]);
-        $sql = "INSERT INTO subworksheet VALUES (null, '$worker[0]', '$i_num', '$a_num', '$u_num', 0, 0, '$message', '', NOW(), 0, 0)";
+        $sql = "INSERT INTO subworksheet VALUES ($max, null, '$worker[0]', '$i_num', '$a_num', '$u_num', 0, 0, '$message', '', NOW(), 0, 0)";
         if ($conn->query($sql) === FALSE) {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
@@ -44,9 +52,10 @@
     unset($_SESSION['i_num']);
     unset($_SESSION['a_num']);
     unset($_SESSION['u_num']);
-
     $mail->Subject = '[7 Contract] Work Request for Apt:'.$a_num.' Unit:'.$u_num.'.';
     $contact = "\n\n\n\n".'Seven Contract LLC.'."\n"."sevencontract1@gmail.com"."\n"."(678)727-3371";
+    $message = $message . $contact;
+    echo $message;
     $mail->Body = $message;
     if (!$mail->send()) {
         echo "Mailer Error: " . $mail->ErrorInfo;

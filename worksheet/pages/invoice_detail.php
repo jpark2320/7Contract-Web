@@ -59,20 +59,22 @@
                                         echo '
                                             <table width="100%" class="table table-striped table-bordered table-hover">
                                                 <colgroup>
-                                                    <col width="50%">
-                                                    <col width="50%">
+                                                    <col width="15%">
+                                                    <col width="35%">
+                                                    <col width="15%">
+                                                    <col width="35%">
                                                 </colgroup>
                                                 <tr>
                                                     <td align="right"><b>Invoice</b></td>
                                                     <td align="left">'."7C".$_SESSION['invoice'].'</td>
-                                                </tr>
-                                                <tr>
                                                     <td align="right"><b>Apt</b></td>
                                                     <td align="left">'.$_SESSION['apt_pdf'].'</td>
                                                 </tr>
                                                 <tr>
                                                     <td align="right"><b>Unit</b></td>
                                                     <td align="left">'.$_SESSION['unit_pdf'].'</td>
+                                                    <td></td>
+                                                    <td></td>
                                                 </tr>
                                             </table>
                                         ';

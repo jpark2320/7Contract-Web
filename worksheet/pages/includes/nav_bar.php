@@ -54,7 +54,7 @@
                                 if ($_SESSION['isadmin'] == 2) {
                                     echo '
                                         <li>
-                                            <a href="price_detail.php"><i class="fa fa-table fa-fw"></i> Payment Record</a>
+                                            <a href="price_detail.php"><i class="fa fa-table fa-fw"></i> Payment History</a>
                                         </li>
                                     ';        
                                 }

@@ -27,43 +27,47 @@
                                 <?php include('./includes/connection.php'); ?>
                                 <form name="info" action="#">
                                     <table width="100%" class="table table-bordered table-hover table-striped table-condensed">
-                                        <thead align="center">
-                                            <tr>
-                                                <td><b>PO</b></td>
-                                                <td><b>Company</b></td>
-                                                <td><b>Apt</b></td>
-                                                <td><b>Unit #</b></td>
-                                                <td><b>Size</b></td>
-                                                <td><b>Manager</b></td>
-                                                <td><b>Date</b></td>
-                                            </tr>
-                                        </thead>
+                                        <colgroup>
+                                            <col width="15%">
+                                            <col width="35%">
+                                            <col width="15%">
+                                            <col width="35%">
+                                        </colgroup>
                                         <tbody>
-                                            <tr align="center">
+                                            <tr>
+                                                <td align="right"><b><h5>Po.</h5></b></td>
                                                 <td><input class="form-control" type="text" name="po" id="po" size="20"></td>
+                                                <td align="right"><b><h5>Co.</h5></b></td>
                                                 <td><input class="form-control" type="text" name="company" id="company" size="20"></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><b><h5>Apt</h5></b></td>
                                                 <td><input class="form-control" type="text" name="apt" id="apt" size="20"></td>
+                                                <td align="right"><b><h5>Unit</h5></b></td>
                                                 <td><input class="form-control" type="text" name="unit" id="unit" size="10"></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><b><h5>Size</h5></b></td>
                                                 <td><input class="form-control" type="text" name="size" id="size" size="10"></td>
+                                                <td align="right"><b><h5>Mgr.</h5></b></td>
                                                 <td><input class="form-control" type="text" name="manager" id="manager" size="10"></td>
-                                                <td><input class="form-control" type="date" name="date" id="theDate" size="8"></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><b><h5>Date</h5></b></td>
+                                                <td><input class="form-control theDate" type="date" name="date" size="8"></td>
+                                                <td></td>
+                                                <td></td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <br>
                                     <table width="100%" id="data_table" class="table table-bordered table-hover table-striped table-condensed">
-                                        <colgroup>
-                                            <col width="60%">
-                                            <col width="15%">
-                                            <col width="15%">
-                                            <col width="10%">
-                                        </colgroup>
                                         <thead align="center">
                                             <tr>
-                                                <td><b>Description</b></td>
-                                                <td><b>Qty</b></td>
-                                                <td><b>Price</b></td>
-                                                <td colspan="2"><b></b></td>
+                                                <td width="60%"><b>Description</b></td>
+                                                <td width="17%"><b>Qty.</b></td>
+                                                <td width="17%"><b>Price</b></td>
+                                                <td width="6%"" colspan="2"><b></b></td>
                                             </tr>
                                         </thead>
                                         <tbody id="pdf_table">
@@ -113,15 +117,6 @@
 
         <!-- Custom Theme JavaScript -->
         <script src="../dist/js/sb-admin-2.js"></script>
-
-        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-        <script>
-            $(document).ready(function() {
-                $('#dataTables-example').DataTable({
-                    responsive: true
-                });
-            });
-        </script>
 
         <!-- Functions -->
         <?php include('includes/functions.js'); ?>

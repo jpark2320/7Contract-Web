@@ -8,6 +8,7 @@
     unset($_SESSION['estm_arr']);
     unset($_SESSION['edit_arr']);
     unset($_SESSION['pdf_arr']);
+    // sleep(60);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,7 +80,7 @@
                                                             <td><b>Size</b></td>
                                                             <td><b>Price</b></td>
                                                             <td></td>
-                                                            <td style="display: none">Sort</td>
+                                                            <td style="display: none"></td>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -153,8 +154,9 @@
                                                         <col width="5%">
                                                         <col width="10%">
                                                         <col width="5%">
-                                                        <col width="65%">
+                                                        <col width="60%">
                                                         <col width="10%">
+                                                        <col width="5%">
                                                         <col width="5%">
                                                     </colgroup>
                                                     <thead>
@@ -165,6 +167,7 @@
                                                             <td><b>Message</b></td>
                                                             <td><b>Date</b></d>
                                                             <td></td>
+                                                            <td style="display: none"></td>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -219,6 +222,7 @@
                                                                 </ul>
                                                             </div>
                                                         </td>
+                                                        <td style="display: none">'.$row['sort'].'</td>
                                                     </tr>
                                                 ';
                                             }

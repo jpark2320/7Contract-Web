@@ -111,7 +111,7 @@
  			$h = 75;
 			for ($i = 0; $i < count($arr); $i++) {
 				$py = $this->GetY();
-				$this->MultiCell(107, 6, " ".$arr[$i][0],0,'L', false);
+				$this->MultiCell(107, 6, $arr[$i][0],0,'L', false);
  				$y = $this->GetY();
  				$h += $ny;
  				$this->SetXY($x + 107, $h);
@@ -181,13 +181,6 @@
 	$pdf->LayOut();
 	$filename = $apt.'_'.$invoice;
 	$pdf->Output('I', substr($filename, 0, -1).'.pdf');
-
-	unset($_SESSION['po_pdf']);
-	unset($_SESSION['apt_pdf']);
-	unset($_SESSION['unit_pdf']);
-	unset($_SESSION['size_pdf']);
-	unset($_SESSION['pdf_arr']);
-	unset($_SESSION['date_pdf']);
 	$_SESSION['i'] = 0;
 
 ?>

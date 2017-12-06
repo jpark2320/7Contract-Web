@@ -31,22 +31,21 @@
                                     echo '
                                         <table width="100%" class="table table-striped table-bordered table-hover">
                                             <colgroup>
-                                                <col width="50%">
-                                                <col width="50%">
+                                                <col width="15%">
+                                                <col width="35%">
+                                                <col width="15%">
+                                                <col width="35%">
                                             </colgroup>
                                             <tbody>
                                                 <tr>
                                                     <td align="right"><b>Company : </b></td>
                                                     <td align="left">'.$_GET['company'].'</td>
-                                                </tr>
-                                                <tr>
                                                     <td align="right"><b>Apartment : </b></td>
                                                     <td align="left">'.$_GET['apt'].'</td>
                                                 </tr>
                                                 <tr>
                                                     <td align="right"><b>Unit # : </b></td>
                                                     <td align="left">'.$_GET['unit'].'</td>
-                                                </tr>
                                                     <td align="right"><b>Size : </b></td>
                                                     <td align="left">'.$_GET['size'].'</td>
                                                 </tr>
@@ -91,7 +90,7 @@
                                                 <td align="center">'.$i.'</td>
                                                 <td align="center">'.$row['quantity'].'</td>
                                                 <td align="center">'.$row['price'].'</td>
-                                                <td align="center"><div class="lineBreak_desc">'.$row['description'].'</div></td>
+                                                <td align="center"><div class="lineBreak">'.$row['description'].'</div></td>
                                             </tr>
                                         ';
 

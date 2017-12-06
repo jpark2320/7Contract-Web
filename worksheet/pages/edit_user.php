@@ -70,7 +70,7 @@
                                     if (isset($_SESSION['arr'])) {
                                         for ($i = 0; $i < sizeof($_SESSION['arr']); $i++) {
                                             if ($_SESSION['arr'][$i] !== null) {
-                                                echo '<tr bgcolor="#c4daff"><td><div class="lineBreak_desc">'.$_SESSION['arr'][$i].'</div></td>';
+                                                echo '<tr><td><div class="lineBreak">'.$_SESSION['arr'][$i].'</div></td>';
                                             }
                                             if ($_SESSION['arr'][$i] !== null) {
                                                 echo '

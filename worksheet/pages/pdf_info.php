@@ -53,26 +53,26 @@
                                             </colgroup>
                                             <tbody>
                                                 <tr>
-                                                    <td align="right"><label><b>Invoice # : </label></b></td>
-                                                    <td align="left">'.'7C'.$_SESSION['invoice'].'</td>
-                                                    <td align="right"><label><b>Apt : </label></b></td>
+                                                    <td align="right"><h5><b>Invoice : </h5></b></td>
+                                                    <td align="left"><input class="form-control" type="text" name="invoice" id="invoice" size="15" value="'.'7C'.$_SESSION['invoice'].'" readonly></td>
+                                                    <td align="right"><h5><b>Apt. : </h5></b></td>
                                                     <td><input class="form-control" type="text" name="apt" id="apt" size="15" value="'.$apt.'" readonly></td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="right"><b><label>P.O. : </label></b></td>
+                                                    <td align="right"><b><h5>Po. : </h5></b></td>
                                                     <td align="left"><input class="form-control" type="text" name="po" id="po" size="15" value="'.$po.'" readonly></td>
-                                                    <td align="right"><b><label>Unit # : </label></b></td>
+                                                    <td align="right"><b><h5>Unit : </h5></b></td>
                                                     <td align="left"><input class="form-control" type="text" name="unit" id="unit" size="15" value="'.$unit.'" readonly></td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="right"><b><label>Company : </label></b></td>
+                                                    <td align="right"><b><h5>Company : </h5></b></td>
                                                     <td align="left"><input class="form-control" type="text" name="company" id="company" size="15"value="'.$company.'" readonly></td>
-                                                    <td align="right"><b><label>Size : </label></b></td>
+                                                    <td align="right"><b><h5>Size : </h5></b></td>
                                                     <td align="left"><input class="form-control" type="text" name="size" id="size" size="15" value="'.$size.'" readonly></td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="right"><b><label>Date : </label></b></td>
-                                                    <td align="left"><input class="form-control" type="date" name="date" id="theDate" size="8"></td>
+                                                    <td align="right"><b><h5>Date : </h5></b></td>
+                                                    <td align="left"><input class="form-control theDate" type="date" name="date" size="8"></td>
                                                     <td align="right"><b></b></td>
                                                     <td align="left"></td>
                                                 </tr>
@@ -161,7 +161,7 @@
                                         echo       '<td><input class="form-control" type="text" name="description" id="new_description"></td>
                                                 <td><input class="form-control" type="text" name="qty" id="new_quantity"></td>
                                                 <td><input class="form-control" type="text" name="price" id="new_price"></td>
-                                                <td colspan="2"><input id="new_add" class="btn btn-primary btn-block" type="button" class="add" onclick="add_row()" value="Add"></td>
+                                                <td colspan="2"><input id="new_add" class="btn btn-primary btn-block" type="button" class="add" onclick="add_row(1)" value="Add"></td>
                                             </tr>';
                                         if ($result->num_rows > 0) {
                                             $num = $result->num_rows;
@@ -187,7 +187,7 @@
                                 <div class="row">
                                         <div class="col-sm-offset-4 col-sm-4 text-center">
                                             <div class="text-center btn-group">
-                                                <button class="btn btn-primary" type="button" name="submit" onclick="pass_data(6, 'create_pdf.php', 2)">Create PDF</button>
+                                                <button class="btn btn-primary" type="button" name="submit" onclick="pass_data(6, 'create_pdf.php', 4)">Create PDF</button>
                                                 <button class="btn btn-primary" type="button" onclick="pass_data(1, 'save_progress.php', 3)">Save Progress</button>
                                                 <button class="btn btn-primary" type="button" onclick="location.href='worksheet.php'">Back</button>
                                             </div>  

@@ -60,7 +60,7 @@
     if (isset($_SESSION['arr'])) {
         $arr = $_SESSION['arr'];
     }
-    $sql = "INSERT INTO worksheet VALUES (0, null, '$po', '$company', '$apt', '$manager', '$unit', '$size', 0, 0, 0, 0, '', NOW(), 0, 0)";
+    $sql = "INSERT INTO worksheet VALUES (0, null, '$po', \"".$company."\", \"".$apt."\", \"".$manager."\", \"".$unit."\", \"".$size."\", 0, 0, 0, 0, '', NOW(), 0, 0)";
     $conn->query($sql);
     $sql = "SELECT MAX(invoice) FROM worksheet";
     $result = mysqli_query($conn, $sql);

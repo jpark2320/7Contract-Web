@@ -1,5 +1,4 @@
-<?php if (!isset($_SESSION)) session_start();
-sleep(10); ?>
+<?php if (!isset($_SESSION)) session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,8 +32,8 @@ sleep(10); ?>
                                     $username = $_SESSION['user_name'];
 
                                     echo '
-                                        <form action="user_pdf.php" method="post">
-                                            <table width="100%" class="table table-striped table-bordered table-hover">
+                                        <form action="user_pdf.php" method="post" target="_blank">
+                                            <table width="100%" class="table">
                                                 <colgroup>
                                                     <col width="50%">
                                                     <col width="50%">
@@ -127,7 +126,7 @@ sleep(10); ?>
                                     echo '</tbody></table>';
                                 ?>
                                 <div class="row">
-                                    <div class="col-sm-offset-5 col-sm-2 text-center">
+                                    <div class="col-sm-offset-5 col-sm-3 text-center">
                                         <div class="text-center btn-group">
                                             <button class="btn btn-primary" type="submit" name="submit">Make PDF</button>
                                             <button class="btn btn-primary" type="button" onclick="location.href='invoice_detail.php'">Back</button>
@@ -165,14 +164,6 @@ sleep(10); ?>
         <!-- Custom Theme JavaScript -->
         <script src="../dist/js/sb-admin-2.js"></script>
 
-        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-        <script>
-            $(document).ready(function() {
-                $('#dataTables-example').DataTable({
-                    responsive: true
-                });
-            });
-        </script>
 
         <?php include('./includes/functions.js'); ?>
     </body>

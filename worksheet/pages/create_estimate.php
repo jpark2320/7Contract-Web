@@ -51,7 +51,7 @@
             }
             $j++;
 		}
-		$sql = "INSERT INTO estimate VALUES (0, null, '$company', '$apt', '$po', '$unit', '$size', 0, null, '$date')";
+		$sql = "INSERT INTO estimate VALUES (0, null, \"".$company."\", \"".$apt."\", '$po', \"".$unit."\", \"".$size."\", 0, null, '$date')";
 	    $conn->query($sql);
 	    $sql = "SELECT MAX(id) FROM estimate";
 	    $result = mysqli_query($conn, $sql);
@@ -150,7 +150,7 @@
  			$h = 93;
 			for ($i = 0; $i < count($arr); $i++) {
 				$py = $this->GetY();
-				$this->MultiCell(107, 6, " ".$arr[$i][0],0,'L', false);
+				$this->MultiCell(107, 6, $arr[$i][0],0,'L', false);
  				$y = $this->GetY();
  				$h += $ny;
  				$this->SetXY($x + 107, $h);

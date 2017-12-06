@@ -32,21 +32,20 @@
                                     echo '
                                         <table width="100%" class="table table-striped table-bordered table-hover">
                                             <colgroup>
-                                                <col width="50%">
-                                                <col width="50%">
+                                                <col width="15%">
+                                                <col width="35%">
+                                                <col width="15%">
+                                                <col width="35%">
                                             </colgroup>
                                             <tr>
                                                 <td align="right"><b>Invoice</b></td>
                                                 <td align="left">'.$_GET['invoice'].'</td>
-                                            </tr>
-                                            <tr>
                                                 <td align="right"><b>Apt</b></td>
                                                 <td align="left">'.$_GET['apt'].'</td>
                                             </tr>
                                             <tr>
                                                 <td align="right"><b>Unit</b></td>
                                                 <td align="left">'.$_GET['unit'].'</td>
-                                            </tr>
                                                 <td align="right"><b>Size</b></td>
                                                 <td align="left">'.$_GET['size'].'</td>
                                             </tr>
@@ -98,7 +97,7 @@
                                         echo '
                                                 <td>'.$i.'</td>
                                                 <td>'.$quantity.'</td>
-                                                <td>'.number_format($row['price']).'</td>
+                                                <td>'.'$ '.number_format($row['price'], 2).'</td>
                                                 <td align="left"><div class="lineBreak">'.$row['description'].'</div></td>
                                             </tr>
                                         ';
@@ -110,7 +109,7 @@
                                             <tr align="center">
                                                 <td></td>
                                                 <td><b>Total :</b></td>
-                                                <td><b>'.number_format($total).'</b></td>
+                                                <td><b>'.'$ '.number_format($total, 2).'</b></td>
                                                 <td></td>
                                             </tr>
                                         </tbody>

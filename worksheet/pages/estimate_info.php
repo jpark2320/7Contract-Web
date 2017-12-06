@@ -27,24 +27,30 @@
 
                                 <form name="info" action="#">
                                     <table width="100%" class="table table-bordered table-hover table-striped table-condensed">
-                                        <thead>
-                                            <tr align="center">
-                                                <td><b>Company</b></td>
-                                                <td><b>Apt</b></td>
-                                                <td><b>P.O</b></td>
-                                                <td><b>Unit</b></td>
-                                                <td><b>Size</b></td>
-                                                <td><b>Date</b></td>
-                                            </tr>
-                                        </thead>
+                                        <colgroup>
+                                            <col width="15%">
+                                            <col width="35%">
+                                            <col width="15%">
+                                            <col width="35%">
+                                        </colgroup>
                                         <tbody>
-                                            <tr align="center">
+                                            <tr>
+                                                <td align="right"><b><h5>Co.</h5></b></td>
                                                 <td><input class="form-control" type="text" name="company" id="company" size="15"></td>
+                                                <td align="right"><b><h5>Apt.</h5></b></td>
                                                 <td><input class="form-control" type="text" name="apt" id="apt" size="15"></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><b><h5>Po.</h5></b></td>
                                                 <td><input class="form-control" type="text" name="po" id="po" size="15"></td>
+                                                <td align="right"><b><h5>Unit</h5></b></td>
                                                 <td><input class="form-control" type="text" name="unit" id="unit" size="10"></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><b><h5>Size</h5></b></td>
                                                 <td><input class="form-control" type="text" name="size" id="size" size="10"></td>
-                                                <td><input class="form-control" type="date" name="date" id="theDate" size="8"></td>
+                                                <td align="right"><b><h5>Date</h5></b></td>
+                                                <td><input class="form-control theDate" type="date" name="date" size="8"></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -52,9 +58,9 @@
                                     <table width="100%" id="data_table" class="table table-bordered table-hover table-striped table-condensed">
                                         <colgroup>
                                             <col width="60%">
-                                            <col width="15%">
-                                            <col width="15%">
-                                            <col width="10%">
+                                            <col width="17%">
+                                            <col width="17%">
+                                            <col width="6%">
                                         </colgroup>
                                         <thead>
                                             <tr align="center">

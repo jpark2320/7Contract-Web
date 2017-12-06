@@ -47,8 +47,10 @@
                                     echo '
                                         <table width="100%" class="table table-striped table-bordered table-hover">
                                             <colgroup>
-                                                <col width="30%">
-                                                <col width="70%">
+                                                <col width="15%">
+                                                <col width="35%">
+                                                <col width="15%">
+                                                <col width="35%">
                                             </colgroup>
                                     ';
                                     if ($_SESSION['isadmin'] > 0) {
@@ -56,8 +58,6 @@
                                             <tr>
                                                 <td align="right"><b>Username</b></td>
                                                 <td align="left">'.$username.'</td>
-                                            </tr>
-                                            <tr>
                                                 <td align="right"><b>Invoice</b></td>
                                                 <td align="left">'.$_SESSION['invoice'].'</td>
                                             </tr>
@@ -67,8 +67,6 @@
                                             <tr>
                                                 <td align="right"><b>Apt</b></td>
                                                 <td align="left">'.$_GET['apt'].'</td>
-                                            </tr>
-                                            <tr>
                                                 <td align="right"><b>Unit</b></td>
                                                 <td align="left">'.$_GET['unit'].'</td>
                                             </tr>
@@ -132,27 +130,27 @@
 
                                         if ($isOdd) {
                                             $isOdd = false;
-                                            echo '<tr class="odd gradeX" align="center">';
+                                            echo '<tr class="odd gradeX">';
                                         } else {
                                             $isOdd = true;
-                                            echo '<tr class="even gradeX" align="center">';
+                                            echo '<tr class="even gradeX">';
                                         }
                                         if ($_SESSION['isadmin'] == 2) {
-                                            echo '<td>'.$i.'</td>';
+                                            echo '<td align="center">'.$i.'</td>';
                                             if ($row['ispaidoff'] == 1) {
-                                                echo '<td><img src="./img/status_light_green" width="15px"><span hidden>3</span></td>';
+                                                echo '<td align="center"><img src="./img/status_light_green" width="15px"><span hidden>3</span></td>';
                                             } else {
-                                                echo '<td><img src="./img/status_light_red" width="15px"><span hidden>1</span></td>';
+                                                echo '<td align="center"><img src="./img/status_light_red" width="15px"><span hidden>1</span></td>';
                                             }
                                             echo '
-                                                <td align="left"><div class="lineBreak">'.$row['comment'].'</div></td>
-                                                <td>'.number_format($row['salary']).'</td>
-                                                <td>'.number_format($row['paid']).'</td>
-                                                <td>'.substr($row['date'], 0, 11).'</td>
-                                                <td>
+                                                <td><div class="lineBreak">'.$row['comment'].'</div></td>
+                                                <td align="center">'.number_format($row['salary']).'</td>
+                                                <td align="center">'.number_format($row['paid']).'</td>
+                                                <td align="center">'.substr($row['date'], 0, 11).'</td>
+                                                <td align="center">
                                                     <div class="btn-group">
                                                         <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">
-                                                        <span class="caret"></span>
+                                                            <span class="caret"></span>
                                                         </button>
                                                         <ul class="dropdown-menu" role="menu">
                                                             <li><a onclick="location.href=\'pedit.php?id='.$row['id'].' &comment='.urlencode($row['comment']).'&username='.$username.'\'">Edit</a></li>
@@ -164,9 +162,9 @@
                                             ';
                                         } else {
                                             echo '
-                                                    <td>'.$i.'</td>
+                                                    <td align="center">'.$i.'</td>
                                                     <td><div class="lineBreak">'.$row['comment'].'</div></td>
-                                                    <td>'.substr($row['date'], 0, 11).'</td>
+                                                    <td align="center">'.substr($row['date'], 0, 11).'</td>
                                                 </tr>
                                             ';
                                         }

@@ -49,6 +49,7 @@
                                                 <col width="10%">
                                                 <col width="5%">
                                                 <col width="5%">
+                                                <col width="0%">
                                             </colgroup>
                                             <thead>
                                                 <tr align="center">
@@ -61,6 +62,7 @@
                                                     <td><b>Company</b></td>
                                                     <td><b>Size</b></td>
                                                     <td><b>Price</b></td>
+                                                    <td style="display: none"></td>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -108,6 +110,7 @@
                                                 <td><a href="worksheet_company.php?company='.$row['company'].'">'.$row['company'].'</a></td>
                                                 <td>'.$row['size'].'</td>
                                                 <td>'.$row['price'].'</td>
+                                                <td style="display: none">'.$row['sort'].'</td>
                                             </tr>
                                         ';
                                     }
@@ -150,15 +153,6 @@
 
         <!-- Custom Theme JavaScript -->
         <script src="../dist/js/sb-admin-2.js"></script>
-
-        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-        <script>
-            $(document).ready(function() {
-                $('#dataTables-example').DataTable({
-                    responsive: true
-                });
-            });
-        </script>
 
         <?php include('./includes/functions.js'); ?>
     </body>

@@ -43,32 +43,32 @@
                                 <form name="info" action="#">
                                     <table width="100%" class="table table-striped table-bordered table-hover">
                                         <colgroup>
-                                            <col width="20%">
-                                            <col width="80%">
+                                            <col width="15%">
+                                            <col width="35%">
+                                            <col width="15%">
+                                            <col width="35%">
                                         </colgroup>
                                         <tr>
                                             <td align="right"><b><h5>Company</h5></b></td>
-                                            <td align="left"><input type="text" class="form-control" name="company" value="<?php echo isset($_SESSION['company']) ? $_SESSION['company'] : '' ?>"></td>
-                                        </tr>
-                                        <tr>
+                                            <td align="left"><input type="text" class="form-control" name="company" value="<?php echo isset($company) ? $company : '' ?>"></td>
                                             <td align="right"><b><h5>Apt</h5></b></td>
-                                            <td align="left"><input type="text" class="form-control" name="apt" value="<?php echo isset($_SESSION['apt']) ? $_SESSION['apt'] : '' ?>"></td>
+                                            <td align="left"><input type="text" class="form-control" name="apt" value="<?php echo isset($apt) ? $apt : '' ?>"></td>
                                         </tr>
                                         <tr>
                                             <td align="right"><b><h5>Unit</h5></b></td>
-                                            <td align="left"><input type="text" class="form-control" name="unit" value="<?php echo isset($_SESSION['unit']) ? $_SESSION['unit'] : '' ?>"></td>
-                                        </tr>
-                                        <tr>
+                                            <td align="left"><input type="text" class="form-control" name="unit" value="<?php echo isset($unit) ? $unit : '' ?>"></td>
                                             <td align="right"><b><h5>P.O</h5></b></td>
-                                            <td align="left"><input type="text" class="form-control" name="po" value="<?php echo isset($_SESSION['po']) ? $_SESSION['po'] : '' ?>"></td>
+                                            <td align="left"><input type="text" class="form-control" name="po" value="<?php echo isset($po) ? $po : '' ?>"></td>
                                         </tr>
                                         <tr>
                                             <td align="right"><b><h5>Size</h5></b></td>
-                                            <td align="left"><input type="text" class="form-control" name="size" value="<?php echo isset($_SESSION['size']) ? $_SESSION['size'] : '' ?>"></td>
+                                            <td align="left"><input type="text" class="form-control" name="size" value="<?php echo isset($size) ? $size : '' ?>"></td>
+                                            <td align="right"><b><h5>Date</h5></b></td>
+                                            <td align="left"><input type="date" class="form-control theDate" name="date"></td>
                                         </tr>
                                     </table>
                                     <?php
-                                    echo '
+                                        echo '
                                             <table width="100%" id="data_table" class="table table-striped table-bordered table-hover">
                                                 <colgroup>
                                                     <col width="70%">
@@ -103,7 +103,7 @@
 
                                                 echo '<td id="price_row'.$i.'"><div class="lineBreak">'.$row['price'].'</div></td>';
                                                 echo '
-                                                    <td><div class="btn-group"><button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li><a id="edit_button'.$i.'" class="edit" onclick="edit_row('.$i.')">Edit</a></li><li><a id="save_button'.$i.'" class="save" onclick="save_row('.$i.')">Save</a></li><li><a class="delete" onclick="delete_row('.$i.')">Delete</a></li></ul></div></td></tr>
+                                                    <td colspan="2"><div class="btn-group"><button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li><a id="edit_button'.$i.'" class="edit" onclick="edit_row('.$i.')">Edit</a></li><li><a id="save_button'.$i.'" class="save" onclick="save_row('.$i.')">Save</a></li><li><a class="delete" onclick="delete_row('.$i.')">Delete</a></li></ul></div></td></tr>
                                                 ';
                                                 $i++;
                                             }
@@ -116,12 +116,13 @@
                                             </table>
                                             <br>
                                         ';
-                                ?>
+                                    ?>
                                     <div class="row">
-                                        <div class="col-sm-offset-5 col-sm-2 text-center">
+                                        <div class="col-sm-offset-5 col-sm-3 text-center">
                                             <div class="text-center btn-group">
                                                 <button class="btn btn-primary" type="button" onclick="pass_data(5, 'estimate_edit_process.php', 3)">Save</button>
                                                 <button class="btn btn-primary" type="button" onclick="location.href='view_estimate.php'">Back</button>
+                                                <button class="btn btn-primary" type="button" onclick="pass_data(5, 'create_estimate.php', 4)">Create PDF</button>
                                             </div>  
                                         </div>
                                     </div>

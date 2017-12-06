@@ -17,8 +17,10 @@
     // Manage which column to be a criterian for sorting table
     // Make tables to be responsive in any screen size
     $(document).ready(function() {
+        var table = $('#dataTables-example');
+        var tableLen = table.find("tr:first td").length; // This find the number of columns in a table row
         $('#dataTables-example').DataTable({
-            "order": [[ 12, "asc" ]],
+            "order": [[ tableLen - 1, "asc" ]],
             responsive: true
         });
     });
@@ -57,7 +59,7 @@
     //     document.getElementById("edit_price").outerHTML = document.getElementById("edit_price").outerHTML.replace(/div/g,"input");
     // }
 
-    $("#theDate").val(getFormattedDate(new Date()));
+    $(".theDate").val(getFormattedDate(new Date()));
     // $('#theDate').attr('value', today());
     // $("#theTomorrow").val(getFormattedDate(tomorrow()));
     // $("#theAnyDate").val(getFormattedDate(new Date("4/1/12")));
@@ -79,7 +81,7 @@
 
 
 
-    // Make it possible add a new row for description, qty, and price by pushing enter button 
+    // When pusing the enter key on a new row for description, qty, and price, the related add button is pushed as well 
     // Give focus at the description section after adding.
     $(document).ready(function(){
         $('#new_price, #new_description, #new_quantity').keypress(function(e){
@@ -111,9 +113,9 @@
         var quantity_data = quantity.innerHTML;
         var price_data = price.innerHTML;
 
-        description.innerHTML = "<input class='form-control' type='text' id='description_text" + no + "' value='" + description_data + "'>";
-        quantity.innerHTML = "<input class='form-control' type='text' id='quantity_text" + no + "' value='" + quantity_data + "'>";
-        price.innerHTML = "<input class='form-control' type='text' id='price_text" + no + "' value='" + price_data+"'>";
+        description.innerHTML = '<input class="form-control" type="text" id="description_text' + no + '" value="' + description_data + '">';
+        quantity.innerHTML = '<input class="form-control" type="text" id="quantity_text' + no + '" value="' + quantity_data + '">';
+        price.innerHTML = '<input class="form-control" type="text" id="price_text' + no + '" value="' + price_data+'">';
     }
 
     function save_row(no) {
@@ -143,13 +145,22 @@
         var new_quantity = document.getElementById('new_quantity').value;
         var new_price = document.getElementById('new_price').value;
 
+        if (new_price.length > 0) {
+            new_price = parseInt(new_price).toFixed(2);
+        }
+
         var table = document.getElementById('data_table');
         var table_len = (table.rows.length) - 1 + no;
         var row = table.insertRow(table_len).outerHTML = 
         "<tr id='row"+table_len+"'><td id='description_row"+table_len+"'><div class='lineBreak'>"
         +new_description+"</div></td><td id='quantity_row"+table_len+"'><div class='lineBreak'>"
         +new_quantity+"</div></td><td id='price_row"+table_len+"'><div class='lineBreak'>"
-        +new_price+"</div></td><td><div class='btn-group'><button type='button' class='btn btn-primary btn-xs dropdown-toggle' data-toggle='dropdown'><span class='caret'></span></button><ul class='dropdown-menu' role='menu'><li><a id='edit_button"+table_len+"' class='edit' onclick='edit_row("+table_len+")'>Edit</a></li><li><a id='save_button"+table_len+"' class='save' onclick='save_row("+table_len+")'>Save</a></li><li><a class='delete' onclick='delete_row("+table_len+")'>Delete</a></li></ul></div></td></tr>";
+        +new_price+"</div></td><td colspan='2'><div class='btn-group'>"
+        +"<button type='button' class='btn btn-primary btn-xs dropdown-toggle' data-toggle='dropdown'>"
+        +"<span class='caret'></span></button><ul class='dropdown-menu' role='menu'><li><a id='edit_button"
+        +table_len+"' class='edit' onclick='edit_row("+table_len+")'>Edit</a></li><li><a id='save_button"
+        +table_len+"' class='save' onclick='save_row("+table_len+")'>Save</a></li><li><a class='delete' onclick='delete_row("
+        +table_len+")'>Delete</a></li></ul></div></td></tr>";
 
         document.getElementById("new_description").value="";
         document.getElementById("new_quantity").value="";
@@ -203,7 +214,7 @@
         var rowLength = table.rows.length;
         // console.log(rowLength);
         $p = 0;
-        if (typeBtn == 3) {
+        if (typeBtn == 3 || typeBtn == 4) {
             $p = 1;
         }
         // console.log(table.rows.item(2).cells.item(0).getElementsByClassName('lineBreak')[0].innerHTML);
@@ -233,10 +244,17 @@
             window.open(path + "?json=" + s, '_blank');   
         }
 
-        // It's currently on testing
         // From worksheet_add.php, edit_admin.php
         if (typeBtn == 3) {
             window.location.href = path + "?json=" + s;
+        }
+
+        // From pdf_info.php
+        if (typeBtn == 4) {
+            window.open(path + "?json=" + s, '_blank');
+        }
+        if (typeBtn == 6) {
+            window.open(path + "?json=" + s, '_blank');
         }
     }
 </script>

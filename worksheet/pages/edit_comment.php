@@ -40,10 +40,23 @@
                                     }
                                 ?>
                                 <form action="edit_user.php" method="GET">
+                                    <table width="100%" class="table table-bordered table-hover table-striped table-condensed">
+                                        <colgroup>
+                                            <col width="20%">
+                                            <col width="80%">
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td aling="right"><b><h5>Comment:</h5></b></td>
+                                                <td><input class="form-control" rows="5" name="cmt_edited_user" value="<?php echo isset($comment) ? rtrim($comment, " ") : '' ?>"></input></td>
+                                                <div hidden><input class="form-control" type="text" name="index_edited_user" value="<?php echo $index ?>"></div>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                     <div class="form-group">
-                                        <label for="comment">Comment:</label>
-                                        <textarea class="form-control" rows="5" name="cmt_edited_user" value="<?php echo isset($comment) ? rtrim($comment, " ") : '' ?>"></textarea>
-                                        <div hidden><input class="form-control" type="text" name="index_edited_user" value="<?php echo $index ?>"></div>
+                                        <label for="comment"></label>
+                                        
+                                        
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-offset-5 col-sm-2 text-center">
